@@ -1,19 +1,26 @@
 /* Micro-animations and transitions */
 @keyframes floatSlow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-8px);
   }
 }
 
 @keyframes pulseBorder {
-  0%, 100% {
+
+  0%,
+  100% {
     border-color: rgba(0, 102, 255, 0.2);
   }
+
   50% {
     border-color: rgba(0, 102, 255, 0.6);
+
   }
 }
 
@@ -21,6 +28,7 @@
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
