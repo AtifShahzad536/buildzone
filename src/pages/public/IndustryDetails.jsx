@@ -10,6 +10,7 @@ import {
   Layers 
 } from 'lucide-react';
 import { useGetIndustryBySlugQuery } from '../../services/api';
+import { initialIndustries } from '../../data/industries';
 import { renderIcon } from '../../utils/helpers';
 import Container from '../../components/common/Container';
 import SectionTitle from '../../components/common/SectionTitle';
@@ -21,10 +22,12 @@ import SEOHead from '../../components/common/SEOHead';
 
 export const IndustryDetails = () => {
   const { slug } = useParams();
-  const { data: industry, isLoading, isError, refetch } = useGetIndustryBySlugQuery(slug);
+  const { data: apiIndustry, isLoading, isError, refetch } = useGetIndustryBySlugQuery(slug);
 
-  if (isLoading) return <Loader text="Loading industry solutions..." fullScreen />;
-  if (isError || !industry) return <ErrorState message="Industry sector not found." onRetry={refetch} />;
+  const industry = apiIndustry || initialIndustries.find(i => i.slug === slug || i.id === slug);
+
+  if (isLoading && !industry) return <Loader text="Loading industry solutions..." fullScreen />;
+  if (!industry) return <ErrorState message="Industry sector not found." onRetry={refetch} />;
 
   return (
     <>

@@ -14,6 +14,7 @@ import {
   Terminal 
 } from 'lucide-react';
 import { useGetCareerBySlugQuery, useSubmitApplicationMutation } from '../../services/api';
+import { initialCareers } from '../../data/careers';
 import { jobApplicationSchema } from '../../utils/validation';
 import Container from '../../components/common/Container';
 import Badge from '../../components/common/Badge';
@@ -24,9 +25,11 @@ import SEOHead from '../../components/common/SEOHead';
 
 export const JobDetails = () => {
   const { slug } = useParams();
-  const { data: job, isLoading, isError, refetch } = useGetCareerBySlugQuery(slug);
+  const { data: apiJob, isLoading, isError, refetch } = useGetCareerBySlugQuery(slug);
   const [submitApplication, { isLoading: isSubmitting }] = useSubmitApplicationMutation();
   const [isApplied, setIsApplied] = useState(false);
+
+  const job = apiJob || initialCareers.find(c => c.slug === slug || c.id === slug);
 
   const {
     register,
@@ -37,8 +40,8 @@ export const JobDetails = () => {
     resolver: zodResolver(jobApplicationSchema),
   });
 
-  if (isLoading) return <Loader text="Loading job specifications..." fullScreen />;
-  if (isError || !job) return <ErrorState message="Job opening not found." onRetry={refetch} />;
+  if (isLoading && !job) return <Loader text="Loading job specifications..." fullScreen />;
+  if (!job) return <ErrorState message="Job opening not found." onRetry={refetch} />;
 
   const onSubmit = async (data) => {
     try {

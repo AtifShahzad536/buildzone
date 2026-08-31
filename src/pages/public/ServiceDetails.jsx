@@ -13,6 +13,7 @@ import {
   DollarSign 
 } from 'lucide-react';
 import { useGetServiceBySlugQuery } from '../../services/api';
+import { initialServices } from '../../data/services';
 import { renderIcon } from '../../utils/helpers';
 import Container from '../../components/common/Container';
 import SectionTitle from '../../components/common/SectionTitle';
@@ -24,10 +25,12 @@ import SEOHead from '../../components/common/SEOHead';
 
 export const ServiceDetails = () => {
   const { slug } = useParams();
-  const { data: service, isLoading, isError, refetch } = useGetServiceBySlugQuery(slug);
+  const { data: apiService, isLoading, isError, refetch } = useGetServiceBySlugQuery(slug);
 
-  if (isLoading) return <Loader text="Loading service architecture..." fullScreen />;
-  if (isError || !service) return <ErrorState message="Service not found." onRetry={refetch} />;
+  const service = apiService || initialServices.find(s => s.slug === slug || s.id === slug);
+
+  if (isLoading && !service) return <Loader text="Loading service architecture..." fullScreen />;
+  if (!service) return <ErrorState message="Service not found." onRetry={refetch} />;
 
   return (
     <>

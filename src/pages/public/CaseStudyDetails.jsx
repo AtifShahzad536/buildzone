@@ -11,6 +11,7 @@ import {
   ShieldCheck 
 } from 'lucide-react';
 import { useGetCaseStudyBySlugQuery } from '../../services/api';
+import { initialCaseStudies } from '../../data/caseStudies';
 import Container from '../../components/common/Container';
 import SectionTitle from '../../components/common/SectionTitle';
 import Badge from '../../components/common/Badge';
@@ -21,10 +22,12 @@ import SEOHead from '../../components/common/SEOHead';
 
 export const CaseStudyDetails = () => {
   const { slug } = useParams();
-  const { data: study, isLoading, isError, refetch } = useGetCaseStudyBySlugQuery(slug);
+  const { data: apiStudy, isLoading, isError, refetch } = useGetCaseStudyBySlugQuery(slug);
 
-  if (isLoading) return <Loader text="Loading case study data..." fullScreen />;
-  if (isError || !study) return <ErrorState message="Case study not found." onRetry={refetch} />;
+  const study = apiStudy || initialCaseStudies.find(c => c.slug === slug || c.id === slug);
+
+  if (isLoading && !study) return <Loader text="Loading case study data..." fullScreen />;
+  if (!study) return <ErrorState message="Case study not found." onRetry={refetch} />;
 
   return (
     <>
