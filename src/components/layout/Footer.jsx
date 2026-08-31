@@ -93,15 +93,15 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* 2. 3-Column Navigation Links (Side-by-side 3 columns on Mobile & Desktop) */}
-          <div className="lg:col-span-7 grid grid-cols-3 gap-3 sm:gap-6 pt-2 lg:pt-0">
+          {/* 2. 3-Column Navigation Links with Vertical Dividers & Ergonomic Spacing */}
+          <div className="lg:col-span-7 grid grid-cols-3 divide-x divide-slate-200 pt-3 lg:pt-0">
             
-            {/* Column 1: Company */}
-            <div>
+            {/* Column 1: Company (pr-3 to pr-6) */}
+            <div className="pr-3 sm:pr-6">
               <h4 className="font-display font-bold text-xs sm:text-sm text-[#0B1938] uppercase tracking-wider mb-2.5 sm:mb-4 border-b border-slate-200 pb-1.5">
                 Company
               </h4>
-              <ul className="space-y-1.5 sm:space-y-2.5 text-[11px] sm:text-xs font-mono">
+              <ul className="space-y-2 sm:space-y-2.5 text-[11px] sm:text-xs font-mono">
                 {siteConfig.footerLinks.company.map((link) => (
                   <li key={link.label}>
                     <Link to={link.href} className="text-slate-600 hover:text-[#0066FF] transition-colors inline-flex items-center gap-0.5 group">
@@ -113,12 +113,12 @@ export const Footer = () => {
               </ul>
             </div>
 
-            {/* Column 2: Services */}
-            <div>
+            {/* Column 2: Services (px-3 to px-6) */}
+            <div className="px-3 sm:px-6">
               <h4 className="font-display font-bold text-xs sm:text-sm text-[#0B1938] uppercase tracking-wider mb-2.5 sm:mb-4 border-b border-slate-200 pb-1.5">
                 Services
               </h4>
-              <ul className="space-y-1.5 sm:space-y-2.5 text-[11px] sm:text-xs font-mono">
+              <ul className="space-y-2 sm:space-y-2.5 text-[11px] sm:text-xs font-mono">
                 {siteConfig.footerLinks.services.map((link) => (
                   <li key={link.label}>
                     <Link to={link.href} className="text-slate-600 hover:text-[#0066FF] transition-colors inline-flex items-center gap-0.5 group">
@@ -130,12 +130,12 @@ export const Footer = () => {
               </ul>
             </div>
 
-            {/* Column 3: Resources */}
-            <div>
+            {/* Column 3: Resources (pl-3 to pl-6) */}
+            <div className="pl-3 sm:pl-6">
               <h4 className="font-display font-bold text-xs sm:text-sm text-[#0B1938] uppercase tracking-wider mb-2.5 sm:mb-4 border-b border-slate-200 pb-1.5">
                 Resources
               </h4>
-              <ul className="space-y-1.5 sm:space-y-2.5 text-[11px] sm:text-xs font-mono">
+              <ul className="space-y-2 sm:space-y-2.5 text-[11px] sm:text-xs font-mono">
                 {siteConfig.footerLinks.resources.map((link) => (
                   <li key={link.label}>
                     <Link to={link.href} className="text-slate-600 hover:text-[#0066FF] transition-colors inline-flex items-center gap-0.5 group">
