@@ -4,10 +4,11 @@ import PublicLayout from '../layouts/PublicLayout';
 import AdminLayout from '../layouts/AdminLayout';
 import AuthLayout from '../layouts/AuthLayout';
 import ProtectedRoute from './ProtectedRoute';
-import Loader from '../components/common/Loader';
 
-// Lazy-loaded Public Pages for Optimized Performance
-const Home = lazy(() => import('../pages/public/Home'));
+// Direct synchronous import for Home for instantaneous page rendering (zero loading delay)
+import Home from '../pages/public/Home';
+
+// Lazy-loaded Public Pages
 const About = lazy(() => import('../pages/public/About'));
 const Team = lazy(() => import('../pages/public/Team'));
 const Services = lazy(() => import('../pages/public/Services'));
@@ -53,7 +54,7 @@ const SettingsManager = lazy(() => import('../pages/admin/settings/SettingsManag
 
 export const AppRoutes = () => {
   return (
-    <Suspense fallback={<Loader fullScreen text="Initializing BuildZone..." />}>
+    <Suspense fallback={null}>
       <Routes>
         {/* Public Website Routes */}
         <Route element={<PublicLayout />}>
