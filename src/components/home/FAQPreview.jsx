@@ -47,7 +47,13 @@ export const FAQPreview = () => {
                       {faq.question}
                     </span>
                   </div>
-                  <div className={`p-1.5 rounded-lg bg-blue-50 border border-blue-100 text-[#0066FF] shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 bg-[#0066FF] text-white' : ''}`}>
+                  <div 
+                    className={`p-1.5 rounded-lg border shrink-0 transition-all duration-200 ${
+                      isOpen 
+                        ? 'rotate-180 bg-[#0066FF] border-[#0066FF] text-white shadow-xs' 
+                        : 'bg-blue-50 border-blue-100 text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white group-hover:border-[#0066FF]'
+                    }`}
+                  >
                     <ChevronDown className="w-3.5 h-3.5" />
                   </div>
                 </button>
