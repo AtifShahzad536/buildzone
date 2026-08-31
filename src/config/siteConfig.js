@@ -109,29 +109,29 @@ export const siteConfig = {
     },
   ],
 
-  // Footer Navigation
+  // Ergonomic Compact Footer Navigation (Formatted for mobile 3-column & desktop fit)
   footerLinks: {
     company: [
       { label: "About Us", href: "/about" },
-      { label: "Engineering Team", href: "/team" },
-      { label: "Careers (Hiring)", href: "/careers" },
-      { label: "Contact Us", href: "/contact" },
-      { label: "Security Overview", href: "/security" },
+      { label: "Our Team", href: "/team" },
+      { label: "Careers", href: "/careers" },
+      { label: "Contact", href: "/contact" },
+      { label: "Security", href: "/security" },
     ],
     services: [
-      { label: "Web Development", href: "/services/web-development" },
-      { label: "Mobile Development", href: "/services/mobile-app-development" },
-      { label: "AI & Automation", href: "/ai-development" },
-      { label: "Custom Software", href: "/services/custom-software" },
-      { label: "SaaS Architecture", href: "/services/saas-development" },
-      { label: "Cloud & DevOps", href: "/services/cloud-devops" },
+      { label: "Web Apps", href: "/services/web-development" },
+      { label: "Mobile Apps", href: "/services/mobile-app-development" },
+      { label: "Applied AI", href: "/ai-development" },
+      { label: "Software", href: "/services/custom-software" },
+      { label: "SaaS Cloud", href: "/services/saas-development" },
+      { label: "DevOps", href: "/services/cloud-devops" },
     ],
     resources: [
-      { label: "Engineering Blog", href: "/blog" },
+      { label: "Tech Blog", href: "/blog" },
       { label: "Case Studies", href: "/case-studies" },
-      { label: "Client Portfolio", href: "/portfolio" },
-      { label: "Technologies Stack", href: "/technologies" },
-      { label: "FAQ", href: "/faq" },
+      { label: "Portfolio", href: "/portfolio" },
+      { label: "Tech Stack", href: "/technologies" },
+      { label: "FAQs", href: "/faq" },
     ],
     legal: [
       { label: "Privacy Policy", href: "/privacy-policy" },
