@@ -19,7 +19,7 @@ export const FAQPreview = () => {
 
   return (
     <section className="py-16 sm:py-24 bg-[#F8FAFC] relative">
-      <Container className="max-w-6xl">
+      <Container>
         <SectionTitle
           badge="Clear Answers"
           title="Frequently Asked Questions"
