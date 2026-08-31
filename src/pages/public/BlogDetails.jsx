@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useGetBlogBySlugQuery } from '../../services/api';
+import { initialBlogs } from '../../data/blogs';
 import { formatDate } from '../../utils/helpers';
 import Container from '../../components/common/Container';
 import SectionTitle from '../../components/common/SectionTitle';
@@ -20,10 +21,12 @@ import SEOHead from '../../components/common/SEOHead';
 
 export const BlogDetails = () => {
   const { slug } = useParams();
-  const { data: post, isLoading, isError, refetch } = useGetBlogBySlugQuery(slug);
+  const { data: apiPost, isLoading, isError, refetch } = useGetBlogBySlugQuery(slug);
 
-  if (isLoading) return <Loader text="Loading article..." fullScreen />;
-  if (isError || !post) return <ErrorState message="Article not found." onRetry={refetch} />;
+  const post = apiPost || initialBlogs.find(b => b.slug === slug || b.id === slug);
+
+  if (isLoading && !post) return <Loader text="Loading article..." fullScreen />;
+  if (!post) return <ErrorState message="Article not found." onRetry={refetch} />;
 
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);

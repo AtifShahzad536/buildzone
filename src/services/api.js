@@ -19,7 +19,18 @@ const getOrSeed = (key, initial) => {
     const existing = localStorage.getItem(`buildzone_${key}`);
     if (existing) {
       const data = JSON.parse(existing);
-      if (Array.isArray(data) && data.length > 0) return data;
+      if (Array.isArray(data) && data.length > 0) {
+        if (Array.isArray(initial)) {
+          const existingIds = new Set(data.map(d => d.id || d.slug));
+          const missing = initial.filter(i => !existingIds.has(i.id || i.slug));
+          if (missing.length > 0) {
+            const merged = [...data, ...missing];
+            localStorage.setItem(`buildzone_${key}`, JSON.stringify(merged));
+            return merged;
+          }
+        }
+        return data;
+      }
       if (data && typeof data === 'object' && Object.keys(data).length > 0) return data;
     }
     localStorage.setItem(`buildzone_${key}`, JSON.stringify(initial));
