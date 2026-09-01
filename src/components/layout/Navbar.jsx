@@ -66,12 +66,12 @@ export const Navbar = () => {
               <img
                 src="/logo.png"
                 alt="BuildZone Logo"
-                className="h-8 sm:h-9 md:h-10 w-auto object-contain group-hover:scale-105 transition-all duration-200"
+                className="h-8 sm:h-9 md:h-10 w-auto object-contain group-hover:scale-105 transition-all duration-200 mix-blend-multiply"
               />
               <img
                 src="/LOGO%20TEXT.png"
                 alt="BuildZone Text"
-                className="h-5 sm:h-6 md:h-7 w-auto object-contain group-hover:opacity-90 transition-all duration-200"
+                className="h-5 sm:h-6 md:h-7 w-auto object-contain group-hover:opacity-90 transition-all duration-200 mix-blend-multiply"
               />
             </Link>
 

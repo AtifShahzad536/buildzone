@@ -77,12 +77,12 @@ export const AdminLayout = () => {
             <img
               src="/logo.png"
               alt="BuildZone Admin Logo"
-              className="h-8 w-auto object-contain shrink-0"
+              className="h-8 w-auto object-contain shrink-0 mix-blend-multiply"
             />
             <img
               src="/LOGO%20TEXT.png"
               alt="BuildZone Admin Text"
-              className="h-5 sm:h-6 max-w-[130px] w-auto object-contain shrink-0"
+              className="h-5 sm:h-6 max-w-[130px] w-auto object-contain shrink-0 mix-blend-multiply"
             />
             <span className="font-mono text-[10px] text-[#0066FF] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full uppercase font-bold hidden md:inline-block ml-1">
               Admin Portal
