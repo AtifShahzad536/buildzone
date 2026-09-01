@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
-import { Lock, Mail, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
+import { Lock, Mail, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { loginStart, loginSuccess, loginFailure } from '../../features/auth/authSlice';
 import { loginSchema } from '../../utils/validation';
 import Button from '../../components/common/Button';
-
 import { ADMIN_BASE_PATH } from '../../config/adminConfig';
 
 export const Login = () => {
@@ -16,19 +15,19 @@ export const Login = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
+  const [showPassword, setShowPassword] = useState(false);
 
   const from = location.state?.from?.pathname || ADMIN_BASE_PATH;
 
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors }
   } = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: 'admin@buildzone.tech',
-      password: 'password123',
+      email: '',
+      password: '',
       role: 'Super Admin'
     }
   });
@@ -36,34 +35,41 @@ export const Login = () => {
   const onSubmit = async (data) => {
     dispatch(loginStart());
     try {
-      // Strictly enforce Admin authorization (Reject Developers)
-      if (data.role === 'Developer' || data.email.includes('dev')) {
-        dispatch(loginFailure("Access Restricted: Developer roles are not authorized to access the Admin Panel."));
+      // Strictly enforce Admin authorization (Reject Developers and non-admins)
+      if (data.role === 'Developer' || data.email.toLowerCase().includes('dev')) {
+        dispatch(loginFailure("Access Restricted: Developer roles are not authorized."));
         toast.error("Access Denied: Only Administrators are authorized.");
         return;
       }
 
-      await new Promise(r => setTimeout(r, 400));
+      // Simulate secure password verification
+      await new Promise(r => setTimeout(r, 500));
+
+      // Credential verification
+      const validAdminEmails = ['admin@buildzone.tech', 'superadmin@buildzone.tech', 'atif@buildzone.tech'];
+      const isValidEmail = validAdminEmails.includes(data.email.trim().toLowerCase()) || data.email.endsWith('@buildzone.tech');
+      
+      if (!isValidEmail || data.password.length < 6) {
+        dispatch(loginFailure("Invalid email or password. Access denied."));
+        toast.error("Invalid administrator credentials. Please check your email and password.");
+        return;
+      }
+
       const mockUser = {
         id: 'usr-admin-1',
         name: data.role === 'Super Admin' ? 'Principal Executive Admin' : 'System Administrator',
-        email: data.email,
+        email: data.email.trim(),
         role: data.role,
       };
-      const mockToken = `mock-jwt-token-${Date.now()}`;
+      const mockToken = `bz-jwt-token-${Date.now()}`;
 
       dispatch(loginSuccess({ user: mockUser, token: mockToken }));
       toast.success(`Authenticated successfully as ${data.role}`);
       navigate(from, { replace: true });
     } catch (err) {
       dispatch(loginFailure("Invalid login credentials"));
-      toast.error("Failed to authenticate");
+      toast.error("Failed to authenticate administrator");
     }
-  };
-
-  const handleQuickRole = (role, email) => {
-    setValue('role', role);
-    setValue('email', email);
   };
 
   return (
@@ -77,7 +83,7 @@ export const Login = () => {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 font-sans">
         <div>
           <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
             Admin Role Permission
@@ -98,8 +104,10 @@ export const Login = () => {
           <div className="relative">
             <input
               type="email"
+              placeholder="e.g. admin@buildzone.tech"
+              autoComplete="username"
               {...register('email')}
-              className="w-full bg-white border border-slate-300 pl-8 pr-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+              className="w-full bg-white border border-slate-300 pl-8 pr-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
             />
             <Mail className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
           </div>
@@ -112,11 +120,20 @@ export const Login = () => {
           </label>
           <div className="relative">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your security password"
+              autoComplete="current-password"
               {...register('password')}
-              className="w-full bg-white border border-slate-300 pl-8 pr-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+              className="w-full bg-white border border-slate-300 pl-8 pr-9 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
             />
             <Lock className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-2.5 top-2.5 text-slate-400 hover:text-slate-600 cursor-pointer p-0.5"
+            >
+              {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+            </button>
           </div>
           {errors.password && <p className="font-mono text-[10px] text-rose-600 mt-1">{errors.password.message}</p>}
         </div>
@@ -125,36 +142,13 @@ export const Login = () => {
           type="submit"
           variant="primary"
           size="md"
-          className="w-full shadow-md"
+          className="w-full shadow-md mt-2"
           isLoading={loading}
           rightIcon={<ArrowRight className="w-4 h-4" />}
         >
           Authorize Administrator
         </Button>
       </form>
-
-      {/* Quick Test Demo Credentials Bar */}
-      <div className="pt-4 border-t border-slate-200">
-        <span className="font-mono text-[10px] text-slate-500 uppercase font-bold block mb-2">
-          Administrator Quick Sign-In:
-        </span>
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => handleQuickRole('Super Admin', 'admin@buildzone.tech')}
-            className="px-3 py-1.5 bg-blue-50 border border-blue-200 hover:bg-[#0066FF] hover:text-white text-[11px] font-mono text-[#0066FF] font-bold rounded-lg transition-colors cursor-pointer"
-          >
-            Super Admin
-          </button>
-          <button
-            type="button"
-            onClick={() => handleQuickRole('Admin', 'sysadmin@buildzone.tech')}
-            className="px-3 py-1.5 bg-slate-100 border border-slate-200 hover:border-[#0066FF] hover:bg-blue-50 text-[11px] font-mono text-slate-700 font-semibold rounded-lg transition-colors cursor-pointer"
-          >
-            System Admin
-          </button>
-        </div>
-      </div>
     </div>
   );
 };
