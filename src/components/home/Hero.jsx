@@ -141,16 +141,31 @@ export const Hero = () => {
     setProgressKey((k) => k + 1);
   };
 
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(typeof window !== 'undefined' && window.innerWidth >= 1024);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
   const current = slides[activeSlide];
   const IconComponent = current.icon;
 
   return (
     <section className="relative min-h-[85vh] lg:min-h-[92vh] flex items-center pt-24 sm:pt-28 pb-12 sm:pb-16 overflow-hidden bg-radial-gradient">
       
-      {/* 1. Dynamic 3D AI Neural Matrix Canvas (Subtle ambient on mobile, full interactive on desktop) */}
-      <React.Suspense fallback={<div className="absolute inset-0 z-0 pointer-events-none" />}>
-        <HeroScene />
-      </React.Suspense>
+      {/* 1. Dynamic 3D AI Neural Matrix Canvas (Desktop Only for maximum performance) */}
+      {isDesktop && (
+        <div className="hidden lg:block absolute inset-0 z-0 pointer-events-none">
+          <React.Suspense fallback={<div className="absolute inset-0" />}>
+            <HeroScene />
+          </React.Suspense>
+        </div>
+      )}
 
       {/* 2. Background Cyber Grid */}
       <div className="absolute inset-0 bg-cyber-grid opacity-30 pointer-events-none z-0"></div>
