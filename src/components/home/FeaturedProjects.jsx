@@ -37,6 +37,10 @@ export const FeaturedProjects = () => {
                   <img
                     src={project.image}
                     alt={project.name}
+                    width="600"
+                    height="375"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-3 left-3">

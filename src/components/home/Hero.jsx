@@ -19,7 +19,8 @@ import {
 } from 'lucide-react';
 import Button from '../common/Button';
 import Container from '../common/Container';
-import HeroScene from './HeroScene';
+
+const HeroScene = React.lazy(() => import('./HeroScene'));
 
 const slides = [
   {
@@ -147,7 +148,9 @@ export const Hero = () => {
     <section className="relative min-h-[85vh] lg:min-h-[92vh] flex items-center pt-24 sm:pt-28 pb-12 sm:pb-16 overflow-hidden bg-radial-gradient">
       
       {/* 1. Dynamic 3D AI Neural Matrix Canvas (Subtle ambient on mobile, full interactive on desktop) */}
-      <HeroScene />
+      <React.Suspense fallback={<div className="absolute inset-0 z-0 pointer-events-none" />}>
+        <HeroScene />
+      </React.Suspense>
 
       {/* 2. Background Cyber Grid */}
       <div className="absolute inset-0 bg-cyber-grid opacity-30 pointer-events-none z-0"></div>
@@ -188,6 +191,7 @@ export const Hero = () => {
                 return (
                   <button
                     key={s.id}
+                    aria-label={`View ${s.shortBadge} Solution Architecture`}
                     onClick={() => handleSelectSlide(idx)}
                     className={`relative overflow-hidden px-2.5 py-2.5 rounded-xl text-[11px] xl:text-xs font-mono font-bold uppercase tracking-tight transition-all duration-200 flex items-center justify-center gap-1.5 border cursor-pointer w-full text-center ${
                       isActive
@@ -242,25 +246,25 @@ export const Hero = () => {
                 <div className="flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-lg p-1">
                   <button
                     type="button"
+                    aria-label="Previous Slide"
                     onClick={handlePrev}
                     className="p-1 hover:bg-white text-slate-600 hover:text-[#0066FF] rounded transition-colors cursor-pointer"
-                    title="Previous Slide"
                   >
                     <ChevronLeft className="w-3.5 h-3.5" />
                   </button>
                   <button
                     type="button"
+                    aria-label={isPlaying ? "Pause Auto-Slide" : "Play Auto-Slide"}
                     onClick={() => setIsPlaying(!isPlaying)}
                     className="p-1 hover:bg-white text-slate-600 hover:text-[#0066FF] rounded transition-colors cursor-pointer"
-                    title={isPlaying ? "Pause Auto-Slide" : "Play Auto-Slide"}
                   >
                     {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
                   </button>
                   <button
                     type="button"
+                    aria-label="Next Slide"
                     onClick={handleNext}
                     className="p-1 hover:bg-white text-slate-600 hover:text-[#0066FF] rounded transition-colors cursor-pointer"
-                    title="Next Slide"
                   >
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>

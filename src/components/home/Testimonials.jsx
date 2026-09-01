@@ -39,6 +39,10 @@ export const Testimonials = () => {
                 <img
                   src={t.avatar}
                   alt={t.author}
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
                   className="w-10 h-10 object-cover rounded-full border border-blue-200"
                 />
                 <div>

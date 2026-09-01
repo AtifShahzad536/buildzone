@@ -31,11 +31,19 @@ export const Footer = () => {
               <img
                 src="/logo.png"
                 alt="BuildZone Logo"
+                width="32"
+                height="32"
+                loading="lazy"
+                decoding="async"
                 className="h-6 sm:h-8 w-auto object-contain group-hover:scale-105 transition-all duration-200 shrink-0 mix-blend-multiply"
               />
               <img
                 src="/LOGO%20TEXT.png"
                 alt="BuildZone"
+                width="130"
+                height="24"
+                loading="lazy"
+                decoding="async"
                 className="h-5 sm:h-6 max-w-[120px] sm:max-w-[160px] w-auto object-contain group-hover:opacity-90 transition-all duration-200 shrink-0 mix-blend-multiply"
               />
             </Link>

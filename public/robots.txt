@@ -1,0 +1,8 @@
+# BuildZone Robots.txt
+User-agent: *
+Allow: /
+Disallow: /bz-secure-portal-hq-99x/
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://buildzonetech.vercel.app/sitemap.xml

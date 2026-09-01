@@ -38,6 +38,8 @@ export const FAQPreview = () => {
               >
                 <button
                   type="button"
+                  aria-expanded={isOpen}
+                  aria-label={`Toggle FAQ: ${faq.question}`}
                   onClick={() => toggle(index)}
                   className="w-full p-4 sm:p-5 text-left flex items-start justify-between gap-3.5 focus:outline-none cursor-pointer group"
                 >

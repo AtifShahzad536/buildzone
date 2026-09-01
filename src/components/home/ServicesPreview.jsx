@@ -45,6 +45,9 @@ export const ServicesPreview = () => {
                     <img
                       src={imageSrc}
                       alt={service.title}
+                      width="400"
+                      height="200"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
                       loading="lazy"
                       onError={(e) => {

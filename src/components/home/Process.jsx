@@ -289,6 +289,7 @@ export const Process = () => {
                 return (
                   <button
                     key={s.step}
+                    aria-label={`Select Engineering Phase ${s.step}: ${s.title}`}
                     onClick={() => {
                       setActiveStep(idx);
                       setIsPlaying(false);
@@ -407,6 +408,7 @@ export const Process = () => {
                   </button>
                   <button
                     onClick={() => setIsPlaying(!isPlaying)}
+                    aria-label={isPlaying ? 'Pause Auto-Advancing Process' : 'Play Auto-Advancing Process'}
                     className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-mono text-xs font-semibold transition-all cursor-pointer shadow-2xs ml-1"
                   >
                     {isPlaying ? <Pause className="w-3.5 h-3.5 text-[#0066FF]" /> : <Play className="w-3.5 h-3.5 text-emerald-600" />}

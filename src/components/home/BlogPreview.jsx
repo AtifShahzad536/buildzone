@@ -65,6 +65,9 @@ export const BlogPreview = () => {
                   <img
                     src={featuredBlog.featuredImage}
                     alt={featuredBlog.title}
+                    width="600"
+                    height="300"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
                     loading="lazy"
                   />
@@ -122,6 +125,10 @@ export const BlogPreview = () => {
                     <img
                       src={featuredBlog.authorAvatar}
                       alt={featuredBlog.author}
+                      width="36"
+                      height="36"
+                      loading="lazy"
+                      decoding="async"
                       className="w-9 h-9 rounded-full object-cover border-2 border-white shadow-xs"
                     />
                     <div>
@@ -178,6 +185,9 @@ export const BlogPreview = () => {
                     <img
                       src={blog.featuredImage}
                       alt={blog.title}
+                      width="96"
+                      height="80"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300"
                       loading="lazy"
                     />
