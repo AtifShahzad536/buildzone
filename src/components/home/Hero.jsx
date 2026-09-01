@@ -180,8 +180,8 @@ export const Hero = () => {
               We design, build, and scale custom web platforms, mobile applications, and autonomous AI systems engineered for high-velocity startups and enterprise leaders.
             </p>
 
-            {/* 4. Desktop Only: Capability Switcher Tabs with Live Progress Beam (HIDDEN ON MOBILE) */}
-            <div className="hidden lg:flex items-center gap-2 pt-1 flex-wrap">
+            {/* 4. Desktop Only: Capability Switcher Tabs in 1 Professional Unified Row (HIDDEN ON MOBILE) */}
+            <div className="hidden lg:grid grid-cols-4 gap-2 pt-1 w-full">
               {slides.map((s, idx) => {
                 const isActive = activeSlide === idx;
                 const TabIcon = s.icon;
@@ -189,14 +189,14 @@ export const Hero = () => {
                   <button
                     key={s.id}
                     onClick={() => handleSelectSlide(idx)}
-                    className={`relative overflow-hidden px-3.5 py-2 rounded-lg text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 border cursor-pointer ${
+                    className={`relative overflow-hidden px-2.5 py-2.5 rounded-xl text-[11px] xl:text-xs font-mono font-bold uppercase tracking-tight transition-all duration-200 flex items-center justify-center gap-1.5 border cursor-pointer w-full text-center ${
                       isActive
-                        ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-md shadow-[#0066FF]/20 scale-[1.02]'
-                        : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/80'
+                        ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-md shadow-[#0066FF]/25 scale-[1.01]'
+                        : 'bg-white/90 text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/80'
                     }`}
                   >
-                    <TabIcon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-100' : 'text-[#0066FF]'}`} />
-                    <span>{`0${idx + 1}.`} {s.shortBadge}</span>
+                    <TabIcon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-blue-100' : 'text-[#0066FF]'}`} />
+                    <span className="truncate">{`0${idx + 1}.`} {s.shortBadge}</span>
 
                     {/* Active Timer Progress Line */}
                     {isActive && isPlaying && (
