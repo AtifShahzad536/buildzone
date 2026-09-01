@@ -1,57 +1,59 @@
 import React from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { 
-  LayoutDashboard, 
-  Users, 
-  Briefcase, 
-  Layers, 
-  Building2, 
-  BookOpen, 
-  UserCheck, 
-  Star, 
-  FileText, 
-  FolderGit2, 
-  HelpCircle, 
-  Cpu, 
-  Image, 
-  Settings, 
-  LogOut, 
+import {
+  LayoutDashboard,
+  Users,
+  Briefcase,
+  Layers,
+  Building2,
+  BookOpen,
+  UserCheck,
+  Star,
+  FileText,
+  FolderGit2,
+  HelpCircle,
+  Cpu,
+  Image,
+  Settings,
+  LogOut,
   ExternalLink,
   Shield,
   Menu,
-  X
+  X,
 } from 'lucide-react';
 import { logout, setRole } from '../features/auth/authSlice';
-import { siteConfig } from '../config/siteConfig';
+import { ADMIN_BASE_PATH, ADMIN_LOGIN_PATH } from '../config/adminConfig';
 
 const adminNavItems = [
-  { label: 'Overview', href: '/admin', icon: LayoutDashboard, exact: true },
-  { label: 'Leads & CRM', href: '/admin/leads', icon: Users },
-  { label: 'Projects', href: '/admin/projects', icon: Briefcase },
-  { label: 'Services', href: '/admin/services', icon: Layers },
-  { label: 'Industries', href: '/admin/industries', icon: Building2 },
-  { label: 'Case Studies', href: '/admin/case-studies', icon: BookOpen },
-  { label: 'Team Members', href: '/admin/team', icon: UserCheck },
-  { label: 'Testimonials', href: '/admin/testimonials', icon: Star },
-  { label: 'Blog Articles', href: '/admin/blog', icon: FileText },
-  { label: 'Job Openings', href: '/admin/careers', icon: FolderGit2 },
-  { label: 'FAQs', href: '/admin/faqs', icon: HelpCircle },
-  { label: 'Tech Stack', href: '/admin/technologies', icon: Cpu },
-  { label: 'Media Library', href: '/admin/media', icon: Image },
-  { label: 'Site Settings', href: '/admin/settings', icon: Settings },
+  { label: 'Overview', href: ADMIN_BASE_PATH, icon: LayoutDashboard, exact: true },
+  { label: 'Leads & CRM', href: `${ADMIN_BASE_PATH}/leads`, icon: Users },
+  { label: 'Projects', href: `${ADMIN_BASE_PATH}/projects`, icon: Briefcase },
+  { label: 'Services', href: `${ADMIN_BASE_PATH}/services`, icon: Layers },
+  { label: 'Industries', href: `${ADMIN_BASE_PATH}/industries`, icon: Building2 },
+  { label: 'Case Studies', href: `${ADMIN_BASE_PATH}/case-studies`, icon: BookOpen },
+  { label: 'Team Members', href: `${ADMIN_BASE_PATH}/team`, icon: UserCheck },
+  { label: 'Testimonials', href: `${ADMIN_BASE_PATH}/testimonials`, icon: Star },
+  { label: 'Blog Articles', href: `${ADMIN_BASE_PATH}/blog`, icon: FileText },
+  { label: 'Job Openings', href: `${ADMIN_BASE_PATH}/careers`, icon: FolderGit2 },
+  { label: 'FAQs', href: `${ADMIN_BASE_PATH}/faqs`, icon: HelpCircle },
+  { label: 'Tech Stack', href: `${ADMIN_BASE_PATH}/technologies`, icon: Cpu },
+  { label: 'Media Library', href: `${ADMIN_BASE_PATH}/media`, icon: Image },
+  { label: 'Site Settings', href: `${ADMIN_BASE_PATH}/settings`, icon: Settings },
 ];
 
 export const AdminLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user, role } = useSelector((state) => state.auth);
+  const { user, currentRole } = useSelector((state) => state.auth);
+
+  const role = currentRole || user?.role || 'Super Admin';
   const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/admin/login');
+    navigate(ADMIN_LOGIN_PATH);
   };
 
   const handleRoleSwitch = (newRole) => {
@@ -71,7 +73,7 @@ export const AdminLayout = () => {
             {mobileNavOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
-          <Link to="/admin" className="flex items-center gap-2.5">
+          <Link to={ADMIN_BASE_PATH} className="flex items-center gap-2.5">
             <img
               src="/logo.png"
               alt="BuildZone Admin Logo"

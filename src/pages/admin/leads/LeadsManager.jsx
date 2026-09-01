@@ -19,6 +19,8 @@ import Badge from '../../../components/common/Badge';
 import Loader from '../../../components/common/Loader';
 import EmptyState from '../../../components/common/EmptyState';
 
+import { ADMIN_BASE_PATH } from '../../../config/adminConfig';
+
 export const LeadsManager = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
@@ -160,7 +162,7 @@ export const LeadsManager = () => {
 
                   <td className="py-3.5 px-4 text-right space-x-2">
                     <Link
-                      to={`/admin/leads/${lead.id}`}
+                      to={`${ADMIN_BASE_PATH}/leads/${lead.id}`}
                       className="px-3 py-1 bg-blue-50 border border-blue-200 text-[#0066FF] hover:bg-[#0066FF] hover:text-white rounded-lg uppercase font-bold text-[11px] transition-colors"
                     >
                       View Details

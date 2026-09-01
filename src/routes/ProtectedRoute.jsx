@@ -3,6 +3,7 @@ import { Navigate, useLocation, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ShieldAlert, ArrowLeft } from 'lucide-react';
 import Button from '../components/common/Button';
+import { ADMIN_LOGIN_PATH } from '../config/adminConfig';
 
 export const ProtectedRoute = ({ children, allowedRoles = ['Super Admin', 'Admin'] }) => {
   const location = useLocation();
@@ -11,7 +12,7 @@ export const ProtectedRoute = ({ children, allowedRoles = ['Super Admin', 'Admin
   const activeRole = currentRole || user?.role;
 
   if (!isAuthenticated) {
-    return <Navigate to="/admin/login" state={{ from: location }} replace />;
+    return <Navigate to={ADMIN_LOGIN_PATH} state={{ from: location }} replace />;
   }
 
   // Developer or unauthorized role check
@@ -32,7 +33,7 @@ export const ProtectedRoute = ({ children, allowedRoles = ['Super Admin', 'Admin
                 Return to Public Website
               </Button>
             </Link>
-            <Link to="/admin/login" className="text-xs text-[#0066FF] hover:underline font-mono font-bold">
+            <Link to={ADMIN_LOGIN_PATH} className="text-xs text-[#0066FF] hover:underline font-mono font-bold">
               Sign In as Administrator →
             </Link>
           </div>

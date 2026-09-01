@@ -4,6 +4,7 @@ import PublicLayout from '../layouts/PublicLayout';
 import AdminLayout from '../layouts/AdminLayout';
 import AuthLayout from '../layouts/AuthLayout';
 import ProtectedRoute from './ProtectedRoute';
+import { ADMIN_BASE_PATH, ADMIN_LOGIN_PATH } from '../config/adminConfig';
 
 // Direct synchronous import for Home for instantaneous page rendering (zero loading delay)
 import Home from '../pages/public/Home';
@@ -97,14 +98,14 @@ export const AppRoutes = () => {
           <Route path="/404" element={<NotFound />} />
         </Route>
 
-        {/* Admin Authentication Route */}
+        {/* Secret / Complex Admin Authentication Route */}
         <Route element={<AuthLayout />}>
-          <Route path="/admin/login" element={<Login />} />
+          <Route path={ADMIN_LOGIN_PATH} element={<Login />} />
         </Route>
 
-        {/* Protected Admin Portal Routes */}
+        {/* Protected Complex Admin Portal Routes */}
         <Route
-          path="/admin"
+          path={ADMIN_BASE_PATH}
           element={
             <ProtectedRoute>
               <AdminLayout />
@@ -129,6 +130,10 @@ export const AppRoutes = () => {
           <Route path="settings/seo" element={<SettingsManager />} />
           <Route path="settings/social" element={<SettingsManager />} />
         </Route>
+
+        {/* Generic /admin route trap -> Redirect to 404 to hide admin entry */}
+        <Route path="/admin/*" element={<Navigate to="/404" replace />} />
+        <Route path="/admin" element={<Navigate to="/404" replace />} />
 
         {/* Catch-all 404 Redirect */}
         <Route path="*" element={<Navigate to="/404" replace />} />

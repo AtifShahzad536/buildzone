@@ -21,6 +21,7 @@ import Button from '../../../components/common/Button';
 import Badge from '../../../components/common/Badge';
 import Loader from '../../../components/common/Loader';
 import ErrorState from '../../../components/common/ErrorState';
+import { ADMIN_BASE_PATH } from '../../../config/adminConfig';
 
 export const LeadDetails = () => {
   const { id } = useParams();
@@ -66,7 +67,7 @@ export const LeadDetails = () => {
     <div className="space-y-6 max-w-5xl mx-auto">
       <div className="flex items-center justify-between">
         <Link
-          to="/admin/leads"
+          to={`${ADMIN_BASE_PATH}/leads`}
           className="font-mono text-xs text-slate-600 hover:text-[#0066FF] inline-flex items-center gap-1.5 uppercase tracking-wider font-semibold"
         >
           <ArrowLeft className="w-4 h-4" />

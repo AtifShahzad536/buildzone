@@ -9,13 +9,15 @@ import { loginStart, loginSuccess, loginFailure } from '../../features/auth/auth
 import { loginSchema } from '../../utils/validation';
 import Button from '../../components/common/Button';
 
+import { ADMIN_BASE_PATH } from '../../config/adminConfig';
+
 export const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
 
-  const from = location.state?.from?.pathname || '/admin';
+  const from = location.state?.from?.pathname || ADMIN_BASE_PATH;
 
   const {
     register,

@@ -30,8 +30,9 @@ import {
   useGetBlogsQuery, 
   useGetCareersQuery 
 } from '../../services/api';
-import Loader from '../../components/common/Loader';
 import Badge from '../../components/common/Badge';
+import Loader from '../../components/common/Loader';
+import { ADMIN_BASE_PATH } from '../../config/adminConfig';
 
 export const Dashboard = () => {
   const { data: leads, isLoading: loadingLeads } = useGetLeadsQuery();
@@ -78,7 +79,7 @@ export const Dashboard = () => {
         </div>
 
         <Link
-          to="/admin/leads"
+          to={`${ADMIN_BASE_PATH}/leads`}
           className="inline-flex items-center gap-2 px-4 py-2 bg-[#0066FF] text-white hover:bg-[#0052cc] rounded-lg font-mono text-xs transition-all font-bold uppercase self-start sm:self-auto shadow-sm shadow-[#0066FF]/20"
         >
           <span>Open Lead CRM</span>
@@ -228,7 +229,7 @@ export const Dashboard = () => {
           <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
             Latest Pipeline Inquiries
           </h3>
-          <Link to="/admin/leads" className="font-mono text-xs text-[#0066FF] hover:underline font-bold">
+          <Link to={`${ADMIN_BASE_PATH}/leads`} className="font-mono text-xs text-[#0066FF] hover:underline font-bold">
             View All {totalLeads} Leads →
           </Link>
         </div>
@@ -256,7 +257,7 @@ export const Dashboard = () => {
                     </Badge>
                   </td>
                   <td className="py-3.5 px-3 text-right">
-                    <Link to={`/admin/leads/${lead.id}`} className="text-[#0066FF] hover:underline uppercase font-bold">
+                    <Link to={`${ADMIN_BASE_PATH}/leads/${lead.id}`} className="text-[#0066FF] hover:underline uppercase font-bold">
                       Open →
                     </Link>
                   </td>
