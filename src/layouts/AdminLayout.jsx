@@ -59,9 +59,9 @@ export const AdminLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 flex flex-col font-sans">
+    <div className="h-screen overflow-hidden bg-[#F8FAFC] text-slate-800 flex flex-col font-sans">
       {/* Top Admin Header Bar */}
-      <header className="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between z-30 sticky top-0 shadow-2xs">
+      <header className="h-16 shrink-0 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between z-30 sticky top-0 shadow-2xs">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -126,9 +126,9 @@ export const AdminLayout = () => {
       </header>
 
       <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar Navigation */}
+        {/* Fixed Sidebar Navigation */}
         <aside
-          className={`fixed inset-y-16 left-0 z-20 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transition-transform duration-200 lg:static lg:translate-x-0 shadow-2xs ${
+          className={`fixed inset-y-16 left-0 z-20 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transition-transform duration-200 lg:static lg:h-full shrink-0 shadow-2xs ${
             mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
@@ -162,7 +162,7 @@ export const AdminLayout = () => {
           </div>
 
           {/* User Account Strip */}
-          <div className="p-3.5 border-t border-slate-200 bg-[#F8FAFC]">
+          <div className="p-3.5 border-t border-slate-200 bg-[#F8FAFC] shrink-0">
             <div className="flex items-center justify-between text-xs font-mono">
               <div className="truncate">
                 <span className="text-[#0B1938] font-bold block truncate">{user?.name || 'Administrator'}</span>
@@ -175,8 +175,8 @@ export const AdminLayout = () => {
           </div>
         </aside>
 
-        {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-[#F8FAFC]">
+        {/* Scrollable Main Content Area */}
+        <main className="flex-1 h-full overflow-y-auto p-4 sm:p-6 lg:p-8 bg-[#F8FAFC]">
           <Outlet />
         </main>
       </div>
