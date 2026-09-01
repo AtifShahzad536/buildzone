@@ -11,7 +11,7 @@ import { initialBlogs } from '../data/blogs';
 import { initialCareers } from '../data/careers';
 import { initialLeads } from '../data/leads';
 
-const BASE_URL = import.meta.env.VITE_API_URL || '';
+const BASE_URL = (import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1').replace(/\/$/, '');
 
 // LocalStorage Persistence Layer for full offline / standalone demo reliability
 const getOrSeed = (key, initial) => {
@@ -56,7 +56,7 @@ const customBaseQuery = async ({ url, method = 'GET', body = null, params = null
       if (params) {
         queryStr = '?' + new URLSearchParams(params).toString();
       }
-      const token = localStorage.getItem('buildzone_token');
+      const token = localStorage.getItem('buildzone_auth_token') || localStorage.getItem('buildzone_token');
       const headers = {
         'Content-Type': 'application/json',
         ...(token ? { Authorization: `Bearer ${token}` } : {})
@@ -68,12 +68,22 @@ const customBaseQuery = async ({ url, method = 'GET', body = null, params = null
         body: body ? JSON.stringify(body) : null
       });
 
+      const json = await res.json().catch(() => null);
+
       if (!res.ok) {
-        return { error: { status: res.status, data: await res.json().catch(() => 'Server Error') } };
+        return { 
+          error: { 
+            status: res.status, 
+            data: json?.message || json?.error || json || 'Server Error' 
+          } 
+        };
       }
-      return { data: await res.json() };
+
+      // Automatically unwrap standard backend response envelope: { success: true, data: [...], message: "..." }
+      const payload = json && typeof json === 'object' && json.data !== undefined ? json.data : json;
+      return { data: payload };
     } catch (err) {
-      console.warn("Backend unavailable, falling back to mock localStorage data", err);
+      console.warn("Backend API unavailable or network failed, falling back to mock localStorage data", err);
     }
   }
 
