@@ -70,12 +70,12 @@ export const ProjectsManager = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
-          <h1 className="text-2xl font-black font-display uppercase tracking-tight text-white">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
             PROJECT MANAGEMENT
           </h1>
-          <p className="font-mono text-xs text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
             Publish client case studies, live demo links, and technology stacks.
           </p>
         </div>
@@ -85,51 +85,52 @@ export const ProjectsManager = () => {
           size="sm"
           onClick={() => setIsModalOpen(true)}
           leftIcon={<Plus className="w-4 h-4" />}
+          className="shadow-sm"
         >
           Add New Project
         </Button>
       </div>
 
       {/* Projects Table */}
-      <div className="border border-slate-800 bg-[#080B14] overflow-x-auto">
+      <div className="border border-slate-200 bg-white rounded-xl overflow-hidden shadow-2xs">
         <table className="w-full text-left font-mono text-xs border-collapse">
           <thead>
-            <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px] bg-[#0E1424]">
-              <th className="py-3 px-4">Project / Client</th>
-              <th className="py-3 px-4">Category</th>
-              <th className="py-3 px-4">Tech Stack</th>
-              <th className="py-3 px-4">Measurable Outcome</th>
-              <th className="py-3 px-4 text-right">Actions</th>
+            <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
+              <th className="py-3 px-4 font-semibold">Project / Client</th>
+              <th className="py-3 px-4 font-semibold">Category</th>
+              <th className="py-3 px-4 font-semibold">Tech Stack</th>
+              <th className="py-3 px-4 font-semibold">Measurable Outcome</th>
+              <th className="py-3 px-4 text-right font-semibold">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800">
+          <tbody className="divide-y divide-slate-100">
             {projects?.map((proj) => (
-              <tr key={proj.id} className="hover:bg-[#0E1424]/60">
-                <td className="py-3 px-4">
-                  <div className="font-bold text-white text-sm">{proj.name}</div>
-                  <div className="text-[11px] text-cyan-400">{proj.client} • {proj.industry}</div>
+              <tr key={proj.id} className="hover:bg-blue-50/40 transition-colors">
+                <td className="py-3.5 px-4">
+                  <div className="font-bold text-[#0B1938] text-sm">{proj.name}</div>
+                  <div className="text-[11px] text-[#0066FF] font-medium">{proj.client} • {proj.industry}</div>
                 </td>
-                <td className="py-3 px-4">
+                <td className="py-3.5 px-4">
                   <Badge variant="cyan" size="sm">{proj.serviceCategory || proj.category}</Badge>
                 </td>
-                <td className="py-3 px-4 text-slate-300">
+                <td className="py-3.5 px-4 text-slate-700">
                   <div className="flex flex-wrap gap-1 max-w-xs">
                     {proj.technologies?.slice(0, 3).map(t => (
-                      <span key={t} className="px-1.5 py-0.5 bg-[#0E1424] border border-slate-800 text-[10px]">{t}</span>
+                      <span key={t} className="px-2 py-0.5 bg-slate-100 border border-slate-200 text-slate-700 rounded-md text-[10px] font-medium">{t}</span>
                     ))}
                   </div>
                 </td>
-                <td className="py-3 px-4 text-slate-300 text-[11px] max-w-xs truncate">
+                <td className="py-3.5 px-4 text-slate-600 text-[11px] max-w-xs truncate">
                   {proj.results}
                 </td>
-                <td className="py-3 px-4 text-right space-x-2">
+                <td className="py-3.5 px-4 text-right space-x-2">
                   {proj.liveUrl && (
-                    <a href={proj.liveUrl} target="_blank" rel="noreferrer" className="p-1 text-slate-400 hover:text-cyan-400 inline-block">
-                      <ExternalLink className="w-4 h-4" />
+                    <a href={proj.liveUrl} target="_blank" rel="noreferrer" className="p-1 text-slate-400 hover:text-[#0066FF] inline-block transition-colors">
+                      <ExternalLink className="w-4 h-4 inline-block" />
                     </a>
                   )}
-                  <button onClick={() => handleDelete(proj.id, proj.name)} className="p-1 text-slate-500 hover:text-rose-400">
-                    <Trash2 className="w-4 h-4" />
+                  <button onClick={() => handleDelete(proj.id, proj.name)} className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer">
+                    <Trash2 className="w-4 h-4 inline-block" />
                   </button>
                 </td>
               </tr>
@@ -140,40 +141,40 @@ export const ProjectsManager = () => {
 
       {/* Add Project Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#06080F]/80 backdrop-blur-md">
-          <div className="w-full max-w-lg bg-[#0E1424] border border-cyan-500/40 p-6 space-y-4 tech-corner-accent shadow-2xl">
-            <h3 className="font-display text-lg font-bold uppercase text-white">Create New Project</h3>
-            <form onSubmit={handleCreate} className="space-y-3 font-sans">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="w-full max-w-lg bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
+            <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">Create New Project</h3>
+            <form onSubmit={handleCreate} className="space-y-4 font-sans">
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Project Name *</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Project Name *</label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Apex Health Telemetry Platform"
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Client Name *</label>
+                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Client Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.client}
                     onChange={e => setFormData({ ...formData, client: e.target.value })}
                     placeholder="Apex Health Inc."
-                    className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Category</label>
+                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Category</label>
                   <select
                     value={formData.serviceCategory}
                     onChange={e => setFormData({ ...formData, serviceCategory: e.target.value })}
-                    className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
                   >
                     <option value="Web">Web</option>
                     <option value="Mobile">Mobile</option>
@@ -186,28 +187,28 @@ export const ProjectsManager = () => {
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Technologies (comma separated)</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Technologies (comma separated)</label>
                 <input
                   type="text"
                   value={formData.technologies}
                   onChange={e => setFormData({ ...formData, technologies: e.target.value })}
                   placeholder="React, TypeScript, Node.js, AWS"
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400 font-mono"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Summary Description</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Summary Description</label>
                 <textarea
                   rows={2}
                   value={formData.shortDescription}
                   onChange={e => setFormData({ ...formData, shortDescription: e.target.value })}
                   placeholder="Brief description of the product and problem solved..."
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-2 border-t border-slate-800">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
                 <Button variant="ghost" size="sm" onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button type="submit" variant="primary" size="sm" isLoading={isCreating}>Publish Project</Button>
               </div>

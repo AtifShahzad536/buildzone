@@ -62,12 +62,12 @@ export const LeadsManager = () => {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
-          <h1 className="text-2xl font-black font-display uppercase tracking-tight text-white">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
             LEAD PIPELINE CRM
           </h1>
-          <p className="font-mono text-xs text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
             Manage incoming inquiries, update negotiation status, and track conversion timelines.
           </p>
         </div>
@@ -81,10 +81,10 @@ export const LeadsManager = () => {
             <button
               key={st}
               onClick={() => setStatusFilter(st)}
-              className={`px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all border ${
+              className={`px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all rounded-lg border cursor-pointer ${
                 statusFilter === st
-                  ? 'bg-cyan-400 text-slate-950 border-cyan-400'
-                  : 'bg-[#080B14] text-slate-400 border-slate-800 hover:text-white'
+                  ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-xs'
+                  : 'bg-white text-slate-600 border-slate-200 hover:text-[#0066FF] hover:border-slate-300'
               }`}
             >
               {st}
@@ -99,9 +99,9 @@ export const LeadsManager = () => {
             placeholder="Search by name, email, company..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-[#080B14] border border-slate-800 pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
+            className="w-full bg-white border border-slate-300 pl-9 pr-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
           />
-          <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
         </div>
       </div>
 
@@ -112,45 +112,45 @@ export const LeadsManager = () => {
           description="There are currently no inquiries matching your active search or status filter."
         />
       ) : (
-        <div className="border border-slate-800 bg-[#080B14] overflow-x-auto">
+        <div className="border border-slate-200 bg-white rounded-xl overflow-hidden shadow-2xs">
           <table className="w-full text-left font-mono text-xs border-collapse">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px] bg-[#0E1424]">
-                <th className="py-3 px-4">Contact</th>
-                <th className="py-3 px-4">Service Required</th>
-                <th className="py-3 px-4">Budget / Timeline</th>
-                <th className="py-3 px-4">Source</th>
-                <th className="py-3 px-4">Status Stage</th>
-                <th className="py-3 px-4 text-right">Actions</th>
+              <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
+                <th className="py-3 px-4 font-semibold">Contact</th>
+                <th className="py-3 px-4 font-semibold">Service Required</th>
+                <th className="py-3 px-4 font-semibold">Budget / Timeline</th>
+                <th className="py-3 px-4 font-semibold">Source</th>
+                <th className="py-3 px-4 font-semibold">Status Stage</th>
+                <th className="py-3 px-4 text-right font-semibold">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800">
+            <tbody className="divide-y divide-slate-100">
               {filtered?.map((lead) => (
-                <tr key={lead.id} className="hover:bg-[#0E1424]/60 transition-colors">
-                  <td className="py-3 px-4">
-                    <div className="font-bold text-white text-sm">{lead.name}</div>
-                    <div className="text-[11px] text-slate-400">{lead.email}</div>
-                    {lead.company && <div className="text-[10px] text-cyan-400 font-semibold">{lead.company} • {lead.country}</div>}
+                <tr key={lead.id} className="hover:bg-blue-50/40 transition-colors">
+                  <td className="py-3.5 px-4">
+                    <div className="font-bold text-[#0B1938] text-sm">{lead.name}</div>
+                    <div className="text-[11px] text-slate-500">{lead.email}</div>
+                    {lead.company && <div className="text-[10px] text-[#0066FF] font-semibold">{lead.company} • {lead.country}</div>}
                   </td>
 
-                  <td className="py-3 px-4 text-slate-200">
-                    <span className="font-bold text-cyan-300">{lead.service}</span>
+                  <td className="py-3.5 px-4 text-slate-700">
+                    <span className="font-bold text-[#0066FF]">{lead.service}</span>
                   </td>
 
-                  <td className="py-3 px-4 text-slate-300">
-                    <div>{lead.budget || 'Not specified'}</div>
+                  <td className="py-3.5 px-4 text-slate-700">
+                    <div className="font-medium">{lead.budget || 'Not specified'}</div>
                     <div className="text-[10px] text-slate-500">{lead.timeline || 'Flexible'}</div>
                   </td>
 
-                  <td className="py-3 px-4 text-slate-400 text-[11px]">
+                  <td className="py-3.5 px-4 text-slate-500 text-[11px]">
                     {lead.source || 'Website'}
                   </td>
 
-                  <td className="py-3 px-4">
+                  <td className="py-3.5 px-4">
                     <select
                       value={lead.status}
                       onChange={(e) => handleStatusChange(lead.id, e.target.value)}
-                      className="bg-[#0E1424] border border-slate-700 px-2 py-1 text-xs font-mono text-cyan-300 focus:outline-none focus:border-cyan-400 cursor-pointer"
+                      className="bg-slate-50 border border-slate-200 px-2.5 py-1 text-xs font-mono text-[#0B1938] font-bold focus:outline-none focus:border-[#0066FF] rounded-lg cursor-pointer"
                     >
                       {statuses.filter(s => s !== 'All').map(s => (
                         <option key={s} value={s}>{s}</option>
@@ -158,19 +158,19 @@ export const LeadsManager = () => {
                     </select>
                   </td>
 
-                  <td className="py-3 px-4 text-right space-x-2">
+                  <td className="py-3.5 px-4 text-right space-x-2">
                     <Link
                       to={`/admin/leads/${lead.id}`}
-                      className="px-2.5 py-1 bg-[#141C33] border border-cyan-500/40 text-cyan-400 hover:border-cyan-400 uppercase font-bold text-[11px]"
+                      className="px-3 py-1 bg-blue-50 border border-blue-200 text-[#0066FF] hover:bg-[#0066FF] hover:text-white rounded-lg uppercase font-bold text-[11px] transition-colors"
                     >
                       View Details
                     </Link>
                     <button
                       onClick={() => handleDelete(lead.id, lead.name)}
-                      className="p-1 text-slate-500 hover:text-rose-400"
+                      className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
                       title="Delete Lead"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-4 h-4 inline-block" />
                     </button>
                   </td>
                 </tr>

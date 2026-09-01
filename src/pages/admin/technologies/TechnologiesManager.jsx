@@ -35,12 +35,12 @@ export const TechnologiesManager = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
-          <h1 className="text-2xl font-black font-display uppercase tracking-tight text-white">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
             TECHNOLOGY STACK CATALOG
           </h1>
-          <p className="font-mono text-xs text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
             Maintain supported engineering frameworks, databases, and AI tooling.
           </p>
         </div>
@@ -50,51 +50,52 @@ export const TechnologiesManager = () => {
           size="sm"
           onClick={() => setIsModalOpen(true)}
           leftIcon={<Plus className="w-4 h-4" />}
+          className="shadow-sm"
         >
           Add Tech
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {technologies?.map((tech) => (
-          <div key={tech.id} className="p-4 bg-[#080B14] border border-slate-800 flex flex-col justify-between">
+          <div key={tech.id} className="p-5 bg-white border border-slate-200 rounded-xl shadow-2xs flex flex-col justify-between hover:shadow-md transition-shadow">
             <div>
               <div className="flex items-center justify-between mb-3">
-                <div className="w-8 h-8 bg-[#0E1424] border border-slate-800 flex items-center justify-center text-cyan-400">
+                <div className="w-9 h-9 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-center text-[#0066FF]">
                   {renderIcon(tech.iconName, { className: "w-4 h-4" })}
                 </div>
                 <Badge variant="cyan" size="sm">{tech.category}</Badge>
               </div>
-              <h3 className="font-display text-sm font-bold uppercase text-white mb-1">{tech.name}</h3>
-              <p className="text-[11px] text-slate-400 line-clamp-2">{tech.description}</p>
+              <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] mb-1">{tech.name}</h3>
+              <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">{tech.description}</p>
             </div>
           </div>
         ))}
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#06080F]/80 backdrop-blur-md">
-          <div className="w-full max-w-md bg-[#0E1424] border border-cyan-500/40 p-6 space-y-4 tech-corner-accent shadow-2xl">
-            <h3 className="font-display text-lg font-bold uppercase text-white">Add Technology</h3>
-            <form onSubmit={handleCreate} className="space-y-3 font-sans">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
+            <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">Add Technology</h3>
+            <form onSubmit={handleCreate} className="space-y-4 font-sans">
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Name *</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Name *</label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Supabase / GraphQL"
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Category</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Category</label>
                 <select
                   value={formData.category}
                   onChange={e => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
                 >
                   <option value="Frontend">Frontend</option>
                   <option value="Backend">Backend</option>
@@ -106,17 +107,17 @@ export const TechnologiesManager = () => {
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Description</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Description</label>
                 <textarea
                   rows={2}
                   value={formData.description}
                   onChange={e => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Short explanation of how this is utilized in production..."
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-2 border-t border-slate-800">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
                 <Button variant="ghost" size="sm" onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button type="submit" variant="primary" size="sm" isLoading={isCreating}>Add Technology</Button>
               </div>

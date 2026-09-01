@@ -44,12 +44,12 @@ export const FaqsManager = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
-          <h1 className="text-2xl font-black font-display uppercase tracking-tight text-white">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
             FAQ MANAGEMENT
           </h1>
-          <p className="font-mono text-xs text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
             Maintain public pricing, delivery model, and technical questions.
           </p>
         </div>
@@ -59,22 +59,23 @@ export const FaqsManager = () => {
           size="sm"
           onClick={() => setIsModalOpen(true)}
           leftIcon={<Plus className="w-4 h-4" />}
+          className="shadow-sm"
         >
           Add FAQ
         </Button>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {faqs?.map((faq) => (
-          <div key={faq.id} className="p-5 bg-[#080B14] border border-slate-800 flex items-start justify-between gap-4">
-            <div className="space-y-1">
+          <div key={faq.id} className="p-6 bg-white border border-slate-200 rounded-xl shadow-2xs flex items-start justify-between gap-4 hover:shadow-md transition-shadow">
+            <div className="space-y-1.5">
               <div className="flex items-center gap-2">
-                <span className="font-mono text-[10px] text-cyan-400 font-bold uppercase">{faq.category}</span>
+                <span className="font-mono text-[10px] text-[#0066FF] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full font-bold uppercase">{faq.category}</span>
               </div>
-              <h3 className="font-display text-sm font-bold text-white uppercase">{faq.question}</h3>
-              <p className="text-xs text-slate-300 font-sans leading-relaxed pt-1">{faq.answer}</p>
+              <h3 className="font-display text-base font-bold text-[#0B1938] uppercase">{faq.question}</h3>
+              <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed pt-1">{faq.answer}</p>
             </div>
-            <button onClick={() => handleDelete(faq.id)} className="p-1 text-slate-500 hover:text-rose-400 shrink-0">
+            <button onClick={() => handleDelete(faq.id)} className="p-1.5 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer shrink-0">
               <Trash2 className="w-4 h-4" />
             </button>
           </div>
@@ -82,46 +83,46 @@ export const FaqsManager = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#06080F]/80 backdrop-blur-md">
-          <div className="w-full max-w-md bg-[#0E1424] border border-cyan-500/40 p-6 space-y-4 tech-corner-accent shadow-2xl">
-            <h3 className="font-display text-lg font-bold uppercase text-white">Add FAQ</h3>
-            <form onSubmit={handleCreate} className="space-y-3 font-sans">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
+            <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">Add FAQ</h3>
+            <form onSubmit={handleCreate} className="space-y-4 font-sans">
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Question *</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Question *</label>
                 <input
                   type="text"
                   required
                   value={formData.question}
                   onChange={e => setFormData({ ...formData, question: e.target.value })}
                   placeholder="e.g. Do you support dedicated team hiring?"
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Category</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Category</label>
                 <input
                   type="text"
                   value={formData.category}
                   onChange={e => setFormData({ ...formData, category: e.target.value })}
                   placeholder="e.g. Pricing, Technical, Timeline"
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Answer *</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Answer *</label>
                 <textarea
                   rows={4}
                   required
                   value={formData.answer}
                   onChange={e => setFormData({ ...formData, answer: e.target.value })}
                   placeholder="Detailed clear response for clients..."
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-2 border-t border-slate-800">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
                 <Button variant="ghost" size="sm" onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button type="submit" variant="primary" size="sm" isLoading={isCreating}>Add FAQ</Button>
               </div>

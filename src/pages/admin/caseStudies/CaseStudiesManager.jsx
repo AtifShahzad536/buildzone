@@ -60,12 +60,12 @@ export const CaseStudiesManager = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
-          <h1 className="text-2xl font-black font-display uppercase tracking-tight text-white">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
             CASE STUDIES CMS
           </h1>
-          <p className="font-mono text-xs text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
             Publish client architecture breakdowns and verified business metrics.
           </p>
         </div>
@@ -75,36 +75,37 @@ export const CaseStudiesManager = () => {
           size="sm"
           onClick={() => setIsModalOpen(true)}
           leftIcon={<Plus className="w-4 h-4" />}
+          className="shadow-sm"
         >
           Add Case Study
         </Button>
       </div>
 
-      <div className="border border-slate-800 bg-[#080B14] overflow-x-auto">
+      <div className="border border-slate-200 bg-white rounded-xl overflow-hidden shadow-2xs">
         <table className="w-full text-left font-mono text-xs border-collapse">
           <thead>
-            <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px] bg-[#0E1424]">
-              <th className="py-3 px-4">Case Study / Client</th>
-              <th className="py-3 px-4">Industry</th>
-              <th className="py-3 px-4">Location & Duration</th>
-              <th className="py-3 px-4 text-right">Actions</th>
+            <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
+              <th className="py-3 px-4 font-semibold">Case Study / Client</th>
+              <th className="py-3 px-4 font-semibold">Industry</th>
+              <th className="py-3 px-4 font-semibold">Location & Duration</th>
+              <th className="py-3 px-4 text-right font-semibold">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800">
+          <tbody className="divide-y divide-slate-100">
             {caseStudies?.map((cs) => (
-              <tr key={cs.id} className="hover:bg-[#0E1424]/60">
-                <td className="py-3 px-4">
-                  <div className="font-bold text-white text-sm">{cs.title}</div>
-                  <div className="text-[11px] text-cyan-400 font-semibold">{cs.client}</div>
+              <tr key={cs.id} className="hover:bg-blue-50/40 transition-colors">
+                <td className="py-3.5 px-4">
+                  <div className="font-bold text-[#0B1938] text-sm">{cs.title}</div>
+                  <div className="text-[11px] text-[#0066FF] font-semibold">{cs.client}</div>
                 </td>
-                <td className="py-3 px-4">
+                <td className="py-3.5 px-4">
                   <Badge variant="cyan" size="sm">{cs.industry}</Badge>
                 </td>
-                <td className="py-3 px-4 text-slate-300">
+                <td className="py-3.5 px-4 text-slate-700">
                   {cs.location} • {cs.projectDuration}
                 </td>
-                <td className="py-3 px-4 text-right">
-                  <button onClick={() => handleDelete(cs.id, cs.title)} className="p-1 text-slate-500 hover:text-rose-400">
+                <td className="py-3.5 px-4 text-right">
+                  <button onClick={() => handleDelete(cs.id, cs.title)} className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </td>
@@ -115,71 +116,71 @@ export const CaseStudiesManager = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#06080F]/80 backdrop-blur-md">
-          <div className="w-full max-w-lg bg-[#0E1424] border border-cyan-500/40 p-6 space-y-4 tech-corner-accent shadow-2xl">
-            <h3 className="font-display text-lg font-bold uppercase text-white">Create Case Study</h3>
-            <form onSubmit={handleCreate} className="space-y-3 font-sans">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="w-full max-w-lg bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
+            <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">Create Case Study</h3>
+            <form onSubmit={handleCreate} className="space-y-4 font-sans">
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Title *</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Title *</label>
                 <input
                   type="text"
                   required
                   value={formData.title}
                   onChange={e => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g. How FinVault Scaled Treasury Processing"
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Client Name *</label>
+                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Client Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.client}
                     onChange={e => setFormData({ ...formData, client: e.target.value })}
                     placeholder="FinVault Inc."
-                    className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">Duration</label>
+                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Duration</label>
                   <input
                     type="text"
                     value={formData.projectDuration}
                     onChange={e => setFormData({ ...formData, projectDuration: e.target.value })}
                     placeholder="5 Months"
-                    className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">The Challenge</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">The Challenge</label>
                 <textarea
                   rows={2}
                   required
                   value={formData.challenge}
                   onChange={e => setFormData({ ...formData, challenge: e.target.value })}
                   placeholder="Describe the initial technical or operational problem..."
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase text-slate-300 mb-1">The Engineered Solution</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">The Engineered Solution</label>
                 <textarea
                   rows={2}
                   required
                   value={formData.solution}
                   onChange={e => setFormData({ ...formData, solution: e.target.value })}
                   placeholder="Describe the architecture and system delivered..."
-                  className="w-full bg-[#080B12] border border-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-2 border-t border-slate-800">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
                 <Button variant="ghost" size="sm" onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button type="submit" variant="primary" size="sm" isLoading={isCreating}>Publish Case Study</Button>
               </div>
