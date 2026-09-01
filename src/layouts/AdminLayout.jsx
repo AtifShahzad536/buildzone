@@ -128,7 +128,7 @@ export const AdminLayout = () => {
       <div className="flex-1 flex overflow-hidden">
         {/* Fixed Sidebar Navigation */}
         <aside
-          className={`fixed inset-y-16 left-0 z-20 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transition-transform duration-200 lg:static lg:h-full shrink-0 shadow-2xs ${
+          className={`fixed inset-y-16 left-0 z-20 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transition-transform duration-200 lg:static lg:h-full lg:translate-x-0 shrink-0 shadow-2xs ${
             mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
