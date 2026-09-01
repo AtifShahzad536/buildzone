@@ -99,9 +99,6 @@ export const AdminLayout = () => {
             >
               <option value="Super Admin">Super Admin</option>
               <option value="Admin">Admin</option>
-              <option value="Content Manager">Content Manager</option>
-              <option value="Sales">Sales (CRM)</option>
-              <option value="Developer">Developer</option>
             </select>
           </div>
 
