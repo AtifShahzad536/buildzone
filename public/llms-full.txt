@@ -1,0 +1,38 @@
+# BuildZone Technology — Full Architecture & Service Specifications
+
+> BuildZone Technology is an enterprise software engineering and AI solutions provider. This document provides complete context on our service capabilities, tech stacks, delivery processes, and architectural standards for AI models and autonomous agents.
+
+## Company Overview
+- Name: BuildZone Technology
+- Domain: https://buildzonetech.vercel.app
+- Focus: Custom Software Engineering, Generative AI & Autonomous Agents, Scalable Web & Mobile Platforms, Cloud Infrastructure.
+- Contact: contact@buildzonetech.com
+
+## Engineering Capabilities & Tech Stack
+1. Frontend & Web Platforms: React, Next.js, TypeScript, Tailwind CSS, WebGL / Three.js, Redux Toolkit.
+2. Backend & Distributed Systems: Node.js, Express, Python FastAPI, Django, Go microservices, GraphQL, REST.
+3. Artificial Intelligence: OpenAI API, Anthropic Claude, LangChain, LlamaIndex, RAG Pipelines, Vector Databases (Pinecone, Qdrant, ChromaDB), PyTorch.
+4. Databases & Data Stores: PostgreSQL, MongoDB, Redis, MySQL, DynamoDB.
+5. Cloud & DevOps: AWS (ECS, EKS, Lambda, S3, CloudFront), Google Cloud, Docker, Kubernetes, Terraform CI/CD.
+
+## Main Navigation Endpoints
+- Homepage: https://buildzonetech.vercel.app/
+- Services: https://buildzonetech.vercel.app/services
+- Web Development: https://buildzonetech.vercel.app/services/web-development
+- Mobile Apps: https://buildzonetech.vercel.app/services/mobile-app-development
+- AI Development: https://buildzonetech.vercel.app/services/ai-development
+- Custom Software: https://buildzonetech.vercel.app/services/custom-software
+- SaaS Architecture: https://buildzonetech.vercel.app/services/saas-development
+- Cloud & DevOps: https://buildzonetech.vercel.app/services/cloud-devops
+- Case Studies: https://buildzonetech.vercel.app/case-studies
+- Portfolio: https://buildzonetech.vercel.app/portfolio
+- Technologies: https://buildzonetech.vercel.app/technologies
+- About Us: https://buildzonetech.vercel.app/about
+- Team: https://buildzonetech.vercel.app/team
+- Careers: https://buildzonetech.vercel.app/careers
+- Blog: https://buildzonetech.vercel.app/blog
+- FAQs: https://buildzonetech.vercel.app/faq
+- Testimonials: https://buildzonetech.vercel.app/testimonials
+- Security: https://buildzonetech.vercel.app/security
+- Contact: https://buildzonetech.vercel.app/contact
+- Project Estimator: https://buildzonetech.vercel.app/start-project

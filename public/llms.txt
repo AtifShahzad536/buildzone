@@ -1,0 +1,32 @@
+# BuildZone Technology
+
+> BuildZone Technology is a premier software engineering, artificial intelligence, and digital product studio. We architect and scale high-performance web platforms, cross-platform mobile apps, autonomous AI agents, and enterprise cloud solutions for startups and global leaders.
+
+## Core Engineering Services
+
+- [Web Application Development](https://buildzonetech.vercel.app/services/web-development): Scalable, type-safe full-stack web platforms built with React, Next.js, TypeScript, and Node.js.
+- [Mobile App Development](https://buildzonetech.vercel.app/services/mobile-app-development): High-performance native & cross-platform iOS and Android mobile solutions built with React Native and Flutter.
+- [AI & Intelligent Automation](https://buildzonetech.vercel.app/services/ai-development): Autonomous LLM agents, Retrieval-Augmented Generation (RAG), custom machine learning models, and cognitive workflow automation.
+- [Custom Enterprise Software](https://buildzonetech.vercel.app/services/custom-software): Resilient microservices architectures, distributed systems, and domain-driven enterprise software.
+- [SaaS Product Architecture](https://buildzonetech.vercel.app/services/saas-development): Multi-tenant SaaS platforms with usage-based billing engines, multi-region database replication, and granular RBAC.
+- [Cloud Infrastructure & DevOps](https://buildzonetech.vercel.app/services/cloud-devops): Kubernetes cluster orchestration, Terraform infrastructure-as-code, and automated CI/CD pipelines.
+
+## Portfolio & Case Studies
+
+- [Engineered Case Studies](https://buildzonetech.vercel.app/case-studies): In-depth technical breakdowns of production systems, architecture diagrams, benchmark metrics, and client business outcomes.
+- [Project Portfolio](https://buildzonetech.vercel.app/portfolio): Live showcases of delivered enterprise web platforms, mobile products, and AI workflow tools.
+
+## Company & Culture
+
+- [About BuildZone](https://buildzonetech.vercel.app/about): Our engineering philosophy, leadership team, global reach, and delivery methodology.
+- [Engineering Team](https://buildzonetech.vercel.app/team): Meet our specialized software architects, principal AI researchers, and product engineers.
+- [Technology Stack](https://buildzonetech.vercel.app/technologies): Interactive breakdown of our core technologies, frameworks, cloud vendors, and toolchains.
+- [Engineering Blog](https://buildzonetech.vercel.app/blog): Technical articles, architecture blueprints, system design guides, and AI research updates.
+- [Frequently Asked Questions](https://buildzonetech.vercel.app/faq): Comprehensive answers regarding engagement models, sprint delivery, SLAs, IP ownership, and pricing.
+- [Careers & Open Roles](https://buildzonetech.vercel.app/careers): Join our high-caliber software engineering, DevOps, and AI engineering pods.
+
+## Contact & Project Scoping
+
+- [Contact Engineering Partners](https://buildzonetech.vercel.app/contact): Schedule a technical consultation or send an inquiry with guaranteed 24-hour response.
+- [Start a Project Scope](https://buildzonetech.vercel.app/start-project): Interactive project estimator to define requirements, tech stack, deliverables, timeline, and budget.
+- [Security & Compliance](https://buildzonetech.vercel.app/security): Overview of SOC 2 Type II readiness, GDPR compliance, ISO 27001 policies, and end-to-end data encryption.
