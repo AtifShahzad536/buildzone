@@ -15,12 +15,12 @@ export const AuthLayout = () => {
             <img
               src="/logo.png"
               alt="BuildZone Logo"
-              className="h-9 w-auto object-contain"
+              className="h-9 w-auto object-contain shrink-0"
             />
             <img
               src="/LOGO%20TEXT.png"
               alt="BuildZone"
-              className="h-6 w-auto object-contain"
+              className="h-6 max-w-[140px] w-auto object-contain shrink-0"
             />
           </Link>
           <div>

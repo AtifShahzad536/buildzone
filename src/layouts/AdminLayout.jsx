@@ -71,16 +71,16 @@ export const AdminLayout = () => {
             {mobileNavOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
-          <Link to="/admin" className="flex items-center gap-2">
+          <Link to="/admin" className="flex items-center gap-2.5">
             <img
               src="/logo.png"
               alt="BuildZone Admin Logo"
-              className="h-7 w-auto object-contain"
+              className="h-8 w-auto object-contain shrink-0"
             />
             <img
               src="/LOGO%20TEXT.png"
               alt="BuildZone Admin Text"
-              className="h-4.5 w-auto object-contain hidden sm:inline-block"
+              className="h-5 sm:h-6 max-w-[130px] w-auto object-contain shrink-0"
             />
             <span className="font-mono text-[10px] text-[#0066FF] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full uppercase font-bold hidden md:inline-block ml-1">
               Admin Portal
