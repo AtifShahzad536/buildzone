@@ -96,6 +96,7 @@ export const ServicesPreview = () => {
                 <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0">
                   <Link
                     to={`/services/${service.slug}`}
+                    aria-label={`Explore ${service.title} Architecture`}
                     className="font-mono text-xs font-bold uppercase tracking-wider text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1.5 pt-3.5 border-t border-slate-100 w-full group/link transition-colors"
                   >
                     <span>Explore Architecture</span>

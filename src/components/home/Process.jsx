@@ -345,7 +345,7 @@ export const Process = () => {
               
               {/* Phase Header Badges */}
               <div className="flex flex-wrap items-center gap-2.5">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full font-mono text-[11px] font-bold text-[#0066FF] uppercase tracking-wider">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full font-mono text-[11px] font-bold text-[#0052CC] uppercase tracking-wider">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>{current.phase} OF 07</span>
                 </div>
@@ -373,7 +373,7 @@ export const Process = () => {
 
               {/* 4 Concrete Engineering Deliverables */}
               <div className="space-y-2.5 pt-1">
-                <span className="font-mono text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                <span className="font-mono text-[11px] font-bold text-slate-700 uppercase tracking-wider block">
                   STAGE DELIVERABLES & MILESTONES:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -416,8 +416,8 @@ export const Process = () => {
                   </button>
                 </div>
 
-                <div className="font-mono text-xs font-bold text-slate-400">
-                  <span className="text-[#0066FF] text-base">{current.step}</span> / 07
+                <div className="font-mono text-xs font-bold text-slate-600">
+                  <span className="text-[#0052CC] text-base">{current.step}</span> / 07
                 </div>
               </div>
 

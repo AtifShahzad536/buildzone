@@ -46,9 +46,9 @@ export const Testimonials = () => {
                   className="w-10 h-10 object-cover rounded-full border border-blue-200"
                 />
                 <div>
-                  <h4 className="font-display font-bold text-xs sm:text-sm uppercase text-[#0B1938]">
+                  <h3 className="font-display font-bold text-xs sm:text-sm uppercase text-[#0B1938]">
                     {t.author}
-                  </h4>
+                  </h3>
                   <p className="font-mono text-[10px] sm:text-[11px] text-slate-500">
                     {t.role}, <span className="text-[#0066FF] font-semibold">{t.company}</span>
                   </p>

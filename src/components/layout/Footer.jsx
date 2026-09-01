@@ -106,13 +106,13 @@ export const Footer = () => {
             
             {/* Column 1: Company */}
             <div className="pr-2 sm:pr-4 md:pr-6 overflow-hidden">
-              <h4 className="font-display font-bold text-[11px] sm:text-xs md:text-sm text-[#0B1938] uppercase tracking-wider mb-2.5 sm:mb-4 border-b border-slate-200 pb-1.5 truncate">
+              <h3 className="font-display font-bold text-[11px] sm:text-xs md:text-sm text-[#0B1938] uppercase tracking-wider mb-2.5 sm:mb-4 border-b border-slate-200 pb-1.5 truncate">
                 Company
-              </h4>
-              <ul className="space-y-2 sm:space-y-2.5 text-[10.5px] sm:text-xs font-sans">
+              </h3>
+              <ul className="space-y-1 sm:space-y-1.5 text-[11px] sm:text-xs font-sans">
                 {siteConfig.footerLinks.company.map((link) => (
                   <li key={link.label}>
-                    <Link to={link.href} className="text-slate-600 hover:text-[#0066FF] transition-colors inline-flex items-center gap-0.5 group w-full">
+                    <Link to={link.href} className="text-slate-700 hover:text-[#0052CC] transition-colors inline-flex items-center gap-0.5 group w-full py-1.5">
                       <span className="truncate">{link.label}</span>
                       <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 opacity-0 group-hover:opacity-100 text-[#0066FF] transition-opacity shrink-0" />
                     </Link>
@@ -123,13 +123,13 @@ export const Footer = () => {
 
             {/* Column 2: Services */}
             <div className="px-2 sm:px-4 md:px-6 overflow-hidden">
-              <h4 className="font-display font-bold text-[11px] sm:text-xs md:text-sm text-[#0B1938] uppercase tracking-wider mb-2.5 sm:mb-4 border-b border-slate-200 pb-1.5 truncate">
+              <h3 className="font-display font-bold text-[11px] sm:text-xs md:text-sm text-[#0B1938] uppercase tracking-wider mb-2.5 sm:mb-4 border-b border-slate-200 pb-1.5 truncate">
                 Services
-              </h4>
-              <ul className="space-y-2 sm:space-y-2.5 text-[10.5px] sm:text-xs font-sans">
+              </h3>
+              <ul className="space-y-1 sm:space-y-1.5 text-[11px] sm:text-xs font-sans">
                 {siteConfig.footerLinks.services.map((link) => (
                   <li key={link.label}>
-                    <Link to={link.href} className="text-slate-600 hover:text-[#0066FF] transition-colors inline-flex items-center gap-0.5 group w-full">
+                    <Link to={link.href} className="text-slate-700 hover:text-[#0052CC] transition-colors inline-flex items-center gap-0.5 group w-full py-1.5">
                       <span className="truncate">{link.label}</span>
                       <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 opacity-0 group-hover:opacity-100 text-[#0066FF] transition-opacity shrink-0" />
                     </Link>
@@ -140,13 +140,13 @@ export const Footer = () => {
 
             {/* Column 3: Resources */}
             <div className="pl-2 sm:pl-4 md:pl-6 overflow-hidden">
-              <h4 className="font-display font-bold text-[11px] sm:text-xs md:text-sm text-[#0B1938] uppercase tracking-wider mb-2.5 sm:mb-4 border-b border-slate-200 pb-1.5 truncate">
+              <h3 className="font-display font-bold text-[11px] sm:text-xs md:text-sm text-[#0B1938] uppercase tracking-wider mb-2.5 sm:mb-4 border-b border-slate-200 pb-1.5 truncate">
                 Resources
-              </h4>
-              <ul className="space-y-2 sm:space-y-2.5 text-[10.5px] sm:text-xs font-sans">
+              </h3>
+              <ul className="space-y-1 sm:space-y-1.5 text-[11px] sm:text-xs font-sans">
                 {siteConfig.footerLinks.resources.map((link) => (
                   <li key={link.label}>
-                    <Link to={link.href} className="text-slate-600 hover:text-[#0066FF] transition-colors inline-flex items-center gap-0.5 group w-full">
+                    <Link to={link.href} className="text-slate-700 hover:text-[#0052CC] transition-colors inline-flex items-center gap-0.5 group w-full py-1.5">
                       <span className="truncate">{link.label}</span>
                       <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 opacity-0 group-hover:opacity-100 text-[#0066FF] transition-opacity shrink-0" />
                     </Link>
