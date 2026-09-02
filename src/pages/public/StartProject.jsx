@@ -60,7 +60,7 @@ export const StartProject = () => {
     resolver: zodResolver(wizardSchema),
     defaultValues: {
       services: ['Web Application'],
-      budget: '$25k - $50k',
+      budget: '',
       timeline: '1 - 3 Months',
       name: '',
       email: '',
@@ -232,27 +232,50 @@ export const StartProject = () => {
                       <h3 className="text-xl font-bold font-display uppercase text-[#0B1938]">
                         Step 2: What is your estimated investment budget?
                       </h3>
-                      <p className="font-mono text-xs text-slate-500 mt-1">Helps us recommend the best tech stack and team allocation</p>
+                      <p className="font-mono text-xs text-slate-500 mt-1">Enter your custom target budget in USD or choose a preset</p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {budgetRanges.map((b) => {
-                        const isSelected = selectedBudget === b;
-                        return (
-                          <div
-                            key={b}
-                            onClick={() => setValue('budget', b)}
-                            className={`p-5 border rounded-md cursor-pointer transition-all flex items-center justify-between select-none ${
-                              isSelected
-                                ? 'bg-blue-50 border-[#0066FF] text-[#0B1938] shadow-sm'
-                                : 'bg-[#F8FAFC] border-slate-200 text-slate-700 hover:border-slate-300'
-                            }`}
-                          >
-                            <span className="font-mono font-bold text-sm">{b}</span>
-                            <div className={`w-4 h-4 rounded-full border ${isSelected ? 'bg-[#0066FF] border-[#0066FF]' : 'border-slate-300 bg-white'}`}></div>
-                          </div>
-                        );
-                      })}
+                    <div className="space-y-4">
+                      <div className="p-5 sm:p-6 bg-white border border-slate-200 rounded-xl shadow-xs space-y-2.5">
+                        <label className="block font-mono text-xs uppercase tracking-wider text-slate-700 font-bold">
+                          Custom Investment Budget (USD) *
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            placeholder="e.g. $15,000 or Enter Custom Amount"
+                            value={selectedBudget}
+                            onChange={(e) => setValue('budget', e.target.value, { shouldValidate: true })}
+                            className="w-full bg-[#F8FAFC] border border-slate-300 px-4 py-3 text-sm sm:text-base text-[#0B1938] font-mono font-bold placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                          />
+                        </div>
+                        {errors.budget && <p className="font-mono text-xs text-rose-500">{errors.budget.message}</p>}
+                      </div>
+
+                      <div>
+                        <span className="block font-mono text-[11px] uppercase tracking-wider text-slate-500 mb-2 font-semibold">
+                          Or quick select a common budget range:
+                        </span>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                          {['$10k - $25k', '$25k - $50k', '$50k - $100k', '$100k+'].map((b) => {
+                            const isSelected = selectedBudget === b;
+                            return (
+                              <button
+                                type="button"
+                                key={b}
+                                onClick={() => setValue('budget', b, { shouldValidate: true })}
+                                className={`p-3 border rounded-lg cursor-pointer transition-all text-center font-mono text-xs font-bold ${
+                                  isSelected
+                                    ? 'bg-blue-50 border-[#0066FF] text-[#0066FF] shadow-2xs'
+                                    : 'bg-[#F8FAFC] border-slate-200 text-slate-600 hover:border-slate-300'
+                                }`}
+                              >
+                                {b}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}

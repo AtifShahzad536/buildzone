@@ -35,7 +35,7 @@ export const Contact = () => {
     resolver: zodResolver(contactSchema),
     defaultValues: {
       service: 'Web Development',
-      budget: '$25,000 - $50,000',
+      budget: '',
       timeline: '2-3 Months',
       ndaRequired: false,
       honeypot: '',
@@ -258,17 +258,15 @@ export const Contact = () => {
 
                       <div>
                         <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
-                          Estimated Budget *
+                          Estimated Budget (USD) *
                         </label>
-                        <select
+                        <input
+                          type="text"
+                          placeholder="e.g. $15,000, $50k, or Enter Custom Budget"
                           {...register('budget')}
-                          className="w-full bg-[#F8FAFC] border border-slate-300 px-3 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-md cursor-pointer"
-                        >
-                          <option value="$10,000 - $25,000">$10,000 - $25,000</option>
-                          <option value="$25,000 - $50,000">$25,000 - $50,000</option>
-                          <option value="$50,000 - $100,000">$50,000 - $100,000</option>
-                          <option value="$100,000+">$100,000+ (Enterprise)</option>
-                        </select>
+                          className="w-full bg-[#F8FAFC] border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md font-mono"
+                        />
+                        {errors.budget && <p className="font-mono text-[10px] text-rose-500 mt-1">{errors.budget.message}</p>}
                       </div>
                     </div>
 
