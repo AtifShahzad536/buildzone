@@ -48,7 +48,13 @@ const saveToStorage = (key, data) => {
   }
 };
 
-const customBaseQuery = async ({ url, method = 'GET', body = null, params = null }) => {
+const customBaseQuery = async (args) => {
+  // Normalize args: can be a string (e.g. '/services') or an object ({ url, method, body, params })
+  const url = typeof args === 'string' ? args : (args?.url || '');
+  const method = typeof args === 'string' ? 'GET' : (args?.method || 'GET');
+  const body = typeof args === 'object' ? args?.body : null;
+  const params = typeof args === 'object' ? args?.params : null;
+
   // If a real backend server is provided via environment variables
   if (BASE_URL) {
     try {
@@ -62,7 +68,8 @@ const customBaseQuery = async ({ url, method = 'GET', body = null, params = null
         ...(token ? { Authorization: `Bearer ${token}` } : {})
       };
 
-      const res = await fetch(`${BASE_URL}${url}${queryStr}`, {
+      const normalizedUrl = url.startsWith('/') ? url : `/${url}`;
+      const res = await fetch(`${BASE_URL}${normalizedUrl}${queryStr}`, {
         method,
         headers,
         body: body ? JSON.stringify(body) : null
