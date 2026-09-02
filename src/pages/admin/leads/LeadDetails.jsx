@@ -127,9 +127,9 @@ export const LeadDetails = () => {
 
           {/* Project Details Scope */}
           <div className="p-6 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-4">
-            <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
+            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
               Project Parameters & Requirements
-            </h3>
+            </h2>
 
             <div className="grid grid-cols-3 gap-3 font-mono text-xs">
               <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg">
@@ -156,9 +156,9 @@ export const LeadDetails = () => {
 
           {/* Add Activity Note Form */}
           <div className="p-6 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-4">
-            <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
+            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
               Log Communication / Activity
-            </h3>
+            </h2>
             <form onSubmit={handleAddNote} className="space-y-3">
               <div className="flex gap-2">
                 <select
@@ -189,9 +189,9 @@ export const LeadDetails = () => {
 
         {/* Right Column: Activity Timeline */}
         <div className="p-6 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-4">
-          <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
+          <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
             Activity Timeline
-          </h3>
+          </h2>
 
           <div className="space-y-4 pt-2">
             {lead.activities?.map((act, i) => (
