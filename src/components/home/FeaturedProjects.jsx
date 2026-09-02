@@ -36,7 +36,7 @@ export const FeaturedProjects = () => {
                 <div className="aspect-[16/10] w-full overflow-hidden bg-slate-100 relative">
                   <img
                     src={project.image}
-                    alt={project.name}
+                    alt={`${project.name || 'Featured Project'} - ${project.category || 'Software System'} Deployment Showcase`}
                     width="600"
                     height="375"
                     loading="lazy"
