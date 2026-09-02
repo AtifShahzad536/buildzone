@@ -18,16 +18,18 @@ import Button from '../../../components/common/Button';
 import Badge from '../../../components/common/Badge';
 import Loader from '../../../components/common/Loader';
 import EmptyState from '../../../components/common/EmptyState';
+import ConfirmModal from '../../../components/common/ConfirmModal';
 
 import { ADMIN_BASE_PATH } from '../../../config/adminConfig';
 
 export const LeadsManager = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
+  const [deleteConfirm, setDeleteConfirm] = useState({ isOpen: false, id: null, name: '' });
 
   const { data: leads, isLoading, isError, refetch } = useGetLeadsQuery();
   const [updateLeadStatus] = useUpdateLeadStatusMutation();
-  const [deleteLead] = useDeleteLeadMutation();
+  const [deleteLead, { isLoading: isDeleting }] = useDeleteLeadMutation();
 
   const statuses = ['All', 'New', 'Contacted', 'Qualified', 'Proposal Sent', 'Negotiation', 'Won', 'Lost'];
 
@@ -50,14 +52,18 @@ export const LeadsManager = () => {
     }
   };
 
-  const handleDelete = async (id, name) => {
-    if (window.confirm(`Are you sure you want to delete lead for ${name}?`)) {
-      try {
-        await deleteLead(id).unwrap();
-        toast.success("Lead removed from CRM");
-      } catch (e) {
-        toast.error("Failed to delete lead");
-      }
+  const handleDeleteClick = (id, name) => {
+    setDeleteConfirm({ isOpen: true, id, name });
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteLead(deleteConfirm.id).unwrap();
+      toast.success("Lead removed from CRM");
+      setDeleteConfirm({ isOpen: false, id: null, name: '' });
+      refetch?.();
+    } catch (e) {
+      toast.error("Failed to delete lead");
     }
   };
 
@@ -168,9 +174,9 @@ export const LeadsManager = () => {
                       View Details
                     </Link>
                     <button
-                      onClick={() => handleDelete(lead.id, lead.name)}
-                      className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
-                      title="Delete Lead"
+                      onClick={() => handleDeleteClick(lead.id, lead.name)}
+                      className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                      aria-label={`Delete lead for ${lead.name}`}
                     >
                       <Trash2 className="w-4 h-4 inline-block" />
                     </button>
@@ -181,6 +187,19 @@ export const LeadsManager = () => {
           </table>
         </div>
       )}
+
+      {/* Custom Theme-Matched Confirmation Modal */}
+      <ConfirmModal
+        isOpen={deleteConfirm.isOpen}
+        title="Delete Lead Confirmation"
+        message="Are you sure you want to delete this client inquiry? All correspondence and notes will be permanently purged."
+        itemTitle={deleteConfirm.name}
+        confirmText="Yes, Delete Lead"
+        cancelText="Keep Lead"
+        isLoading={isDeleting}
+        onConfirm={handleConfirmDelete}
+        onClose={() => setDeleteConfirm({ isOpen: false, id: null, name: '' })}
+      />
     </div>
   );
 };

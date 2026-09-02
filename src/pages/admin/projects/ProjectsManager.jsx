@@ -6,13 +6,15 @@ import { slugify } from '../../../utils/helpers';
 import Button from '../../../components/common/Button';
 import Badge from '../../../components/common/Badge';
 import Loader from '../../../components/common/Loader';
+import ConfirmModal from '../../../components/common/ConfirmModal';
 
 export const ProjectsManager = () => {
   const { data: projects, isLoading, refetch } = useGetProjectsQuery();
   const [createProject, { isLoading: isCreating }] = useCreateProjectMutation();
-  const [deleteProject] = useDeleteProjectMutation();
+  const [deleteProject, { isLoading: isDeleting }] = useDeleteProjectMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState({ isOpen: false, id: null, name: '' });
   const [formData, setFormData] = useState({
     name: '',
     client: '',
@@ -57,14 +59,18 @@ export const ProjectsManager = () => {
     }
   };
 
-  const handleDelete = async (id, name) => {
-    if (window.confirm(`Delete project "${name}"?`)) {
-      try {
-        await deleteProject(id).unwrap();
-        toast.success("Project removed");
-      } catch (err) {
-        toast.error("Failed to delete project");
-      }
+  const handleDeleteClick = (id, name) => {
+    setDeleteConfirm({ isOpen: true, id, name });
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteProject(deleteConfirm.id).unwrap();
+      toast.success("Project removed successfully");
+      setDeleteConfirm({ isOpen: false, id: null, name: '' });
+      refetch?.();
+    } catch (err) {
+      toast.error("Failed to delete project");
     }
   };
 
@@ -129,7 +135,11 @@ export const ProjectsManager = () => {
                       <ExternalLink className="w-4 h-4 inline-block" />
                     </a>
                   )}
-                  <button onClick={() => handleDelete(proj.id, proj.name)} className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer">
+                  <button 
+                    onClick={() => handleDeleteClick(proj.id, proj.name)} 
+                    className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                    aria-label={`Delete project ${proj.name}`}
+                  >
                     <Trash2 className="w-4 h-4 inline-block" />
                   </button>
                 </td>
@@ -216,6 +226,19 @@ export const ProjectsManager = () => {
           </div>
         </div>
       )}
+
+      {/* Custom Theme-Matched Confirmation Modal */}
+      <ConfirmModal
+        isOpen={deleteConfirm.isOpen}
+        title="Delete Project Confirmation"
+        message="Are you sure you want to permanently delete this project? It will be removed from your public portfolio showcase and records."
+        itemTitle={deleteConfirm.name}
+        confirmText="Yes, Delete Project"
+        cancelText="Keep Project"
+        isLoading={isDeleting}
+        onConfirm={handleConfirmDelete}
+        onClose={() => setDeleteConfirm({ isOpen: false, id: null, name: '' })}
+      />
     </div>
   );
 };

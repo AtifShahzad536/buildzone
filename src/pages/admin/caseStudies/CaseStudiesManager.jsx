@@ -6,13 +6,15 @@ import { slugify } from '../../../utils/helpers';
 import Button from '../../../components/common/Button';
 import Badge from '../../../components/common/Badge';
 import Loader from '../../../components/common/Loader';
+import ConfirmModal from '../../../components/common/ConfirmModal';
 
 export const CaseStudiesManager = () => {
-  const { data: caseStudies, isLoading } = useGetCaseStudiesQuery();
+  const { data: caseStudies, isLoading, refetch } = useGetCaseStudiesQuery();
   const [createCaseStudy, { isLoading: isCreating }] = useCreateCaseStudyMutation();
-  const [deleteCaseStudy] = useDeleteCaseStudyMutation();
+  const [deleteCaseStudy, { isLoading: isDeleting }] = useDeleteCaseStudyMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState({ isOpen: false, id: null, title: '' });
   const [formData, setFormData] = useState({
     title: '',
     client: '',
@@ -47,14 +49,18 @@ export const CaseStudiesManager = () => {
     }
   };
 
-  const handleDelete = async (id, title) => {
-    if (window.confirm(`Delete case study "${title}"?`)) {
-      try {
-        await deleteCaseStudy(id).unwrap();
-        toast.success("Case study deleted");
-      } catch (e) {
-        toast.error("Failed to delete case study");
-      }
+  const handleDeleteClick = (id, title) => {
+    setDeleteConfirm({ isOpen: true, id, title });
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteCaseStudy(deleteConfirm.id).unwrap();
+      toast.success("Case study deleted successfully");
+      setDeleteConfirm({ isOpen: false, id: null, title: '' });
+      refetch?.();
+    } catch (e) {
+      toast.error("Failed to delete case study");
     }
   };
 
@@ -105,7 +111,11 @@ export const CaseStudiesManager = () => {
                   {cs.location} • {cs.projectDuration}
                 </td>
                 <td className="py-3.5 px-4 text-right">
-                  <button onClick={() => handleDelete(cs.id, cs.title)} className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer">
+                  <button 
+                    onClick={() => handleDeleteClick(cs.id, cs.title)} 
+                    className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                    aria-label={`Delete case study ${cs.title}`}
+                  >
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </td>
@@ -188,6 +198,19 @@ export const CaseStudiesManager = () => {
           </div>
         </div>
       )}
+
+      {/* Custom Theme-Matched Confirmation Modal */}
+      <ConfirmModal
+        isOpen={deleteConfirm.isOpen}
+        title="Delete Case Study Confirmation"
+        message="Are you sure you want to delete this case study? It will be removed from your portfolio and technical architecture showcase."
+        itemTitle={deleteConfirm.title}
+        confirmText="Yes, Delete Case Study"
+        cancelText="Keep Case Study"
+        isLoading={isDeleting}
+        onConfirm={handleConfirmDelete}
+        onClose={() => setDeleteConfirm({ isOpen: false, id: null, title: '' })}
+      />
     </div>
   );
 };

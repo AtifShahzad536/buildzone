@@ -6,13 +6,15 @@ import { slugify, formatDate } from '../../../utils/helpers';
 import Button from '../../../components/common/Button';
 import Badge from '../../../components/common/Badge';
 import Loader from '../../../components/common/Loader';
+import ConfirmModal from '../../../components/common/ConfirmModal';
 
 export const BlogManager = () => {
-  const { data: blogs, isLoading } = useGetBlogsQuery();
+  const { data: blogs, isLoading, refetch } = useGetBlogsQuery();
   const [createBlog, { isLoading: isCreating }] = useCreateBlogMutation();
-  const [deleteBlog] = useDeleteBlogMutation();
+  const [deleteBlog, { isLoading: isDeleting }] = useDeleteBlogMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState({ isOpen: false, id: null, title: '' });
   const [formData, setFormData] = useState({
     title: '',
     category: 'AI',
@@ -45,14 +47,18 @@ export const BlogManager = () => {
     }
   };
 
-  const handleDelete = async (id, title) => {
-    if (window.confirm(`Delete article "${title}"?`)) {
-      try {
-        await deleteBlog(id).unwrap();
-        toast.success("Post removed");
-      } catch (e) {
-        toast.error("Failed to delete post");
-      }
+  const handleDeleteClick = (id, title) => {
+    setDeleteConfirm({ isOpen: true, id, title });
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteBlog(deleteConfirm.id).unwrap();
+      toast.success("Post removed successfully");
+      setDeleteConfirm({ isOpen: false, id: null, title: '' });
+      refetch?.();
+    } catch (e) {
+      toast.error("Failed to delete post");
     }
   };
 
@@ -103,7 +109,11 @@ export const BlogManager = () => {
                   {formatDate(post.publishedDate)}
                 </td>
                 <td className="py-3.5 px-4 text-right">
-                  <button onClick={() => handleDelete(post.id, post.title)} className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer">
+                  <button 
+                    onClick={() => handleDeleteClick(post.id, post.title)} 
+                    className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                    aria-label={`Delete article ${post.title}`}
+                  >
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </td>
@@ -188,6 +198,19 @@ export const BlogManager = () => {
           </div>
         </div>
       )}
+
+      {/* Custom Theme-Matched Confirmation Modal */}
+      <ConfirmModal
+        isOpen={deleteConfirm.isOpen}
+        title="Delete Article Confirmation"
+        message="Are you sure you want to permanently delete this blog article? It will be removed from the public website and archives."
+        itemTitle={deleteConfirm.title}
+        confirmText="Yes, Delete Article"
+        cancelText="Keep Article"
+        isLoading={isDeleting}
+        onConfirm={handleConfirmDelete}
+        onClose={() => setDeleteConfirm({ isOpen: false, id: null, title: '' })}
+      />
     </div>
   );
 };

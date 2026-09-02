@@ -6,15 +6,17 @@ import { slugify, formatDate } from '../../../utils/helpers';
 import Button from '../../../components/common/Button';
 import Badge from '../../../components/common/Badge';
 import Loader from '../../../components/common/Loader';
+import ConfirmModal from '../../../components/common/ConfirmModal';
 
 export const CareersManager = () => {
   const [activeTab, setActiveTab] = useState('jobs');
-  const { data: careers, isLoading } = useGetCareersQuery();
+  const { data: careers, isLoading, refetch } = useGetCareersQuery();
   const { data: applications } = useGetApplicationsQuery();
   const [createCareer, { isLoading: isCreating }] = useCreateCareerMutation();
-  const [deleteCareer] = useDeleteCareerMutation();
+  const [deleteCareer, { isLoading: isDeleting }] = useDeleteCareerMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState({ isOpen: false, id: null, title: '' });
   const [formData, setFormData] = useState({
     title: '',
     department: 'Engineering',
@@ -45,14 +47,18 @@ export const CareersManager = () => {
     }
   };
 
-  const handleDelete = async (id, title) => {
-    if (window.confirm(`Delete job opening "${title}"?`)) {
-      try {
-        await deleteCareer(id).unwrap();
-        toast.success("Job posting removed");
-      } catch (e) {
-        toast.error("Failed to delete job");
-      }
+  const handleDeleteClick = (id, title) => {
+    setDeleteConfirm({ isOpen: true, id, title });
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteCareer(deleteConfirm.id).unwrap();
+      toast.success("Job posting removed successfully");
+      setDeleteConfirm({ isOpen: false, id: null, title: '' });
+      refetch?.();
+    } catch (e) {
+      toast.error("Failed to delete job");
     }
   };
 
@@ -120,7 +126,11 @@ export const CareersManager = () => {
                   <td className="py-3.5 px-4 text-slate-700">{job.location}</td>
                   <td className="py-3.5 px-4 text-emerald-600 font-bold">{job.salaryRange}</td>
                   <td className="py-3.5 px-4 text-right">
-                    <button onClick={() => handleDelete(job.id, job.title)} className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer">
+                    <button 
+                      onClick={() => handleDeleteClick(job.id, job.title)} 
+                      className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                      aria-label={`Delete job ${job.title}`}
+                    >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </td>
@@ -226,6 +236,19 @@ export const CareersManager = () => {
           </div>
         </div>
       )}
+
+      {/* Custom Theme-Matched Confirmation Modal */}
+      <ConfirmModal
+        isOpen={deleteConfirm.isOpen}
+        title="Delete Job Opening Confirmation"
+        message="Are you sure you want to delete this career opening? Candidates will no longer be able to submit applications for this role."
+        itemTitle={deleteConfirm.title}
+        confirmText="Yes, Delete Job"
+        cancelText="Keep Job"
+        isLoading={isDeleting}
+        onConfirm={handleConfirmDelete}
+        onClose={() => setDeleteConfirm({ isOpen: false, id: null, title: '' })}
+      />
     </div>
   );
 };

@@ -6,13 +6,15 @@ import { slugify, renderIcon } from '../../../utils/helpers';
 import Button from '../../../components/common/Button';
 import Badge from '../../../components/common/Badge';
 import Loader from '../../../components/common/Loader';
+import ConfirmModal from '../../../components/common/ConfirmModal';
 
 export const ServicesManager = () => {
-  const { data: services, isLoading } = useGetServicesQuery();
+  const { data: services, isLoading, refetch } = useGetServicesQuery();
   const [createService, { isLoading: isCreating }] = useCreateServiceMutation();
-  const [deleteService] = useDeleteServiceMutation();
+  const [deleteService, { isLoading: isDeleting }] = useDeleteServiceMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState({ isOpen: false, id: null, title: '' });
   const [formData, setFormData] = useState({
     title: '',
     category: 'Engineering',
@@ -44,14 +46,18 @@ export const ServicesManager = () => {
     }
   };
 
-  const handleDelete = async (id, title) => {
-    if (window.confirm(`Delete service "${title}"?`)) {
-      try {
-        await deleteService(id).unwrap();
-        toast.success("Service deleted");
-      } catch (e) {
-        toast.error("Failed to delete service");
-      }
+  const handleDeleteClick = (id, title) => {
+    setDeleteConfirm({ isOpen: true, id, title });
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteService(deleteConfirm.id).unwrap();
+      toast.success("Service deleted successfully");
+      setDeleteConfirm({ isOpen: false, id: null, title: '' });
+      refetch?.();
+    } catch (e) {
+      toast.error("Failed to delete service");
     }
   };
 
@@ -102,9 +108,9 @@ export const ServicesManager = () => {
             <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
               <span className="font-mono text-[11px] text-[#0066FF] font-semibold">/{s.slug}</span>
               <button
-                onClick={() => handleDelete(s.id, s.title)}
-                className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
-                title="Delete Service"
+                onClick={() => handleDeleteClick(s.id, s.title)}
+                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                aria-label={`Delete service ${s.title}`}
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -161,6 +167,19 @@ export const ServicesManager = () => {
           </div>
         </div>
       )}
+
+      {/* Custom Theme-Matched Confirmation Modal */}
+      <ConfirmModal
+        isOpen={deleteConfirm.isOpen}
+        title="Delete Service Confirmation"
+        message="Are you sure you want to delete this engineering service capability? It will be removed from navigation and showcase."
+        itemTitle={deleteConfirm.title}
+        confirmText="Yes, Delete Service"
+        cancelText="Keep Service"
+        isLoading={isDeleting}
+        onConfirm={handleConfirmDelete}
+        onClose={() => setDeleteConfirm({ isOpen: false, id: null, title: '' })}
+      />
     </div>
   );
 };

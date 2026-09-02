@@ -5,13 +5,15 @@ import { useGetTeamQuery, useCreateTeamMemberMutation, useDeleteTeamMemberMutati
 import Button from '../../../components/common/Button';
 import Badge from '../../../components/common/Badge';
 import Loader from '../../../components/common/Loader';
+import ConfirmModal from '../../../components/common/ConfirmModal';
 
 export const TeamManager = () => {
-  const { data: team, isLoading } = useGetTeamQuery();
+  const { data: team, isLoading, refetch } = useGetTeamQuery();
   const [createMember, { isLoading: isCreating }] = useCreateTeamMemberMutation();
-  const [deleteMember] = useDeleteTeamMemberMutation();
+  const [deleteMember, { isLoading: isDeleting }] = useDeleteTeamMemberMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState({ isOpen: false, id: null, name: '' });
   const [formData, setFormData] = useState({
     name: '',
     position: '',
@@ -40,14 +42,18 @@ export const TeamManager = () => {
     }
   };
 
-  const handleDelete = async (id, name) => {
-    if (window.confirm(`Delete team profile for ${name}?`)) {
-      try {
-        await deleteMember(id).unwrap();
-        toast.success("Team member removed");
-      } catch (e) {
-        toast.error("Failed to delete team member");
-      }
+  const handleDeleteClick = (id, name) => {
+    setDeleteConfirm({ isOpen: true, id, name });
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteMember(deleteConfirm.id).unwrap();
+      toast.success("Team member removed successfully");
+      setDeleteConfirm({ isOpen: false, id: null, name: '' });
+      refetch?.();
+    } catch (e) {
+      toast.error("Failed to delete team member");
     }
   };
 
@@ -102,9 +108,9 @@ export const TeamManager = () => {
             <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
               <span className="font-mono text-[11px] text-slate-500 font-medium">Partner Profile</span>
               <button
-                onClick={() => handleDelete(member.id, member.name)}
-                className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
-                title="Delete"
+                onClick={() => handleDeleteClick(member.id, member.name)}
+                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                aria-label={`Delete team member ${member.name}`}
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -162,6 +168,19 @@ export const TeamManager = () => {
           </div>
         </div>
       )}
+
+      {/* Custom Theme-Matched Confirmation Modal */}
+      <ConfirmModal
+        isOpen={deleteConfirm.isOpen}
+        title="Delete Team Member Confirmation"
+        message="Are you sure you want to remove this profile? The member will no longer appear on the public About & Team page."
+        itemTitle={deleteConfirm.name}
+        confirmText="Yes, Delete Member"
+        cancelText="Keep Member"
+        isLoading={isDeleting}
+        onConfirm={handleConfirmDelete}
+        onClose={() => setDeleteConfirm({ isOpen: false, id: null, name: '' })}
+      />
     </div>
   );
 };
