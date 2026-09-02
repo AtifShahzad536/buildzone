@@ -78,17 +78,21 @@ const customBaseQuery = async (args) => {
       const json = await res.json().catch(() => null);
 
       if (!res.ok) {
-        return { 
-          error: { 
-            status: res.status, 
-            data: json?.message || json?.error || json || 'Server Error' 
-          } 
-        };
+        if (method === 'GET') {
+          console.warn(`[BuildZone API Notice]: Backend GET ${normalizedUrl} returned status ${res.status}. Falling back to resilient local dataset.`, json);
+        } else {
+          return { 
+            error: { 
+              status: res.status, 
+              data: json?.message || json?.error || json || 'Server Error' 
+            } 
+          };
+        }
+      } else {
+        // Automatically unwrap standard backend response envelope: { success: true, data: [...], message: "..." }
+        const payload = json && typeof json === 'object' && json.data !== undefined ? json.data : json;
+        return { data: payload };
       }
-
-      // Automatically unwrap standard backend response envelope: { success: true, data: [...], message: "..." }
-      const payload = json && typeof json === 'object' && json.data !== undefined ? json.data : json;
-      return { data: payload };
     } catch (err) {
       console.warn("Backend API unavailable or network failed, falling back to mock localStorage data", err);
     }
