@@ -9,7 +9,8 @@ import {
   CheckCircle2, 
   Clock, 
   AlertCircle,
-  Plus
+  Plus,
+  Eye
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useGetLeadsQuery, useUpdateLeadStatusMutation, useDeleteLeadMutation } from '../../../services/api';
@@ -120,8 +121,8 @@ export const LeadsManager = () => {
           description="There are currently no inquiries matching your active search or status filter."
         />
       ) : (
-        <div className="border border-slate-200 bg-white rounded-xl overflow-hidden shadow-2xs">
-          <table className="w-full text-left font-mono text-xs border-collapse">
+        <div className="border border-slate-200 bg-white rounded-xl overflow-x-auto shadow-2xs">
+          <table className="w-full text-left font-mono text-xs border-collapse min-w-[860px]">
             <thead>
               <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
                 <th className="py-3 px-4 font-semibold">Contact</th>
@@ -166,20 +167,25 @@ export const LeadsManager = () => {
                     </select>
                   </td>
 
-                  <td className="py-3.5 px-4 text-right space-x-2">
-                    <Link
-                      to={`${ADMIN_BASE_PATH}/leads/${lead.id}`}
-                      className="px-3 py-1 bg-blue-50 border border-blue-200 text-[#0066FF] hover:bg-[#0066FF] hover:text-white rounded-lg uppercase font-bold text-[11px] transition-colors"
-                    >
-                      View Details
-                    </Link>
-                    <button
-                      onClick={() => handleDeleteClick(lead.id, lead.name)}
-                      className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
-                      aria-label={`Delete lead for ${lead.name}`}
-                    >
-                      <Trash2 className="w-4 h-4 inline-block" />
-                    </button>
+                  <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                    <div className="flex items-center justify-end gap-1.5 whitespace-nowrap">
+                      <Link
+                        to={`${ADMIN_BASE_PATH}/leads/${lead.id}`}
+                        className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-blue-50 hover:bg-[#0066FF] text-[#0066FF] hover:text-white border border-blue-200 hover:border-[#0066FF] rounded-lg font-mono font-bold text-[11px] transition-all cursor-pointer shadow-2xs whitespace-nowrap shrink-0"
+                        title="View Lead Details"
+                      >
+                        <Eye className="w-3.5 h-3.5 shrink-0" />
+                        <span>View</span>
+                      </Link>
+                      <button
+                        onClick={() => handleDeleteClick(lead.id, lead.name)}
+                        className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                        title="Delete Lead"
+                        aria-label={`Delete lead for ${lead.name}`}
+                      >
+                        <Trash2 className="w-4 h-4 inline-block" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

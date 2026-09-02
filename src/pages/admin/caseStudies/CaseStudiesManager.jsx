@@ -87,8 +87,8 @@ export const CaseStudiesManager = () => {
         </Button>
       </div>
 
-      <div className="border border-slate-200 bg-white rounded-xl overflow-hidden shadow-2xs">
-        <table className="w-full text-left font-mono text-xs border-collapse">
+      <div className="border border-slate-200 bg-white rounded-xl overflow-x-auto shadow-2xs">
+        <table className="w-full text-left font-mono text-xs border-collapse min-w-[700px]">
           <thead>
             <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
               <th className="py-3 px-4 font-semibold">Case Study / Client</th>

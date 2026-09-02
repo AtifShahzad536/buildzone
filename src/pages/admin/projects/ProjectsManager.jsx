@@ -98,8 +98,8 @@ export const ProjectsManager = () => {
       </div>
 
       {/* Projects Table */}
-      <div className="border border-slate-200 bg-white rounded-xl overflow-hidden shadow-2xs">
-        <table className="w-full text-left font-mono text-xs border-collapse">
+      <div className="border border-slate-200 bg-white rounded-xl overflow-x-auto shadow-2xs">
+        <table className="w-full text-left font-mono text-xs border-collapse min-w-[800px]">
           <thead>
             <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
               <th className="py-3 px-4 font-semibold">Project / Client</th>
@@ -129,19 +129,29 @@ export const ProjectsManager = () => {
                 <td className="py-3.5 px-4 text-slate-600 text-[11px] max-w-xs truncate">
                   {proj.results}
                 </td>
-                <td className="py-3.5 px-4 text-right space-x-2">
-                  {proj.liveUrl && (
-                    <a href={proj.liveUrl} target="_blank" rel="noreferrer" className="p-1 text-slate-400 hover:text-[#0066FF] inline-block transition-colors">
-                      <ExternalLink className="w-4 h-4 inline-block" />
-                    </a>
-                  )}
-                  <button 
-                    onClick={() => handleDeleteClick(proj.id, proj.name)} 
-                    className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
-                    aria-label={`Delete project ${proj.name}`}
-                  >
-                    <Trash2 className="w-4 h-4 inline-block" />
-                  </button>
+                <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                  <div className="flex items-center justify-end gap-1.5 whitespace-nowrap">
+                    {proj.liveUrl && (
+                      <a 
+                        href={proj.liveUrl} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="p-1.5 text-slate-400 hover:text-[#0066FF] hover:bg-blue-50 rounded-lg transition-colors inline-flex items-center cursor-pointer shrink-0"
+                        title="Open Live Site"
+                        aria-label={`Open live site for ${proj.name}`}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
+                    <button 
+                      onClick={() => handleDeleteClick(proj.id, proj.name)} 
+                      className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                      title="Delete Project"
+                      aria-label={`Delete project ${proj.name}`}
+                    >
+                      <Trash2 className="w-4 h-4 inline-block" />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
