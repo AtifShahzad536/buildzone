@@ -48,16 +48,12 @@ export const AdminLayout = () => {
   const dispatch = useDispatch();
   const { user, currentRole } = useSelector((state) => state.auth);
 
-  const role = currentRole || user?.role || 'Super Admin';
+  const role = 'Admin';
   const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
 
   const handleLogout = () => {
     dispatch(logout());
     navigate(ADMIN_LOGIN_PATH);
-  };
-
-  const handleRoleSwitch = (newRole) => {
-    dispatch(setRole(newRole));
   };
 
   return (
@@ -90,18 +86,13 @@ export const AdminLayout = () => {
           </Link>
         </div>
 
-        {/* User Role Switcher & Live Site Link */}
+        {/* User Role Badge & Live Site Link */}
         <div className="flex items-center gap-3 sm:gap-4">
-          <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-2 sm:px-2.5 py-1 rounded-lg">
+          <div className="flex items-center gap-1.5 bg-blue-50 border border-blue-200 px-2.5 py-1 rounded-lg">
             <Shield className="w-3.5 h-3.5 text-[#0066FF]" />
-            <select
-              value={role}
-              onChange={(e) => handleRoleSwitch(e.target.value)}
-              className="bg-transparent text-[11px] font-mono text-slate-700 font-bold focus:outline-none cursor-pointer"
-            >
-              <option value="Super Admin">Super Admin</option>
-              <option value="Admin">Admin</option>
-            </select>
+            <span className="text-[11px] font-mono text-[#0066FF] font-bold tracking-wide">
+              Admin
+            </span>
           </div>
 
           <Link

@@ -28,22 +28,15 @@ export const Login = () => {
     defaultValues: {
       email: '',
       password: '',
-      role: 'Super Admin'
+      role: 'Admin'
     }
   });
 
   const onSubmit = async (data) => {
     dispatch(loginStart());
     try {
-      // Strictly enforce Admin authorization (Reject Developers and non-admins)
-      if (data.role === 'Developer' || data.email.toLowerCase().includes('dev')) {
-        dispatch(loginFailure("Access Restricted: Developer roles are not authorized."));
-        toast.error("Access Denied: Only Administrators are authorized.");
-        return;
-      }
-
       // Simulate secure password verification
-      await new Promise(r => setTimeout(r, 500));
+      await new Promise(r => setTimeout(r, 400));
 
       // Credential verification
       const validAdminEmails = ['admin@buildzone.tech', 'superadmin@buildzone.tech', 'atif@buildzone.tech'];
@@ -57,14 +50,14 @@ export const Login = () => {
 
       const mockUser = {
         id: 'usr-admin-1',
-        name: data.role === 'Super Admin' ? 'Principal Executive Admin' : 'System Administrator',
+        name: 'Administrator',
         email: data.email.trim(),
-        role: data.role,
+        role: 'Admin',
       };
       const mockToken = `bz-jwt-token-${Date.now()}`;
 
       dispatch(loginSuccess({ user: mockUser, token: mockToken }));
-      toast.success(`Authenticated successfully as ${data.role}`);
+      toast.success("Authenticated successfully as Administrator");
       navigate(from, { replace: true });
     } catch (err) {
       dispatch(loginFailure("Invalid login credentials"));
@@ -84,18 +77,6 @@ export const Login = () => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 font-sans">
-        <div>
-          <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
-            Admin Role Permission
-          </label>
-          <select
-            {...register('role')}
-            className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] font-semibold focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer"
-          >
-            <option value="Super Admin">Super Admin (Full Governance)</option>
-            <option value="Admin">System Administrator</option>
-          </select>
-        </div>
 
         <div>
           <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">

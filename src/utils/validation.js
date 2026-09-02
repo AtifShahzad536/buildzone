@@ -43,5 +43,5 @@ export const jobApplicationSchema = z.object({
 export const loginSchema = z.object({
   email: z.string().email("Please enter a valid email"),
   password: z.string().min(6, "Password must be at least 6 characters"),
-  role: z.enum(['Super Admin', 'Admin', 'Content Manager', 'Sales', 'Developer']).default('Super Admin'),
+  role: z.string().optional().default('Admin'),
 });

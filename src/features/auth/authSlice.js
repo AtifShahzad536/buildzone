@@ -7,7 +7,7 @@ const initialState = {
   user: storedUser ? JSON.parse(storedUser) : null,
   token: storedToken || null,
   isAuthenticated: Boolean(storedToken),
-  currentRole: storedUser ? JSON.parse(storedUser).role : 'Super Admin',
+  currentRole: storedUser ? JSON.parse(storedUser).role : 'Admin',
   loading: false,
   error: null,
 };
@@ -25,7 +25,7 @@ export const authSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.currentRole = action.payload.user.role || 'Super Admin';
+      state.currentRole = action.payload.user.role || 'Admin';
       localStorage.setItem('buildzone_auth_user', JSON.stringify(action.payload.user));
       localStorage.setItem('buildzone_auth_token', action.payload.token);
     },
@@ -44,7 +44,7 @@ export const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
-      state.currentRole = 'Super Admin';
+      state.currentRole = 'Admin';
       localStorage.removeItem('buildzone_auth_user');
       localStorage.removeItem('buildzone_auth_token');
     },
