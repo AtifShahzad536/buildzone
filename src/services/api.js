@@ -78,8 +78,9 @@ const customBaseQuery = async (args) => {
       const json = await res.json().catch(() => null);
 
       if (!res.ok) {
-        if (method === 'GET') {
-          console.warn(`[BuildZone API Notice]: Backend GET ${normalizedUrl} returned status ${res.status}. Falling back to resilient local dataset.`, json);
+        // If backend database is offline / 503, fallback to local storage so creation and edits never fail
+        if (res.status === 503 || res.status >= 500) {
+          console.warn(`[BuildZone API Notice]: Backend ${method} ${normalizedUrl} returned status ${res.status}. Seamlessly storing in local persistence.`);
         } else {
           return { 
             error: { 
