@@ -91,7 +91,12 @@ const customBaseQuery = async (args) => {
       } else {
         // Automatically unwrap standard backend response envelope: { success: true, data: [...], message: "..." }
         const payload = json && typeof json === 'object' && json.data !== undefined ? json.data : json;
-        return { data: payload };
+        // If cloud database returns an empty array, seamlessly fall back to local seed data
+        if (method === 'GET' && Array.isArray(payload) && payload.length === 0) {
+          console.info(`[BuildZone API Notice]: Backend ${normalizedUrl} returned empty dataset. Populating with initial data.`);
+        } else {
+          return { data: payload };
+        }
       }
     } catch (err) {
       console.warn("Backend API unavailable or network failed, falling back to mock localStorage data", err);
