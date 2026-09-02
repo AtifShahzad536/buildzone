@@ -109,6 +109,7 @@ export const StartProject = () => {
         budget: data.budget,
         timeline: data.timeline,
         projectDetails: data.projectDetails,
+        message: data.projectDetails,
         source: 'Start Project Wizard',
       }).unwrap();
 

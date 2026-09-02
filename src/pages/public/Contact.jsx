@@ -59,6 +59,7 @@ export const Contact = () => {
         budget: data.budget,
         timeline: data.timeline,
         projectDetails: data.projectDetails,
+        message: data.projectDetails,
         source: 'Contact Form',
       }).unwrap();
 
