@@ -2,6 +2,10 @@
   RewriteEngine On
   RewriteBase /
 
+  # Route all API requests to the PHP REST API handler
+  RewriteCond %{REQUEST_URI} ^/api [NC]
+  RewriteRule ^api(/.*)?$ api/index.php [QSA,L]
+
   # Serve existing files and directories directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d

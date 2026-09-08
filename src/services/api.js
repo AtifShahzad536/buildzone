@@ -11,7 +11,11 @@ import { initialBlogs } from '../data/blogs';
 import { initialCareers } from '../data/careers';
 import { initialLeads } from '../data/leads';
 
-const BASE_URL = (import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1').replace(/\/$/, '');
+const BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL ||
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? '/api' : 'http://localhost:5000/api/v1')
+).replace(/\/$/, '');
 
 // LocalStorage Persistence Layer for full offline / standalone demo reliability
 const getOrSeed = (key, initial) => {
