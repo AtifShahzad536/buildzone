@@ -13,6 +13,8 @@ const initialState = storedSettings
       metaTitle: `${siteConfig.name} — Premier Software Engineering & AI Solutions`,
       metaDescription: siteConfig.description,
       socialLinks: { ...siteConfig.social },
+      heroBgColor: '#F2F2F2',
+      heroMediaType: 'video',
       isDirty: false,
     };
 
@@ -35,6 +37,8 @@ export const settingsSlice = createSlice({
       state.metaTitle = `${siteConfig.name} — Premier Software Engineering & AI Solutions`;
       state.metaDescription = siteConfig.description;
       state.socialLinks = { ...siteConfig.social };
+      state.heroBgColor = '#F2F2F2';
+      state.heroMediaType = 'video';
       state.isDirty = false;
     },
   },

@@ -241,13 +241,13 @@ export const SettingsManager = () => {
                 <div className="flex items-center gap-2">
                   <div 
                     className="w-6 h-6 rounded-lg border border-slate-300 shadow-2xs"
-                    style={{ backgroundColor: formData.heroBgColor || '#FFFFFF' }}
+                    style={{ backgroundColor: formData.heroBgColor || '#F2F2F2' }}
                   />
                   <input
                     type="text"
-                    value={formData.heroBgColor || '#FFFFFF'}
+                    value={formData.heroBgColor || '#F2F2F2'}
                     onChange={(e) => setFormData({ ...formData, heroBgColor: e.target.value })}
-                    placeholder="#FFFFFF"
+                    placeholder="#F2F2F2"
                     className="w-24 bg-white border border-slate-300 px-2.5 py-1 text-xs text-[#0B1938] font-mono font-bold rounded-lg uppercase"
                   />
                 </div>
@@ -256,17 +256,17 @@ export const SettingsManager = () => {
               {/* Quick Preset Buttons */}
               <div className="flex flex-wrap items-center gap-2 pt-1">
                 {[
-                  { name: 'Pure White (Recommended)', hex: '#FFFFFF' },
-                  { name: 'Soft White', hex: '#FAFAFC' },
-                  { name: 'Light Slate', hex: '#F8FAFC' },
-                  { name: 'Cool Gray', hex: '#F3F4F6' }
+                  { name: 'Video Exact Match (#F2F2F2)', hex: '#F2F2F2' },
+                  { name: 'Pure White (#FFFFFF)', hex: '#FFFFFF' },
+                  { name: 'Soft White (#FAFAFC)', hex: '#FAFAFC' },
+                  { name: 'Light Slate (#F8FAFC)', hex: '#F8FAFC' }
                 ].map((color) => (
                   <button
                     key={color.hex}
                     type="button"
                     onClick={() => setFormData({ ...formData, heroBgColor: color.hex })}
                     className={`px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold border transition-all flex items-center gap-1.5 cursor-pointer ${
-                      (formData.heroBgColor || '#FFFFFF').toUpperCase() === color.hex.toUpperCase()
+                      (formData.heroBgColor || '#F2F2F2').toUpperCase() === color.hex.toUpperCase()
                         ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-2xs'
                         : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
                     }`}

@@ -52,7 +52,7 @@ export const Hero = () => {
     { icon: Headphones, value: settings?.statsSupport || "24/7", label: "Support Available" },
   ];
 
-  const heroBgColor = settings?.heroBgColor || "#FFFFFF";
+  const heroBgColor = settings?.heroBgColor || "#F2F2F2";
 
   return (
     <section 
