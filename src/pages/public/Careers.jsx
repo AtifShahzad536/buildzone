@@ -74,7 +74,7 @@ export const Careers = () => {
                   <div className="w-10 h-10 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF]">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-lg font-bold font-display uppercase text-[#0B1938]">{perk.title}</h3>
+                  <h2 className="text-lg font-bold font-display uppercase text-[#0B1938]">{perk.title}</h2>
                   <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed">{perk.desc}</p>
                 </div>
               );

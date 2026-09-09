@@ -110,9 +110,9 @@ export const JobDetails = () => {
 
               {/* Responsibilities */}
               <div className="p-8 bg-white border border-slate-200 rounded-lg shadow-sm space-y-4">
-                <h3 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
                   What You'll Lead & Build
-                </h3>
+                </h2>
                 <ul className="space-y-2.5">
                   {job.responsibilities?.map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600 font-sans leading-relaxed">
@@ -125,9 +125,9 @@ export const JobDetails = () => {
 
               {/* Requirements */}
               <div className="p-8 bg-white border border-slate-200 rounded-lg shadow-sm space-y-4">
-                <h3 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
                   Required Qualifications
-                </h3>
+                </h2>
                 <ul className="space-y-2.5">
                   {job.requirements?.map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600 font-sans leading-relaxed">
@@ -140,9 +140,9 @@ export const JobDetails = () => {
 
               {/* Benefits */}
               <div className="p-8 bg-white border border-slate-200 rounded-lg shadow-sm space-y-4">
-                <h3 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
                   Perks & Compensation
-                </h3>
+                </h2>
                 <ul className="space-y-2.5">
                   {job.benefits?.map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600 font-sans leading-relaxed">
@@ -162,9 +162,9 @@ export const JobDetails = () => {
                     <div className="w-14 h-14 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-[#0066FF] mx-auto">
                       <CheckCircle2 className="w-7 h-7" />
                     </div>
-                    <h3 className="text-xl font-bold font-display uppercase text-[#0B1938]">
+                    <h2 className="text-xl font-bold font-display uppercase text-[#0B1938]">
                       Application Sent!
-                    </h3>
+                    </h2>
                     <p className="text-xs sm:text-sm text-slate-600">
                       We’ve received your credentials. Our recruiting team will review your background and respond promptly.
                     </p>
@@ -175,9 +175,9 @@ export const JobDetails = () => {
                 ) : (
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div className="border-b border-slate-200 pb-3 mb-4">
-                      <h3 className="font-display font-bold text-lg uppercase text-[#0B1938]">
+                      <h2 className="font-display font-bold text-lg uppercase text-[#0B1938]">
                         Apply for this Role
-                      </h3>
+                      </h2>
                       <p className="font-mono text-[11px] text-slate-500">Fast-track direct engineering review</p>
                     </div>
 
