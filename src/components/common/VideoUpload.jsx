@@ -61,8 +61,15 @@ export const VideoUpload = ({
       return;
     }
 
-    if (file.size > 100 * 1024 * 1024) {
-      toast.error("File size exceeds 100MB limit.");
+    // Vercel Serverless payload limit is 4.5MB. For anything larger, guide user to Paste Video URL
+    const MAX_DIRECT_UPLOAD_BYTES = 4.5 * 1024 * 1024; // 4.5 MB
+    if (file.size > MAX_DIRECT_UPLOAD_BYTES) {
+      const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1);
+      toast.error(
+        `Video size is ${fileSizeMB}MB. Direct file uploads on Vercel are limited to 4.5MB. Please use the "Paste Video URL" tab (YouTube, Vimeo, Cloudinary, or direct MP4 link).`,
+        { duration: 7000 }
+      );
+      setActiveTab('url');
       return;
     }
 
@@ -87,7 +94,12 @@ export const VideoUpload = ({
       }
     } catch (err) {
       console.error("Video upload error:", err);
-      toast.error("Server video upload failed: " + (err?.data?.message || err?.message || "Please check network or paste a direct video URL"));
+      if (err?.status === 413 || err?.data === 'Server Error') {
+        toast.error("Video file is too large for Vercel serverless (4.5MB limit). Please use 'Paste Video URL' tab with a direct link or YouTube/Vimeo URL.", { duration: 7000 });
+        setActiveTab('url');
+      } else {
+        toast.error("Server video upload failed: " + (err?.data?.message || err?.message || "Please paste a direct video URL or YouTube/Vimeo link"));
+      }
     } finally {
       setTimeout(() => setUploadProgress(0), 1000);
     }
@@ -290,7 +302,7 @@ export const VideoUpload = ({
                 type="url"
                 value={urlInput}
                 onChange={(e) => setUrlInput(e.target.value)}
-                placeholder="https://www.youtube.com/watch?v=... or https://vimeo.com/... or MP4 direct link"
+                placeholder="Paste YouTube, Vimeo, or direct .mp4 link..."
                 className="w-full bg-white border border-slate-300 pl-9 pr-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono font-medium"
               />
             </div>
@@ -301,6 +313,13 @@ export const VideoUpload = ({
             >
               Apply Link
             </button>
+          </div>
+          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+            <span className="text-[10px] font-mono text-slate-400">Supported:</span>
+            <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-mono">YouTube (Unlisted/Public)</span>
+            <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-mono">Vimeo</span>
+            <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-mono">Cloudinary</span>
+            <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-mono">Direct .mp4 / .webm Link</span>
           </div>
         </div>
       )}
