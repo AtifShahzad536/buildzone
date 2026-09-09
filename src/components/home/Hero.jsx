@@ -246,9 +246,9 @@ export const Hero = () => {
                       
                       {/* Overview Header */}
                       <div className="flex items-center justify-between">
-                        <h4 className="font-display font-bold text-xs uppercase tracking-wide text-[#0B1938]">
+                        <span className="font-display font-bold text-xs uppercase tracking-wide text-[#0B1938] block">
                           Overview
-                        </h4>
+                        </span>
                       </div>
 
                       {/* 4 Metric Cards */}
