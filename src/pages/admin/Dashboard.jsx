@@ -159,9 +159,9 @@ export const Dashboard = () => {
         {/* Left 2 Cols: Monthly Bar Chart */}
         <div className="lg:col-span-2 p-6 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
+            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
               Lead Acquisition & Conversions (Last 6 Months)
-            </h3>
+            </h2>
             <Badge variant="cyan" size="sm">2026 Telemetry</Badge>
           </div>
 
@@ -185,9 +185,9 @@ export const Dashboard = () => {
         {/* Right Col: Service Distribution */}
         <div className="p-6 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-4 flex flex-col justify-between">
           <div>
-            <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider mb-1">
+            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider mb-1">
               Demand by Service
-            </h3>
+            </h2>
             <p className="font-mono text-[11px] text-slate-500">Share of incoming inquiries</p>
           </div>
 
@@ -226,9 +226,9 @@ export const Dashboard = () => {
       {/* Recent Leads Preview */}
       <div className="p-6 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
+          <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
             Latest Pipeline Inquiries
-          </h3>
+          </h2>
           <Link to={`${ADMIN_BASE_PATH}/leads`} className="font-mono text-xs text-[#0066FF] hover:underline font-bold">
             View All {totalLeads} Leads →
           </Link>
