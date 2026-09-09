@@ -15,12 +15,12 @@ export const CookiePolicy = () => {
             <p className="font-mono text-xs text-slate-500">Last updated: August 2026</p>
 
             <div className="space-y-4 text-xs sm:text-sm text-slate-700 font-sans leading-relaxed">
-              <h3 className="font-bold text-base text-[#0B1938] uppercase">1. Essential Cookies</h3>
+              <h2 className="font-bold text-base text-[#0B1938] uppercase">1. Essential Cookies</h2>
               <p>
                 We use essential cookies to manage authentication sessions, secure staff logins, and persist interactive cost estimator preferences.
               </p>
 
-              <h3 className="font-bold text-base text-[#0B1938] uppercase">2. Analytics Telemetry</h3>
+              <h2 className="font-bold text-base text-[#0B1938] uppercase">2. Analytics Telemetry</h2>
               <p>
                 We collect anonymous telemetry to measure page speed, resource caching performance, and user interface responsiveness.
               </p>

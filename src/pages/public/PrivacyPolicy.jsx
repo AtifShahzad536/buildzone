@@ -16,22 +16,22 @@ export const PrivacyPolicy = () => {
             <p className="font-mono text-xs text-slate-500">Last updated: August 2026</p>
 
             <div className="space-y-4 text-xs sm:text-sm text-slate-700 font-sans leading-relaxed">
-              <h3 className="font-bold text-base text-[#0B1938] uppercase">1. Information We Collect</h3>
+              <h2 className="font-bold text-base text-[#0B1938] uppercase">1. Information We Collect</h2>
               <p>
                 We collect information directly from you when you submit project inquiries, book architectural consultations, or apply for open roles on our site.
               </p>
 
-              <h3 className="font-bold text-base text-[#0B1938] uppercase">2. Use of Information</h3>
+              <h2 className="font-bold text-base text-[#0B1938] uppercase">2. Use of Information</h2>
               <p>
                 All project parameters, NDAs, and technical scopes are strictly used to prepare feasibility reviews, service quotes, and deliver contracted software engineering services.
               </p>
 
-              <h3 className="font-bold text-base text-[#0B1938] uppercase">3. Data Security</h3>
+              <h2 className="font-bold text-base text-[#0B1938] uppercase">3. Data Security</h2>
               <p>
                 We maintain enterprise physical, electronic, and procedural safeguards in compliance with applicable international standards to guard personal and proprietary company data.
               </p>
 
-              <h3 className="font-bold text-base text-[#0B1938] uppercase">4. Contact</h3>
+              <h2 className="font-bold text-base text-[#0B1938] uppercase">4. Contact</h2>
               <p>
                 Questions regarding our data protection policies may be directed to <a href={`mailto:${siteConfig.contact.email}`} className="text-[#0066FF] font-bold">{siteConfig.contact.email}</a>.
               </p>
