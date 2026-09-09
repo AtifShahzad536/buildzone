@@ -38,6 +38,7 @@ export const Hero = () => {
 
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [videoLoadError, setVideoLoadError] = useState(false);
+  const [isEmbedPlaying, setIsEmbedPlaying] = useState(false);
 
   // Settings values with defaults matching screenshot
   const badgeText = settings?.heroBadgeText || "SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT";
@@ -53,6 +54,12 @@ export const Hero = () => {
   const isEmbedVideo = (url) => {
     if (!url) return false;
     return url.includes('youtube.com') || url.includes('youtube-nocookie.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
+  };
+
+  const getYouTubeId = (url) => {
+    if (!url) return null;
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=)|youtube-nocookie\.com\/embed\/)([\w-]{11})/);
+    return match ? match[1] : null;
   };
 
   const stats = [
@@ -156,15 +163,42 @@ export const Hero = () => {
             {heroMediaType === 'video' && heroVideoUrl && !videoLoadError ? (
               <div className="relative w-full flex items-center justify-center bg-transparent border-0 rounded-none shadow-none">
                 {isEmbedVideo(heroVideoUrl) ? (
-                  <div className="w-full aspect-video border-0 rounded-none overflow-hidden">
-                    <iframe
-                      src={heroVideoUrl}
-                      title="BuildZone Product Video"
-                      loading="lazy"
-                      className="w-full h-full object-cover border-0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
+                  <div className="w-full aspect-video border-0 rounded-2xl overflow-hidden shadow-xl bg-slate-900 relative">
+                    {isEmbedPlaying ? (
+                      <iframe
+                        src={`${heroVideoUrl}${heroVideoUrl.includes('?') ? '&' : '?'}autoplay=1`}
+                        title="BuildZone Product Video"
+                        loading="lazy"
+                        className="w-full h-full object-cover border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    ) : (
+                      <div
+                        onClick={() => setIsEmbedPlaying(true)}
+                        className="w-full h-full relative cursor-pointer group flex items-center justify-center bg-slate-950 overflow-hidden"
+                      >
+                        {getYouTubeId(heroVideoUrl) ? (
+                          <img
+                            src={`https://i.ytimg.com/vi/${getYouTubeId(heroVideoUrl)}/hqdefault.jpg`}
+                            alt="BuildZone Video Showcase Preview"
+                            loading="lazy"
+                            className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 bg-gradient-to-tr from-[#0B1938] via-[#0066FF]/20 to-slate-900" />
+                        )}
+                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
+                        <div className="relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#0066FF] text-white flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-[#0052cc] transition-all duration-300">
+                          <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white translate-x-0.5" />
+                        </div>
+                        <div className="absolute bottom-4 left-4 right-4 text-center z-10">
+                          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-black/60 backdrop-blur-md rounded-full text-white font-mono text-xs font-bold uppercase tracking-wider border border-white/10 shadow-sm">
+                            Click to Watch Video Showcase
+                          </span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <div className="relative w-full bg-transparent border-0 rounded-none shadow-none flex items-center justify-center overflow-visible">
