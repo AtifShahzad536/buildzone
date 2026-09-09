@@ -66,7 +66,7 @@ function sendResponse($data, $statusCode = 200) {
 }
 
 function sendLeadEmailNotification($lead) {
-    $to = "contact@buildzone.tech"; // Default notification inbox
+    $to = "info@buildzonetechnology.com, buildzonetechnology@gmail.com";
     $subject = "🔥 New Inbound Lead: " . ($lead['name'] ?? 'Website Inquiry') . " (" . ($lead['service'] ?? 'General') . ")";
     
     $name = htmlspecialchars($lead['name'] ?? 'N/A');
@@ -113,14 +113,13 @@ function sendLeadEmailNotification($lead) {
         </div>
       </div>
     </body>
-    </html>
-    ";
+    </html>";
 
     $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: BuildZone Website <noreply@" . ($_SERVER['SERVER_NAME'] ?? 'buildzonetechnology.com') . ">\r\n";
-    if (!empty($lead['email']) && filter_var($lead['email'], FILTER_VALIDATE_EMAIL)) {
-        $headers .= "Reply-To: {$lead['email']}\r\n";
+    $headers .= "Content-type:text/html;charset=UTF-8\r\n";
+    $headers .= "From: BuildZone Technology <info@buildzonetechnology.com>\r\n";
+    if (!empty($lead['email'])) {
+        $headers .= "Reply-To: " . $lead['email'] . "\r\n";
     }
 
     @mail($to, $subject, $message, $headers);
