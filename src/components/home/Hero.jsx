@@ -182,7 +182,8 @@ export const Hero = () => {
                           <img
                             src={`https://i.ytimg.com/vi/${getYouTubeId(heroVideoUrl)}/hqdefault.jpg`}
                             alt="BuildZone Video Showcase Preview"
-                            loading="lazy"
+                            fetchPriority="high"
+                            decoding="async"
                             className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
                           />
                         ) : (
