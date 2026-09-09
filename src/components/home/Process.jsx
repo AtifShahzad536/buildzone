@@ -342,7 +342,7 @@ export const Process = () => {
                     <span className="font-display font-bold text-[10px] text-[#0B1938] block truncate">
                       Web Services
                     </span>
-                    <span className="font-mono text-[8px] text-slate-400 block truncate">
+                    <span className="font-mono text-[8px] text-slate-600 font-medium block truncate">
                       (Node.js / Python)
                     </span>
                   </div>
@@ -352,7 +352,7 @@ export const Process = () => {
                     <span className="font-display font-bold text-[10px] text-[#0B1938] block truncate">
                       API Services
                     </span>
-                    <span className="font-mono text-[8px] text-slate-400 block truncate">
+                    <span className="font-mono text-[8px] text-slate-600 font-medium block truncate">
                       (FastAPI)
                     </span>
                   </div>
@@ -362,7 +362,7 @@ export const Process = () => {
                     <span className="font-display font-bold text-[10px] text-[#0B1938] block truncate">
                       Background Jobs
                     </span>
-                    <span className="font-mono text-[8px] text-slate-400 block truncate">
+                    <span className="font-mono text-[8px] text-slate-600 font-medium block truncate">
                       (Workers)
                     </span>
                   </div>
@@ -379,23 +379,23 @@ export const Process = () => {
                     <Database className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
                     <div className="text-left overflow-hidden">
                       <span className="font-display font-bold text-[10px] text-[#0B1938] block truncate">PostgreSQL</span>
-                      <span className="font-mono text-[8px] text-slate-400 block truncate">(Primary DB)</span>
+                      <span className="font-mono text-[8px] text-slate-600 font-medium block truncate">(Primary DB)</span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-1.5 justify-center">
-                    <Database className="w-3.5 h-3.5 text-cyan-500 shrink-0" />
+                    <Database className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
                     <div className="text-left overflow-hidden">
                       <span className="font-display font-bold text-[10px] text-[#0B1938] block truncate">Redis</span>
-                      <span className="font-mono text-[8px] text-slate-400 block truncate">(Cache)</span>
+                      <span className="font-mono text-[8px] text-slate-600 font-medium block truncate">(Cache)</span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-1.5 justify-center">
-                    <HardDrive className="w-3.5 h-3.5 text-sky-500 shrink-0" />
+                    <HardDrive className="w-3.5 h-3.5 text-sky-600 shrink-0" />
                     <div className="text-left overflow-hidden">
                       <span className="font-display font-bold text-[10px] text-[#0B1938] block truncate">S3</span>
-                      <span className="font-mono text-[8px] text-slate-400 block truncate">(Storage)</span>
+                      <span className="font-mono text-[8px] text-slate-600 font-medium block truncate">(Storage)</span>
                     </div>
                   </div>
                 </div>
@@ -411,7 +411,7 @@ export const Process = () => {
                     <div className="w-2.5 h-2.5 rounded-full bg-rose-500" />
                     <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                    <span className="text-[10px] font-mono text-slate-400 ml-2 font-semibold">
+                    <span className="text-[10px] font-mono text-slate-300 ml-2 font-semibold">
                       buildzone-ide
                     </span>
                   </div>
@@ -427,33 +427,33 @@ export const Process = () => {
                 <div className="grid grid-cols-12 text-[10px] font-mono">
                   
                   {/* File Explorer Tree */}
-                  <div className="col-span-4 bg-[#070D1E]/90 p-3 border-r border-slate-800/80 space-y-1.5 text-slate-400 hidden sm:block">
-                    <div className="text-slate-300 font-bold flex items-center gap-1 text-[10px]">
+                  <div className="col-span-4 bg-[#070D1E]/90 p-3 border-r border-slate-800/80 space-y-1.5 text-slate-300 hidden sm:block">
+                    <div className="text-slate-200 font-bold flex items-center gap-1 text-[10px]">
                       <span>📁</span> buildzone-app
                     </div>
                     <div className="pl-2 space-y-1">
-                      <div className="text-slate-300 flex items-center gap-1">
+                      <div className="text-slate-200 flex items-center gap-1">
                         <span>📁</span> src
                       </div>
-                      <div className="pl-2 space-y-0.5 text-slate-400">
+                      <div className="pl-2 space-y-0.5 text-slate-300">
                         <div>› components</div>
                         <div>› services</div>
                         <div>› api</div>
                         <div>› utils</div>
                       </div>
-                      <div className="text-slate-400">📄 package.json</div>
-                      <div className="text-slate-400">📄 next.config.js</div>
-                      <div className="text-slate-400">📄 README.md</div>
+                      <div className="text-slate-300">📄 package.json</div>
+                      <div className="text-slate-300">📄 next.config.js</div>
+                      <div className="text-slate-300">📄 README.md</div>
                     </div>
                   </div>
 
                   {/* Code Area with Syntax Highlighting */}
                   <div className="col-span-12 sm:col-span-8 p-3.5 bg-[#0B132B] overflow-x-auto space-y-1">
-                    <pre className="font-mono text-[10px] text-slate-300 leading-relaxed">
+                    <pre className="font-mono text-[10px] text-slate-200 leading-relaxed">
                       <code>
                         {activeStep.ideCode.split('\n').map((line, lIdx) => (
                           <div key={lIdx} className="table-row">
-                            <span className="table-cell pr-3 text-slate-600 select-none text-right">
+                            <span className="table-cell pr-3 text-slate-400 select-none text-right">
                               {lIdx + 1}
                             </span>
                             <span className="table-cell">
@@ -462,7 +462,7 @@ export const Process = () => {
                               ) : line.includes('await') || line.includes('true') || line.includes('false') ? (
                                 <span className="text-amber-400">{line}</span>
                               ) : (
-                                <span className="text-slate-200">{line}</span>
+                                <span className="text-slate-100">{line}</span>
                               )}
                             </span>
                           </div>
@@ -474,13 +474,13 @@ export const Process = () => {
                 </div>
 
                 {/* Floating "Deployment Successful" Badge */}
-                <div className="absolute top-8 right-4 bg-white/95 backdrop-blur-md rounded-xl py-1.5 px-3 border border-emerald-100 shadow-lg shadow-emerald-500/10 flex items-center gap-2 text-[#0B1938] z-30">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="absolute top-8 right-4 bg-white/95 backdrop-blur-md rounded-xl py-1.5 px-3 border border-emerald-200 shadow-lg shadow-emerald-500/10 flex items-center gap-2 text-[#0B1938] z-30">
+                  <div className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
                   <div>
                     <span className="font-display font-bold text-[10px] block leading-tight">
                       Deployment Successful
                     </span>
-                    <span className="font-mono text-[8px] text-slate-500 block leading-tight">
+                    <span className="font-mono text-[8px] text-slate-700 font-semibold block leading-tight">
                       Live in 2m 34s
                     </span>
                   </div>

@@ -85,9 +85,9 @@ export const Hero = () => {
           <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
             
             {/* 1. Top Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#EFF6FF] border border-[#DBEAFE] rounded-full shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-[#0066FF] inline-block"></span>
-              <span className="font-mono text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider text-[#0066FF]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full shadow-2xs">
+              <span className="w-2 h-2 rounded-full bg-[#0047BA] inline-block"></span>
+              <span className="font-mono text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider text-[#0047BA]">
                 {badgeText}
               </span>
             </div>
@@ -101,7 +101,7 @@ export const Hero = () => {
             </h1>
 
             {/* 3. Subtitle Paragraph */}
-            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed max-w-xl mx-auto lg:mx-0">
+            <p className="text-sm sm:text-base text-slate-700 font-sans leading-relaxed max-w-xl mx-auto lg:mx-0">
               {subtitle}
             </p>
 
@@ -131,7 +131,7 @@ export const Hero = () => {
             </div>
 
             {/* 5. Four Stats Row Below CTAs */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-200/80">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-300/80">
               {stats.map((stat, idx) => {
                 const Icon = stat.icon;
                 return (
@@ -143,7 +143,7 @@ export const Hero = () => {
                       <div className="font-display font-black text-lg sm:text-xl text-[#0B1938] leading-none">
                         {stat.value}
                       </div>
-                      <div className="font-sans text-[11px] text-slate-500 font-medium leading-tight mt-0.5">
+                      <div className="font-sans text-[11px] text-slate-700 font-bold leading-tight mt-0.5">
                         {stat.label}
                       </div>
                     </div>
@@ -249,31 +249,31 @@ export const Hero = () => {
                     
                     {/* Left Mini Sidebar */}
                     <div className="col-span-3 border-r border-slate-100 bg-[#FAFBFD] p-3 space-y-1 font-mono text-[11px]">
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 bg-[#EFF6FF] text-[#0066FF] font-bold rounded-lg border border-blue-100 shadow-2xs">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 bg-[#EFF6FF] text-[#0047BA] font-bold rounded-lg border border-blue-200 shadow-2xs">
                         <LayoutGrid className="w-3.5 h-3.5" />
                         <span>Overview</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-500 hover:text-slate-800 rounded-lg cursor-pointer">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
                         <Layers className="w-3.5 h-3.5" />
                         <span>Projects</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-500 hover:text-slate-800 rounded-lg cursor-pointer">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
                         <CheckSquare className="w-3.5 h-3.5" />
                         <span>Tasks</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-500 hover:text-slate-800 rounded-lg cursor-pointer">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
                         <BarChart2 className="w-3.5 h-3.5" />
                         <span>Analytics</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-500 hover:text-slate-800 rounded-lg cursor-pointer">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
                         <Users className="w-3.5 h-3.5" />
                         <span>Team</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-500 hover:text-slate-800 rounded-lg cursor-pointer">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
                         <FileText className="w-3.5 h-3.5" />
                         <span>Reports</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-500 hover:text-slate-800 rounded-lg cursor-pointer">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
                         <Settings className="w-3.5 h-3.5" />
                         <span>Settings</span>
                       </div>
@@ -292,27 +292,27 @@ export const Hero = () => {
                       {/* 4 Metric Cards */}
                       <div className="grid grid-cols-4 gap-2">
                         <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                          <div className="text-[10px] text-slate-400 font-medium">Total Users</div>
+                          <div className="text-[10px] text-slate-600 font-bold">Total Users</div>
                           <div className="font-display font-bold text-sm text-[#0B1938] mt-0.5">12,540</div>
-                          <div className="text-[9px] text-emerald-600 font-semibold mt-0.5">↑ 12.5%</div>
+                          <div className="text-[9px] text-emerald-700 font-bold mt-0.5">↑ 12.5%</div>
                         </div>
 
                         <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                          <div className="text-[10px] text-slate-400 font-medium">Revenue</div>
+                          <div className="text-[10px] text-slate-600 font-bold">Revenue</div>
                           <div className="font-display font-bold text-sm text-[#0B1938] mt-0.5">$45,780</div>
-                          <div className="text-[9px] text-emerald-600 font-semibold mt-0.5">↑ 8.2%</div>
+                          <div className="text-[9px] text-emerald-700 font-bold mt-0.5">↑ 8.2%</div>
                         </div>
 
                         <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                          <div className="text-[10px] text-slate-400 font-medium">Orders</div>
+                          <div className="text-[10px] text-slate-600 font-bold">Orders</div>
                           <div className="font-display font-bold text-sm text-[#0B1938] mt-0.5">1,250</div>
-                          <div className="text-[9px] text-emerald-600 font-semibold mt-0.5">↑ 15.7%</div>
+                          <div className="text-[9px] text-emerald-700 font-bold mt-0.5">↑ 15.7%</div>
                         </div>
 
                         <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                          <div className="text-[10px] text-slate-400 font-medium">Conversion</div>
+                          <div className="text-[10px] text-slate-600 font-bold">Conversion</div>
                           <div className="font-display font-bold text-sm text-[#0B1938] mt-0.5">3.45%</div>
-                          <div className="text-[9px] text-emerald-600 font-semibold mt-0.5">↑ 6.1%</div>
+                          <div className="text-[9px] text-emerald-700 font-bold mt-0.5">↑ 6.1%</div>
                         </div>
                       </div>
 
@@ -325,7 +325,7 @@ export const Hero = () => {
                             <span className="font-display font-bold text-[11px] text-[#0B1938]">
                               Revenue Overview
                             </span>
-                            <span className="text-[9px] font-mono text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-bold">
+                            <span className="text-[9px] font-mono text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-300 font-black">
                               $45,780 ↑ 8.2%
                             </span>
                           </div>
@@ -364,7 +364,7 @@ export const Hero = () => {
                             </svg>
 
                             {/* X-Axis Months */}
-                            <div className="flex justify-between text-[8px] font-mono text-slate-400 mt-1 px-1">
+                            <div className="flex justify-between text-[8px] font-mono text-slate-600 font-bold mt-1 px-1">
                               <span>Jan</span>
                               <span>Feb</span>
                               <span>Mar</span>
@@ -406,21 +406,21 @@ export const Hero = () => {
                           </div>
 
                           <div className="space-y-0.5 text-[9px] font-mono">
-                            <div className="flex items-center justify-between text-slate-600">
-                              <span className="flex items-center gap-1">
+                            <div className="flex items-center justify-between text-slate-700">
+                              <span className="flex items-center gap-1 font-medium">
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF]"></span> Web
                               </span>
                               <span className="font-bold">60%</span>
                             </div>
-                            <div className="flex items-center justify-between text-slate-600">
-                              <span className="flex items-center gap-1">
-                                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Mobile
+                            <div className="flex items-center justify-between text-slate-700">
+                              <span className="flex items-center gap-1 font-medium">
+                                <span className="w-1.5 h-1.5 rounded-full bg-sky-500"></span> Mobile
                               </span>
                               <span className="font-bold">25%</span>
                             </div>
-                            <div className="flex items-center justify-between text-slate-600">
-                              <span className="flex items-center gap-1">
-                                <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span> API
+                            <div className="flex items-center justify-between text-slate-700">
+                              <span className="flex items-center gap-1 font-medium">
+                                <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span> API
                               </span>
                               <span className="font-bold">15%</span>
                             </div>
@@ -435,26 +435,26 @@ export const Hero = () => {
                           Recent Activity
                         </span>
                         <div className="space-y-1.5 text-[10px]">
-                          <div className="flex items-center justify-between text-slate-600">
+                          <div className="flex items-center justify-between text-slate-700">
                             <span className="flex items-center gap-1.5 font-medium">
                               <CheckCircle2 className="w-3 h-3 text-[#0066FF]" />
                               New user registered
                             </span>
-                            <span className="font-mono text-[9px] text-slate-400">2m ago</span>
+                            <span className="font-mono text-[9px] text-slate-600 font-bold">2m ago</span>
                           </div>
-                          <div className="flex items-center justify-between text-slate-600">
+                          <div className="flex items-center justify-between text-slate-700">
                             <span className="flex items-center gap-1.5 font-medium">
-                              <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                               New order received
                             </span>
-                            <span className="font-mono text-[9px] text-slate-400">15m ago</span>
+                            <span className="font-mono text-[9px] text-slate-600 font-bold">15m ago</span>
                           </div>
-                          <div className="flex items-center justify-between text-slate-600">
+                          <div className="flex items-center justify-between text-slate-700">
                             <span className="flex items-center gap-1.5 font-medium">
-                              <CheckCircle2 className="w-3 h-3 text-indigo-500" />
+                              <CheckCircle2 className="w-3 h-3 text-indigo-600" />
                               Subscription updated
                             </span>
-                            <span className="font-mono text-[9px] text-slate-400">1h ago</span>
+                            <span className="font-mono text-[9px] text-slate-600 font-bold">1h ago</span>
                           </div>
                         </div>
                       </div>
@@ -471,7 +471,7 @@ export const Hero = () => {
                   <div className="w-12 h-1 bg-slate-300 rounded-full mx-auto mb-1.5"></div>
                   
                   {/* Status Bar */}
-                  <div className="flex items-center justify-between px-1 text-[8px] font-mono text-slate-400 mb-2">
+                  <div className="flex items-center justify-between px-1 text-[8px] font-mono text-slate-700 mb-2">
                     <span className="font-bold">9:41</span>
                     <div className="flex items-center gap-1">
                       <Wifi className="w-2.5 h-2.5" />
@@ -482,7 +482,7 @@ export const Hero = () => {
                   {/* Phone Inner Screen Content */}
                   <div className="bg-[#FAFBFD] border border-slate-100 rounded-2xl p-2.5 space-y-2.5 text-center">
                     <div>
-                      <span className="text-[9px] font-mono font-bold uppercase text-slate-500 block">
+                      <span className="text-[9px] font-mono font-bold uppercase text-slate-700 block">
                         Project Status
                       </span>
                     </div>
@@ -512,13 +512,13 @@ export const Hero = () => {
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <span className="font-display font-black text-xs text-[#0B1938]">75%</span>
-                        <span className="text-[6.5px] font-mono text-slate-400 uppercase">Completed</span>
+                        <span className="text-[6.5px] font-mono text-slate-600 font-bold uppercase">Completed</span>
                       </div>
                     </div>
 
                     {/* Tasks Checklist */}
                     <div className="text-left space-y-1 pt-1 border-t border-slate-100">
-                      <span className="text-[8.5px] font-mono font-bold uppercase text-slate-400 block mb-1">
+                      <span className="text-[8.5px] font-mono font-bold uppercase text-slate-700 block mb-1">
                         Tasks
                       </span>
                       {[
@@ -527,12 +527,12 @@ export const Hero = () => {
                         "Testing",
                         "Deployment"
                       ].map((task, tIdx) => (
-                        <div key={tIdx} className="flex items-center justify-between text-[9px] text-slate-700">
+                        <div key={tIdx} className="flex items-center justify-between text-[9px] text-slate-800 font-medium">
                           <span className="flex items-center gap-1">
                             <span className="w-1 h-1 rounded-full bg-[#0066FF]"></span>
                             <span className="truncate max-w-[85px]">{task}</span>
                           </span>
-                          <Check className="w-3 h-3 text-emerald-500 stroke-[3]" />
+                          <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
                         </div>
                       ))}
                     </div>

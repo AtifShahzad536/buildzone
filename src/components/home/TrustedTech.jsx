@@ -72,7 +72,7 @@ export const TrustedTech = () => {
                   <span className="font-mono text-xs sm:text-sm font-bold text-[#0B1938] group-hover:text-[#0066FF] transition-colors whitespace-nowrap">
                     {tech.name}
                   </span>
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-semibold px-1.5 py-0.5 bg-slate-100 rounded group-hover:bg-blue-100 group-hover:text-[#0066FF] transition-colors hidden sm:inline-block">
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-slate-700 font-bold px-1.5 py-0.5 bg-slate-200/80 rounded group-hover:bg-blue-100 group-hover:text-[#0047BA] transition-colors hidden sm:inline-block">
                     {tech.category}
                   </span>
                 </div>
