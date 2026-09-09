@@ -8,10 +8,10 @@ export const VideoUpload = ({
   value,
   onChange,
   label = "Hero Intro Video",
-  helperText = "Upload an MP4/WebM video file (up to 100MB) or paste a YouTube, Vimeo, or Cloudinary URL",
+  helperText = "Paste a direct MP4/WebM video URL, YouTube link, or Vimeo URL for global instant streaming across all browsers.",
   className = ""
 }) => {
-  const [activeTab, setActiveTab] = useState('upload'); // 'upload' | 'url'
+  const [activeTab, setActiveTab] = useState('url'); // 'url' | 'upload'
   const [urlInput, setUrlInput] = useState(value || '');
   const [isDragging, setIsDragging] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -27,13 +27,13 @@ export const VideoUpload = ({
     // YouTube watch or short links
     const ytMatch = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
     if (ytMatch && ytMatch[1]) {
-      return `https://www.youtube.com/embed/${ytMatch[1]}`;
+      return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=1&loop=1&playlist=${ytMatch[1]}&controls=0&showinfo=0`;
     }
 
     // Vimeo links
     const vimeoMatch = trimmed.match(/(?:vimeo\.com\/)(\d+)/);
     if (vimeoMatch && vimeoMatch[1]) {
-      return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+      return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&loop=1&muted=1&background=1`;
     }
 
     return trimmed;
@@ -41,7 +41,7 @@ export const VideoUpload = ({
 
   const isEmbedVideo = (url) => {
     if (!url) return false;
-    return url.includes('youtube.com/embed') || url.includes('player.vimeo.com');
+    return url.includes('youtube.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
   };
 
   const handleFileChange = async (file) => {
