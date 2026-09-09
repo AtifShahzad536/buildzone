@@ -37,6 +37,7 @@ export const Hero = () => {
     : reduxSettings;
 
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [videoLoadError, setVideoLoadError] = useState(false);
 
   // Settings values with defaults matching screenshot
   const badgeText = settings?.heroBadgeText || "SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT";
@@ -149,7 +150,7 @@ export const Hero = () => {
           <div className="lg:col-span-6 relative w-full pt-4 lg:pt-0">
             
             {/* If Admin chose Showcase Video (Laptop & Mobile Website Scroll Animation) */}
-            {heroMediaType === 'video' && heroVideoUrl ? (
+            {heroMediaType === 'video' && heroVideoUrl && !videoLoadError ? (
               <div className="relative w-full flex items-center justify-center bg-transparent border-0 rounded-none shadow-none">
                 {isEmbedVideo(heroVideoUrl) ? (
                   <div className="w-full aspect-video border-0 rounded-none overflow-hidden">
@@ -169,6 +170,7 @@ export const Hero = () => {
                       muted
                       loop
                       playsInline
+                      onError={() => setVideoLoadError(true)}
                       className="w-full h-auto max-h-[560px] object-contain bg-transparent border-0 rounded-none shadow-none pointer-events-auto"
                     />
                   </div>

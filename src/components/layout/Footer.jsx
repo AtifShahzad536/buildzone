@@ -9,12 +9,15 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { siteConfig } from '../../config/siteConfig';
+import { useGetSettingsQuery } from '../../services/api';
 import Container from '../common/Container';
 import { LinkedInIcon, GitHubIcon, TwitterIcon } from '../common/BrandIcons';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const settings = useSelector((state) => state.settings);
+  const reduxSettings = useSelector((state) => state.settings);
+  const { data: dbSettings } = useGetSettingsQuery();
+  const settings = dbSettings || reduxSettings;
   const companyName = settings?.companyName || siteConfig.name;
 
   return (
