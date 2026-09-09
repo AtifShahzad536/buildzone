@@ -21,7 +21,11 @@ import {
   X
 } from 'lucide-react';
 import { toast } from 'sonner';
-import { useGetLeadByIdQuery, useUpdateLeadStatusMutation } from '../../../services/api';
+import { 
+  useGetLeadByIdQuery, 
+  useUpdateLeadStatusMutation,
+  useSendClientEmailMutation 
+} from '../../../services/api';
 import { formatDate } from '../../../utils/helpers';
 import Button from '../../../components/common/Button';
 import Badge from '../../../components/common/Badge';
@@ -33,6 +37,7 @@ export const LeadDetails = () => {
   const { id } = useParams();
   const { data: lead, isLoading, isError, refetch } = useGetLeadByIdQuery(id);
   const [updateLeadStatus, { isLoading: isUpdating }] = useUpdateLeadStatusMutation();
+  const [sendClientEmail, { isLoading: isSendingEmail }] = useSendClientEmailMutation();
   const [noteText, setNoteText] = useState('');
   const [noteType, setNoteType] = useState('Meeting Scheduled');
 
@@ -120,32 +125,43 @@ BuildZone Technology Team`
     setIsEmailModalOpen(true);
   };
 
-  // Handle Send Email Action
+  // Handle Direct Server Email Dispatch
   const handleSendEmail = async () => {
     if (!lead.email) {
       toast.error("Lead has no valid email address.");
       return;
     }
+    if (!emailSubject.trim()) {
+      toast.error("Subject line is required.");
+      return;
+    }
+    if (!emailBody.trim()) {
+      toast.error("Email message body is required.");
+      return;
+    }
 
-    // Launch default email client
-    const mailtoUrl = `mailto:${encodeURIComponent(lead.email)}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-    window.open(mailtoUrl, '_blank');
-
-    // Automatically log this communication in the timeline
     try {
-      await updateLeadStatus({
-        id: leadId,
-        newActivity: {
-          type: 'Email Sent',
-          note: `Subject: "${emailSubject}"`
-        }
+      await sendClientEmail({
+        to: lead.email,
+        subject: emailSubject.trim(),
+        message: emailBody.trim(),
+        leadId
       }).unwrap();
-      toast.success("Email client opened & activity logged to timeline!");
+
+      toast.success(`Email dispatched directly to ${lead.email}!`);
       setIsEmailModalOpen(false);
       refetch();
     } catch (e) {
-      setIsEmailModalOpen(false);
+      console.error("Direct email dispatch failed:", e);
+      toast.error(e?.data?.error || "Failed to dispatch email. Please check server mail configuration.");
     }
+  };
+
+  // Launch default system mail client as fallback option
+  const handleOpenSystemMailClient = () => {
+    if (!lead.email) return;
+    const mailtoUrl = `mailto:${encodeURIComponent(lead.email)}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    window.open(mailtoUrl, '_blank');
   };
 
   // Handle WhatsApp Direct Launcher
@@ -499,25 +515,42 @@ BuildZone Technology Team`
             </div>
 
             {/* Modal Actions */}
-            <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-100">
               <Button
                 type="button"
                 variant="outline"
                 size="sm"
                 onClick={() => setIsEmailModalOpen(false)}
+                disabled={isSendingEmail}
               >
                 Cancel
               </Button>
 
-              <Button
-                type="button"
-                variant="primary"
-                size="sm"
-                onClick={handleSendEmail}
-                rightIcon={<Send className="w-3.5 h-3.5" />}
-              >
-                Open Email Client & Log Entry
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleOpenSystemMailClient}
+                  title="Open this drafted message in your device email client (Outlook/Thunderbird/Mail)"
+                  className="text-slate-600 hover:text-[#0066FF] text-xs font-mono"
+                >
+                  <ExternalLink className="w-3.5 h-3.5 mr-1" />
+                  Mail App
+                </Button>
+
+                <Button
+                  type="button"
+                  variant="primary"
+                  size="sm"
+                  onClick={handleSendEmail}
+                  isLoading={isSendingEmail}
+                  disabled={isSendingEmail}
+                  rightIcon={<Send className="w-3.5 h-3.5" />}
+                >
+                  {isSendingEmail ? 'Dispatching...' : 'Dispatch Email to Client'}
+                </Button>
+              </div>
             </div>
           </div>
         </div>

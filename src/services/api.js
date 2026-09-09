@@ -247,6 +247,29 @@ const customBaseQuery = async (args) => {
       return { data: leads };
     }
     if (method === 'POST') {
+      if (url.includes('/send-email')) {
+        const leadId = body.leadId;
+        const subject = body.subject || 'Proposal from BuildZone';
+        const message = body.message || body.body || '';
+        if (leadId) {
+          leads = leads.map(l => {
+            if (l.id === leadId || l._id === leadId || String(l.id) === String(leadId)) {
+              const acts = Array.isArray(l.activities) ? [...l.activities] : [];
+              acts.unshift({
+                id: `act-${Date.now()}`,
+                type: 'Email Sent',
+                note: `Subject: ${subject}\n${message.length > 200 ? message.slice(0, 200) + '...' : message}`,
+                timestamp: new Date().toISOString()
+              });
+              return { ...l, activities: acts };
+            }
+            return l;
+          });
+          saveToStorage('leads', leads);
+        }
+        return { data: { success: true, message: `Email dispatched to ${body.to}` } };
+      }
+
       const newLead = {
         ...body,
         id: `lead-${Date.now()}`,
@@ -641,6 +664,10 @@ export const api = createApi({
       query: (body) => ({ url: '/leads', method: 'POST', body }),
       invalidatesTags: ['Lead'],
     }),
+    sendClientEmail: builder.mutation({
+      query: (body) => ({ url: '/leads/send-email', method: 'POST', body }),
+      invalidatesTags: (result, error, arg) => [{ type: 'Lead', id: arg?.leadId }, 'Lead'],
+    }),
     updateLeadStatus: builder.mutation({
       query: (body) => ({ url: `/leads/${body.id}`, method: 'PATCH', body }),
       invalidatesTags: ['Lead'],
@@ -820,6 +847,7 @@ export const {
   useGetLeadsQuery,
   useGetLeadByIdQuery,
   useCreateLeadMutation,
+  useSendClientEmailMutation,
   useUpdateLeadStatusMutation,
   useDeleteLeadMutation,
 

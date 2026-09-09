@@ -115,14 +115,42 @@ function sendLeadEmailNotification($lead) {
     </body>
     </html>";
 
+function sendDirectClientEmail($to, $subject, $content) {
+    $formattedBody = nl2br(htmlspecialchars($content));
+
+    $message = "
+    <!DOCTYPE html>
+    <html lang='en'>
+    <head>
+      <meta charset='UTF-8' />
+      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+      <title>" . htmlspecialchars($subject) . "</title>
+    </head>
+    <body style='margin: 0; padding: 24px; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #1e293b;'>
+      <div style='max-width: 620px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);'>
+        <div style='background: #0B1938; padding: 24px; text-align: center;'>
+          <h1 style='margin: 0; font-size: 22px; color: #ffffff; font-weight: bold; letter-spacing: -0.5px;'>BuildZone Technology</h1>
+          <p style='margin: 4px 0 0; color: #0066FF; font-size: 11px; font-family: monospace; font-weight: bold; letter-spacing: 1.5px;'>#1 SOFTWARE HOUSE IN SIALKOT</p>
+        </div>
+        <div style='padding: 32px 28px; font-size: 14px; line-height: 1.65; color: #334155; font-family: sans-serif;'>
+          {$formattedBody}
+        </div>
+        <div style='background: #f8fafc; padding: 20px 28px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b; line-height: 1.5;'>
+          <p style='margin: 0 0 6px;'><strong>BuildZone Technology</strong> — Enterprise Software & AI Engineering</p>
+          <p style='margin: 0;'>Official Email: <a href='mailto:info@buildzonetechnology.com' style='color: #0066FF; text-decoration: none;'>info@buildzonetechnology.com</a> | WhatsApp: <a href='https://wa.me/92105464116' style='color: #0066FF; text-decoration: none;'>+92 105464116</a></p>
+          <p style='margin: 6px 0 0; font-size: 11px; color: #94a3b8;'>Paris Road / Defense Road, Sialkot, Punjab, Pakistan</p>
+        </div>
+      </div>
+    </body>
+    </html>";
+
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8\r\n";
     $headers .= "From: BuildZone Technology <info@buildzonetechnology.com>\r\n";
-    if (!empty($lead['email'])) {
-        $headers .= "Reply-To: " . $lead['email'] . "\r\n";
-    }
+    $headers .= "Reply-To: info@buildzonetechnology.com\r\n";
+    $headers .= "X-Mailer: BuildZone-CRM-Engine/2.0\r\n";
 
-    @mail($to, $subject, $message, $headers);
+    return @mail($to, $subject, $message, $headers);
 }
 
 // Initial Seed Data for fallback
@@ -211,6 +239,49 @@ switch ($method) {
         break;
 
     case 'POST':
+        // Direct Client Email Dispatch from Admin CRM
+        if (($resource === 'leads' && $id === 'send-email') || $resource === 'send-email') {
+            $to = trim($body['to'] ?? '');
+            $subject = trim($body['subject'] ?? 'Message from BuildZone Technology');
+            $messageContent = trim($body['message'] ?? ($body['body'] ?? ''));
+            $leadId = $body['leadId'] ?? null;
+
+            if (empty($to) || !filter_var($to, FILTER_VALIDATE_EMAIL)) {
+                sendResponse(["error" => "Valid recipient email is required"], 400);
+            }
+            if (empty($messageContent)) {
+                sendResponse(["error" => "Email message body cannot be empty"], 400);
+            }
+
+            // Dispatch real email via PHP mailer
+            $sent = sendDirectClientEmail($to, $subject, $messageContent);
+
+            // Automatically record this email in Lead CRM Timeline
+            if ($leadId) {
+                $leads = loadData('leads');
+                foreach ($leads as &$leadItem) {
+                    if (($leadItem['id'] ?? null) == $leadId || ($leadItem['_id'] ?? null) == $leadId || strval($leadItem['id'] ?? '') === strval($leadId)) {
+                        $acts = $leadItem['activities'] ?? [];
+                        array_unshift($acts, [
+                            "id" => "act-" . round(microtime(true) * 1000),
+                            "type" => "Email Sent",
+                            "note" => "Subject: " . $subject . "\n" . (strlen($messageContent) > 200 ? substr($messageContent, 0, 200) . '...' : $messageContent),
+                            "timestamp" => gmdate('Y-m-d\TH:i:s\Z')
+                        ]);
+                        $leadItem['activities'] = $acts;
+                        break;
+                    }
+                }
+                saveData('leads', $leads);
+            }
+
+            sendResponse([
+                "success" => true,
+                "message" => "Email dispatched successfully to " . $to,
+                "sent" => $sent
+            ], 200);
+        }
+
         $items = loadData($resource);
         if (!is_array($items)) {
             $items = [];
