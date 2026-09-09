@@ -227,6 +227,60 @@ export const SettingsManager = () => {
               />
             </div>
 
+            {/* Hero Background Color Matcher (To seamlessly blend video with hero section) */}
+            <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="font-mono text-[11px] uppercase font-bold text-slate-800 block">
+                    Hero Section Background Color
+                  </span>
+                  <span className="font-sans text-[11px] text-slate-500 block">
+                    Match this color to your video's background so the video seamlessly blends into the Hero canvas without any borders or boxes.
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div 
+                    className="w-6 h-6 rounded-lg border border-slate-300 shadow-2xs"
+                    style={{ backgroundColor: formData.heroBgColor || '#FFFFFF' }}
+                  />
+                  <input
+                    type="text"
+                    value={formData.heroBgColor || '#FFFFFF'}
+                    onChange={(e) => setFormData({ ...formData, heroBgColor: e.target.value })}
+                    placeholder="#FFFFFF"
+                    className="w-24 bg-white border border-slate-300 px-2.5 py-1 text-xs text-[#0B1938] font-mono font-bold rounded-lg uppercase"
+                  />
+                </div>
+              </div>
+
+              {/* Quick Preset Buttons */}
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                {[
+                  { name: 'Pure White (Recommended)', hex: '#FFFFFF' },
+                  { name: 'Soft White', hex: '#FAFAFC' },
+                  { name: 'Light Slate', hex: '#F8FAFC' },
+                  { name: 'Cool Gray', hex: '#F3F4F6' }
+                ].map((color) => (
+                  <button
+                    key={color.hex}
+                    type="button"
+                    onClick={() => setFormData({ ...formData, heroBgColor: color.hex })}
+                    className={`px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold border transition-all flex items-center gap-1.5 cursor-pointer ${
+                      (formData.heroBgColor || '#FFFFFF').toUpperCase() === color.hex.toUpperCase()
+                        ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-2xs'
+                        : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
+                    }`}
+                  >
+                    <span 
+                      className="w-2.5 h-2.5 rounded-full border border-slate-300 inline-block" 
+                      style={{ backgroundColor: color.hex }}
+                    />
+                    {color.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Hero Copy Customizer */}
             <div className="space-y-3 pt-3 border-t border-slate-100">
               <span className="font-mono text-[11px] uppercase font-bold text-slate-700 block">

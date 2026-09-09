@@ -52,12 +52,13 @@ export const Hero = () => {
     { icon: Headphones, value: settings?.statsSupport || "24/7", label: "Support Available" },
   ];
 
-  return (
-    <section className="relative pt-24 sm:pt-28 pb-14 sm:pb-20 overflow-hidden bg-[#FAFCFF]">
-      {/* Background Subtle Gradient Glow */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-100/60 via-indigo-50/30 to-transparent rounded-full blur-3xl pointer-events-none -z-0"></div>
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-sky-100/40 to-transparent rounded-full blur-2xl pointer-events-none -z-0"></div>
+  const heroBgColor = settings?.heroBgColor || "#FFFFFF";
 
+  return (
+    <section 
+      className="relative pt-24 sm:pt-28 pb-14 sm:pb-20 overflow-hidden"
+      style={{ backgroundColor: heroBgColor }}
+    >
       <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
@@ -143,34 +144,27 @@ export const Hero = () => {
             
             {/* If Admin chose Showcase Video (Laptop & Mobile Website Scroll Animation) */}
             {heroMediaType === 'video' && heroVideoUrl ? (
-              <div className="relative rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(11,25,56,0.12)] border border-slate-200 bg-white group">
+              <div className="relative w-full flex items-center justify-center bg-transparent border-0 rounded-none shadow-none">
                 {isEmbedVideo(heroVideoUrl) ? (
-                  <div className="w-full aspect-video">
+                  <div className="w-full aspect-video border-0 rounded-none overflow-hidden">
                     <iframe
                       src={heroVideoUrl}
                       title="BuildZone Product Video"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover border-0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                   </div>
                 ) : (
-                  <div className="relative w-full aspect-[16/10] sm:aspect-video bg-slate-950 overflow-hidden flex items-center justify-center">
+                  <div className="relative w-full bg-transparent border-0 rounded-none shadow-none flex items-center justify-center overflow-visible">
                     <video
                       src={heroVideoUrl}
                       autoPlay
                       muted
                       loop
                       playsInline
-                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                      className="w-full h-auto max-h-[560px] object-contain bg-transparent border-0 rounded-none shadow-none pointer-events-auto"
                     />
-                    {/* Subtle Live Demo Badge */}
-                    <div className="absolute top-3.5 right-3.5 pointer-events-none">
-                      <span className="px-2.5 py-1 bg-black/70 backdrop-blur-md text-white border border-white/20 text-[10px] font-mono font-bold rounded-full flex items-center gap-1.5 shadow-lg">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                        LIVE SHOWCASE
-                      </span>
-                    </div>
                   </div>
                 )}
               </div>
