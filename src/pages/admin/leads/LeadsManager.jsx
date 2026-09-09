@@ -134,61 +134,64 @@ export const LeadsManager = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {filtered?.map((lead) => (
-                <tr key={lead.id} className="hover:bg-blue-50/40 transition-colors">
-                  <td className="py-3.5 px-4">
-                    <div className="font-bold text-[#0B1938] text-sm">{lead.name}</div>
-                    <div className="text-[11px] text-slate-500">{lead.email}</div>
-                    {lead.company && <div className="text-[10px] text-[#0066FF] font-semibold">{lead.company} • {lead.country}</div>}
-                  </td>
+              {filtered?.map((lead) => {
+                const leadId = lead.id || lead._id;
+                return (
+                  <tr key={leadId} className="hover:bg-blue-50/40 transition-colors">
+                    <td className="py-3.5 px-4">
+                      <div className="font-bold text-[#0B1938] text-sm">{lead.name}</div>
+                      <div className="text-[11px] text-slate-500">{lead.email}</div>
+                      {lead.company && <div className="text-[10px] text-[#0066FF] font-semibold">{lead.company} • {lead.country}</div>}
+                    </td>
 
-                  <td className="py-3.5 px-4 text-slate-700">
-                    <span className="font-bold text-[#0066FF]">{lead.service}</span>
-                  </td>
+                    <td className="py-3.5 px-4 text-slate-700">
+                      <span className="font-bold text-[#0066FF]">{lead.service}</span>
+                    </td>
 
-                  <td className="py-3.5 px-4 text-slate-700">
-                    <div className="font-medium">{lead.budget || 'Not specified'}</div>
-                    <div className="text-[10px] text-slate-500">{lead.timeline || 'Flexible'}</div>
-                  </td>
+                    <td className="py-3.5 px-4 text-slate-700">
+                      <div className="font-medium">{lead.budget || 'Not specified'}</div>
+                      <div className="text-[10px] text-slate-500">{lead.timeline || 'Flexible'}</div>
+                    </td>
 
-                  <td className="py-3.5 px-4 text-slate-500 text-[11px]">
-                    {lead.source || 'Website'}
-                  </td>
+                    <td className="py-3.5 px-4 text-slate-500 text-[11px]">
+                      {lead.source || 'Website'}
+                    </td>
 
-                  <td className="py-3.5 px-4">
-                    <select
-                      value={lead.status}
-                      onChange={(e) => handleStatusChange(lead.id, e.target.value)}
-                      className="bg-slate-50 border border-slate-200 px-2.5 py-1 text-xs font-mono text-[#0B1938] font-bold focus:outline-none focus:border-[#0066FF] rounded-lg cursor-pointer"
-                    >
-                      {statuses.filter(s => s !== 'All').map(s => (
-                        <option key={s} value={s}>{s}</option>
-                      ))}
-                    </select>
-                  </td>
-
-                  <td className="py-3.5 px-4 text-right whitespace-nowrap">
-                    <div className="flex items-center justify-end gap-1.5 whitespace-nowrap">
-                      <Link
-                        to={`${ADMIN_BASE_PATH}/leads/${lead.id}`}
-                        className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-blue-50 hover:bg-[#0066FF] text-[#0066FF] hover:text-white border border-blue-200 hover:border-[#0066FF] rounded-lg font-mono font-bold text-[11px] transition-all cursor-pointer shadow-2xs whitespace-nowrap shrink-0"
-                        title="View Lead Details"
+                    <td className="py-3.5 px-4">
+                      <select
+                        value={lead.status}
+                        onChange={(e) => handleStatusChange(leadId, e.target.value)}
+                        className="bg-slate-50 border border-slate-200 px-2.5 py-1 text-xs font-mono text-[#0B1938] font-bold focus:outline-none focus:border-[#0066FF] rounded-lg cursor-pointer"
                       >
-                        <Eye className="w-3.5 h-3.5 shrink-0" />
-                        <span>View</span>
-                      </Link>
-                      <button
-                        onClick={() => handleDeleteClick(lead.id, lead.name)}
-                        className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer shrink-0"
-                        title="Delete Lead"
-                        aria-label={`Delete lead for ${lead.name}`}
-                      >
-                        <Trash2 className="w-4 h-4 inline-block" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                        {statuses.filter(s => s !== 'All').map(s => (
+                          <option key={s} value={s}>{s}</option>
+                        ))}
+                      </select>
+                    </td>
+
+                    <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                      <div className="flex items-center justify-end gap-1.5 whitespace-nowrap">
+                        <Link
+                          to={`${ADMIN_BASE_PATH}/leads/${leadId}`}
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-blue-50 hover:bg-[#0066FF] text-[#0066FF] hover:text-white border border-blue-200 hover:border-[#0066FF] rounded-lg font-mono font-bold text-[11px] transition-all cursor-pointer shadow-2xs whitespace-nowrap shrink-0"
+                          title="View Lead Details"
+                        >
+                          <Eye className="w-3.5 h-3.5 shrink-0" />
+                          <span>View</span>
+                        </Link>
+                        <button
+                          onClick={() => handleDeleteClick(leadId, lead.name)}
+                          className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                          title="Delete Lead"
+                          aria-label={`Delete lead for ${lead.name}`}
+                        >
+                          <Trash2 className="w-4 h-4 inline-block" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

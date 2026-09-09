@@ -37,7 +37,8 @@ export const LeadDetails = () => {
 
   const handleStatusChange = async (newStatus) => {
     try {
-      await updateLeadStatus({ id: lead.id, status: newStatus }).unwrap();
+      const leadId = lead.id || lead._id;
+      await updateLeadStatus({ id: leadId, status: newStatus }).unwrap();
       toast.success(`Pipeline status updated to ${newStatus}`);
     } catch (e) {
       toast.error("Failed to update status");
@@ -49,8 +50,9 @@ export const LeadDetails = () => {
     if (!noteText.trim()) return;
 
     try {
+      const leadId = lead.id || lead._id;
       await updateLeadStatus({
-        id: lead.id,
+        id: leadId,
         newActivity: {
           type: noteType,
           note: noteText

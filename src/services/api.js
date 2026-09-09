@@ -96,7 +96,12 @@ const customBaseQuery = async (args) => {
         }
       } else {
         // Automatically unwrap standard backend response envelope: { success: true, data: [...], message: "..." }
-        const payload = json && typeof json === 'object' && json.data !== undefined ? json.data : json;
+        let payload = json && typeof json === 'object' && json.data !== undefined ? json.data : json;
+        if (Array.isArray(payload)) {
+          payload = payload.map(item => item && typeof item === 'object' ? { ...item, id: item.id || item._id || item.slug } : item);
+        } else if (payload && typeof payload === 'object') {
+          payload = { ...payload, id: payload.id || payload._id || payload.slug };
+        }
         return { data: payload };
       }
     } catch (err) {
