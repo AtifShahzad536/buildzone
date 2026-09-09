@@ -44,12 +44,15 @@ export const Hero = () => {
   const titlePrefix = settings?.heroTitlePrefix || "We Build Digital Products That";
   const titleAccent = settings?.heroTitleAccent || "Scale Your Business";
   const subtitle = settings?.heroDescription || "BuildZone is a software house delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.";
-  const heroVideoUrl = settings?.heroVideoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ";
+  const rawVideoUrl = settings?.heroVideoUrl || "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ";
+  const heroVideoUrl = rawVideoUrl.includes('youtube.com/embed') 
+    ? rawVideoUrl.replace('youtube.com/embed', 'youtube-nocookie.com/embed') 
+    : rawVideoUrl;
   const heroMediaType = settings?.heroMediaType || "video"; // 'video' | 'mockup'
 
   const isEmbedVideo = (url) => {
     if (!url) return false;
-    return url.includes('youtube.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
+    return url.includes('youtube.com') || url.includes('youtube-nocookie.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
   };
 
   const stats = [
@@ -157,6 +160,7 @@ export const Hero = () => {
                     <iframe
                       src={heroVideoUrl}
                       title="BuildZone Product Video"
+                      loading="lazy"
                       className="w-full h-full object-cover border-0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen

@@ -25,9 +25,9 @@ export const VideoUpload = ({
     const trimmed = rawUrl.trim();
 
     // YouTube watch or short links
-    const ytMatch = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+    const ytMatch = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=)|youtube-nocookie\.com\/embed\/)([\w-]{11})/);
     if (ytMatch && ytMatch[1]) {
-      return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=1&loop=1&playlist=${ytMatch[1]}&controls=0&showinfo=0`;
+      return `https://www.youtube-nocookie.com/embed/${ytMatch[1]}?autoplay=1&mute=1&loop=1&playlist=${ytMatch[1]}&controls=0&showinfo=0`;
     }
 
     // Vimeo links
@@ -41,7 +41,7 @@ export const VideoUpload = ({
 
   const isEmbedVideo = (url) => {
     if (!url) return false;
-    return url.includes('youtube.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
+    return url.includes('youtube.com') || url.includes('youtube-nocookie.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
   };
 
   const [optimizingStatus, setOptimizingStatus] = useState('');

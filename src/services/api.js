@@ -494,7 +494,7 @@ const customBaseQuery = async (args) => {
       address: 'Tech Innovation Hub, Silicon Avenue',
       heroMediaType: 'video',
       heroBgColor: '#F2F2F2',
-      heroVideoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      heroVideoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
       heroBadgeText: 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
       heroTitlePrefix: 'We Build Digital Products That',
       heroTitleAccent: 'Scale Your Business',

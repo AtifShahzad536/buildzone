@@ -16,10 +16,15 @@
 </IfModule>
 
 <IfModule mod_headers.c>
-  # Security Headers
+  # Strict Security & Transport Headers
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   Header set X-Content-Type-Options "nosniff"
   Header set X-Frame-Options "DENY"
   Header set X-XSS-Protection "1; mode=block"
+  Header set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header set Content-Security-Policy "default-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https: blob:; font-src 'self' data: https:; connect-src 'self' https: wss:; media-src 'self' https: blob: data:; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com; object-src 'none'; base-uri 'self';"
 
   # Disable cache for index.html so users get latest updates
   <Files "index.html">
@@ -29,7 +34,7 @@
   </Files>
 
   # Cache static assets for fast loading
-  <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2|ttf|eot|glb|gltf)$">
+  <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2|ttf|eot|glb|gltf|map)$">
     Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
 </IfModule>
