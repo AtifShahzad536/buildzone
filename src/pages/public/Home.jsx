@@ -20,11 +20,12 @@ export const Home = () => {
   return (
     <>
       <SEOHead
-        title="No. 1 Software House in Sialkot — Enterprise Software & AI Engineering"
-        description="BuildZone is the #1 Software House in Sialkot, Pakistan. We engineer custom enterprise software, mobile apps, web applications, and AI systems for exporters and global enterprises."
+        title="BuildZone — #1 Software House in Sialkot | Web, App & AI Development"
+        description="BuildZone is the leading software house in Sialkot, Pakistan. We develop custom software, mobile apps, enterprise ERPs, and AI solutions for global clients."
         keywords="Software House in Sialkot, Best Software House in Sialkot, No 1 Software House in Sialkot, Top IT Company in Sialkot, Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Solutions Sialkot, ERP Systems Sialkot"
         canonical="https://buildzonetechnology.com/"
       />
+
 
       <div className="flex flex-col">
         {/* Above the fold (instant paint, zero render-delay for H1 LCP) */}
