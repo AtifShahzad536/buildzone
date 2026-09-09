@@ -18,6 +18,7 @@ import SectionTitle from '../../components/common/SectionTitle';
 import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
 import SEOHead from '../../components/common/SEOHead';
+import TubesCursorBg from '../../components/common/TubesCursorBg';
 
 const servicesList = [
   'Web Application',
@@ -127,10 +128,16 @@ export const StartProject = () => {
         description="Interactive scope onboarding for software engineering, mobile development, and applied AI systems."
       />
 
-      <div className="py-12 sm:py-20">
-        <Container>
+      <div className="relative min-h-[calc(100vh-140px)] py-12 sm:py-20 overflow-hidden bg-[#F8FAFC]">
+        {/* 3D Interactive Tubes Cursor Canvas */}
+        <TubesCursorBg />
+
+        {/* Cyber Grid Overlay */}
+        <div className="absolute inset-0 bg-cyber-grid opacity-20 pointer-events-none z-[1]"></div>
+
+        <Container className="relative z-10 pointer-events-auto">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-white/85 backdrop-blur-md border border-blue-200/80 rounded-full shadow-xs mb-4">
               <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
                 INTERACTIVE SCOPE WIZARD
@@ -171,7 +178,7 @@ export const StartProject = () => {
           )}
 
           {/* Form Container */}
-          <div className="max-w-3xl mx-auto bg-white border border-slate-200 p-6 sm:p-10 rounded-lg shadow-sm">
+          <div className="max-w-3xl mx-auto bg-white/95 backdrop-blur-xl border border-white/80 p-6 sm:p-10 rounded-2xl shadow-2xl">
             {isCompleted ? (
               <div className="text-center py-12 space-y-4">
                 <div className="w-16 h-16 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-[#0066FF] mx-auto">
