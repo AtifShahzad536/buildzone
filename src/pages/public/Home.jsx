@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Hero from '../../components/home/Hero';
 import TrustedTech from '../../components/home/TrustedTech';
 import SEOHead from '../../components/common/SEOHead';
-import ServicesPreview from '../../components/home/ServicesPreview';
-import FeaturedProjects from '../../components/home/FeaturedProjects';
-import IndustriesPreview from '../../components/home/IndustriesPreview';
-import WhyChooseUs from '../../components/home/WhyChooseUs';
-import Process from '../../components/home/Process';
-import AISection from '../../components/home/AISection';
-import BlogPreview from '../../components/home/BlogPreview';
-import Testimonials from '../../components/home/Testimonials';
-import FAQPreview from '../../components/home/FAQPreview';
-import FinalCTA from '../../components/home/FinalCTA';
+import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
+
+// Below-the-fold components lazy loaded to eliminate render-blocking JS for initial LCP
+const ServicesPreview = lazy(() => import('../../components/home/ServicesPreview'));
+const FeaturedProjects = lazy(() => import('../../components/home/FeaturedProjects'));
+const IndustriesPreview = lazy(() => import('../../components/home/IndustriesPreview'));
+const WhyChooseUs = lazy(() => import('../../components/home/WhyChooseUs'));
+const Process = lazy(() => import('../../components/home/Process'));
+const AISection = lazy(() => import('../../components/home/AISection'));
+const BlogPreview = lazy(() => import('../../components/home/BlogPreview'));
+const Testimonials = lazy(() => import('../../components/home/Testimonials'));
+const FAQPreview = lazy(() => import('../../components/home/FAQPreview'));
+const FinalCTA = lazy(() => import('../../components/home/FinalCTA'));
 
 export const Home = () => {
   return (
@@ -21,21 +24,23 @@ export const Home = () => {
         description="We design and develop scalable web applications, mobile apps, AI solutions and custom software for startups and growing businesses worldwide."
       />
       <div className="flex flex-col">
-        {/* Above the fold (instant paint, zero render-delay) */}
+        {/* Above the fold (instant paint, zero render-delay for H1 LCP) */}
         <Hero />
         <TrustedTech />
 
-        {/* Below the fold (core sections) */}
-        <ServicesPreview />
-        <FeaturedProjects />
-        <IndustriesPreview />
-        <WhyChooseUs />
-        <Process />
-        <AISection />
-        <BlogPreview />
-        <Testimonials />
-        <FAQPreview />
-        <FinalCTA />
+        {/* Below the fold (streamed asynchronously with zero impact on LCP) */}
+        <Suspense fallback={<div className="min-h-[200px]" />}>
+          <ServicesPreview />
+          <FeaturedProjects />
+          <IndustriesPreview />
+          <WhyChooseUs />
+          <Process />
+          <AISection />
+          <BlogPreview />
+          <Testimonials />
+          <FAQPreview />
+          <FinalCTA />
+        </Suspense>
       </div>
     </>
   );

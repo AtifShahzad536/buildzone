@@ -11,21 +11,38 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // Heavy Three.js 3D engine in dedicated isolated chunk (never loaded on mobile)
+            // Heavy chart library isolated exclusively to admin
+            if (id.includes('recharts') || id.includes('d3-')) {
+              return 'vendor-charts';
+            }
+            // 3D Three.js engine isolated
             if (id.includes('three') || id.includes('@react-three')) {
               return 'vendor-three';
             }
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
-              return 'vendor-react';
+            // Animation library
+            if (id.includes('gsap')) {
+              return 'vendor-gsap';
             }
-            if (id.includes('@reduxjs/toolkit') || id.includes('react-redux')) {
-              return 'vendor-redux';
+            // Form validation
+            if (id.includes('zod') || id.includes('react-hook-form') || id.includes('@hookform')) {
+              return 'vendor-forms';
             }
+            // Icons
             if (id.includes('lucide-react')) {
               return 'vendor-icons';
             }
-            if (id.includes('zod') || id.includes('react-hook-form')) {
-              return 'vendor-forms';
+            // State management
+            if (id.includes('@reduxjs/toolkit') || id.includes('react-redux')) {
+              return 'vendor-redux';
+            }
+            // Core React & Router (Ultra-light for instant LCP)
+            if (
+              id.includes('/node_modules/react/') || 
+              id.includes('/node_modules/react-dom/') || 
+              id.includes('/node_modules/react-router/') || 
+              id.includes('/node_modules/react-router-dom/')
+            ) {
+              return 'vendor-react-core';
             }
           }
         },
