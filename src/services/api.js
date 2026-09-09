@@ -84,10 +84,27 @@ const customBaseQuery = async (args) => {
       const json = await res.json().catch(() => null);
 
       if (!res.ok) {
-        // If backend returns 401, 403, 500, or 503 (e.g. unseeded cloud db or serverless auth mismatch),
+        // If send-email route is called, attempt to hit the PHP mailer backend at /api/index.php
+        if (url.includes('send-email')) {
+          try {
+            const phpRes = await fetch('/api/index.php?resource=leads&id=send-email', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(body)
+            });
+            const phpJson = await phpRes.json().catch(() => null);
+            if (phpRes.ok) {
+              return { data: phpJson || { success: true, message: `Email dispatched to ${body?.to}` } };
+            }
+          } catch (phpErr) {
+            console.warn("PHP mailer fallback attempt:", phpErr);
+          }
+        }
+
+        // If backend returns 404 (endpoint not deployed on cloud server yet), 401, 403, 500, or 503,
         // gracefully fall back to local persistence engine so the admin portal continues working uninterrupted!
-        if (res.status === 401 || res.status === 403 || res.status === 503 || res.status >= 500) {
-          console.warn(`[BuildZone API Notice]: Backend ${method} ${normalizedUrl} returned status ${res.status}. Falling back to authenticated local persistence.`);
+        if (res.status === 404 || res.status === 401 || res.status === 403 || res.status === 503 || res.status >= 500) {
+          console.warn(`[BuildZone API Notice]: Backend ${method} ${normalizedUrl} returned status ${res.status}. Falling back to local CRM persistence engine.`);
         } else {
           return { 
             error: { 
