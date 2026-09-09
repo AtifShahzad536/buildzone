@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'sonner';
-import { Save, RefreshCw, Terminal, Globe, Shield, Share2 } from 'lucide-react';
+import { Save, RefreshCw, Terminal, Globe, Shield, Share2, MessageCircle, Image as ImageIcon } from 'lucide-react';
 import { updateSettings, resetSettings } from '../../../features/settings/settingsSlice';
 import Button from '../../../components/common/Button';
+import ImageUpload from '../../../components/common/ImageUpload';
 
 export const SettingsManager = () => {
   const dispatch = useDispatch();
   const settings = useSelector((state) => state.settings);
 
   const [activeTab, setActiveTab] = useState('general');
-  const [formData, setFormData] = useState({ ...settings });
+  const [formData, setFormData] = useState({
+    ...settings,
+    logoUrl: settings.logoUrl || '',
+    ogImageUrl: settings.ogImageUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+    whatsappNumber: settings.whatsappNumber || '+1 (555) 382-9201',
+    whatsappMessage: settings.whatsappMessage || 'Hello BuildZone Team, I would like to discuss a new software engineering project.',
+    salesEmail: settings.salesEmail || 'sales@buildzonetechnology.com',
+  });
 
   const handleSave = (e) => {
     e.preventDefault();
@@ -35,7 +43,7 @@ export const SettingsManager = () => {
             CENTRAL SYSTEM CONFIGURATION
           </h1>
           <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
-            Control brand name, company contact channels, and global SEO metadata from one place.
+            Control brand identity, logos, company contact channels, and global SEO metadata from one place.
           </p>
         </div>
 
@@ -53,8 +61,8 @@ export const SettingsManager = () => {
       <div className="flex flex-wrap gap-2 border-b border-slate-200 pb-2">
         {[
           { id: 'general', label: 'General & Branding', icon: Terminal },
-          { id: 'contact', label: 'Contact & Channels', icon: Globe },
-          { id: 'seo', label: 'SEO & Metadata', icon: Shield },
+          { id: 'contact', label: 'Contact & WhatsApp', icon: Globe },
+          { id: 'seo', label: 'SEO & Social OG', icon: Shield },
           { id: 'social', label: 'Social Profiles', icon: Share2 },
         ].map((tab) => {
           const Icon = tab.icon;
@@ -79,36 +87,48 @@ export const SettingsManager = () => {
       <form onSubmit={handleSave} className="p-6 bg-white border border-slate-200 rounded-2xl shadow-2xs space-y-6">
         {/* Tab 1: General */}
         {activeTab === 'general' && (
-          <div className="space-y-4">
+          <div className="space-y-5">
             <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
-              Branding & Global Identity
+              Branding & Visual Identity
             </h3>
 
-            <div>
-              <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
-                Company Name (Rebrandable)
-              </label>
-              <input
-                type="text"
-                value={formData.companyName}
-                onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-bold"
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <ImageUpload
+                label="Custom Brand Logo"
+                helperText="Upload transparent PNG or SVG logo"
+                aspectRatio="square"
+                value={formData.logoUrl}
+                onChange={(url) => setFormData({ ...formData, logoUrl: url })}
               />
-              <p className="font-mono text-[10px] text-slate-500 mt-1">
-                Updating this dynamically changes the logo, title tags, footer, and copyright across the site.
-              </p>
-            </div>
 
-            <div>
-              <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
-                Primary Brand Tagline
-              </label>
-              <input
-                type="text"
-                value={formData.tagline}
-                onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
-                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
-              />
+              <div className="space-y-4">
+                <div>
+                  <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                    Company Name
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                    className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-bold"
+                  />
+                  <p className="font-mono text-[10px] text-slate-500 mt-1">
+                    Dynamically updates the logo text, header, footer, and copyright across the site.
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                    Primary Brand Tagline
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.tagline}
+                    onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
+                    className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -117,13 +137,13 @@ export const SettingsManager = () => {
         {activeTab === 'contact' && (
           <div className="space-y-4">
             <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
-              Customer Support & Inbound Details
+              Customer Support & Inbound Communication
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
-                  Primary Contact Email
+                  Primary Support Email
                 </label>
                 <input
                   type="email"
@@ -135,12 +155,39 @@ export const SettingsManager = () => {
 
               <div>
                 <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  Enterprise Sales Email
+                </label>
+                <input
+                  type="email"
+                  value={formData.salesEmail}
+                  onChange={(e) => setFormData({ ...formData, salesEmail: e.target.value })}
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
                   Official Phone
                 </label>
                 <input
                   type="text"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                />
+              </div>
+
+              <div>
+                <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  WhatsApp Support Phone Number
+                </label>
+                <input
+                  type="text"
+                  value={formData.whatsappNumber}
+                  onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
+                  placeholder="+92 300 1234567"
                   className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
                 />
               </div>
@@ -164,8 +211,16 @@ export const SettingsManager = () => {
         {activeTab === 'seo' && (
           <div className="space-y-4">
             <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
-              Default SEO Metadata
+              SEO & Social Graph Preview
             </h3>
+
+            <ImageUpload
+              label="Social OpenGraph / Twitter Banner (1200x630)"
+              helperText="Upload social sharing preview banner"
+              aspectRatio="video"
+              value={formData.ogImageUrl}
+              onChange={(url) => setFormData({ ...formData, ogImageUrl: url })}
+            />
 
             <div>
               <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
@@ -187,7 +242,7 @@ export const SettingsManager = () => {
                 rows={3}
                 value={formData.metaDescription}
                 onChange={(e) => setFormData({ ...formData, metaDescription: e.target.value })}
-                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-sans"
+                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-sans leading-relaxed"
               />
             </div>
           </div>
@@ -211,7 +266,7 @@ export const SettingsManager = () => {
                   ...formData,
                   socialLinks: { ...formData.socialLinks, linkedin: e.target.value }
                 })}
-                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
               />
             </div>
 
@@ -226,7 +281,7 @@ export const SettingsManager = () => {
                   ...formData,
                   socialLinks: { ...formData.socialLinks, github: e.target.value }
                 })}
-                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
               />
             </div>
 
@@ -241,7 +296,7 @@ export const SettingsManager = () => {
                   ...formData,
                   socialLinks: { ...formData.socialLinks, twitter: e.target.value }
                 })}
-                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
               />
             </div>
           </div>

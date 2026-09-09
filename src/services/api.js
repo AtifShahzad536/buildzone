@@ -66,9 +66,10 @@ const customBaseQuery = async (args) => {
       if (params) {
         queryStr = '?' + new URLSearchParams(params).toString();
       }
+      const isFormData = typeof FormData !== 'undefined' && body instanceof FormData;
       const token = localStorage.getItem('buildzone_auth_token') || localStorage.getItem('buildzone_token');
       const headers = {
-        'Content-Type': 'application/json',
+        ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
         ...(token ? { Authorization: `Bearer ${token}` } : {})
       };
 
@@ -76,7 +77,7 @@ const customBaseQuery = async (args) => {
       const res = await fetch(`${BASE_URL}${normalizedUrl}${queryStr}`, {
         method,
         headers,
-        body: body ? JSON.stringify(body) : null
+        body: isFormData ? body : (body ? JSON.stringify(body) : null)
       });
 
       const json = await res.json().catch(() => null);
@@ -691,6 +692,10 @@ export const api = createApi({
       query: (body) => ({ url: '/testimonials', method: 'POST', body }),
       invalidatesTags: ['Testimonial'],
     }),
+    updateTestimonial: builder.mutation({
+      query: (body) => ({ url: `/testimonials/${body.id}`, method: 'PUT', body }),
+      invalidatesTags: ['Testimonial'],
+    }),
     deleteTestimonial: builder.mutation({
       query: (id) => ({ url: `/testimonials/${id}`, method: 'DELETE' }),
       invalidatesTags: ['Testimonial'],
@@ -730,7 +735,7 @@ export const api = createApi({
       providesTags: ['Media'],
     }),
     uploadMedia: builder.mutation({
-      query: (body) => ({ url: '/media', method: 'POST', body }),
+      query: (body) => ({ url: '/media/upload', method: 'POST', body }),
       invalidatesTags: ['Media'],
     }),
     deleteMedia: builder.mutation({
@@ -792,6 +797,7 @@ export const {
 
   useGetTestimonialsQuery,
   useCreateTestimonialMutation,
+  useUpdateTestimonialMutation,
   useDeleteTestimonialMutation,
 
   useGetFaqsQuery,
