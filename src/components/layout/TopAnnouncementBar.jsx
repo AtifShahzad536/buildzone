@@ -107,7 +107,8 @@ export const TopAnnouncementBar = () => {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors group/item shrink-0 px-2 py-0.5 rounded hover:bg-white/5"
+                aria-label={`${item.name}: ${item.handle}`}
+                className="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors group/item shrink-0 px-3 py-2 min-h-[38px] rounded hover:bg-white/5"
               >
                 <div 
                   className="w-4 h-4 rounded flex items-center justify-center transition-transform group-hover/item:scale-110"
@@ -133,9 +134,10 @@ export const TopAnnouncementBar = () => {
             href="https://wa.me/15550192834"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1.5 text-[10px] uppercase tracking-wider"
+            aria-label="Chat on WhatsApp"
+            className="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1.5 text-[10px] uppercase tracking-wider px-3 py-2 min-h-[38px] rounded hover:bg-white/5"
           >
-            <MessageCircle className="w-3 h-3" />
+            <MessageCircle className="w-3.5 h-3.5" />
             <span>Live WhatsApp Chat</span>
           </a>
         </div>

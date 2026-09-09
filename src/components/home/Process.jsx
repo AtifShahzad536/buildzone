@@ -258,9 +258,9 @@ export const Process = () => {
                     <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0066FF] flex items-center justify-center border border-blue-100/60 shadow-2xs">
                       <Icon className="w-4 h-4" />
                     </div>
-                    <h4 className="font-display font-black text-xs uppercase text-[#0B1938] tracking-tight">
+                    <h3 className="font-display font-black text-xs uppercase text-[#0B1938] tracking-tight">
                       {feat.title}
-                    </h4>
+                    </h3>
                     <p className="font-mono text-[10px] text-slate-500 leading-snug">
                       {feat.subtitle}
                     </p>

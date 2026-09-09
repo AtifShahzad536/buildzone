@@ -89,6 +89,7 @@ export const FeaturedProjects = () => {
               <div className="p-6 pt-0 flex items-center justify-between border-t border-slate-200/80 mt-2">
                 <Link
                   to={`/case-studies/${project.slug}`}
+                  aria-label={`Read ${project.name} Case Study`}
                   className="font-mono text-xs font-bold uppercase tracking-wider text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1 group/link"
                 >
                   <span>Case Study</span>
