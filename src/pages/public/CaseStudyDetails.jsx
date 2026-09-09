@@ -118,9 +118,9 @@ export const CaseStudyDetails = () => {
           {/* System Architecture */}
           {study.architecture && (
             <div className="p-8 sm:p-10 bg-white border border-slate-200 rounded-lg shadow-sm mb-20 space-y-4">
-              <h3 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+              <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
                 System Architecture & Data Flow
-              </h3>
+              </h2>
               <p className="text-slate-600 font-sans text-sm leading-relaxed">
                 {study.architecture}
               </p>

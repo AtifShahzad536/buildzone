@@ -162,9 +162,9 @@ export const Contact = () => {
                     <div className="w-16 h-16 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-[#0066FF] mx-auto">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h3 className="text-2xl font-bold font-display uppercase text-[#0B1938]">
+                    <h2 className="text-2xl font-bold font-display uppercase text-[#0B1938]">
                       Scope Received!
-                    </h3>
+                    </h2>
                     <p className="text-sm text-slate-600 max-w-md mx-auto">
                       Thank you for submitting your project parameters. Our engineering lead has been notified and will review your technical requirements.
                     </p>

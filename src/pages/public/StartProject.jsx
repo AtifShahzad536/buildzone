@@ -177,9 +177,9 @@ export const StartProject = () => {
                 <div className="w-16 h-16 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-[#0066FF] mx-auto">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold font-display uppercase text-[#0B1938]">
+                <h2 className="text-2xl font-bold font-display uppercase text-[#0B1938]">
                   Project Roadmap Scheduled!
-                </h3>
+                </h2>
                 <p className="text-sm text-slate-600 max-w-md mx-auto">
                   We've received your requirements and assigned a Principal Architect to prepare your feasibility report and estimate.
                 </p>
@@ -195,9 +195,9 @@ export const StartProject = () => {
                 {step === 1 && (
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-bold font-display uppercase text-[#0B1938]">
+                      <h2 className="text-xl font-bold font-display uppercase text-[#0B1938]">
                         Step 1: What type of product are you building?
-                      </h3>
+                      </h2>
                       <p className="font-mono text-xs text-slate-500 mt-1">Select one or more core technical requirements</p>
                     </div>
 
@@ -229,9 +229,9 @@ export const StartProject = () => {
                 {step === 2 && (
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-bold font-display uppercase text-[#0B1938]">
+                      <h2 className="text-xl font-bold font-display uppercase text-[#0B1938]">
                         Step 2: What is your estimated investment budget?
-                      </h3>
+                      </h2>
                       <p className="font-mono text-xs text-slate-500 mt-1">Enter your custom target budget in USD or choose a preset</p>
                     </div>
 
@@ -284,9 +284,9 @@ export const StartProject = () => {
                 {step === 3 && (
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-bold font-display uppercase text-[#0B1938]">
+                      <h2 className="text-xl font-bold font-display uppercase text-[#0B1938]">
                         Step 3: What is your target delivery timeline?
-                      </h3>
+                      </h2>
                       <p className="font-mono text-xs text-slate-500 mt-1">When do you need the MVP or production build live?</p>
                     </div>
 
@@ -316,9 +316,9 @@ export const StartProject = () => {
                 {step === 4 && (
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-bold font-display uppercase text-[#0B1938]">
+                      <h2 className="text-xl font-bold font-display uppercase text-[#0B1938]">
                         Step 4: Describe your technical scope
-                      </h3>
+                      </h2>
                       <p className="font-mono text-xs text-slate-500 mt-1">Provide any context, competitors, APIs, or user personas</p>
                     </div>
 
@@ -338,9 +338,9 @@ export const StartProject = () => {
                 {step === 5 && (
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-bold font-display uppercase text-[#0B1938]">
+                      <h2 className="text-xl font-bold font-display uppercase text-[#0B1938]">
                         Step 5: Where should we send the estimate?
-                      </h3>
+                      </h2>
                       <p className="font-mono text-xs text-slate-500 mt-1">We'll review your scope and follow up with a proposal</p>
                     </div>
 
