@@ -240,7 +240,8 @@ const customBaseQuery = async (args) => {
     if (method === 'GET') {
       const parts = url.split('/');
       if (parts[2]) {
-        const item = leads.find(l => l.id === parts[2]);
+        const targetId = parts[2];
+        const item = leads.find(l => l.id === targetId || l._id === targetId || String(l.id) === String(targetId) || String(l._id) === String(targetId));
         return item ? { data: item } : { error: { status: 404, data: 'Lead not found' } };
       }
       return { data: leads };
@@ -260,9 +261,10 @@ const customBaseQuery = async (args) => {
       return { data: newLead };
     }
     if (method === 'PATCH' || method === 'PUT') {
+      const targetId = body.id || body._id || url.split('/')[2];
       leads = leads.map(l => {
-        if (l.id === body.id) {
-          const acts = l.activities || [];
+        if (l.id === targetId || l._id === targetId || String(l.id) === String(targetId) || String(l._id) === String(targetId)) {
+          const acts = Array.isArray(l.activities) ? [...l.activities] : [];
           if (body.status && body.status !== l.status) {
             acts.unshift({
               id: `act-${Date.now()}`,
@@ -279,12 +281,13 @@ const customBaseQuery = async (args) => {
               timestamp: new Date().toISOString()
             });
           }
-          return { ...l, ...body, activities: acts };
+          return { ...l, ...body, id: l.id || targetId, activities: acts };
         }
         return l;
       });
       saveToStorage('leads', leads);
-      return { data: leads.find(l => l.id === body.id) };
+      const updatedLead = leads.find(l => l.id === targetId || l._id === targetId || String(l.id) === String(targetId) || String(l._id) === String(targetId));
+      return { data: updatedLead || body };
     }
     if (method === 'DELETE') {
       const id = url.split('/')[2];
