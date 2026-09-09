@@ -43,7 +43,8 @@ export const Team = () => {
                   <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100 relative">
                     <img
                       src={member.image}
-                      alt={member.name}
+                      alt={member.name ? `${member.name} - ${member.position || 'Team Member'}` : "BuildZone Engineering Team Member"}
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                     />
                   </div>

@@ -60,13 +60,14 @@ export const Testimonials = () => {
                 <div className="pt-6 border-t border-slate-100 flex items-center gap-4">
                   <img
                     src={t.avatar}
-                    alt={t.author}
+                    alt={t.author ? `${t.author} - ${t.role || 'Client'}` : "Client testimonial avatar"}
+                    loading="lazy"
                     className="w-11 h-11 object-cover rounded-full border border-blue-200"
                   />
                   <div>
-                    <h3 className="font-display font-bold text-sm uppercase text-[#0B1938]">
+                    <h2 className="font-display font-bold text-sm uppercase text-[#0B1938]">
                       {t.author}
-                    </h3>
+                    </h2>
                     <p className="font-mono text-xs text-slate-500">
                       {t.role}, <span className="text-[#0066FF] font-semibold">{t.company}</span>
                     </p>

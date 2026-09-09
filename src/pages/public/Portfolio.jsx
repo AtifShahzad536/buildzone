@@ -73,7 +73,8 @@ export const Portfolio = () => {
                   <div className="aspect-[16/10] w-full overflow-hidden bg-slate-100 relative">
                     <img
                       src={project.image}
-                      alt={project.name}
+                      alt={project.name ? `${project.name} project showcase` : "Engineering portfolio project showcase"}
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-3 left-3">
