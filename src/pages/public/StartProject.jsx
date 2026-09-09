@@ -116,37 +116,37 @@ const servicesList = [
 // Budget Tiers with expected scope deliverables
 const budgetTiers = [
   {
-    id: '$10k - $25k',
-    label: '$10,000 - $25,000',
+    id: '$500 - $1,500',
+    label: '$500 - $1,500',
     title: 'Starter MVP Sprint',
-    desc: 'Core feature validation, modern design system, rapid 4-6 week market launch.',
+    desc: 'Core feature validation, modern design, rapid 2-4 week market launch.',
     tag: 'Fast-Track',
     icon: Zap,
     color: 'border-blue-200 hover:border-blue-400'
   },
   {
-    id: '$25k - $50k',
-    label: '$25,000 - $50,000',
-    title: 'Growth & Scaling Build',
-    desc: 'Production-ready full stack, automated testing, security compliance & scalability.',
+    id: '$1,500 - $3,500',
+    label: '$1,500 - $3,500',
+    title: 'Growth & Custom App',
+    desc: 'Full-stack production product, mobile/web sync, custom APIs & QA testing.',
     tag: 'Most Popular',
     featured: true,
     icon: Rocket,
     color: 'border-blue-500'
   },
   {
-    id: '$50k - $100k',
-    label: '$50,000 - $100,000',
-    title: 'Enterprise Architecture',
-    desc: 'Complex multi-tier microservices, AI workflows, ERP synchronization & high SLA.',
+    id: '$3,500 - $8,000',
+    label: '$3,500 - $8,000',
+    title: 'Enterprise & AI Systems',
+    desc: 'Complex custom ERP architecture, AI workflows, multi-tenant SaaS & high SLA.',
     tag: 'Enterprise',
     icon: Building2,
     color: 'border-indigo-200 hover:border-indigo-400'
   },
   {
-    id: '$100k+ (Enterprise Tier)',
-    label: '$100,000+',
-    title: 'Mission Critical & Retainer',
+    id: '$8,000+ (Enterprise Tier)',
+    label: '$8,000+',
+    title: 'Full Scale & Dedicated Pod',
     desc: 'Dedicated dedicated engineering pod, custom proprietary IP & 24/7 priority support.',
     tag: 'Dedicated Pod',
     icon: Award,
@@ -220,7 +220,7 @@ export const StartProject = () => {
     resolver: zodResolver(wizardSchema),
     defaultValues: {
       services: ['Web Application'],
-      budget: '$25k - $50k',
+      budget: '$1,500 - $3,500',
       timeline: '1 - 3 Months',
       name: '',
       email: '',
@@ -635,7 +635,7 @@ export const StartProject = () => {
                           <DollarSign className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                           <input
                             type="text"
-                            placeholder="e.g. $15,000 or $35,000"
+                            placeholder="e.g. $800, $2,000 or $5,000"
                             value={selectedBudget}
                             onChange={(e) => setValue('budget', e.target.value, { shouldValidate: true })}
                             className="w-full bg-white border border-slate-300 pl-10 pr-4 py-2.5 text-sm text-[#0B1938] font-mono font-bold placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-xl shadow-2xs"
