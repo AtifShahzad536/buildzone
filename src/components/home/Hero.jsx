@@ -40,11 +40,12 @@ export const Hero = () => {
   const [videoLoadError, setVideoLoadError] = useState(false);
   const [isEmbedPlaying, setIsEmbedPlaying] = useState(false);
 
-  // Settings values with defaults matching screenshot
-  const badgeText = settings?.heroBadgeText || "SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT";
+  // Settings values with defaults matching local SEO ranking requirements
+  const badgeText = settings?.heroBadgeText || "NO. 1 SOFTWARE HOUSE IN SIALKOT • GLOBAL IT ENGINEERING";
   const titlePrefix = settings?.heroTitlePrefix || "We Build Digital Products That";
   const titleAccent = settings?.heroTitleAccent || "Scale Your Business";
-  const subtitle = settings?.heroDescription || "BuildZone is a software house delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.";
+  const subtitle = settings?.heroDescription || "BuildZone is the leading software house in Sialkot, delivering custom enterprise ERPs, mobile apps, scalable web portals, and AI-powered solutions that help businesses and exporters grow globally.";
+
   const rawVideoUrl = settings?.heroVideoUrl || "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ";
   const heroVideoUrl = rawVideoUrl.includes('youtube.com/embed') 
     ? rawVideoUrl.replace('youtube.com/embed', 'youtube-nocookie.com/embed') 

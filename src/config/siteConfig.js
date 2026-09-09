@@ -1,26 +1,29 @@
 export const siteConfig = {
   name: "BuildZone",
   shortName: "BuildZone",
-  legalName: "BuildZone Digital Technologies Ltd.",
-  tagline: "WE BUILD DIGITAL PRODUCTS THAT MOVE BUSINESSES FORWARD",
-  subheading: "We design and develop scalable web applications, mobile apps, AI solutions and custom software for startups and growing businesses worldwide.",
-  description: "BuildZone is a premier digital product engineering and AI consultancy. We build scalable software, custom enterprise platforms, intelligent AI systems, and high-performance mobile and web apps.",
-  url: "https://buildzone.tech",
+  legalName: "BuildZone Technology (Pvt) Ltd.",
+  tagline: "NO. 1 SOFTWARE HOUSE IN SIALKOT — GLOBAL SOFTWARE & AI ENGINEERING",
+  subheading: "BuildZone is the leading software house in Sialkot, delivering custom enterprise ERPs, web platforms, mobile apps, and AI automation for global businesses and local exporters.",
+  description: "BuildZone is the #1 Software House in Sialkot, Pakistan. We deliver custom software development, enterprise ERP systems, AI automation, mobile apps, and high-performance web platforms for startups, exporters, and enterprises worldwide.",
+  url: "https://buildzonetechnology.com",
   foundedYear: 2020,
   
   // Contact details
   contact: {
-    email: "contact@buildzone.tech",
-    salesEmail: "sales@buildzone.tech",
-    careersEmail: "careers@buildzone.tech",
-    phone: "+1 (555) 382-9201",
-    whatsapp: "+1 (555) 382-9201",
-    address: "Tech Innovation Hub, Level 4, Silicon Avenue",
-    city: "San Francisco",
-    country: "United States & Global",
-    timezone: "UTC -8 (PST) / Global 24/7",
-    hours: "Mon - Fri: 9:00 AM - 6:00 PM (24/7 On-Call Support for Enterprise)",
+    email: "contact@buildzonetechnology.com",
+    salesEmail: "sales@buildzonetechnology.com",
+    careersEmail: "careers@buildzonetechnology.com",
+    phone: "+92 321 6100000 / +1 (555) 382-9201",
+    whatsapp: "+923216100000",
+    address: "Executive Tech District, Paris Road",
+    city: "Sialkot",
+    state: "Punjab",
+    country: "Pakistan & Worldwide",
+    postalCode: "51310",
+    timezone: "PKT (UTC+5) / Global 24/7",
+    hours: "Mon - Sat: 9:00 AM - 7:00 PM (24/7 On-Call Support for Enterprise)",
   },
+
 
   // Social Links
   social: {

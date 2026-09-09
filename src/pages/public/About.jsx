@@ -20,8 +20,10 @@ export const About = () => {
   return (
     <>
       <SEOHead
-        title="About Us — Engineering Philosophy & Mission"
-        description="Learn about BuildZone, our engineering leadership, enterprise standards, and mission to engineer impactful digital products."
+        title="About BuildZone — #1 Software House in Sialkot, Pakistan"
+        description="Learn about BuildZone, the leading software house in Sialkot, Pakistan. Discover our engineering leadership, enterprise standards, and mission to deliver world-class digital products."
+        keywords="About BuildZone, Software House in Sialkot, Top IT Company in Sialkot, Best Software Company Sialkot Pakistan, Software Engineering Sialkot"
+        canonical="https://buildzonetechnology.com/about"
       />
 
       <div className="py-12 sm:py-20">
@@ -31,16 +33,17 @@ export const About = () => {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
               <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
-                ENGINEERING EXCELLENCE
+                SIALKOT'S PREMIER IT & SOFTWARE HOUSE
               </span>
             </div>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-6 leading-tight">
               WE ARE BUILDZONE
             </h1>
             <p className="text-base sm:text-lg text-slate-600 font-sans leading-relaxed">
-              A premier software engineering and applied AI consultancy partnering with ambitious startups and global enterprises to build high-scale, mission-critical digital products.
+              The #1 software house in Sialkot and premier digital engineering consultancy, partnering with local exporters, ambitious startups, and global enterprises to build high-scale, mission-critical digital products.
             </p>
           </div>
+
 
           {/* Stats Bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-8 bg-white border border-slate-200 rounded-lg shadow-sm mb-20">
