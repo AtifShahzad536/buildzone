@@ -1,0 +1,21 @@
+{
+  "name": "BuildZone Technology",
+  "short_name": "BuildZone",
+  "description": "Custom enterprise software, scalable cloud systems, and AI automation engineering.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0066FF",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

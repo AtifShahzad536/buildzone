@@ -1,8 +1,20 @@
-# BuildZone Robots.txt
+# ==============================================================================
+# BuildZone Technology - Robots.txt for Search Engines & AI Crawlers
+# https://buildzonetechnology.com / https://buildzonetech.vercel.app
+# ==============================================================================
+
 User-agent: *
 Allow: /
+Allow: /assets/
+Allow: /logo.png
+Allow: /favicon.svg
+
+# Disallow Private & Admin Portals
 Disallow: /bz-secure-portal-hq-99x/
 Disallow: /admin/
 Disallow: /api/
+Disallow: /404
 
+# Sitemaps
+Sitemap: https://buildzonetechnology.com/sitemap.xml
 Sitemap: https://buildzonetech.vercel.app/sitemap.xml

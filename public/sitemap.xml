@@ -1,87 +1,341 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- ======================================================================= -->
+  <!-- 1. Primary Pages                                                        -->
+  <!-- ======================================================================= -->
   <url>
-    <loc>https://buildzonetech.vercel.app/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://buildzonetechnology.com/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://buildzonetech.vercel.app/services</loc>
-    <lastmod>2026-09-01</lastmod>
+    <loc>https://buildzonetechnology.com/services</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://buildzonetech.vercel.app/portfolio</loc>
-    <lastmod>2026-09-01</lastmod>
+    <loc>https://buildzonetechnology.com/portfolio</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://buildzonetech.vercel.app/case-studies</loc>
-    <lastmod>2026-09-01</lastmod>
+    <loc>https://buildzonetechnology.com/case-studies</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/ai-development</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/technologies</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildzonetech.vercel.app/about</loc>
-    <lastmod>2026-09-01</lastmod>
+    <loc>https://buildzonetechnology.com/industries</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/about</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildzonetech.vercel.app/team</loc>
-    <lastmod>2026-09-01</lastmod>
+    <loc>https://buildzonetechnology.com/team</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://buildzonetech.vercel.app/technologies</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://buildzonetech.vercel.app/ai-development</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://buildzonetech.vercel.app/careers</loc>
-    <lastmod>2026-09-01</lastmod>
+    <loc>https://buildzonetechnology.com/careers</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildzonetech.vercel.app/blog</loc>
-    <lastmod>2026-09-01</lastmod>
+    <loc>https://buildzonetechnology.com/blog</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://buildzonetech.vercel.app/faq</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://buildzonetech.vercel.app/testimonials</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://buildzonetech.vercel.app/contact</loc>
-    <lastmod>2026-09-01</lastmod>
+    <loc>https://buildzonetechnology.com/contact</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buildzonetech.vercel.app/start-project</loc>
-    <lastmod>2026-09-01</lastmod>
+    <loc>https://buildzonetechnology.com/start-project</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/faq</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/testimonials</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/security</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ======================================================================= -->
+  <!-- 2. Detailed Service Pages                                               -->
+  <!-- ======================================================================= -->
+  <url>
+    <loc>https://buildzonetechnology.com/services/web-development</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/services/mobile-app-development</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/services/custom-software</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/services/ai-development</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/services/saas-development</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/services/e-commerce</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/services/ui-ux-design</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/services/cloud-devops</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ======================================================================= -->
+  <!-- 3. Industry Specific Solutions                                          -->
+  <!-- ======================================================================= -->
+  <url>
+    <loc>https://buildzonetechnology.com/industries/healthcare</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/industries/fintech</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/industries/e-commerce</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/industries/education</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/industries/real-estate</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/industries/logistics</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/industries/manufacturing</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/industries/sports-fitness</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/industries/travel</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/industries/saas</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/industries/startups</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ======================================================================= -->
+  <!-- 4. Case Studies & Client Deployments                                   -->
+  <!-- ======================================================================= -->
+  <url>
+    <loc>https://buildzonetechnology.com/case-studies/medflow-telehealth-platform</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://buildzonetechnology.com/case-studies/omnistock-ai-supply-chain</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/case-studies/finvault-banking-portal</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ======================================================================= -->
+  <!-- 5. Technical Blog Posts & Insights                                     -->
+  <!-- ======================================================================= -->
+  <url>
+    <loc>https://buildzonetechnology.com/blog/building-production-rag-systems-enterprise</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/blog/scaling-multi-tenant-saas-architectures</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/blog/modern-react-performance-state-management-2026</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/blog/kubernetes-autoscaling-aws-eks</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/blog/flutter-vs-react-native-cross-platform-2026</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/blog/event-driven-microservices-kafka-fastapi</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/blog/zero-trust-enterprise-api-security</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- ======================================================================= -->
+  <!-- 6. Career Openings                                                     -->
+  <!-- ======================================================================= -->
+  <url>
+    <loc>https://buildzonetechnology.com/careers/senior-full-stack-engineer-react-node</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/careers/senior-ai-ml-engineer-python-rag</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/careers/senior-devops-cloud-architect</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ======================================================================= -->
+  <!-- 7. Legal & Compliance Policies                                         -->
+  <!-- ======================================================================= -->
+  <url>
+    <loc>https://buildzonetechnology.com/privacy-policy</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/terms-and-conditions</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://buildzonetechnology.com/cookie-policy</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>
