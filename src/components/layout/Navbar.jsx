@@ -257,14 +257,18 @@ export const Navbar = () => {
               </Link>
             </div>
 
-            <div className="pt-4 border-t border-slate-200 text-center">
-              <p className="text-[11px] text-slate-600 font-mono font-medium">
-                {siteConfig.contact.email}
+            <div className="pt-4 border-t border-slate-200 text-center space-y-1">
+              <p className="text-[11px] text-slate-700 font-mono font-medium">
+                <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-[#0066FF]">{siteConfig.contact.email}</a>
               </p>
-              <p className="text-[11px] text-slate-600 font-mono font-medium">
-                {siteConfig.contact.phone}
+              <p className="text-[10.5px] text-slate-500 font-mono font-medium">
+                <a href={`mailto:${siteConfig.contact.alternateEmail}`} className="hover:text-[#0066FF]">{siteConfig.contact.alternateEmail}</a>
+              </p>
+              <p className="text-[11px] text-[#0B1938] font-mono font-bold pt-0.5">
+                <a href={`tel:${siteConfig.contact.phone}`} className="hover:text-[#0066FF]">{siteConfig.contact.phone}</a>
               </p>
             </div>
+
           </div>
         </div>
       )}

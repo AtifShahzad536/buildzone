@@ -112,9 +112,12 @@ export const Contact = () => {
                   <div className="flex items-start gap-3">
                     <Mail className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-slate-400 block text-[10px] uppercase font-bold">General Inquiries</span>
-                      <a href={`mailto:${siteConfig.contact.email}`} className="text-[#0B1938] hover:text-[#0066FF] font-bold">
+                      <span className="text-slate-400 block text-[10px] uppercase font-bold">Official Inquiries</span>
+                      <a href={`mailto:${siteConfig.contact.email}`} className="text-[#0B1938] hover:text-[#0066FF] font-bold block">
                         {siteConfig.contact.email}
+                      </a>
+                      <a href={`mailto:${siteConfig.contact.alternateEmail}`} className="text-slate-500 hover:text-[#0066FF] text-[11px] block mt-0.5">
+                        {siteConfig.contact.alternateEmail}
                       </a>
                     </div>
                   </div>
@@ -122,10 +125,23 @@ export const Contact = () => {
                   <div className="flex items-start gap-3">
                     <Phone className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-slate-400 block text-[10px] uppercase font-bold">Phone & WhatsApp</span>
-                      <span className="text-[#0B1938] font-bold">{siteConfig.contact.phone}</span>
+                      <span className="text-slate-400 block text-[10px] uppercase font-bold">Call & WhatsApp</span>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <a href={`tel:${siteConfig.contact.phone}`} className="text-[#0B1938] hover:text-[#0066FF] font-bold">
+                          {siteConfig.contact.phone}
+                        </a>
+                        <a
+                          href={siteConfig.contact.whatsappLink}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="px-2 py-0.5 bg-[#25D366] hover:bg-[#20bd5a] text-white text-[9px] font-bold uppercase rounded"
+                        >
+                          Chat on WhatsApp
+                        </a>
+                      </div>
                     </div>
                   </div>
+
 
                   <div className="flex items-start gap-3">
                     <MapPin className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />

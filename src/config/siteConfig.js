@@ -10,11 +10,14 @@ export const siteConfig = {
   
   // Contact details
   contact: {
-    email: "contact@buildzonetechnology.com",
-    salesEmail: "sales@buildzonetechnology.com",
-    careersEmail: "careers@buildzonetechnology.com",
-    phone: "+92 321 6100000 / +1 (555) 382-9201",
-    whatsapp: "+923216100000",
+    email: "info@buildzonetechnology.com",
+    alternateEmail: "buildzonetechnology@gmail.com",
+    salesEmail: "info@buildzonetechnology.com",
+    careersEmail: "buildzonetechnology@gmail.com",
+    phone: "+92105464116",
+    formattedPhone: "+92 105 464116",
+    whatsapp: "+92105464116",
+    whatsappLink: "https://wa.me/92105464116",
     address: "Executive Tech District, Paris Road",
     city: "Sialkot",
     state: "Punjab",
@@ -23,6 +26,7 @@ export const siteConfig = {
     timezone: "PKT (UTC+5) / Global 24/7",
     hours: "Mon - Sat: 9:00 AM - 7:00 PM (24/7 On-Call Support for Enterprise)",
   },
+
 
 
   // Social Links

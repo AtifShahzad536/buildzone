@@ -486,12 +486,13 @@ const customBaseQuery = async (args) => {
     const defaultSettings = {
       companyName: 'BuildZone',
       tagline: 'WE BUILD DIGITAL PRODUCTS THAT MOVE BUSINESSES FORWARD',
-      contactEmail: 'contact@buildzone.tech',
-      salesEmail: 'sales@buildzonetechnology.com',
-      phone: '+1 (555) 382-9201',
-      whatsappNumber: '+1 (555) 382-9201',
+      contactEmail: 'info@buildzonetechnology.com',
+      salesEmail: 'buildzonetechnology@gmail.com',
+      phone: '+92105464116',
+      whatsappNumber: '+92105464116',
       whatsappMessage: 'Hello BuildZone Team, I would like to discuss a new software engineering project.',
-      address: 'Tech Innovation Hub, Silicon Avenue',
+      address: 'Executive Tech District, Paris Road, Sialkot',
+
       heroMediaType: 'video',
       heroBgColor: '#F2F2F2',
       heroVideoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',

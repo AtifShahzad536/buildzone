@@ -58,19 +58,33 @@ export const Footer = () => {
             <div className="pt-1 space-y-2 font-mono text-[11px] sm:text-xs text-slate-700">
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
-                <a href={`mailto:${settings?.contactEmail || siteConfig.contact.email}`} className="hover:text-[#0066FF] transition-colors font-medium">
-                  {settings?.contactEmail || siteConfig.contact.email}
-                </a>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                  <a href={`mailto:${settings?.contactEmail || siteConfig.contact.email}`} className="hover:text-[#0066FF] transition-colors font-medium">
+                    {settings?.contactEmail || siteConfig.contact.email}
+                  </a>
+                  <span className="hidden sm:inline text-slate-300">•</span>
+                  <a href={`mailto:${siteConfig.contact.alternateEmail}`} className="hover:text-[#0066FF] transition-colors font-medium text-slate-500">
+                    {siteConfig.contact.alternateEmail}
+                  </a>
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
-                <span className="font-medium">{settings?.phone || siteConfig.contact.phone}</span>
+                <div className="flex items-center gap-2">
+                  <a href={`tel:${siteConfig.contact.phone}`} className="font-bold hover:text-[#0066FF] transition-colors">
+                    {settings?.phone || siteConfig.contact.phone}
+                  </a>
+                  <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-bold">
+                    Call & WhatsApp
+                  </span>
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
-                <span className="truncate">{settings?.address || siteConfig.contact.address}</span>
+                <span className="truncate">{settings?.address || siteConfig.contact.address}, {siteConfig.contact.city}</span>
               </div>
             </div>
+
 
             {/* Social Icons */}
             <div className="flex items-center gap-2 pt-1">

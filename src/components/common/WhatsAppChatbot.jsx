@@ -112,8 +112,9 @@ export const WhatsAppChatbot = () => {
 
   const handleWhatsAppRedirect = () => {
     const defaultText = encodeURIComponent("Hello BuildZone Team! I visited your website and would like to discuss a software/AI development project.");
-    window.open(`https://wa.me/15550192834?text=${defaultText}`, '_blank');
+    window.open(`https://wa.me/92105464116?text=${defaultText}`, '_blank');
   };
+
 
   return (
     <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 select-none">

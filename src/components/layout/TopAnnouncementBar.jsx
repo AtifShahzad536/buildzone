@@ -10,10 +10,11 @@ import {
 const socialLinks = [
   {
     name: 'WhatsApp',
-    handle: '+1 (555) 019-2834',
-    url: 'https://wa.me/15550192834',
+    handle: '+92105464116',
+    url: 'https://wa.me/92105464116',
     color: '#25D366',
     icon: (
+
       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
         <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.771.815 2.796.815 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.586-5.767-5.768-5.767zm9.969 5.766c0 5.519-4.481 10-10 10-1.745 0-3.385-.45-4.819-1.238l-7.181 1.884 1.916-6.997c-.85-1.488-1.339-3.21-1.339-5.049 0-5.519 4.481-10 10-10s10 4.481 10 10z"/>
       </svg>
@@ -131,12 +132,13 @@ export const TopAnnouncementBar = () => {
         {/* Pinned Right Fast Booking CTA on Desktop */}
         <div className="hidden lg:flex items-center gap-2 pl-3 pr-4 shrink-0 z-20 bg-[#0B1938] border-l border-slate-800">
           <a
-            href="https://wa.me/15550192834"
+            href="https://wa.me/92105464116"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
             className="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1.5 text-[10px] uppercase tracking-wider px-3 py-2 min-h-[38px] rounded hover:bg-white/5"
           >
+
             <MessageCircle className="w-3.5 h-3.5" />
             <span>Live WhatsApp Chat</span>
           </a>
