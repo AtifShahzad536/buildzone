@@ -108,9 +108,9 @@ export const AIDevelopment = () => {
           <div className="p-8 sm:p-12 bg-white border border-slate-200 rounded-lg shadow-sm mb-20 space-y-6 max-w-4xl mx-auto">
             <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
               <ShieldCheck className="w-6 h-6 text-emerald-600" />
-              <h3 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+              <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
                 Enterprise AI Data Protection Guarantee
-              </h3>
+              </h2>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs text-slate-700">

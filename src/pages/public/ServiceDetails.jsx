@@ -127,9 +127,9 @@ export const ServiceDetails = () => {
           <div className="p-8 sm:p-10 bg-white border border-slate-200 rounded-lg shadow-sm mb-20 space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
               <div>
-                <h3 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
                   Technology Stack & Tools
-                </h3>
+                </h2>
                 <p className="font-mono text-xs text-slate-500">Frameworks utilized in this service</p>
               </div>
             </div>

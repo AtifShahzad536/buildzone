@@ -85,9 +85,9 @@ export const IndustryDetails = () => {
             <div className="p-8 bg-white border border-rose-200 rounded-lg shadow-sm space-y-6">
               <div className="flex items-center gap-3 border-b border-rose-100 pb-4">
                 <ShieldAlert className="w-6 h-6 text-rose-600" />
-                <h3 className="font-display text-xl font-bold uppercase text-rose-900">
+                <h2 className="font-display text-xl font-bold uppercase text-rose-900">
                   Common Sector Bottlenecks
-                </h3>
+                </h2>
               </div>
 
               <ul className="space-y-3">
@@ -104,9 +104,9 @@ export const IndustryDetails = () => {
             <div className="p-8 bg-white border border-blue-200 rounded-lg shadow-sm space-y-6">
               <div className="flex items-center gap-3 border-b border-blue-100 pb-4">
                 <CheckCircle2 className="w-6 h-6 text-[#0066FF]" />
-                <h3 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
                   BuildZone Architectural Solutions
-                </h3>
+                </h2>
               </div>
 
               <ul className="space-y-3">
@@ -135,7 +135,7 @@ export const IndustryDetails = () => {
                     <span className="font-mono text-xs text-[#0066FF] font-bold uppercase block">
                       Feature #{idx + 1}
                     </span>
-                    <h4 className="font-display font-bold text-base uppercase text-[#0B1938]">{feat}</h4>
+                    <h3 className="font-display font-bold text-base uppercase text-[#0B1938]">{feat}</h3>
                   </div>
                 ))}
               </div>
@@ -145,9 +145,9 @@ export const IndustryDetails = () => {
           {/* Sector Tech Stack */}
           {industry.techStack && (
             <div className="p-8 bg-white border border-slate-200 rounded-lg shadow-sm space-y-6 mb-20">
-              <h3 className="font-display text-xl font-bold uppercase text-[#0B1938] border-b border-slate-100 pb-4">
+              <h2 className="font-display text-xl font-bold uppercase text-[#0B1938] border-b border-slate-100 pb-4">
                 Compliant Technology Stack for {industry.name}
-              </h3>
+              </h2>
               <div className="flex flex-wrap gap-2">
                 {industry.techStack.map((tech) => (
                   <span

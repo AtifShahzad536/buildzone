@@ -83,9 +83,9 @@ export const Security = () => {
                     <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white transition-all mb-5">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h3 className="font-display font-bold text-lg uppercase text-[#0B1938] mb-2 group-hover:text-[#0066FF] transition-colors">
+                    <h2 className="font-display font-bold text-lg uppercase text-[#0B1938] mb-2 group-hover:text-[#0066FF] transition-colors">
                       {item.title}
-                    </h3>
+                    </h2>
                     <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed">
                       {item.desc}
                     </p>
