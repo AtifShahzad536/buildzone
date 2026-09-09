@@ -25,11 +25,17 @@ import {
   Wifi,
   Battery
 } from 'lucide-react';
+import { useGetSettingsQuery } from '../../services/api';
 import Container from '../common/Container';
 import Button from '../common/Button';
 
 export const Hero = () => {
-  const settings = useSelector((state) => state.settings);
+  const reduxSettings = useSelector((state) => state.settings);
+  const { data: dbSettings } = useGetSettingsQuery();
+  const settings = (dbSettings && typeof dbSettings === 'object' && Object.keys(dbSettings).length > 0)
+    ? { ...reduxSettings, ...dbSettings }
+    : reduxSettings;
+
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   // Settings values with defaults matching screenshot
@@ -38,7 +44,7 @@ export const Hero = () => {
   const titleAccent = settings?.heroTitleAccent || "Scale Your Business";
   const subtitle = settings?.heroDescription || "BuildZone is a software house delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.";
   const heroVideoUrl = settings?.heroVideoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ";
-  const heroMediaType = settings?.heroMediaType || "mockup"; // "mockup" | "video"
+  const heroMediaType = settings?.heroMediaType || "video"; // 'video' | 'mockup'
 
   const isEmbedVideo = (url) => {
     if (!url) return false;

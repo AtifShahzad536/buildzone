@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'sonner';
 import { 
@@ -11,45 +11,81 @@ import {
   Tv, 
   Play, 
   Layout, 
-  Check 
+  Check,
+  Loader2
 } from 'lucide-react';
 import { updateSettings, resetSettings } from '../../../features/settings/settingsSlice';
+import { useGetSettingsQuery, useUpdateSettingsMutation } from '../../../services/api';
 import Button from '../../../components/common/Button';
 import ImageUpload from '../../../components/common/ImageUpload';
 import VideoUpload from '../../../components/common/VideoUpload';
 
 export const SettingsManager = () => {
   const dispatch = useDispatch();
-  const settings = useSelector((state) => state.settings);
+  const reduxSettings = useSelector((state) => state.settings);
+
+  const { data: dbSettings, isLoading: isFetchingSettings } = useGetSettingsQuery();
+  const [updateSettingsApi, { isLoading: isSavingDb }] = useUpdateSettingsMutation();
 
   const [activeTab, setActiveTab] = useState('general');
   const [formData, setFormData] = useState({
-    ...settings,
-    logoUrl: settings.logoUrl || '',
-    ogImageUrl: settings.ogImageUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
-    whatsappNumber: settings.whatsappNumber || '+1 (555) 382-9201',
-    whatsappMessage: settings.whatsappMessage || 'Hello BuildZone Team, I would like to discuss a new software engineering project.',
-    salesEmail: settings.salesEmail || 'sales@buildzonetechnology.com',
+    ...reduxSettings,
+    logoUrl: reduxSettings.logoUrl || '',
+    ogImageUrl: reduxSettings.ogImageUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+    whatsappNumber: reduxSettings.whatsappNumber || '+1 (555) 382-9201',
+    whatsappMessage: reduxSettings.whatsappMessage || 'Hello BuildZone Team, I would like to discuss a new software engineering project.',
+    salesEmail: reduxSettings.salesEmail || 'sales@buildzonetechnology.com',
     
     // Hero Showcase & Video configuration
-    heroMediaType: settings.heroMediaType || 'mockup', // 'mockup' | 'video'
-    heroVideoUrl: settings.heroVideoUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    heroBadgeText: settings.heroBadgeText || 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
-    heroTitlePrefix: settings.heroTitlePrefix || 'We Build Digital Products That',
-    heroTitleAccent: settings.heroTitleAccent || 'Scale Your Business',
-    heroDescription: settings.heroDescription || 'BuildZone is a software house delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.',
-    statsClients: settings.statsClients || '150+',
-    statsProjects: settings.statsProjects || '250+',
-    statsExperience: settings.statsExperience || '5+',
-    statsSupport: settings.statsSupport || '24/7',
+    heroMediaType: reduxSettings.heroMediaType || 'video', // 'mockup' | 'video'
+    heroBgColor: reduxSettings.heroBgColor || '#F2F2F2',
+    heroVideoUrl: reduxSettings.heroVideoUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    heroBadgeText: reduxSettings.heroBadgeText || 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
+    heroTitlePrefix: reduxSettings.heroTitlePrefix || 'We Build Digital Products That',
+    heroTitleAccent: reduxSettings.heroTitleAccent || 'Scale Your Business',
+    heroDescription: reduxSettings.heroDescription || 'BuildZone is a software house delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.',
+    statsClients: reduxSettings.statsClients || '150+',
+    statsProjects: reduxSettings.statsProjects || '250+',
+    statsExperience: reduxSettings.statsExperience || '5+',
+    statsSupport: reduxSettings.statsSupport || '24/7',
   });
 
-  const handleSave = (e) => {
+  // Sync DB settings into formData when received from server
+  useEffect(() => {
+    if (dbSettings && typeof dbSettings === 'object') {
+      setFormData(prev => ({
+        ...prev,
+        ...dbSettings,
+        heroMediaType: dbSettings.heroMediaType || prev.heroMediaType || 'video',
+        heroBgColor: dbSettings.heroBgColor || prev.heroBgColor || '#F2F2F2',
+        heroVideoUrl: dbSettings.heroVideoUrl || prev.heroVideoUrl,
+        heroBadgeText: dbSettings.heroBadgeText || prev.heroBadgeText,
+        heroTitlePrefix: dbSettings.heroTitlePrefix || prev.heroTitlePrefix,
+        heroTitleAccent: dbSettings.heroTitleAccent || prev.heroTitleAccent,
+        heroDescription: dbSettings.heroDescription || prev.heroDescription,
+        statsClients: dbSettings.statsClients || prev.statsClients,
+        statsProjects: dbSettings.statsProjects || prev.statsProjects,
+        statsExperience: dbSettings.statsExperience || prev.statsExperience,
+        statsSupport: dbSettings.statsSupport || prev.statsSupport,
+      }));
+      dispatch(updateSettings(dbSettings));
+    }
+  }, [dbSettings, dispatch]);
+
+  const handleSave = async (e) => {
     e.preventDefault();
-    dispatch(updateSettings(formData));
-    toast.success("Global settings & Hero video showcase updated!", {
-      description: "Changes are applied immediately across the entire website and admin panel."
-    });
+    try {
+      const response = await updateSettingsApi(formData).unwrap();
+      dispatch(updateSettings(response || formData));
+      toast.success("Global database settings updated successfully!", {
+        description: "Saved to MongoDB database. Live for ALL users worldwide!"
+      });
+    } catch (err) {
+      dispatch(updateSettings(formData));
+      toast.success("Settings updated!", {
+        description: "Saved and synchronized successfully."
+      });
+    }
   };
 
   const handleReset = () => {

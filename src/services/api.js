@@ -480,6 +480,38 @@ const customBaseQuery = async (args) => {
     return { data: apps };
   }
 
+  // 14. SETTINGS
+  if (url.startsWith('/settings')) {
+    const defaultSettings = {
+      companyName: 'BuildZone',
+      tagline: 'WE BUILD DIGITAL PRODUCTS THAT MOVE BUSINESSES FORWARD',
+      contactEmail: 'contact@buildzone.tech',
+      salesEmail: 'sales@buildzonetechnology.com',
+      phone: '+1 (555) 382-9201',
+      whatsappNumber: '+1 (555) 382-9201',
+      whatsappMessage: 'Hello BuildZone Team, I would like to discuss a new software engineering project.',
+      address: 'Tech Innovation Hub, Silicon Avenue',
+      heroMediaType: 'video',
+      heroBgColor: '#F2F2F2',
+      heroVideoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      heroBadgeText: 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
+      heroTitlePrefix: 'We Build Digital Products That',
+      heroTitleAccent: 'Scale Your Business',
+      heroDescription: 'BuildZone is a software house delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.',
+      statsClients: '150+',
+      statsProjects: '250+',
+      statsExperience: '5+',
+      statsSupport: '24/7',
+    };
+    let settings = getOrSeed('settings', defaultSettings);
+    if (method === 'GET') return { data: settings };
+    if (method === 'PUT' || method === 'POST') {
+      settings = { ...settings, ...body };
+      saveToStorage('settings', settings);
+      return { data: settings };
+    }
+  }
+
   return { data: { success: true } };
 };
 
@@ -742,6 +774,16 @@ export const api = createApi({
       query: (id) => ({ url: `/media/${id}`, method: 'DELETE' }),
       invalidatesTags: ['Media'],
     }),
+
+    // Settings (Global Database Record Tracking)
+    getSettings: builder.query({
+      query: () => '/settings',
+      providesTags: ['Settings'],
+    }),
+    updateSettings: builder.mutation({
+      query: (body) => ({ url: '/settings', method: 'PUT', body }),
+      invalidatesTags: ['Settings'],
+    }),
   }),
 });
 
@@ -811,6 +853,9 @@ export const {
   useGetMediaQuery,
   useUploadMediaMutation,
   useDeleteMediaMutation,
+
+  useGetSettingsQuery,
+  useUpdateSettingsMutation,
 } = api;
 
 export const useSubmitApplicationMutation = useApplyForJobMutation;
