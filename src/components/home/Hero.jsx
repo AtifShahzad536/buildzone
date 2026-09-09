@@ -40,6 +40,11 @@ export const Hero = () => {
   const heroVideoUrl = settings?.heroVideoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ";
   const heroMediaType = settings?.heroMediaType || "mockup"; // "mockup" | "video"
 
+  const isEmbedVideo = (url) => {
+    if (!url) return false;
+    return url.includes('youtube.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
+  };
+
   const stats = [
     { icon: Users, value: settings?.statsClients || "150+", label: "Happy Clients" },
     { icon: Rocket, value: settings?.statsProjects || "250+", label: "Projects Delivered" },
@@ -138,14 +143,26 @@ export const Hero = () => {
             
             {/* If Admin chose Direct Video View */}
             {heroMediaType === 'video' && heroVideoUrl ? (
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-white aspect-video w-full">
-                <iframe
-                  src={heroVideoUrl}
-                  title="BuildZone Product Video"
-                  className="w-full h-full object-cover"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-black aspect-video w-full">
+                {isEmbedVideo(heroVideoUrl) ? (
+                  <iframe
+                    src={heroVideoUrl}
+                    title="BuildZone Product Video"
+                    className="w-full h-full object-cover"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <video
+                    src={heroVideoUrl}
+                    controls
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </div>
             ) : (
               /* Interactive SaaS Dashboard Mockup + Overlapping Mobile Frame */
@@ -492,13 +509,23 @@ export const Hero = () => {
             >
               <X className="w-5 h-5" />
             </button>
-            <iframe
-              src={heroVideoUrl}
-              title="BuildZone Intro Video"
-              className="w-full h-full object-cover"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+            {isEmbedVideo(heroVideoUrl) ? (
+              <iframe
+                src={heroVideoUrl}
+                title="BuildZone Intro Video"
+                className="w-full h-full object-cover"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <video
+                src={heroVideoUrl}
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full object-contain"
+              />
+            )}
           </div>
         </div>
       )}

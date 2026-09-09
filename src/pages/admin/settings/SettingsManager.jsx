@@ -16,6 +16,7 @@ import {
 import { updateSettings, resetSettings } from '../../../features/settings/settingsSlice';
 import Button from '../../../components/common/Button';
 import ImageUpload from '../../../components/common/ImageUpload';
+import VideoUpload from '../../../components/common/VideoUpload';
 
 export const SettingsManager = () => {
   const dispatch = useDispatch();
@@ -216,21 +217,14 @@ export const SettingsManager = () => {
               </div>
             </div>
 
-            {/* Video URL Input */}
-            <div>
-              <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
-                Company Intro Video URL (YouTube / Vimeo / Cloudinary MP4)
-              </label>
-              <input
-                type="url"
+            {/* Video Uploader & URL Manager */}
+            <div className="bg-slate-50/80 p-4 rounded-2xl border border-slate-200">
+              <VideoUpload
                 value={formData.heroVideoUrl}
-                onChange={(e) => setFormData({ ...formData, heroVideoUrl: e.target.value })}
-                placeholder="https://www.youtube.com/embed/dQw4w9WgXcQ or https://res.cloudinary.com/.../video.mp4"
-                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono font-medium"
+                onChange={(url) => setFormData({ ...formData, heroVideoUrl: url })}
+                label="Company Intro Video (Upload File or Paste Link)"
+                helperText="Upload a video file (MP4, WebM, MOV) or paste a YouTube / Vimeo / Cloudinary URL. This video is used for the Direct Embedded Video Player and the 'Watch Intro' popup."
               />
-              <p className="font-mono text-[10px] text-slate-500 mt-1">
-                When visitors click the "Watch Intro" button on the Hero section, this video plays in an HD popup lightbox.
-              </p>
             </div>
 
             {/* Hero Copy Customizer */}
