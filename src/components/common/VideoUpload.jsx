@@ -44,6 +44,118 @@ export const VideoUpload = ({
     return url.includes('youtube.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
   };
 
+  const [optimizingStatus, setOptimizingStatus] = useState('');
+
+  // Helper to optimize and compress video client-side to WebM < 4MB for instant Vercel upload
+  const compressVideoInBrowser = async (file, onProgress) => {
+    return new Promise((resolve, reject) => {
+      const video = document.createElement('video');
+      video.src = URL.createObjectURL(file);
+      video.muted = true;
+      video.playsInline = true;
+      video.crossOrigin = 'anonymous';
+
+      video.onloadedmetadata = async () => {
+        try {
+          const duration = video.duration || 5;
+          // Target max file size = 3.2MB to safely stay under Vercel 4.5MB limit
+          const targetBps = Math.min(2200000, Math.max(400000, Math.floor((3.2 * 8 * 1024 * 1024) / duration)));
+
+          let width = video.videoWidth || 1280;
+          let height = video.videoHeight || 720;
+          const maxDim = 1280;
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+          width = width - (width % 2);
+          height = height - (height % 2);
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+
+          const stream = canvas.captureStream ? canvas.captureStream(30) : (video.captureStream ? video.captureStream(30) : null);
+          
+          if (!stream || typeof MediaRecorder === 'undefined') {
+            URL.revokeObjectURL(video.src);
+            return resolve(file);
+          }
+
+          let mimeType = 'video/webm;codecs=vp9';
+          if (!MediaRecorder.isTypeSupported(mimeType)) mimeType = 'video/webm;codecs=vp8';
+          if (!MediaRecorder.isTypeSupported(mimeType)) mimeType = 'video/webm';
+          if (!MediaRecorder.isTypeSupported(mimeType)) mimeType = 'video/mp4';
+
+          const recorder = new MediaRecorder(stream, {
+            mimeType: MediaRecorder.isTypeSupported(mimeType) ? mimeType : undefined,
+            videoBitsPerSecond: targetBps
+          });
+
+          const chunks = [];
+          recorder.ondataavailable = (e) => {
+            if (e.data && e.data.size > 0) chunks.push(e.data);
+          };
+
+          recorder.onstop = () => {
+            const blob = new Blob(chunks, { type: mimeType.split(';')[0] || 'video/webm' });
+            const compressedFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".webm", {
+              type: blob.type
+            });
+            URL.revokeObjectURL(video.src);
+            resolve(compressedFile);
+          };
+
+          recorder.start(100);
+
+          let isRecording = true;
+          const drawFrame = () => {
+            if (!isRecording) return;
+            if (video.paused || video.ended) {
+              if (video.ended) {
+                isRecording = false;
+                recorder.stop();
+                return;
+              }
+            }
+            ctx.drawImage(video, 0, 0, width, height);
+            if (duration > 0 && onProgress) {
+              const pct = Math.min(95, Math.round((video.currentTime / duration) * 100));
+              onProgress(pct);
+            }
+            requestAnimationFrame(drawFrame);
+          };
+
+          video.onended = () => {
+            if (isRecording) {
+              isRecording = false;
+              recorder.stop();
+            }
+          };
+
+          // 2x speed for ultra-fast browser compression
+          video.playbackRate = 2.0;
+          await video.play();
+          drawFrame();
+        } catch (err) {
+          URL.revokeObjectURL(video.src);
+          reject(err);
+        }
+      };
+
+      video.onerror = (e) => {
+        URL.revokeObjectURL(video.src);
+        reject(e);
+      };
+    });
+  };
+
   const handleFileChange = async (file) => {
     if (!file) return;
 
@@ -53,34 +165,57 @@ export const VideoUpload = ({
       'video/ogg',
       'video/quicktime',
       'video/x-matroska',
-      'video/x-msvideo'
+      'video/x-msvideo',
+      'image/webp',
+      'image/gif'
     ];
 
-    if (!validVideoTypes.includes(file.type) && !file.name.match(/\.(mp4|webm|mov|mkv|avi|ogg|m4v)$/i)) {
-      toast.error("Invalid video format. Please upload an MP4, WebM, MOV, or OGG file.");
+    if (!validVideoTypes.includes(file.type) && !file.name.match(/\.(mp4|webm|mov|mkv|avi|ogg|m4v|webp|gif)$/i)) {
+      toast.error("Invalid format. Please upload an MP4, WebM, WebP, MOV, or OGG file.");
       return;
     }
 
-    // Vercel Serverless payload limit is 4.5MB. For anything larger, guide user to Paste Video URL
-    const MAX_DIRECT_UPLOAD_BYTES = 4.5 * 1024 * 1024; // 4.5 MB
+    let fileToUpload = file;
+    const MAX_DIRECT_UPLOAD_BYTES = 4.2 * 1024 * 1024; // 4.2 MB
+
+    // If file is larger than 4.2MB, optimize/compress in browser
     if (file.size > MAX_DIRECT_UPLOAD_BYTES) {
-      const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1);
+      const origSizeMB = (file.size / (1024 * 1024)).toFixed(1);
+      setOptimizingStatus(`Optimizing & compressing video from ${origSizeMB}MB...`);
+      toast.info(`Optimizing & compressing video (${origSizeMB}MB)... Please wait a few seconds.`);
+
+      try {
+        fileToUpload = await compressVideoInBrowser(file, (pct) => {
+          setUploadProgress(Math.round(pct * 0.6));
+        });
+        const newSizeMB = (fileToUpload.size / (1024 * 1024)).toFixed(1);
+        console.log(`Video optimized: ${origSizeMB}MB -> ${newSizeMB}MB`);
+        setOptimizingStatus(`Optimized to ${newSizeMB}MB! Uploading...`);
+      } catch (compErr) {
+        console.warn("Browser compression skipped or failed:", compErr);
+      }
+    }
+
+    // Check if still above 4.5MB
+    if (fileToUpload.size > 4.5 * 1024 * 1024) {
+      setOptimizingStatus('');
+      const finalMB = (fileToUpload.size / (1024 * 1024)).toFixed(1);
       toast.error(
-        `Video size is ${fileSizeMB}MB. Direct file uploads on Vercel are limited to 4.5MB. Please use the "Paste Video URL" tab (YouTube, Vimeo, Cloudinary, or direct MP4 link).`,
+        `Video size (${finalMB}MB) is too large for serverless. Please paste your video link in the 'Paste Video URL' tab.`,
         { duration: 7000 }
       );
       setActiveTab('url');
       return;
     }
 
-    setUploadProgress(20);
+    setUploadProgress(65);
 
     try {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('file', fileToUpload);
       formData.append('category', 'HeroVideo');
 
-      setUploadProgress(50);
+      setUploadProgress(85);
       const response = await uploadMedia(formData).unwrap();
       const uploadedUrl = response?.url || response?.data?.url || response?.secure_url;
       setUploadProgress(100);
@@ -88,7 +223,7 @@ export const VideoUpload = ({
       if (uploadedUrl && !uploadedUrl.startsWith('blob:')) {
         onChange(uploadedUrl);
         setUrlInput(uploadedUrl);
-        toast.success("Video uploaded to server permanently!");
+        toast.success("Video compressed & saved to server permanently!");
       } else {
         toast.error("Failed to get permanent video URL from server. Please try pasting a video link.");
       }
@@ -101,6 +236,7 @@ export const VideoUpload = ({
         toast.error("Server video upload failed: " + (err?.data?.message || err?.message || "Please paste a direct video URL or YouTube/Vimeo link"));
       }
     } finally {
+      setOptimizingStatus('');
       setTimeout(() => setUploadProgress(0), 1000);
     }
   };
@@ -255,14 +391,14 @@ export const VideoUpload = ({
           <input
             ref={fileInputRef}
             type="file"
-            accept="video/mp4,video/webm,video/ogg,video/quicktime,video/x-matroska,.mp4,.webm,.mov,.mkv"
+            accept="video/mp4,video/webm,video/ogg,video/quicktime,video/x-matroska,image/webp,image/gif,.mp4,.webm,.mov,.mkv,.webp,.gif"
             onChange={(e) => handleFileChange(e.target.files?.[0])}
             className="hidden"
           />
 
           <div className="flex flex-col items-center justify-center space-y-2.5">
             <div className="w-12 h-12 rounded-xl bg-blue-100/80 text-[#0066FF] flex items-center justify-center shadow-xs">
-              {isUploading ? (
+              {isUploading || optimizingStatus ? (
                 <Loader2 className="w-6 h-6 animate-spin" />
               ) : (
                 <UploadCloud className="w-6 h-6" />
@@ -271,10 +407,10 @@ export const VideoUpload = ({
 
             <div className="space-y-1">
               <p className="font-display text-xs font-bold text-[#0B1938]">
-                {isUploading ? "Uploading video..." : "Click or drag & drop to upload video"}
+                {optimizingStatus ? optimizingStatus : isUploading ? "Uploading video..." : "Click or drag & drop to upload video"}
               </p>
               <p className="font-mono text-[10px] text-slate-500">
-                MP4, WebM, MOV, OGG (Max 100MB)
+                Auto-Optimizes MP4 / WebM / WebP (Files over 4.5MB will be compressed automatically)
               </p>
             </div>
 
