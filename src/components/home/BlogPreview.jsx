@@ -64,7 +64,7 @@ export const BlogPreview = () => {
                 <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
                   <img
                     src={featuredBlog.featuredImage}
-                    alt={featuredBlog.title}
+                    alt={featuredBlog.title ? `${featuredBlog.title} publication cover` : "Featured engineering publication"}
                     width="600"
                     height="300"
                     decoding="async"
@@ -124,7 +124,7 @@ export const BlogPreview = () => {
                   <div className="flex items-center gap-3">
                     <img
                       src={featuredBlog.authorAvatar}
-                      alt={featuredBlog.author}
+                      alt={featuredBlog.author ? `${featuredBlog.author} avatar` : "Author avatar"}
                       width="36"
                       height="36"
                       loading="lazy"
@@ -143,10 +143,10 @@ export const BlogPreview = () => {
 
                   <Link
                     to={`/blog/${featuredBlog.slug}`}
-                    className="px-4 py-2 bg-[#0066FF] hover:bg-[#0052CC] text-white rounded-lg font-mono text-xs font-bold uppercase tracking-wider inline-flex items-center gap-1.5 transition-all shadow-xs"
+                    className="font-mono text-xs font-bold uppercase tracking-wider text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1.5 group/btn"
                   >
                     <span>Read Article</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
@@ -154,19 +154,18 @@ export const BlogPreview = () => {
           </div>
 
           {/* ========================================================================= */}
-          {/* RIGHT PANEL: Search Bar + 6 Compact Line-Wise Blogs + View More (6 Columns) */}
+          {/* RIGHT PANEL: 6 Line-Wise Scrollable Cards with Live Filter (6 Columns) */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-6 space-y-4">
-            
-            {/* Top Search Bar with Live Filter */}
-            <div className="bg-[#F8FAFC] border border-slate-200 rounded-xl p-3 shadow-2xs">
+          <div className="lg:col-span-6 flex flex-col justify-between">
+            {/* Search Input Bar */}
+            <div className="mb-4">
               <div className="relative">
                 <input
                   type="text"
+                  placeholder="Filter engineering publications by title or tag..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Search 60+ engineering articles, AI, Cloud, SaaS..."
-                  className="w-full bg-white border border-slate-200 pl-10 pr-4 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 rounded-lg focus:outline-none focus:border-[#0066FF] focus:ring-1 focus:ring-[#0066FF] transition-all font-sans"
+                  className="w-full bg-white border border-slate-200 focus:border-[#0066FF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 font-mono focus:outline-none shadow-2xs transition-colors"
                 />
                 <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
               </div>
@@ -184,7 +183,7 @@ export const BlogPreview = () => {
                   <div className="w-20 sm:w-24 h-18 sm:h-20 rounded-lg overflow-hidden shrink-0 bg-slate-100 relative">
                     <img
                       src={blog.featuredImage}
-                      alt={blog.title}
+                      alt={blog.title ? `${blog.title} article cover` : "Article cover thumbnail"}
                       width="96"
                       height="80"
                       decoding="async"

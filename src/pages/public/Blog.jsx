@@ -90,7 +90,8 @@ export const Blog = () => {
                   <div className="aspect-[16/9] w-full overflow-hidden bg-slate-100 relative">
                     <img
                       src={post.featuredImage}
-                      alt={post.title}
+                      alt={post.title ? `${post.title} article cover` : "Engineering blog article cover"}
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-3 left-3">
@@ -127,7 +128,8 @@ export const Blog = () => {
                   <div className="flex items-center gap-2">
                     <img
                       src={post.authorAvatar}
-                      alt={post.author}
+                      alt={post.author ? `${post.author} avatar` : "Author avatar"}
+                      loading="lazy"
                       className="w-7 h-7 object-cover rounded-full border border-blue-200"
                     />
                     <span className="font-mono text-xs text-slate-700 font-bold">{post.author}</span>
