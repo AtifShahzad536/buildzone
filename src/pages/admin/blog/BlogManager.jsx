@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Trash2, Edit2, FileText, Calendar, Image as ImageIcon, ExternalLink } from 'lucide-react';
+import { Plus, Trash2, Edit2, FileText, Calendar, Image as ImageIcon, ExternalLink, Sparkles, BookOpen } from 'lucide-react';
 import { toast } from 'sonner';
 import { 
   useGetBlogsQuery, 
@@ -14,6 +14,7 @@ import Loader from '../../../components/common/Loader';
 import EmptyState from '../../../components/common/EmptyState';
 import ConfirmModal from '../../../components/common/ConfirmModal';
 import ImageUpload from '../../../components/common/ImageUpload';
+import RichTextEditor from '../../../components/common/RichTextEditor';
 
 export const BlogManager = () => {
   const { data: blogs, isLoading, refetch } = useGetBlogsQuery();
@@ -29,12 +30,12 @@ export const BlogManager = () => {
     title: '',
     category: 'AI',
     excerpt: '',
-    content: '',
+    content: `## Executive Overview\nModern distributed applications require predictable low-latency, autonomous resiliency, and streamlined data processing.\n\n### Core Engineering Highlights\n- High throughput stream processing with Kafka\n- Zero-downtime rolling deployments via Kubernetes\n- Sub-50ms query cache with Redis clustering\n\n> "Building scalable software is not just about frameworks, it's about disciplined system architecture."\n\n\`\`\`javascript\n// Production stream processing handler\nexport const handleStream = async (payload) => {\n  const validated = validateSchema(payload);\n  return await pipeline.dispatch(validated);\n};\n\`\`\`\n\n:::center\n**BuildZone Engineering Architecture • 2026**\n:::\n`,
     tags: 'AI, Architecture, Full-Stack, Scale',
     author: 'Alex Thorne',
     authorRole: 'CEO & Principal Architect',
     readTime: '6 min read',
-    featuredImage: '',
+    featuredImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
     authorAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
   };
 
@@ -116,11 +117,16 @@ export const BlogManager = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
-            BLOG & KNOWLEDGE CMS
-          </h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+              BLOG & KNOWLEDGE CMS
+            </h1>
+            <span className="px-2 py-0.5 bg-blue-50 text-[#0066FF] border border-blue-200 text-[10px] font-mono font-bold rounded-full">
+              {blogs?.length || 0} ARTICLES
+            </span>
+          </div>
           <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
-            Publish engineering articles, case breakdowns, and upload featured post headers.
+            Publish technical whitepapers, architecture articles, and industry insights with rich formatting.
           </p>
         </div>
 
@@ -129,99 +135,104 @@ export const BlogManager = () => {
           size="sm"
           onClick={handleOpenCreate}
           leftIcon={<Plus className="w-4 h-4" />}
-          className="shadow-sm shrink-0"
+          className="shadow-sm"
         >
-          New Article
+          Compose Article
         </Button>
       </div>
 
-      {/* Blog Articles Table */}
-      {blogs?.length === 0 ? (
+      {/* Blog Posts Table */}
+      {!blogs || blogs.length === 0 ? (
         <EmptyState
-          title="No Articles Published"
-          description="Click 'New Article' to compose and publish your first technical engineering post."
+          icon={FileText}
+          title="No Articles Published Yet"
+          description="Create and publish your first technical article to demonstrate thought leadership."
+          actionText="Write First Article"
+          onAction={handleOpenCreate}
         />
       ) : (
-        <div className="border border-slate-200 bg-white rounded-xl overflow-x-auto shadow-2xs">
-          <table className="w-full text-left font-mono text-xs border-collapse min-w-[760px]">
-            <thead>
-              <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
-                <th className="py-3 px-4 font-semibold">Header</th>
-                <th className="py-3 px-4 font-semibold">Title & Author</th>
-                <th className="py-3 px-4 font-semibold">Category</th>
-                <th className="py-3 px-4 font-semibold">Published</th>
-                <th className="py-3 px-4 text-right font-semibold">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {blogs?.map((post) => {
-                const postId = post.id || post._id;
-                return (
-                  <tr key={postId} className="hover:bg-blue-50/40 transition-colors">
-                    {/* Thumbnail */}
-                    <td className="py-3 px-4 w-20">
-                      <div className="w-14 h-10 rounded-lg overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
-                        {post.featuredImage ? (
-                          <img
-                            src={post.featuredImage}
-                            alt={post.title}
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                              e.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=300&q=80';
-                            }}
-                          />
-                        ) : (
-                          <ImageIcon className="w-4 h-4 text-slate-400" />
-                        )}
-                      </div>
-                    </td>
+        <div className="border border-slate-200 bg-white rounded-2xl overflow-hidden shadow-2xs">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left font-mono text-xs border-collapse min-w-[700px]">
+              <thead>
+                <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
+                  <th className="py-3 px-4 font-semibold w-20">Banner</th>
+                  <th className="py-3 px-4 font-semibold">Title & Author</th>
+                  <th className="py-3 px-4 font-semibold">Category</th>
+                  <th className="py-3 px-4 font-semibold">Published</th>
+                  <th className="py-3 px-4 text-right font-semibold">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {blogs?.map((post) => {
+                  const postId = post.id || post._id;
+                  return (
+                    <tr key={postId} className="hover:bg-blue-50/40 transition-colors">
+                      {/* Thumbnail */}
+                      <td className="py-3 px-4 w-20">
+                        <div className="w-14 h-10 rounded-lg overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
+                          {post.featuredImage ? (
+                            <img
+                              src={post.featuredImage}
+                              alt={post.title}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                e.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=300&q=80';
+                              }}
+                            />
+                          ) : (
+                            <ImageIcon className="w-4 h-4 text-slate-400" />
+                          )}
+                        </div>
+                      </td>
 
-                    <td className="py-3.5 px-4">
-                      <div className="font-bold text-[#0B1938] text-sm max-w-md truncate">{post.title}</div>
-                      <div className="text-[11px] text-[#0066FF] font-medium">By {post.author} • {post.readTime}</div>
-                    </td>
+                      <td className="py-3.5 px-4">
+                        <div className="font-bold text-[#0B1938] text-sm max-w-md truncate">{post.title}</div>
+                        <div className="text-[11px] text-[#0066FF] font-medium">By {post.author} • {post.readTime}</div>
+                      </td>
 
-                    <td className="py-3.5 px-4">
-                      <Badge variant="cyan" size="sm">{post.category}</Badge>
-                    </td>
+                      <td className="py-3.5 px-4">
+                        <Badge variant="cyan" size="sm">{post.category}</Badge>
+                      </td>
 
-                    <td className="py-3.5 px-4 text-slate-700">
-                      {formatDate(post.publishedDate || post.createdAt)}
-                    </td>
+                      <td className="py-3.5 px-4 text-slate-700">
+                        {formatDate(post.publishedDate || post.createdAt)}
+                      </td>
 
-                    <td className="py-3.5 px-4 text-right whitespace-nowrap">
-                      <div className="flex items-center justify-end gap-1.5 whitespace-nowrap">
-                        <button
-                          type="button"
-                          onClick={() => handleOpenEdit(post)}
-                          className="p-1.5 text-slate-400 hover:text-[#0066FF] hover:bg-blue-50 rounded-lg transition-colors cursor-pointer shrink-0"
-                          title="Edit Article"
-                        >
-                          <Edit2 className="w-4 h-4" />
-                        </button>
-                        <button 
-                          type="button"
-                          onClick={() => handleDeleteClick(postId, post.title)} 
-                          className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer shrink-0"
-                          title="Delete Article"
-                          aria-label={`Delete article ${post.title}`}
-                        >
-                          <Trash2 className="w-4 h-4 inline-block" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                      <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                        <div className="flex items-center justify-end gap-1.5 whitespace-nowrap">
+                          <button
+                            type="button"
+                            onClick={() => handleOpenEdit(post)}
+                            className="p-1.5 text-slate-400 hover:text-[#0066FF] hover:bg-blue-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                            title="Edit Article"
+                          >
+                            <Edit2 className="w-4 h-4" />
+                          </button>
+                          <button 
+                            type="button"
+                            onClick={() => handleDeleteClick(postId, post.title)} 
+                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                            title="Delete Article"
+                            aria-label={`Delete article ${post.title}`}
+                          >
+                            <Trash2 className="w-4 h-4 inline-block" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
-      {/* Create / Edit Modal */}
+      {/* Create / Edit Modal with Rich Editor */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
-          <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
+          <div className="w-full max-w-4xl bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8 max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">
                 {editingId ? "Edit Technical Article" : "Compose New Technical Article"}
@@ -229,13 +240,13 @@ export const BlogManager = () => {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-slate-600 font-mono text-sm cursor-pointer"
+                className="text-slate-400 hover:text-slate-600 font-mono text-sm cursor-pointer p-1"
               >
                 ✕
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 font-sans">
+            <form onSubmit={handleSubmit} className="space-y-5 font-sans">
               {/* Featured Header Image */}
               <ImageUpload
                 label="Article Header Image *"
@@ -319,7 +330,7 @@ export const BlogManager = () => {
 
               <div>
                 <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
-                  Short Excerpt / SEO Meta Description *
+                  Short Excerpt / SEO Summary *
                 </label>
                 <textarea
                   rows={2}
@@ -331,19 +342,14 @@ export const BlogManager = () => {
                 />
               </div>
 
-              <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
-                  Full Article Body (Markdown / Text) *
-                </label>
-                <textarea
-                  rows={6}
-                  required
-                  value={formData.content}
-                  onChange={e => setFormData({ ...formData, content: e.target.value })}
-                  placeholder="# Introduction&#10;&#10;Explain the architectural choices, tradeoffs, and code implementation..."
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono leading-relaxed"
-                />
-              </div>
+              {/* Rich Text WYSIWYG & Markdown Editor */}
+              <RichTextEditor
+                label="Full Article Body (WYSIWYG & Markdown Editor) *"
+                value={formData.content}
+                onChange={(newContent) => setFormData({ ...formData, content: newContent })}
+                placeholder="Write your comprehensive technical article, system diagram breakdown, code snippets..."
+                minHeight="380px"
+              />
 
               <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-100">
                 <Button 

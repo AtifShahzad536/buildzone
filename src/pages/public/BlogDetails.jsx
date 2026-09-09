@@ -18,6 +18,7 @@ import Button from '../../components/common/Button';
 import Loader from '../../components/common/Loader';
 import ErrorState from '../../components/common/ErrorState';
 import SEOHead from '../../components/common/SEOHead';
+import RichTextRenderer from '../../components/common/RichTextRenderer';
 
 export const BlogDetails = () => {
   const { slug } = useParams();
@@ -114,13 +115,11 @@ export const BlogDetails = () => {
             </div>
 
             {/* Post Content */}
-            <div className="font-sans text-slate-700 text-sm sm:text-base leading-relaxed space-y-6 bg-white p-8 sm:p-12 border border-slate-200 rounded-lg shadow-sm">
+            <div className="bg-white p-6 sm:p-12 border border-slate-200 rounded-2xl shadow-2xs">
               {post.content ? (
-                <div className="whitespace-pre-line leading-relaxed">
-                  {post.content}
-                </div>
+                <RichTextRenderer content={post.content} />
               ) : (
-                <p className="text-slate-500">
+                <p className="text-slate-500 font-sans italic">
                   Comprehensive article content is being synced from our engineering knowledge repository.
                 </p>
               )}
