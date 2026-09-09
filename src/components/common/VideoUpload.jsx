@@ -71,30 +71,23 @@ export const VideoUpload = ({
     try {
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('resource_type', 'video');
+      formData.append('category', 'HeroVideo');
 
       setUploadProgress(50);
       const response = await uploadMedia(formData).unwrap();
       const uploadedUrl = response?.url || response?.data?.url || response?.secure_url;
       setUploadProgress(100);
 
-      if (uploadedUrl) {
+      if (uploadedUrl && !uploadedUrl.startsWith('blob:')) {
         onChange(uploadedUrl);
         setUrlInput(uploadedUrl);
-        toast.success("Video uploaded and attached successfully!");
+        toast.success("Video uploaded to server permanently!");
       } else {
-        // Fallback to local Blob / Data URL for seamless preview
-        const localBlobUrl = URL.createObjectURL(file);
-        onChange(localBlobUrl);
-        setUrlInput(localBlobUrl);
-        toast.success("Video attached successfully (Preview mode)!");
+        toast.error("Failed to get permanent video URL from server. Please try pasting a video link.");
       }
     } catch (err) {
-      // Graceful local preview fallback
-      const localBlobUrl = URL.createObjectURL(file);
-      onChange(localBlobUrl);
-      setUrlInput(localBlobUrl);
-      toast.info("Video loaded for preview!");
+      console.error("Video upload error:", err);
+      toast.error("Server video upload failed: " + (err?.data?.message || err?.message || "Please check network or paste a direct video URL"));
     } finally {
       setTimeout(() => setUploadProgress(0), 1000);
     }
