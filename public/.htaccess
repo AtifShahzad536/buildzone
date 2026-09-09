@@ -2,6 +2,11 @@
   RewriteEngine On
   RewriteBase /
 
+  # Explicit MIME types for SEO & Crawlers
+  AddType application/xml .xml
+  AddType text/plain .txt
+  AddType application/manifest+json .webmanifest
+
   # Route all API requests to the PHP REST API handler
   RewriteCond %{REQUEST_URI} ^/api [NC]
   RewriteRule ^api(/.*)?$ api/index.php [QSA,L]
@@ -14,6 +19,7 @@
   # Redirect all other requests to index.html (SPA Routing)
   RewriteRule ^ index.html [L]
 </IfModule>
+
 
 <IfModule mod_headers.c>
   # Strict Security & Transport Headers

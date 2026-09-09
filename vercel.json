@@ -1,11 +1,46 @@
 {
   "rewrites": [
     {
-      "source": "/((?!assets/|robots.txt|sitemap.xml|favicon.ico|logo.*|llms.*).*)",
+      "source": "/((?!assets/|robots\\.txt|sitemap\\.xml|site\\.webmanifest|favicon\\.svg|favicon\\.ico|logo.*|llms.*|api/).*)",
       "destination": "/index.html"
     }
   ],
   "headers": [
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/site.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json; charset=utf-8"
+        }
+      ]
+    },
     {
       "source": "/index.html",
       "headers": [
