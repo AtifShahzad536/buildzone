@@ -80,8 +80,15 @@ function sendLeadEmailNotification($lead) {
     $details = nl2br(htmlspecialchars($lead['projectDetails'] ?? ($lead['message'] ?? 'None')));
 
     $message = "
-    <html>
-    <head><title>New Lead Inquiry - BuildZone</title></head>
+    <!DOCTYPE html>
+    <html lang='en'>
+    <head>
+      <meta charset='UTF-8' />
+      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+      <meta name='description' content='BuildZone Inbound Lead Notification' />
+      <link rel='canonical' href='https://buildzonetechnology.com/' />
+      <title>New Lead Inquiry - BuildZone</title>
+    </head>
     <body style='font-family: Arial, sans-serif; background-color: #f4f6f9; padding: 20px;'>
       <div style='max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden;'>
         <div style='background: #0B1938; padding: 20px; text-align: center; color: #ffffff;'>
