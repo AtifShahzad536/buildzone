@@ -216,10 +216,10 @@ export const Hero = () => {
               </div>
             ) : (
               /* Interactive SaaS Dashboard Mockup + Overlapping Mobile Frame */
-              <div className="relative w-full max-w-[620px] mx-auto perspective-1000">
+              <div className="relative w-full max-w-[620px] mx-auto perspective-1000 min-h-[420px] sm:min-h-[460px]">
                 
                 {/* 1. Main Desktop SaaS Dashboard Container */}
-                <div className="bg-white border border-slate-200/90 rounded-2xl shadow-[0_20px_50px_rgba(11,25,56,0.08)] overflow-hidden font-sans text-xs transition-transform duration-300 hover:shadow-[0_25px_60px_rgba(0,102,255,0.12)]">
+                <div className="bg-white border border-slate-200/90 rounded-2xl shadow-[0_20px_50px_rgba(11,25,56,0.08)] overflow-hidden font-sans text-xs transition-transform duration-300 hover:shadow-[0_25px_60px_rgba(0,102,255,0.12)] min-h-[420px] sm:min-h-[460px]">
                   
                   {/* Top Bar */}
                   <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-white">

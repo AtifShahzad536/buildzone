@@ -7,7 +7,7 @@ export const initialCaseStudies = [
     industry: "Healthcare & MedTech",
     location: "Austin, Texas, USA",
     projectDuration: "6 Months",
-    heroImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=80",
+    heroImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=75",
     challenge: "MedFlow was struggling with an outdated, fragmented video conferencing setup that lacked HIPAA compliance, suffered from high video latency during peak morning clinics, and required doctors to manually copy patient consultation notes into separate EHR systems.",
     solution: "BuildZone engineered a bespoke, HIPAA-compliant WebRTC telemedicine portal integrated with HL7/FHIR health record adapters. We built end-to-end encrypted video streaming with automated transcription, integrated prescription generation, and an automated patient waiting queue.",
     features: [
@@ -46,7 +46,7 @@ export const initialCaseStudies = [
     industry: "Logistics & Supply Chain",
     location: "Chicago, Illinois, USA",
     projectDuration: "5 Months",
-    heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=80",
+    heroImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=75",
     challenge: "OmniStock's retail clients were experiencing frequent stockouts and overstock scenarios across 45 regional fulfillment hubs due to manual Excel-based demand forecasting that failed to account for seasonal spikes and shipping delays.",
     solution: "BuildZone designed and deployed an autonomous AI demand prediction engine that ingests historical sales, weather anomalies, supplier lead times, and macroeconomic indicators to generate automated purchase order recommendations.",
     features: [
@@ -85,7 +85,7 @@ export const initialCaseStudies = [
     industry: "FinTech & Banking",
     location: "London, United Kingdom",
     projectDuration: "8 Months",
-    heroImage: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1400&q=80",
+    heroImage: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=75",
     challenge: "FinVault required an institutional corporate banking portal capable of processing multi-currency payouts across 40 countries while strictly enforcing multi-signature authorization hierarchies and audit trails.",
     solution: "BuildZone engineered a resilient, high-speed corporate treasury platform with real-time currency conversion rates, automated compliance screening, and cryptographic transaction verification.",
     features: [
