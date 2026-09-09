@@ -20,17 +20,9 @@ export default defineConfig({
             if (id.includes('three') || id.includes('@react-three')) {
               return 'vendor-three';
             }
-            // Animation library
-            if (id.includes('gsap')) {
-              return 'vendor-gsap';
-            }
-            // Form validation
+            // Form validation isolated to admin/forms
             if (id.includes('zod') || id.includes('react-hook-form') || id.includes('@hookform')) {
               return 'vendor-forms';
-            }
-            // Icons
-            if (id.includes('lucide-react')) {
-              return 'vendor-icons';
             }
             // State management
             if (id.includes('@reduxjs/toolkit') || id.includes('react-redux')) {
