@@ -207,10 +207,10 @@ export const SettingsManager = () => {
                   <Play className="w-5 h-5 text-[#0066FF] shrink-0 mt-0.5" />
                   <div>
                     <span className="font-display text-xs font-bold uppercase text-[#0B1938] block">
-                      Direct Embedded Video Player
+                      Showcase Video (Laptop & Mobile Website Scroll)
                     </span>
                     <span className="font-sans text-[11px] text-slate-500 block mt-0.5">
-                      Renders the video directly in the right hero slot.
+                      Plays your uploaded website showcase video automatically on loop in the Hero slot.
                     </span>
                   </div>
                 </div>
@@ -221,9 +221,9 @@ export const SettingsManager = () => {
             <div className="bg-slate-50/80 p-4 rounded-2xl border border-slate-200">
               <VideoUpload
                 value={formData.heroVideoUrl}
-                onChange={(url) => setFormData({ ...formData, heroVideoUrl: url })}
-                label="Company Intro Video (Upload File or Paste Link)"
-                helperText="Upload a video file (MP4, WebM, MOV) or paste a YouTube / Vimeo / Cloudinary URL. This video is used for the Direct Embedded Video Player and the 'Watch Intro' popup."
+                onChange={(url) => setFormData({ ...formData, heroVideoUrl: url, heroMediaType: url ? 'video' : formData.heroMediaType })}
+                label="Hero Showcase Video (Laptop & Mobile Website Scroll Video)"
+                helperText="Upload your video file (MP4, WebM, MOV) showing the website scrolling inside the laptop and mobile frames. When uploaded, it will automatically play on loop in the Hero section."
               />
             </div>
 

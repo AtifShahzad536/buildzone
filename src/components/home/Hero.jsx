@@ -141,27 +141,37 @@ export const Hero = () => {
           {/* ========================================================================= */}
           <div className="lg:col-span-6 relative w-full pt-4 lg:pt-0">
             
-            {/* If Admin chose Direct Video View */}
+            {/* If Admin chose Showcase Video (Laptop & Mobile Website Scroll Animation) */}
             {heroMediaType === 'video' && heroVideoUrl ? (
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-black aspect-video w-full">
+              <div className="relative rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(11,25,56,0.12)] border border-slate-200 bg-white group">
                 {isEmbedVideo(heroVideoUrl) ? (
-                  <iframe
-                    src={heroVideoUrl}
-                    title="BuildZone Product Video"
-                    className="w-full h-full object-cover"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+                  <div className="w-full aspect-video">
+                    <iframe
+                      src={heroVideoUrl}
+                      title="BuildZone Product Video"
+                      className="w-full h-full object-cover"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
                 ) : (
-                  <video
-                    src={heroVideoUrl}
-                    controls
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover"
-                  />
+                  <div className="relative w-full aspect-[16/10] sm:aspect-video bg-slate-950 overflow-hidden flex items-center justify-center">
+                    <video
+                      src={heroVideoUrl}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                    />
+                    {/* Subtle Live Demo Badge */}
+                    <div className="absolute top-3.5 right-3.5 pointer-events-none">
+                      <span className="px-2.5 py-1 bg-black/70 backdrop-blur-md text-white border border-white/20 text-[10px] font-mono font-bold rounded-full flex items-center gap-1.5 shadow-lg">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                        LIVE SHOWCASE
+                      </span>
+                    </div>
+                  </div>
                 )}
               </div>
             ) : (
