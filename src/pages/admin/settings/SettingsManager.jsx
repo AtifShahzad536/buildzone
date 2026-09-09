@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'sonner';
-import { Save, RefreshCw, Terminal, Globe, Shield, Share2, MessageCircle, Image as ImageIcon } from 'lucide-react';
+import { 
+  Save, 
+  RefreshCw, 
+  Terminal, 
+  Globe, 
+  Shield, 
+  Share2, 
+  Tv, 
+  Play, 
+  Layout, 
+  Check 
+} from 'lucide-react';
 import { updateSettings, resetSettings } from '../../../features/settings/settingsSlice';
 import Button from '../../../components/common/Button';
 import ImageUpload from '../../../components/common/ImageUpload';
@@ -18,12 +29,24 @@ export const SettingsManager = () => {
     whatsappNumber: settings.whatsappNumber || '+1 (555) 382-9201',
     whatsappMessage: settings.whatsappMessage || 'Hello BuildZone Team, I would like to discuss a new software engineering project.',
     salesEmail: settings.salesEmail || 'sales@buildzonetechnology.com',
+    
+    // Hero Showcase & Video configuration
+    heroMediaType: settings.heroMediaType || 'mockup', // 'mockup' | 'video'
+    heroVideoUrl: settings.heroVideoUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    heroBadgeText: settings.heroBadgeText || 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
+    heroTitlePrefix: settings.heroTitlePrefix || 'We Build Digital Products That',
+    heroTitleAccent: settings.heroTitleAccent || 'Scale Your Business',
+    heroDescription: settings.heroDescription || 'BuildZone is a software house delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.',
+    statsClients: settings.statsClients || '150+',
+    statsProjects: settings.statsProjects || '250+',
+    statsExperience: settings.statsExperience || '5+',
+    statsSupport: settings.statsSupport || '24/7',
   });
 
   const handleSave = (e) => {
     e.preventDefault();
     dispatch(updateSettings(formData));
-    toast.success("Global settings & company configuration updated!", {
+    toast.success("Global settings & Hero video showcase updated!", {
       description: "Changes are applied immediately across the entire website and admin panel."
     });
   };
@@ -43,7 +66,7 @@ export const SettingsManager = () => {
             CENTRAL SYSTEM CONFIGURATION
           </h1>
           <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
-            Control brand identity, logos, company contact channels, and global SEO metadata from one place.
+            Control brand identity, Hero video / showcase mockup, logos, contact channels, and SEO metadata.
           </p>
         </div>
 
@@ -61,6 +84,7 @@ export const SettingsManager = () => {
       <div className="flex flex-wrap gap-2 border-b border-slate-200 pb-2">
         {[
           { id: 'general', label: 'General & Branding', icon: Terminal },
+          { id: 'hero', label: 'Hero Video & Showcase', icon: Tv },
           { id: 'contact', label: 'Contact & WhatsApp', icon: Globe },
           { id: 'seo', label: 'SEO & Social OG', icon: Shield },
           { id: 'social', label: 'Social Profiles', icon: Share2 },
@@ -85,6 +109,7 @@ export const SettingsManager = () => {
 
       {/* Settings Form Body */}
       <form onSubmit={handleSave} className="p-6 bg-white border border-slate-200 rounded-2xl shadow-2xs space-y-6">
+        
         {/* Tab 1: General */}
         {activeTab === 'general' && (
           <div className="space-y-5">
@@ -133,7 +158,181 @@ export const SettingsManager = () => {
           </div>
         )}
 
-        {/* Tab 2: Contact */}
+        {/* Tab 2: Hero Video & Showcase (User Requested) */}
+        {activeTab === 'hero' && (
+          <div className="space-y-5">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+              <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
+                Hero Showcase & Video Configuration
+              </h3>
+              <span className="px-2 py-0.5 bg-blue-50 text-[#0066FF] border border-blue-200 text-[10px] font-mono font-bold rounded-full">
+                LIVE CONTROLS
+              </span>
+            </div>
+
+            {/* Media Mode Selector */}
+            <div>
+              <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-2">
+                Right Column Display Mode
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div
+                  onClick={() => setFormData({ ...formData, heroMediaType: 'mockup' })}
+                  className={`p-3.5 rounded-xl border-2 cursor-pointer transition-all flex items-start gap-3 ${
+                    formData.heroMediaType === 'mockup'
+                      ? 'border-[#0066FF] bg-blue-50/50 shadow-2xs'
+                      : 'border-slate-200 hover:border-slate-300 bg-white'
+                  }`}
+                >
+                  <Layout className="w-5 h-5 text-[#0066FF] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-display text-xs font-bold uppercase text-[#0B1938] block">
+                      Interactive SaaS & Mobile Mockup (Default)
+                    </span>
+                    <span className="font-sans text-[11px] text-slate-500 block mt-0.5">
+                      Renders the sleek live SaaS Dashboard + Mobile card mockup.
+                    </span>
+                  </div>
+                </div>
+
+                <div
+                  onClick={() => setFormData({ ...formData, heroMediaType: 'video' })}
+                  className={`p-3.5 rounded-xl border-2 cursor-pointer transition-all flex items-start gap-3 ${
+                    formData.heroMediaType === 'video'
+                      ? 'border-[#0066FF] bg-blue-50/50 shadow-2xs'
+                      : 'border-slate-200 hover:border-slate-300 bg-white'
+                  }`}
+                >
+                  <Play className="w-5 h-5 text-[#0066FF] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-display text-xs font-bold uppercase text-[#0B1938] block">
+                      Direct Embedded Video Player
+                    </span>
+                    <span className="font-sans text-[11px] text-slate-500 block mt-0.5">
+                      Renders the video directly in the right hero slot.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Video URL Input */}
+            <div>
+              <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                Company Intro Video URL (YouTube / Vimeo / Cloudinary MP4)
+              </label>
+              <input
+                type="url"
+                value={formData.heroVideoUrl}
+                onChange={(e) => setFormData({ ...formData, heroVideoUrl: e.target.value })}
+                placeholder="https://www.youtube.com/embed/dQw4w9WgXcQ or https://res.cloudinary.com/.../video.mp4"
+                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono font-medium"
+              />
+              <p className="font-mono text-[10px] text-slate-500 mt-1">
+                When visitors click the "Watch Intro" button on the Hero section, this video plays in an HD popup lightbox.
+              </p>
+            </div>
+
+            {/* Hero Copy Customizer */}
+            <div className="space-y-3 pt-3 border-t border-slate-100">
+              <span className="font-mono text-[11px] uppercase font-bold text-slate-700 block">
+                Hero Headline & Copy
+              </span>
+
+              <div>
+                <label className="block font-mono text-[10px] uppercase text-slate-500 font-semibold mb-1">
+                  Pill Badge Text
+                </label>
+                <input
+                  type="text"
+                  value={formData.heroBadgeText}
+                  onChange={(e) => setFormData({ ...formData, heroBadgeText: e.target.value })}
+                  className="w-full bg-white border border-slate-300 px-3 py-1.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-mono text-[10px] uppercase text-slate-500 font-semibold mb-1">
+                    Main Headline (Prefix)
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.heroTitlePrefix}
+                    onChange={(e) => setFormData({ ...formData, heroTitlePrefix: e.target.value })}
+                    className="w-full bg-white border border-slate-300 px-3 py-1.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg font-bold"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-mono text-[10px] uppercase text-slate-500 font-semibold mb-1">
+                    Headline Highlight (Blue Accent)
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.heroTitleAccent}
+                    onChange={(e) => setFormData({ ...formData, heroTitleAccent: e.target.value })}
+                    className="w-full bg-white border border-slate-300 px-3 py-1.5 text-xs text-[#0066FF] focus:outline-none focus:border-[#0066FF] rounded-lg font-bold"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-mono text-[10px] uppercase text-slate-500 font-semibold mb-1">
+                  Subtitle Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={formData.heroDescription}
+                  onChange={(e) => setFormData({ ...formData, heroDescription: e.target.value })}
+                  className="w-full bg-white border border-slate-300 px-3 py-1.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg"
+                />
+              </div>
+
+              {/* 4 Stats Values */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                <div>
+                  <label className="block font-mono text-[9px] uppercase text-slate-500 font-bold mb-1">Happy Clients</label>
+                  <input
+                    type="text"
+                    value={formData.statsClients}
+                    onChange={(e) => setFormData({ ...formData, statsClients: e.target.value })}
+                    className="w-full bg-white border border-slate-300 px-2 py-1 text-xs text-[#0B1938] font-bold rounded"
+                  />
+                </div>
+                <div>
+                  <label className="block font-mono text-[9px] uppercase text-slate-500 font-bold mb-1">Projects Delivered</label>
+                  <input
+                    type="text"
+                    value={formData.statsProjects}
+                    onChange={(e) => setFormData({ ...formData, statsProjects: e.target.value })}
+                    className="w-full bg-white border border-slate-300 px-2 py-1 text-xs text-[#0B1938] font-bold rounded"
+                  />
+                </div>
+                <div>
+                  <label className="block font-mono text-[9px] uppercase text-slate-500 font-bold mb-1">Years Experience</label>
+                  <input
+                    type="text"
+                    value={formData.statsExperience}
+                    onChange={(e) => setFormData({ ...formData, statsExperience: e.target.value })}
+                    className="w-full bg-white border border-slate-300 px-2 py-1 text-xs text-[#0B1938] font-bold rounded"
+                  />
+                </div>
+                <div>
+                  <label className="block font-mono text-[9px] uppercase text-slate-500 font-bold mb-1">Support SLA</label>
+                  <input
+                    type="text"
+                    value={formData.statsSupport}
+                    onChange={(e) => setFormData({ ...formData, statsSupport: e.target.value })}
+                    className="w-full bg-white border border-slate-300 px-2 py-1 text-xs text-[#0B1938] font-bold rounded"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 3: Contact */}
         {activeTab === 'contact' && (
           <div className="space-y-4">
             <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
@@ -207,7 +406,7 @@ export const SettingsManager = () => {
           </div>
         )}
 
-        {/* Tab 3: SEO */}
+        {/* Tab 4: SEO */}
         {activeTab === 'seo' && (
           <div className="space-y-4">
             <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
@@ -248,7 +447,7 @@ export const SettingsManager = () => {
           </div>
         )}
 
-        {/* Tab 4: Social */}
+        {/* Tab 5: Social */}
         {activeTab === 'social' && (
           <div className="space-y-4">
             <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
