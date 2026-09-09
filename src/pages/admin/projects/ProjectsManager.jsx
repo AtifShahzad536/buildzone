@@ -254,22 +254,30 @@ export const ProjectsManager = () => {
 
       {/* Create / Edit Project Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
-          <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">
-                {editingId ? "Edit Project Showcase" : "Create New Project Showcase"}
-              </h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs">
+          <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-2xl shadow-2xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white shrink-0">
+              <div>
+                <h3 className="font-display text-base sm:text-lg font-bold uppercase text-[#0B1938]">
+                  {editingId ? "Edit Project Showcase" : "Create New Project Showcase"}
+                </h3>
+                <span className="text-[10px] font-mono text-slate-400">
+                  {editingId ? "Updating ID: " + editingId : "Add a new client case showcase"}
+                </span>
+              </div>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-slate-600 font-mono text-sm cursor-pointer"
+                className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer font-bold"
+                title="Close"
               >
                 ✕
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 font-sans">
+            {/* Scrollable Body */}
+            <form onSubmit={handleSubmit} id="projectForm" className="p-6 space-y-4 font-sans text-xs overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-slate-300">
               {/* Project Image Upload / Cloudinary */}
               <ImageUpload
                 label="Project Showcase Image / Mockup *"
@@ -279,7 +287,7 @@ export const ProjectsManager = () => {
                 aspectRatio="video"
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
                     Project Name *
@@ -290,7 +298,7 @@ export const ProjectsManager = () => {
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. MedFlow Telehealth Suite"
-                    className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                    className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
                   />
                 </div>
 
@@ -304,7 +312,7 @@ export const ProjectsManager = () => {
                     value={formData.client}
                     onChange={e => setFormData({ ...formData, client: e.target.value })}
                     placeholder="e.g. MedFlow Global Health"
-                    className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                    className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
                   />
                 </div>
               </div>
@@ -319,68 +327,67 @@ export const ProjectsManager = () => {
                     onChange={e => setFormData({ ...formData, serviceCategory: e.target.value, category: e.target.value })}
                     className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
                   >
-                    <option value="Web">Web Application</option>
-                    <option value="Mobile">Mobile App</option>
-                    <option value="AI">AI & Automation</option>
-                    <option value="SaaS">SaaS Platform</option>
-                    <option value="E-Commerce">E-Commerce</option>
-                    <option value="Custom Software">Custom Software</option>
-                    <option value="Cloud">Cloud & DevOps</option>
-                    <option value="UI/UX">UI/UX Design</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="FinTech">FinTech & Banking</option>
+                    <option value="AI">AI & Machine Learning</option>
+                    <option value="Logistics">Logistics & Supply Chain</option>
+                    <option value="SaaS">Enterprise SaaS</option>
+                    <option value="Mobile">Mobile Solutions</option>
+                    <option value="Cloud">Cloud Infrastructure</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
-                    Industry
+                    Industry Sector *
                   </label>
                   <input
                     type="text"
+                    required
                     value={formData.industry}
                     onChange={e => setFormData({ ...formData, industry: e.target.value })}
-                    placeholder="Healthcare, FinTech, Retail"
+                    placeholder="e.g. Healthcare, Banking"
                     className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
                   />
                 </div>
 
                 <div>
                   <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
-                    Live Demo / Product URL
+                    Live Production URL
                   </label>
                   <input
                     type="url"
                     value={formData.liveUrl}
                     onChange={e => setFormData({ ...formData, liveUrl: e.target.value })}
-                    placeholder="https://client-demo.com"
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono font-medium"
+                    placeholder="https://client-product.com"
+                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
-                  Technologies (Comma separated) *
+                  Technologies / Tech Stack (Comma separated)
                 </label>
                 <input
                   type="text"
-                  required
                   value={formData.technologies}
                   onChange={e => setFormData({ ...formData, technologies: e.target.value })}
-                  placeholder="React, TypeScript, Node.js, WebRTC, AWS"
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                  placeholder="React, TypeScript, WebRTC, Go, PostgreSQL, Redis, AWS"
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
                 />
               </div>
 
               <div>
                 <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
-                  Measurable Outcome & Client Results
+                  Key Results & Metrics Highlight
                 </label>
                 <input
                   type="text"
                   value={formData.results}
                   onChange={e => setFormData({ ...formData, results: e.target.value })}
                   placeholder="e.g. 99.98% uptime, 40% reduction in patient wait times"
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
                 />
               </div>
 
@@ -394,7 +401,7 @@ export const ProjectsManager = () => {
                   value={formData.shortDescription}
                   onChange={e => setFormData({ ...formData, shortDescription: e.target.value })}
                   placeholder="Tell clients about the architectural challenges solved, scale handled, or unique value provided..."
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-sans leading-relaxed"
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-sans leading-relaxed"
                 />
               </div>
 
@@ -410,26 +417,28 @@ export const ProjectsManager = () => {
                   Feature this project on homepage and top portfolio highlights
                 </label>
               </div>
-
-              <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-100">
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Cancel
-                </Button>
-                <Button 
-                  type="submit" 
-                  variant="primary" 
-                  size="sm" 
-                  isLoading={isCreating || isUpdating}
-                >
-                  {editingId ? "Save Changes" : "Publish Project"}
-                </Button>
-              </div>
             </form>
+
+            {/* Sticky Footer */}
+            <div className="flex items-center justify-end gap-2 px-6 py-3.5 border-t border-slate-100 bg-slate-50/80 shrink-0">
+              <Button 
+                type="button" 
+                variant="outline" 
+                size="sm" 
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button 
+                type="submit" 
+                form="projectForm"
+                variant="primary" 
+                size="sm" 
+                isLoading={isCreating || isUpdating}
+              >
+                {editingId ? "Save Changes" : "Publish Project"}
+              </Button>
+            </div>
           </div>
         </div>
       )}

@@ -240,18 +240,30 @@ export const CaseStudiesManager = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
-          <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">
-                {editingId ? 'Edit Architecture Case Study' : 'Publish New Case Study'}
-              </h3>
-              <span className="text-xs font-mono text-slate-400">
-                {editingId ? 'ID: ' + editingId : 'New Case Study'}
-              </span>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs">
+          <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-2xl shadow-2xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white shrink-0">
+              <div>
+                <h3 className="font-display text-base sm:text-lg font-bold uppercase text-[#0B1938]">
+                  {editingId ? 'Edit Architecture Case Study' : 'Publish New Case Study'}
+                </h3>
+                <span className="text-[10px] font-mono text-slate-400">
+                  {editingId ? 'Updating ID: ' + editingId : 'Creating new client showcase'}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer font-bold"
+                title="Close"
+              >
+                ✕
+              </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 font-sans text-xs">
+            {/* Scrollable Form Body */}
+            <form onSubmit={handleSubmit} id="caseStudyForm" className="p-6 space-y-4 font-sans text-xs overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-slate-300">
               {/* Cover/Hero Image */}
               <ImageUpload
                 label="Case Study Hero Image"
@@ -275,7 +287,7 @@ export const CaseStudiesManager = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
                     Client Name *
@@ -309,7 +321,7 @@ export const CaseStudiesManager = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
                     Project Duration
@@ -424,27 +436,28 @@ export const CaseStudiesManager = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Form Actions */}
-              <div className="flex justify-end gap-2 pt-4 border-t border-slate-100">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="sm"
-                  isLoading={isCreating || isUpdating}
-                >
-                  {editingId ? 'Save Changes' : 'Publish Case Study'}
-                </Button>
-              </div>
             </form>
+
+            {/* Modal Footer (Sticky) */}
+            <div className="flex items-center justify-end gap-2 px-6 py-3.5 border-t border-slate-100 bg-slate-50/80 shrink-0">
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                form="caseStudyForm"
+                variant="primary"
+                size="sm"
+                isLoading={isCreating || isUpdating}
+              >
+                {editingId ? 'Save Changes' : 'Publish Case Study'}
+              </Button>
+            </div>
           </div>
         </div>
       )}

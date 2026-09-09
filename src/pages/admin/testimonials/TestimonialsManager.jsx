@@ -197,18 +197,30 @@ export const TestimonialsManager = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
-          <div className="w-full max-w-xl bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">
-                {editingId ? 'Edit Client Testimonial' : 'Publish New Testimonial'}
-              </h3>
-              <span className="text-xs font-mono text-slate-400">
-                {editingId ? 'ID: ' + editingId : 'New Entry'}
-              </span>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs">
+          <div className="w-full max-w-xl bg-white border border-slate-200 rounded-2xl shadow-2xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white shrink-0">
+              <div>
+                <h3 className="font-display text-base sm:text-lg font-bold uppercase text-[#0B1938]">
+                  {editingId ? 'Edit Client Testimonial' : 'Publish New Testimonial'}
+                </h3>
+                <span className="text-[10px] font-mono text-slate-400">
+                  {editingId ? 'Updating ID: ' + editingId : 'New Endorsement'}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer font-bold"
+                title="Close"
+              >
+                ✕
+              </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 font-sans text-xs">
+            {/* Scrollable Form Body */}
+            <form onSubmit={handleSubmit} id="testimonialForm" className="p-6 space-y-4 font-sans text-xs overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-slate-300">
               {/* Avatar Upload */}
               <ImageUpload
                 label="Client Headshot / Avatar"
@@ -218,7 +230,7 @@ export const TestimonialsManager = () => {
                 onChange={(url) => setFormData({ ...formData, avatar: url })}
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
                     Client Full Name *
@@ -248,7 +260,7 @@ export const TestimonialsManager = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
                     Company / Organization *
@@ -309,7 +321,7 @@ export const TestimonialsManager = () => {
                   Endorsement / Quote *
                 </label>
                 <textarea
-                  rows={4}
+                  rows={3}
                   required
                   value={formData.quote}
                   onChange={(e) => setFormData({ ...formData, quote: e.target.value })}
@@ -317,26 +329,28 @@ export const TestimonialsManager = () => {
                   className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs leading-relaxed"
                 />
               </div>
-
-              <div className="flex justify-end gap-2 pt-4 border-t border-slate-100">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="sm"
-                  isLoading={isCreating || isUpdating}
-                >
-                  {editingId ? 'Save Changes' : 'Publish Testimonial'}
-                </Button>
-              </div>
             </form>
+
+            {/* Sticky Footer */}
+            <div className="flex items-center justify-end gap-2 px-6 py-3.5 border-t border-slate-100 bg-slate-50/80 shrink-0">
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                form="testimonialForm"
+                variant="primary"
+                size="sm"
+                isLoading={isCreating || isUpdating}
+              >
+                {editingId ? 'Save Changes' : 'Publish Testimonial'}
+              </Button>
+            </div>
           </div>
         </div>
       )}
