@@ -1,469 +1,488 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
-  Search, 
-  Layers, 
   Code2, 
-  CheckSquare, 
+  Users, 
+  Zap, 
+  Globe, 
+  Smartphone, 
+  Server, 
+  Settings, 
+  Database, 
+  HardDrive, 
+  Layers, 
+  CheckCircle2, 
+  GitBranch, 
+  Terminal, 
+  Cpu, 
+  ShieldCheck, 
   Rocket, 
-  Wrench, 
-  TrendingUp,
-  ArrowRight,
-  ArrowLeft,
-  Terminal,
-  ShieldCheck,
-  Cpu,
-  Server,
-  Play,
-  Pause,
-  CheckCircle2,
-  Sparkles
+  Search, 
+  FileText,
+  Boxes
 } from 'lucide-react';
 import Container from '../common/Container';
-import SectionTitle from '../common/SectionTitle';
 
-const pipelineSteps = [
+const stepsData = [
   {
-    step: '01',
-    phase: 'STAGE 01',
-    title: 'Discovery & System Architecture',
-    tagline: 'Technical feasibility audit, data modeling & sprint blueprinting',
-    desc: 'We unpack your product requirements, define modular microservice boundaries, establish database schemas, and align on precise technical SLAs.',
-    duration: 'Sprint 0 • 3–5 Days',
-    leadRole: 'Lead Solution Architect',
-    deliverables: [
-      'Detailed Technical Architecture Blueprint & Sequence Diagrams',
-      'Entity Relationship (ERD) & Database Schema Design',
-      'API Contract Specifications & Third-Party Integration Matrix',
-      'Fixed-Scope Milestones & Transparent Cost Timeline'
+    id: "01",
+    label: "DISCOVERY & RESEARCH",
+    badge: "01 / DISCOVERY & SYSTEM ARCHITECTURE",
+    headingLine1: "UNDERSTAND THE PROBLEM",
+    headingLine2: "BEFORE WRITING A SINGLE LINE.",
+    desc: "We dive deep into your domain, define system constraints, design data schemas, and establish clear technical milestones with zero guesswork.",
+    features: [
+      { icon: Search, title: "DOMAIN MODELING", subtitle: "User journeys, personas & functional requirements." },
+      { icon: Database, title: "DATA ARCHITECTURE", subtitle: "Entity diagrams, indexing & caching strategy." },
+      { icon: FileText, title: "SPRINT ROADMAP", subtitle: "Clear milestone estimation & fixed-scope deliverable." }
     ],
-    icon: Search,
-    accentColor: '#0066FF',
-    simulation: {
-      type: 'architecture',
-      title: 'blueprint_schema.ts',
-      status: 'ARCH_VALIDATED',
-      metrics: [
-        { label: 'Microservices', value: '8 Modular Services' },
-        { label: 'DB Architecture', value: 'PostgreSQL + Redis' },
-        { label: 'Security Model', value: 'OAuth2 / RBAC' },
-        { label: 'Target Latency', value: '< 85ms P95' }
-      ],
-      codeSnippet: `// Step 01: System Contract Architecture\nexport interface SystemArchitecture {\n  cluster: "aws-eks-us-east-1";\n  services: ["auth-pod", "engine-pod", "vector-rag"];\n  scaling: { min: 2, max: 32, auto: true };\n  securityAudit: "SOC2_COMPLIANT";\n}`
-    }
+    stats: [
+      { value: "100%", label: "REQUIREMENT CLARITY" },
+      { value: "3-5 DAYS", label: "SPRINT 0 TIMELINE" },
+      { value: "0", label: "SCOPE CREEP RISK" }
+    ],
+    ideFile: "architecture.spec.ts",
+    ideCode: `export interface ArchitecturePlan {\n  cluster: "aws-production-eks";\n  services: ["auth-pod", "api-gateway", "worker-queue"];\n  database: "PostgreSQL 16 Multi-AZ";\n  targetLatencyP95: "< 45ms";\n  slaGuarantee: "99.99%";\n};`
   },
   {
-    step: '02',
-    phase: 'STAGE 02',
-    title: 'UI/UX Design & Clickable Prototyping',
-    tagline: 'Human-centered user journeys & Figma design system tokens',
-    desc: 'We transform complex workflows into fluid, intuitive user interfaces. Complete with high-fidelity prototypes, ergonomic dark/light modes, and WCAG accessibility.',
-    duration: 'Sprint 1 • 1–2 Weeks',
-    leadRole: 'Senior Product Designer',
-    deliverables: [
-      'Clickable Interactive Figma Prototypes for User Testing',
-      'Atomic Design System (Tokens, Typography, Component Library)',
-      'Responsive Mobile & Desktop Wireframe Breakpoints',
-      'WCAG 2.1 AA Accessibility & Micro-interaction Specs'
+    id: "02",
+    label: "UI/UX DESIGN",
+    badge: "02 / UI/UX & DESIGN SYSTEM",
+    headingLine1: "CRAFTING EXPERIENCES",
+    headingLine2: "THAT USERS LOVE.",
+    desc: "We design high-fidelity, interactive prototypes backed by atomic design tokens, ergonomic dark/light themes, and strict WCAG accessibility.",
+    features: [
+      { icon: Layers, title: "DESIGN TOKENS", subtitle: "Unified color palette, typography & spacing system." },
+      { icon: Users, title: "USER TESTING", subtitle: "Clickable Figma prototypes tested with real users." },
+      { icon: Zap, title: "MICRO-INTERACTIONS", subtitle: "Smooth 60fps animations and fluid state transitions." }
     ],
-    icon: Layers,
-    accentColor: '#0284C7',
-    simulation: {
-      type: 'design',
-      title: 'design_tokens.json',
-      status: 'TOKENS_EXPORTED',
-      metrics: [
-        { label: 'Figma Components', value: '140+ Reusable UI' },
-        { label: 'WCAG Compliance', value: 'Level AA (100%)' },
-        { label: 'Design Tokens', value: 'Synchronized Code' },
-        { label: 'User Journeys', value: 'Validated Flows' }
-      ],
-      codeSnippet: `/* Step 02: Design System Tokenization */\n:root {\n  --brand-navy: #0B1938;\n  --brand-blue: #0066FF;\n  --accent-cyan: #0284C7;\n  --font-display: "Outfit", sans-serif;\n  --radius-card: 12px;\n  --shadow-elevation: 0 20px 40px rgba(0,0,0,0.08);\n}`
-    }
+    stats: [
+      { value: "100%", label: "WCAG AA COMPLIANT" },
+      { value: "150+", label: "REUSABLE COMPONENTS" },
+      { value: "60 FPS", label: "FLUID ANIMATIONS" }
+    ],
+    ideFile: "theme.tokens.ts",
+    ideCode: `export const brandTokens = {\n  colors: { brand: "#0066FF", navy: "#0B1938" },\n  typography: { fontSans: "Inter", fontDisplay: "Outfit" },\n  radius: { card: "16px", button: "10px" },\n  animation: { duration: "200ms", ease: "cubic-bezier(0.16, 1, 0.3, 1)" }\n};`
   },
   {
-    step: '03',
-    phase: 'STAGE 03',
-    title: 'Agile Full-Stack Engineering',
-    tagline: 'Type-safe codebase, clean architecture & bi-weekly demo drops',
-    desc: 'Dedicated engineering pods write modular, maintainable code with strict TypeScript typing, test-driven development, and automated CI/CD staging environments.',
-    duration: 'Sprint 2–6 • Bi-Weekly Deployments',
-    leadRole: 'Principal Full-Stack Engineers',
-    deliverables: [
-      'Modular Frontend (React / Next.js / TypeScript / Tailwind)',
-      'High-Performance Backend (Node.js / Python / FastAPI / Go)',
-      'Automated GitHub Actions CI/CD Pipeline to Staging',
-      'Bi-Weekly Interactive Demo Drops for Stakeholder Feedback'
+    id: "03",
+    label: "AGILE FULL-STACK ENGINEERING",
+    badge: "03 / AGILE FULL-STACK ENGINEERING",
+    headingLine1: "FROM FIRST IDEA",
+    headingLine2: "TO PRODUCTION SCALE.",
+    desc: "Our full-stack teams turn your vision into scalable, high-performance applications — using modern frameworks, clean architecture and agile development practices.",
+    features: [
+      { icon: Code2, title: "MODERN TECH STACK", subtitle: "React, Next.js, Node.js, Python, FastAPI, Go" },
+      { icon: Users, title: "PRODUCT-DRIVEN TEAMS", subtitle: "Cross-functional squads with product mindset." },
+      { icon: Zap, title: "ITERATIVE DELIVERY", subtitle: "Sprint cycles, live demos, continuous feedback." }
     ],
-    icon: Code2,
-    accentColor: '#0066FF',
-    simulation: {
-      type: 'code',
-      title: 'engine_worker.go',
-      status: 'STAGING_COMPILED',
-      metrics: [
-        { label: 'Code Quality', value: '100% Strict TypeScript' },
-        { label: 'Build Status', value: 'Passing (Zero Errors)' },
-        { label: 'CI/CD Pipeline', value: 'Automated GitHub Action' },
-        { label: 'Code Coverage', value: '94.2% Unit Tests' }
-      ],
-      codeSnippet: `// Step 03: High-Concurrency Service Pod\nfunc ExecuteTaskWorker(ctx context.Context, job Job) error {\n  span := tracer.StartSpan("task.execute")\n  defer span.End()\n  return workerPool.Dispatch(ctx, job.Payload)\n}`
-    }
+    stats: [
+      { value: "99.9%", label: "UPTIME GUARANTEE" },
+      { value: "24/7", label: "SUPPORT & MONITORING" },
+      { value: "< 8 MIN", label: "AVG INCIDENT RESPONSE" }
+    ],
+    ideFile: "deployment.ts",
+    ideCode: `export const deployService = async () => {\n  try {\n    const build = await buildApplication();\n    const image = await docker.build(build);\n    await pushToRegistry(image);\n    await updateKubernetes();\n    return { success: true, message: 'Deployed' };\n  } catch (error) {\n    return { success: false, error: error.message };\n  }\n};`
   },
   {
-    step: '04',
-    phase: 'STAGE 04',
-    title: 'QA, Penetration Testing & Audits',
-    tagline: 'Automated unit/E2E suites, security pen-testing & load stress',
-    desc: 'We stress-test every API endpoint, validate cross-browser responsiveness, run OWASP penetration scans, and simulate high-traffic flash surges.',
-    duration: 'Continuous • Automated Suite',
-    leadRole: 'Lead QA & Security Specialist',
-    deliverables: [
-      'End-to-End Cypress / Playwright Regression Test Suites',
-      'OWASP Top-10 Vulnerability & Penetration Testing Report',
-      'Simulated Multi-Region Concurrency Load Testing (10k+ req/sec)',
-      'Zero Critical Security Flaws Before Production Sign-Off'
+    id: "04",
+    label: "QA & TESTING",
+    badge: "04 / AUTOMATED QA & PEN-TESTING",
+    headingLine1: "ZERO REGRESSIONS.",
+    headingLine2: "100% CONFIDENCE.",
+    desc: "Automated end-to-end testing, static security analysis, performance benchmarks, and penetration testing embedded into every single PR.",
+    features: [
+      { icon: ShieldCheck, title: "AUTOMATED CI/CD TESTS", subtitle: "Unit, integration, and Playwright E2E suites." },
+      { icon: Cpu, title: "LOAD & STRESS TESTING", subtitle: "Simulating 50k+ concurrent users under peak load." },
+      { icon: CheckCircle2, title: "SECURITY AUDITS", subtitle: "OWASP Top 10 automated vulnerability scanning." }
     ],
-    icon: CheckSquare,
-    accentColor: '#059669',
-    simulation: {
-      type: 'qa',
-      title: 'security_audit_report.log',
-      status: 'ALL_TESTS_PASSED',
-      metrics: [
-        { label: 'E2E Test Suites', value: '384 Passed (100%)' },
-        { label: 'OWASP Security', value: 'Grade A+ Certified' },
-        { label: 'Stress Load', value: '15,000 Req / Sec' },
-        { label: 'Error Rate', value: '0.000% Defect SLA' }
-      ],
-      codeSnippet: `[PASS] TestSuite.Authentication.PenetrationScan\n[PASS] TestSuite.PaymentGateways.IdempotencyCheck\n[PASS] TestSuite.ConcurrentLoad.15000ReqPerSec\n[PASS] TestSuite.CrossBrowser.Safari_Chrome_Edge\n-> RESULT: 384/384 SUITES VERIFIED [0 FAILS]`
-    }
+    stats: [
+      { value: "95%+", label: "TEST COVERAGE" },
+      { value: "0", label: "CRITICAL VULNERABILITIES" },
+      { value: "< 50ms", label: "API TEST SUITE RUN" }
+    ],
+    ideFile: "e2e.test.ts",
+    ideCode: `describe('Payment & Checkout Pipeline', () => {\n  it('should process enterprise subscription in < 500ms', async () => {\n    const response = await api.post('/v1/checkout', payload);\n    expect(response.status).toBe(200);\n    expect(response.data.captured).toBe(true);\n  });\n});`
   },
   {
-    step: '05',
-    phase: 'STAGE 05',
-    title: 'Zero-Downtime Cloud Deployment',
-    tagline: 'Multi-region AWS/GCP Kubernetes clusters & DNS cutover',
-    desc: 'We execute blue-green zero-downtime production rollouts on resilient cloud infrastructure with automated database migrations, SSL/TLS, and CDN edge caching.',
-    duration: 'Launch Day • Zero-Downtime',
-    leadRole: 'Senior DevOps / SRE Lead',
-    deliverables: [
-      'Production Kubernetes Cluster Deployment on AWS / GCP',
-      'Global Cloudflare CDN Edge Caching & WAF Protection',
-      'Automated Database Sharding & Encrypted Backup Routines',
-      'Seamless Live Production DNS Cutover with Zero Interruption'
+    id: "05",
+    label: "ZERO-DOWNTIME CLOUD",
+    badge: "05 / CLOUD INFRASTRUCTURE & DEVOPS",
+    headingLine1: "INFRASTRUCTURE AS CODE.",
+    headingLine2: "HIGH AVAILABILITY.",
+    desc: "Terraform-provisioned multi-region Kubernetes clusters with automated auto-scaling, blue-green deployments, and sub-second failover.",
+    features: [
+      { icon: Server, title: "KUBERNETES & DOCKER", subtitle: "Containerized microservices with auto-healing pods." },
+      { icon: GitBranch, title: "BLUE-GREEN RELEASES", subtitle: "Zero downtime deployments with instant rollback." },
+      { icon: HardDrive, title: "MULTI-AZ STORAGE", subtitle: "Automated daily snapshots and cross-region backups." }
     ],
-    icon: Rocket,
-    accentColor: '#0066FF',
-    simulation: {
-      type: 'devops',
-      title: 'k8s_production_cluster.yaml',
-      status: 'CLUSTER_LIVE',
-      metrics: [
-        { label: 'Cluster Health', value: '100% Operational' },
-        { label: 'Global CDN', value: 'Sub-25ms Edge Edge' },
-        { label: 'Auto-Scaling', value: 'HPA Nodes Ready' },
-        { label: 'Downtime', value: '0.00 Seconds' }
-      ],
-      codeSnippet: `apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: buildzone-core-production\nspec:\n  replicas: 16\n  strategy:\n    type: RollingUpdate\n    rollingUpdate: { maxSurge: 2, maxUnavailable: 0 }`
-    }
+    stats: [
+      { value: "0s", label: "DEPLOYMENT DOWNTIME" },
+      { value: "Multi-AZ", label: "CLOUD REDUNDANCY" },
+      { value: "Auto", label: "HORIZONTAL POD SCALING" }
+    ],
+    ideFile: "k8s-service.yaml",
+    ideCode: `apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: buildzone-core-api\nspec:\n  replicas: 12\n  strategy:\n    type: RollingUpdate\n    rollingUpdate:\n      maxSurge: 2\n      maxUnavailable: 0`
   },
   {
-    step: '06',
-    phase: 'STAGE 06',
-    title: '24/7 SLA Telemetry & Maintenance',
-    tagline: 'Real-time observability, instant incident response & patches',
-    desc: 'Your application is guarded 24/7 with Prometheus/Grafana telemetry, instant bug resolutions, monthly dependency updates, and guaranteed SLA uptime.',
-    duration: 'Ongoing • 24/7 Active Monitoring',
-    leadRole: 'Dedicated Support Pod',
-    deliverables: [
-      '24/7 Real-Time Error Telemetry & Alerting (Datadog/Sentry)',
-      'Sub-15 Minute Incident Response SLA Guarantee',
-      'Monthly Security Patches, Kernel Updates & Optimization',
-      'Dedicated Slack / WhatsApp Channel with Core Engineers'
+    id: "06",
+    label: "24/7 SLA SUPPORT",
+    badge: "06 / 24/7 SLA & OBSERVABILITY",
+    headingLine1: "CONTINUOUS MONITORING.",
+    headingLine2: "REAL-TIME ALERTS.",
+    desc: "Around-the-clock telemetry, distributed tracing with OpenTelemetry, automated anomaly detection, and rapid incident response teams.",
+    features: [
+      { icon: ShieldCheck, title: "DEDICATED ON-CALL", subtitle: "Direct Slack/PagerDuty escalation channel." },
+      { icon: Zap, title: "REAL-TIME APM", subtitle: "Datadog, Prometheus & Grafana live metrics." },
+      { icon: Users, title: "EXECUTIVE REPORTING", subtitle: "Monthly performance, uptime and security audits." }
     ],
-    icon: Wrench,
-    accentColor: '#D97706',
-    simulation: {
-      type: 'sla',
-      title: 'telemetry_monitor.live',
-      status: '99.99%_UPTIME',
-      metrics: [
-        { label: 'Uptime SLA', value: '99.99% Guaranteed' },
-        { label: 'Avg Incident Response', value: '< 8 Minutes' },
-        { label: 'Live Pods', value: 'Healthy & Balanced' },
-        { label: 'Security Status', value: 'Patched & Monitored' }
-      ],
-      codeSnippet: `[TELEMETRY MONITOR: LIVE]\n• Prometheus Metrics: 100% HEALTHY\n• Error Budget Consumed: 0.01% / Month\n• Sentry Error Rate: 0.00 / 100k requests\n• Database IOPS Utilization: 18% (Nominal)`
-    }
+    stats: [
+      { value: "24/7/365", label: "ACTIVE MONITORING" },
+      { value: "< 5 Min", label: "P1 ALERT RESPONSE" },
+      { value: "99.99%", label: "HISTORICAL UPTIME" }
+    ],
+    ideFile: "telemetry.config.ts",
+    ideCode: `export const telemetry = new OpenTelemetry({\n  serviceName: "buildzone-edge",\n  sampleRate: 1.0,\n  alertThresholds: { p99LatencyMs: 120, errorRatePct: 0.01 },\n  onIncident: async (event) => notifyPagerDutySquad(event)\n});`
   },
   {
-    step: '07',
-    phase: 'STAGE 07',
-    title: 'Continuous Scaling & AI Roadmap',
-    tagline: 'Autonomous AI integrations, feature expansions & growth',
-    desc: 'As your business scales, we evolve your product. We integrate custom AI models, optimize database throughput, build mobile companion apps, and expand market capabilities.',
-    duration: 'Quarterly Growth Sprints',
-    leadRole: 'Growth & AI Solutions Lead',
-    deliverables: [
-      'Fine-Tuned Domain AI & Autonomous Multi-Agent Systems',
-      'Database Sharding & Query Optimization for Millions of Records',
-      'Quarterly Feature Roadmap Planning & Rapid Sprints',
-      'Enterprise API Monetization & Partner Ecosystem Extensions'
+    id: "07",
+    label: "CONTINUOUS SCALING",
+    badge: "07 / CONTINUOUS OPTIMIZATION & GROWTH",
+    headingLine1: "ENGINEERED TO GROW",
+    headingLine2: "WITH YOUR BUSINESS.",
+    desc: "Ongoing feature expansion, query optimization, cost minimization, and architectural upgrades as your user base expands into millions.",
+    features: [
+      { icon: Rocket, title: "QUERY OPTIMIZATION", subtitle: "Database index tuning & distributed caching." },
+      { icon: Cpu, title: "CLOUD COST EFFICIENCY", subtitle: "Automated spot instances & serverless offloading." },
+      { icon: Boxes, title: "FEATURE ACCELERATION", subtitle: "Continuous sprint execution for new market opportunities." }
     ],
-    icon: TrendingUp,
-    accentColor: '#0066FF',
-    simulation: {
-      type: 'growth',
-      title: 'growth_roadmap.ai',
-      status: 'SCALING_PHASE',
-      metrics: [
-        { label: 'User Capacity', value: '1,000,000+ Scalable' },
-        { label: 'AI Throughput', value: 'Sub-50ms Vector Search' },
-        { label: 'Architecture Tier', value: 'Enterprise Ready' },
-        { label: 'Feature Cadence', value: 'Agile 2-Wk Releases' }
-      ],
-      codeSnippet: `// Step 07: Enterprise Scale & Vector AI Matrix\nconst VectorPipeline = new SemanticRouter({\n  embeddingModel: "text-embedding-3-large",\n  vectorIndex: "pinecone-serverless",\n  throughput: "10,000 QPS",\n  autoScale: true\n});`
-    }
+    stats: [
+      { value: "10M+", label: "SCALING CAPACITY" },
+      { value: "-40%", label: "AVG CLOUD BILL SAVINGS" },
+      { value: "Continuous", label: "INNOVATION ROADMAP" }
+    ],
+    ideFile: "scale.config.ts",
+    ideCode: `export const scalingPolicy = {\n  targetCpuUtilization: 65,\n  scaleUpDelay: "15s",\n  scaleDownDelay: "300s",\n  redisClusterNodes: 6,\n  edgeCachingTtl: 3600\n};`
   }
 ];
 
 export const Process = () => {
-  const [activeStep, setActiveStep] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  // Auto-advance step pipeline every 5 seconds if playing
-  useEffect(() => {
-    if (!isPlaying) return;
-    const timer = setInterval(() => {
-      setActiveStep(prev => (prev + 1) % pipelineSteps.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [isPlaying]);
-
-  const current = pipelineSteps[activeStep];
-  const StepIcon = current.icon;
-
-  const nextStep = () => {
-    setActiveStep(prev => (prev + 1) % pipelineSteps.length);
-  };
-
-  const prevStep = () => {
-    setActiveStep(prev => (prev - 1 + pipelineSteps.length) % pipelineSteps.length);
-  };
+  const [activeStepIndex, setActiveStepIndex] = useState(2); // Step 03 default
+  const activeStep = stepsData[activeStepIndex];
 
   return (
-    <section className="py-16 sm:py-24 bg-[#F8FAFC] relative overflow-hidden">
-      {/* Background Micro Grid */}
-      <div className="absolute inset-0 bg-cyber-grid opacity-30 pointer-events-none"></div>
+    <section className="py-20 lg:py-28 bg-[#FBFDFF] relative overflow-hidden border-t border-slate-100">
+      {/* Background Subtle Grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(#0066FF_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.025] pointer-events-none" />
 
       <Container className="relative z-10">
         
-        {/* Section Header */}
-        <SectionTitle
-          badge="Delivery Methodology"
-          title="7-Step Engineering Lifecycle"
-          subtitle="A battle-tested agile framework designed for predictability, zero scope-creep, and rapid time-to-market."
-          center
-        />
-
-        {/* 1. Interactive Horizontal Circuit Progress Bar */}
-        <div className="mt-12 sm:mt-14 mb-8 sm:mb-12">
-          <div className="relative">
-            
-            {/* Continuous Background Connection Line */}
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-slate-200 -translate-y-1/2 hidden md:block z-0"></div>
-            
-            {/* Active Progress Beam */}
+        {/* Top 7-Step Navigation Bar */}
+        <div className="relative mb-16 sm:mb-20">
+          
+          {/* Connecting Horizontal Line */}
+          <div className="hidden lg:block absolute top-4 left-0 right-0 h-0.5 bg-slate-200/80 z-0">
             <div 
-              className="absolute top-1/2 left-0 h-0.5 bg-[#0066FF] -translate-y-1/2 hidden md:block z-0 transition-all duration-500 ease-out"
-              style={{ width: `${(activeStep / (pipelineSteps.length - 1)) * 100}%` }}
-            ></div>
+              className="h-full bg-[#0066FF] transition-all duration-500 ease-out"
+              style={{ width: `${(activeStepIndex / (stepsData.length - 1)) * 100}%` }}
+            />
+          </div>
 
-            {/* 7 Circuit Step Nodes */}
-            <div className="grid grid-cols-7 gap-2 relative z-10">
-              {pipelineSteps.map((s, idx) => {
-                const isActive = activeStep === idx;
-                const isPassed = activeStep > idx;
-                const NodeIcon = s.icon;
+          {/* Step Items Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 lg:gap-2 relative z-10">
+            {stepsData.map((step, idx) => {
+              const isActive = idx === activeStepIndex;
+              return (
+                <button
+                  key={step.id}
+                  type="button"
+                  onClick={() => setActiveStepIndex(idx)}
+                  className="flex flex-col items-center text-center group cursor-pointer transition-all"
+                >
+                  {/* Step Number Circle / Badge */}
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all mb-2.5 ${
+                    isActive
+                      ? 'bg-[#0066FF] text-white shadow-md shadow-blue-500/30 ring-4 ring-blue-100 scale-105'
+                      : 'bg-white text-slate-500 border border-slate-200 group-hover:border-[#0066FF] group-hover:text-[#0066FF]'
+                  }`}>
+                    {step.id}
+                  </div>
 
-                return (
-                  <button
-                    key={s.step}
-                    aria-label={`Select Engineering Phase ${s.step}: ${s.title}`}
-                    onClick={() => {
-                      setActiveStep(idx);
-                      setIsPlaying(false);
-                    }}
-                    className={`flex flex-col items-center group cursor-pointer transition-all duration-300 focus:outline-none ${
-                      isActive ? 'scale-105' : 'hover:scale-102 opacity-80 hover:opacity-100'
-                    }`}
-                  >
-                    {/* Circle Node Badge */}
-                    <div 
-                      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center font-mono text-xs sm:text-sm font-black transition-all duration-300 shadow-sm ${
-                        isActive
-                          ? 'bg-[#0066FF] text-white ring-4 ring-blue-200 shadow-lg'
-                          : isPassed
-                          ? 'bg-blue-50 text-[#0066FF] border border-blue-200'
-                          : 'bg-white text-slate-500 border border-slate-200 group-hover:border-blue-300'
-                      }`}
-                    >
-                      <span className="hidden sm:inline">{s.step}</span>
-                      <NodeIcon className="w-4 h-4 sm:hidden" />
-                    </div>
-
-                    {/* Step Title Label under node */}
-                    <div className="hidden lg:block text-center mt-2">
-                      <span className={`font-mono text-[10px] uppercase tracking-wider font-bold block transition-colors ${
-                        isActive ? 'text-[#0066FF]' : 'text-slate-500 group-hover:text-[#0B1938]'
-                      }`}>
-                        {s.title.split(' ')[0]} {s.title.split(' ')[1] || ''}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+                  {/* Step Label */}
+                  <span className={`font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-colors max-w-[120px] leading-tight ${
+                    isActive
+                      ? 'text-[#0066FF] font-black'
+                      : 'text-slate-500 group-hover:text-slate-800'
+                  }`}>
+                    {step.label}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* 2. Interactive Stage Cockpit View (2-Column Architecture) */}
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden p-6 sm:p-8 lg:p-10 relative">
+        {/* Main Step Detail Grid: Left Copy & Right High-Tech Showcase */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Top Progress Bar Indicator for Active Timer */}
-          <div 
-            key={activeStep} 
-            className={`absolute top-0 left-0 h-1 bg-[#0066FF] transition-all duration-[5000ms] ease-linear w-full origin-left ${
-              !isPlaying ? 'opacity-0' : 'opacity-100'
-            }`}
-          ></div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          {/* Left Column: Pill Badge, Title, Paragraph, Features & Stats */}
+          <div className="lg:col-span-6 space-y-6">
             
-            {/* Left Column: Stage Details & Deliverables (7 cols) */}
-            <div className="lg:col-span-7 space-y-5 sm:space-y-6">
-              
-              {/* Phase Header Badges */}
-              <div className="flex flex-wrap items-center gap-2.5">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full font-mono text-[11px] font-bold text-[#0052CC] uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>{current.phase} OF 07</span>
-                </div>
-
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 border border-slate-200 rounded-full font-mono text-[11px] font-semibold text-slate-600">
-                  <Terminal className="w-3 h-3 text-[#0066FF]" />
-                  <span>{current.duration}</span>
-                </div>
-              </div>
-
-              {/* Title & Tagline */}
-              <div>
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black font-display uppercase tracking-tight text-[#0B1938] leading-tight">
-                  {current.title}
-                </h3>
-                <p className="text-xs sm:text-sm font-mono font-semibold text-[#0066FF] mt-1.5 uppercase tracking-wide">
-                  // {current.tagline}
-                </p>
-              </div>
-
-              {/* Description */}
-              <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed">
-                {current.desc}
-              </p>
-
-              {/* 4 Concrete Engineering Deliverables */}
-              <div className="space-y-2.5 pt-1">
-                <span className="font-mono text-[11px] font-bold text-slate-700 uppercase tracking-wider block">
-                  STAGE DELIVERABLES & MILESTONES:
-                </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {current.deliverables.map((item, idx) => (
-                    <div 
-                      key={idx} 
-                      className="flex items-start gap-2 p-2.5 bg-[#F8FAFC] border border-slate-200/80 rounded-lg text-xs font-mono text-slate-700 hover:border-blue-200 hover:bg-blue-50/40 transition-colors"
-                    >
-                      <CheckCircle2 className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
-                      <span className="leading-snug">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Bottom Interactive Navigation & Autoplay Controls */}
-              <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={prevStep}
-                    className="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#0066FF] hover:bg-blue-50 text-[#0B1938] hover:text-[#0066FF] transition-all cursor-pointer shadow-2xs"
-                    aria-label="Previous Step"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={nextStep}
-                    className="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#0066FF] hover:bg-blue-50 text-[#0B1938] hover:text-[#0066FF] transition-all cursor-pointer shadow-2xs"
-                    aria-label="Next Step"
-                  >
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setIsPlaying(!isPlaying)}
-                    aria-label={isPlaying ? 'Pause Auto-Advancing Process' : 'Play Auto-Advancing Process'}
-                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 font-mono text-xs font-semibold transition-all cursor-pointer shadow-2xs ml-1"
-                  >
-                    {isPlaying ? <Pause className="w-3.5 h-3.5 text-[#0066FF]" /> : <Play className="w-3.5 h-3.5 text-emerald-600" />}
-                    <span>{isPlaying ? 'Auto-Advancing' : 'Paused'}</span>
-                  </button>
-                </div>
-
-                <div className="font-mono text-xs font-bold text-slate-600">
-                  <span className="text-[#0052CC] text-base">{current.step}</span> / 07
-                </div>
-              </div>
-
+            {/* Step Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-blue-200/80 bg-blue-50/50 shadow-2xs">
+              <span className="font-mono text-[11px] font-bold text-[#0066FF] uppercase tracking-wider">
+                {activeStep.badge}
+              </span>
             </div>
 
-            {/* Right Column: Interactive Live Code / Architecture Simulation Cockpit (5 cols) */}
-            <div className="lg:col-span-5 bg-[#0B1938] rounded-xl p-5 sm:p-6 text-white font-mono shadow-2xl border border-slate-800 relative overflow-hidden">
-              
-              {/* Simulation Header */}
-              <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-800">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-400"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-                  <span className="text-xs text-slate-300 font-bold ml-1.5">
-                    {current.simulation.title}
-                  </span>
-                </div>
-                <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[9px] font-bold uppercase rounded">
-                  {current.simulation.status}
+            {/* Giant Title */}
+            <div className="space-y-1">
+              <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black font-display uppercase tracking-tight text-[#0B1938] leading-[1.08]">
+                {activeStep.headingLine1} <br />
+                <span className="text-[#0066FF] bg-gradient-to-r from-[#0066FF] to-[#0080FF] bg-clip-text text-transparent">
+                  {activeStep.headingLine2}
                 </span>
-              </div>
+              </h2>
+            </div>
 
-              {/* Live Animated Code Window */}
-              <div className="bg-[#071126] border border-slate-800/80 rounded-lg p-3.5 text-[11px] leading-relaxed text-blue-200/90 overflow-x-auto whitespace-pre font-mono mb-4 min-h-[120px]">
-                {current.simulation.codeSnippet}
-              </div>
+            {/* Paragraph Description */}
+            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed max-w-lg">
+              {activeStep.desc}
+            </p>
 
-              {/* 4 Live Verification Metrics */}
-              <div className="grid grid-cols-2 gap-2.5 pt-1">
-                {current.simulation.metrics.map((m, i) => (
-                  <div key={i} className="p-2.5 bg-slate-900/90 border border-slate-800 rounded-lg">
-                    <div className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
-                      {m.label}
+            {/* 3 Feature Highlight Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              {activeStep.features.map((feat, fIdx) => {
+                const Icon = feat.icon;
+                return (
+                  <div key={fIdx} className="space-y-2">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0066FF] flex items-center justify-center border border-blue-100/60 shadow-2xs">
+                      <Icon className="w-4 h-4" />
                     </div>
-                    <div className="text-xs font-bold text-white mt-0.5 truncate">
-                      {m.value}
+                    <h4 className="font-display font-black text-xs uppercase text-[#0B1938] tracking-tight">
+                      {feat.title}
+                    </h4>
+                    <p className="font-mono text-[10px] text-slate-500 leading-snug">
+                      {feat.subtitle}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Bottom 3 Metrics with Vertical Dividers */}
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200/80">
+              {activeStep.stats.map((stat, sIdx) => (
+                <div key={sIdx} className="space-y-0.5">
+                  <div className="font-display font-black text-xl sm:text-2xl text-[#0066FF] tracking-tight">
+                    {stat.value}
+                  </div>
+                  <div className="font-mono text-[9px] sm:text-[10px] uppercase font-bold text-slate-500 tracking-wider">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+
+          {/* Right Column: Layered Architecture Diagram + Dark IDE Code Window */}
+          <div className="lg:col-span-6 relative flex flex-col items-center">
+            
+            <div className="w-full max-w-[540px] relative space-y-[-50px]">
+              
+              {/* Top Layer: Cloud Architecture Flow Chart */}
+              <div className="bg-white/95 backdrop-blur-md rounded-2xl p-5 border border-blue-100/90 shadow-lg shadow-blue-500/5 relative z-10 space-y-3">
+                
+                {/* 1. Client Apps Card */}
+                <div className="flex flex-col items-center">
+                  <div className="bg-slate-50 border border-slate-200/90 rounded-xl px-4 py-2 shadow-2xs text-center space-y-1">
+                    <span className="font-mono text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
+                      Client Apps
+                    </span>
+                    <div className="flex items-center justify-center gap-3 text-slate-700">
+                      <Globe className="w-3.5 h-3.5 hover:text-[#0066FF] transition-colors" />
+                      <span className="text-xs font-bold"></span>
+                      <Smartphone className="w-3.5 h-3.5 hover:text-[#0066FF] transition-colors" />
+                      <span className="text-[11px] font-bold font-mono">e</span>
                     </div>
                   </div>
-                ))}
+
+                  {/* Arrow to Load Balancer */}
+                  <div className="w-0.5 h-3 bg-[#0066FF]/40" />
+                  <div className="w-0 h-0 border-l-[3px] border-l-transparent border-r-[3px] border-r-transparent border-t-[4px] border-t-[#0066FF]" />
+                </div>
+
+                {/* 2. Load Balancer Box */}
+                <div className="flex justify-center">
+                  <div className="w-[180px] bg-gradient-to-r from-[#0066FF] to-[#0080FF] text-white rounded-xl py-1.5 px-3 flex items-center justify-center gap-2 shadow-sm shadow-blue-500/30">
+                    <GitBranch className="w-3.5 h-3.5" />
+                    <span className="font-display text-xs font-bold uppercase tracking-wider">
+                      Load Balancer
+                    </span>
+                  </div>
+                </div>
+
+                {/* Split Lines to 3 Services */}
+                <div className="w-full h-4 relative">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-2 bg-[#0066FF]/40" />
+                  <div className="absolute top-2 left-[18%] right-[18%] h-0.5 bg-[#0066FF]/40" />
+                  {/* Drops */}
+                  <div className="absolute top-2 left-[18%] w-0.5 h-2 bg-[#0066FF]/40" />
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-0.5 h-2 bg-[#0066FF]/40" />
+                  <div className="absolute top-2 right-[18%] w-0.5 h-2 bg-[#0066FF]/40" />
+                </div>
+
+                {/* 3. Three Services Cards */}
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="bg-slate-50/90 border border-slate-200/80 rounded-lg p-2 text-center space-y-0.5 hover:border-[#0066FF]/30 transition-colors">
+                    <Server className="w-3.5 h-3.5 text-[#0066FF] mx-auto mb-1" />
+                    <span className="font-display font-bold text-[10px] text-[#0B1938] block truncate">
+                      Web Services
+                    </span>
+                    <span className="font-mono text-[8px] text-slate-400 block truncate">
+                      (Node.js / Python)
+                    </span>
+                  </div>
+
+                  <div className="bg-slate-50/90 border border-slate-200/80 rounded-lg p-2 text-center space-y-0.5 hover:border-[#0066FF]/30 transition-colors">
+                    <Settings className="w-3.5 h-3.5 text-[#0066FF] mx-auto mb-1" />
+                    <span className="font-display font-bold text-[10px] text-[#0B1938] block truncate">
+                      API Services
+                    </span>
+                    <span className="font-mono text-[8px] text-slate-400 block truncate">
+                      (FastAPI)
+                    </span>
+                  </div>
+
+                  <div className="bg-slate-50/90 border border-slate-200/80 rounded-lg p-2 text-center space-y-0.5 hover:border-[#0066FF]/30 transition-colors">
+                    <Layers className="w-3.5 h-3.5 text-[#0066FF] mx-auto mb-1" />
+                    <span className="font-display font-bold text-[10px] text-[#0B1938] block truncate">
+                      Background Jobs
+                    </span>
+                    <span className="font-mono text-[8px] text-slate-400 block truncate">
+                      (Workers)
+                    </span>
+                  </div>
+                </div>
+
+                {/* Arrow down to storage */}
+                <div className="flex flex-col items-center pt-1">
+                  <div className="w-0.5 h-2 bg-[#0066FF]/40" />
+                </div>
+
+                {/* 4. Storage / Database Row */}
+                <div className="grid grid-cols-3 gap-2 bg-slate-50/60 p-2 rounded-xl border border-slate-200/60">
+                  <div className="flex items-center gap-1.5 justify-center">
+                    <Database className="w-3 h-3 text-[#0066FF]" />
+                    <div className="text-left">
+                      <span className="font-display font-bold text-[9px] text-[#0B1938] block">PostgreSQL</span>
+                      <span className="font-mono text-[8px] text-slate-400 block">(Primary DB)</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 justify-center">
+                    <Database className="w-3 h-3 text-cyan-500" />
+                    <div className="text-left">
+                      <span className="font-display font-bold text-[9px] text-[#0B1938] block">Redis</span>
+                      <span className="font-mono text-[8px] text-slate-400 block">(Cache)</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 justify-center">
+                    <HardDrive className="w-3 h-3 text-sky-500" />
+                    <div className="text-left">
+                      <span className="font-display font-bold text-[9px] text-[#0B1938] block">S3</span>
+                      <span className="font-mono text-[8px] text-slate-400 block">(Storage)</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
-              {/* Stage Role Stamp */}
-              <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-400">
-                <span>Phase Lead:</span>
-                <span className="text-cyan-400 font-bold">{current.leadRole}</span>
+              {/* Bottom Layer: Overlapping Dark IDE Code Editor Window */}
+              <div className="relative z-20 shadow-2xl rounded-2xl overflow-hidden border border-slate-700/60 bg-[#0B132B] text-white">
+                
+                {/* Window Title Bar */}
+                <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#070D1E] border-b border-slate-800">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                    <span className="text-[10px] font-mono text-slate-400 ml-2 font-semibold">
+                      buildzone-ide
+                    </span>
+                  </div>
+
+                  {/* Active Tab */}
+                  <div className="px-2.5 py-0.5 bg-[#0B132B] border border-slate-700 rounded text-[10px] font-mono text-blue-400 flex items-center gap-1">
+                    <Code2 className="w-3 h-3 text-[#0066FF]" />
+                    <span>{activeStep.ideFile}</span>
+                  </div>
+                </div>
+
+                {/* Editor Body: Left File Tree + Right Code */}
+                <div className="grid grid-cols-12 text-[10px] font-mono">
+                  
+                  {/* File Explorer Tree */}
+                  <div className="col-span-4 bg-[#070D1E]/90 p-3 border-r border-slate-800/80 space-y-1.5 text-slate-400 hidden sm:block">
+                    <div className="text-slate-300 font-bold flex items-center gap-1 text-[10px]">
+                      <span>📁</span> buildzone-app
+                    </div>
+                    <div className="pl-2 space-y-1">
+                      <div className="text-slate-300 flex items-center gap-1">
+                        <span>📁</span> src
+                      </div>
+                      <div className="pl-2 space-y-0.5 text-slate-400">
+                        <div>› components</div>
+                        <div>› services</div>
+                        <div>› api</div>
+                        <div>› utils</div>
+                      </div>
+                      <div className="text-slate-400">📄 package.json</div>
+                      <div className="text-slate-400">📄 next.config.js</div>
+                      <div className="text-slate-400">📄 README.md</div>
+                    </div>
+                  </div>
+
+                  {/* Code Area with Syntax Highlighting */}
+                  <div className="col-span-12 sm:col-span-8 p-3.5 bg-[#0B132B] overflow-x-auto space-y-1">
+                    <pre className="font-mono text-[10px] text-slate-300 leading-relaxed">
+                      <code>
+                        {activeStep.ideCode.split('\n').map((line, lIdx) => (
+                          <div key={lIdx} className="table-row">
+                            <span className="table-cell pr-3 text-slate-600 select-none text-right">
+                              {lIdx + 1}
+                            </span>
+                            <span className="table-cell">
+                              {line.includes('export') || line.includes('import') || line.includes('return') || line.includes('const') || line.includes('async') || line.includes('try') || line.includes('catch') ? (
+                                <span className="text-blue-400 font-semibold">{line}</span>
+                              ) : line.includes('await') || line.includes('true') || line.includes('false') ? (
+                                <span className="text-amber-400">{line}</span>
+                              ) : (
+                                <span className="text-slate-200">{line}</span>
+                              )}
+                            </span>
+                          </div>
+                        ))}
+                      </code>
+                    </pre>
+                  </div>
+
+                </div>
+
+                {/* Floating "Deployment Successful" Badge */}
+                <div className="absolute top-8 right-4 bg-white/95 backdrop-blur-md rounded-xl py-1.5 px-3 border border-emerald-100 shadow-lg shadow-emerald-500/10 flex items-center gap-2 text-[#0B1938] z-30">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <div>
+                    <span className="font-display font-bold text-[10px] block leading-tight">
+                      Deployment Successful
+                    </span>
+                    <span className="font-mono text-[8px] text-slate-500 block leading-tight">
+                      Live in 2m 34s
+                    </span>
+                  </div>
+                </div>
+
               </div>
 
             </div>
