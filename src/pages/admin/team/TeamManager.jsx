@@ -27,6 +27,7 @@ export const TeamManager = () => {
   const initialForm = {
     name: '',
     position: '',
+    department: 'Leadership',
     bio: '',
     skills: 'System Architecture, AI, Cloud Infrastructure',
     linkedin: '',
@@ -50,6 +51,7 @@ export const TeamManager = () => {
     setFormData({
       name: member.name || '',
       position: member.position || '',
+      department: member.department || 'Leadership',
       bio: member.bio || '',
       skills: Array.isArray(member.skills) ? member.skills.join(', ') : (member.skills || ''),
       linkedin: member.linkedin || '',
@@ -149,8 +151,11 @@ export const TeamManager = () => {
                         e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80';
                       }}
                     />
-                    <div>
-                      <h2 className="font-display text-base font-bold uppercase text-[#0B1938]">{member.name}</h2>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <h2 className="font-display text-base font-bold uppercase text-[#0B1938] truncate">{member.name}</h2>
+                        <Badge variant="cyan" size="sm">{member.department || 'Leadership'}</Badge>
+                      </div>
                       <p className="font-mono text-xs text-[#0066FF] font-semibold">{member.position}</p>
                     </div>
                   </div>
@@ -245,18 +250,37 @@ export const TeamManager = () => {
                 />
               </div>
 
-              <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
-                  Position / Executive Title *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.position}
-                  onChange={e => setFormData({ ...formData, position: e.target.value })}
-                  placeholder="e.g. Partner & Head of Artificial Intelligence"
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
-                />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                    Position / Title *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.position}
+                    onChange={e => setFormData({ ...formData, position: e.target.value })}
+                    placeholder="e.g. Lead Full-Stack Developer / QA Engineer"
+                    className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                  />
+                </div>
+                <div>
+                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                    Role Category / Department *
+                  </label>
+                  <select
+                    value={formData.department}
+                    onChange={e => setFormData({ ...formData, department: e.target.value })}
+                    className="w-full bg-white border border-slate-300 px-3 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
+                  >
+                    <option value="Leadership">Executive & Leadership</option>
+                    <option value="Engineering">Software Engineering & Developers</option>
+                    <option value="Quality Assurance">Quality Assurance & Testing (QA)</option>
+                    <option value="AI & Data">AI & Machine Learning</option>
+                    <option value="Product & Design">Product & UI/UX Design</option>
+                    <option value="DevOps & Cloud">DevOps & Cloud Architecture</option>
+                  </select>
+                </div>
               </div>
 
               <div>
