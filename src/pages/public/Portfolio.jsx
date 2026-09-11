@@ -12,7 +12,7 @@ const categories = ['All', 'Web', 'Mobile', 'AI', 'SaaS', 'E-Commerce', 'UI/UX']
 
 export const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('All');
-  const { data: projectsData } = useGetProjectsQuery();
+  const { data: projectsData, isLoading } = useGetProjectsQuery();
   const projects = (projectsData && Array.isArray(projectsData) && projectsData.length > 0)
     ? projectsData
     : initialProjects;
@@ -63,7 +63,27 @@ export const Portfolio = () => {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {isLoading && (!projectsData || projectsData.length === 0) ? (
+            <div className="py-8">
+              <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
+                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                  Loading Portfolio Projects...
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-pulse">
+                {[1, 2, 3].map((n) => (
+                  <div key={n} className="bg-white border border-slate-200 rounded-lg p-6 space-y-4">
+                    <div className="aspect-[16/10] w-full bg-slate-100 rounded-md" />
+                    <div className="w-1/2 h-3 bg-slate-100 rounded" />
+                    <div className="w-3/4 h-6 bg-slate-100 rounded" />
+                    <div className="w-full h-12 bg-slate-50 rounded" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects?.map((project) => (
               <div
                 key={project.id}
@@ -141,6 +161,7 @@ export const Portfolio = () => {
               </div>
             ))}
           </div>
+          )}
         </Container>
       </div>
     </>

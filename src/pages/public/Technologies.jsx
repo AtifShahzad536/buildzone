@@ -11,7 +11,7 @@ const categories = ['All', 'Frontend', 'Backend', 'Mobile', 'Database', 'AI', 'C
 
 export const Technologies = () => {
   const [activeCategory, setActiveCategory] = useState('All');
-  const { data: technologiesData } = useGetTechnologiesQuery();
+  const { data: technologiesData, isLoading } = useGetTechnologiesQuery();
   const technologies = (technologiesData && Array.isArray(technologiesData) && technologiesData.length > 0)
     ? technologiesData
     : initialTechnologies;
@@ -61,8 +61,27 @@ export const Technologies = () => {
             ))}
           </div>
 
-          {/* Technologies Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Tech Grid */}
+          {isLoading && (!technologiesData || technologiesData.length === 0) ? (
+            <div className="py-8">
+              <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
+                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                  Loading Technology Catalog...
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-pulse">
+                {[1, 2, 3, 4].map((n) => (
+                  <div key={n} className="bg-white border border-slate-200 rounded-lg p-6 space-y-3">
+                    <div className="w-10 h-10 bg-slate-100 rounded-md" />
+                    <div className="w-2/3 h-5 bg-slate-100 rounded" />
+                    <div className="w-full h-8 bg-slate-50 rounded" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {filtered?.map((tech) => (
               <div
                 key={tech.id || tech.name}
@@ -94,6 +113,7 @@ export const Technologies = () => {
               </div>
             ))}
           </div>
+          )}
         </Container>
       </div>
     </>

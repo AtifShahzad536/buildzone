@@ -13,7 +13,7 @@ const categories = ['All', 'AI', 'SaaS', 'Architecture', 'Web Development', 'Mob
 export const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
-  const { data: blogsData } = useGetBlogsQuery();
+  const { data: blogsData, isLoading } = useGetBlogsQuery();
   const blogs = (blogsData && Array.isArray(blogsData) && blogsData.length > 0)
     ? blogsData
     : initialBlogs;
@@ -80,7 +80,26 @@ export const Blog = () => {
           </div>
 
           {/* Blog Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {isLoading && (!blogsData || blogsData.length === 0) ? (
+            <div className="py-8">
+              <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
+                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                  Loading Engineering Articles...
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-pulse">
+                {[1, 2, 3].map((n) => (
+                  <div key={n} className="bg-white border border-slate-200 rounded-lg p-6 space-y-4">
+                    <div className="aspect-[16/9] w-full bg-slate-100 rounded-md" />
+                    <div className="w-3/4 h-5 bg-slate-100 rounded" />
+                    <div className="w-full h-12 bg-slate-50 rounded" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filtered?.map((post) => (
               <article
                 key={post.id}
@@ -146,6 +165,7 @@ export const Blog = () => {
               </article>
             ))}
           </div>
+          )}
         </Container>
       </div>
     </>

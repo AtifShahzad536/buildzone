@@ -7,7 +7,7 @@ import SectionTitle from '../../components/common/SectionTitle';
 import SEOHead from '../../components/common/SEOHead';
 
 export const Testimonials = () => {
-  const { data: testimonialsData } = useGetTestimonialsQuery();
+  const { data: testimonialsData, isLoading } = useGetTestimonialsQuery();
   const testimonials = (testimonialsData && Array.isArray(testimonialsData) && testimonialsData.length > 0)
     ? testimonialsData
     : initialTestimonials;
@@ -36,7 +36,32 @@ export const Testimonials = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {isLoading && (!testimonialsData || testimonialsData.length === 0) ? (
+            <div className="py-8">
+              <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
+                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                  Loading Testimonials...
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-pulse">
+                {[1, 2, 3].map((n) => (
+                  <div key={n} className="p-8 bg-white border border-slate-200 rounded-lg space-y-6">
+                    <div className="w-1/3 h-4 bg-slate-100 rounded" />
+                    <div className="w-full h-16 bg-slate-50 rounded" />
+                    <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
+                      <div className="w-11 h-11 bg-slate-100 rounded-full" />
+                      <div className="space-y-2">
+                        <div className="w-24 h-4 bg-slate-100 rounded" />
+                        <div className="w-16 h-3 bg-slate-100 rounded" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials?.map((t) => (
               <div
                 key={t.id}
@@ -76,6 +101,7 @@ export const Testimonials = () => {
               </div>
             ))}
           </div>
+          )}
         </Container>
       </div>
     </>

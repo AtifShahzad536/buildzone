@@ -8,7 +8,7 @@ import Badge from '../../components/common/Badge';
 import SEOHead from '../../components/common/SEOHead';
 
 export const CaseStudies = () => {
-  const { data: caseStudiesData } = useGetCaseStudiesQuery();
+  const { data: caseStudiesData, isLoading } = useGetCaseStudiesQuery();
   const caseStudies = (caseStudiesData && Array.isArray(caseStudiesData) && caseStudiesData.length > 0)
     ? caseStudiesData
     : initialCaseStudies;
@@ -37,7 +37,33 @@ export const CaseStudies = () => {
             </p>
           </div>
 
-          <div className="space-y-12">
+          {isLoading && (!caseStudiesData || caseStudiesData.length === 0) ? (
+            <div className="py-8">
+              <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
+                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                  Loading Case Studies...
+                </p>
+              </div>
+              <div className="space-y-8 animate-pulse">
+                {[1, 2].map((n) => (
+                  <div key={n} className="bg-white border border-slate-200 rounded-lg p-6 sm:p-10 flex flex-col lg:flex-row gap-8 items-center">
+                    <div className="w-full lg:w-1/2 aspect-[16/10] bg-slate-100 rounded-md" />
+                    <div className="w-full lg:w-1/2 space-y-4">
+                      <div className="w-1/3 h-4 bg-slate-100 rounded" />
+                      <div className="w-3/4 h-8 bg-slate-100 rounded" />
+                      <div className="w-full h-16 bg-slate-50 rounded" />
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="h-12 bg-slate-100 rounded" />
+                        <div className="h-12 bg-slate-100 rounded" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-12">
             {caseStudies?.map((study) => (
               <div
                 key={study.id}
@@ -94,6 +120,7 @@ export const CaseStudies = () => {
               </div>
             ))}
           </div>
+          )}
         </Container>
       </div>
     </>

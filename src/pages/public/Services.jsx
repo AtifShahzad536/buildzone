@@ -9,7 +9,7 @@ import Badge from '../../components/common/Badge';
 import SEOHead from '../../components/common/SEOHead';
 
 export const Services = () => {
-  const { data: servicesData } = useGetServicesQuery();
+  const { data: servicesData, isLoading } = useGetServicesQuery();
   const services = (servicesData && Array.isArray(servicesData) && servicesData.length > 0)
     ? servicesData
     : initialServices;
@@ -38,7 +38,26 @@ export const Services = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {isLoading && (!servicesData || servicesData.length === 0) ? (
+            <div className="py-8">
+              <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
+                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                  Loading Services Catalog...
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-pulse">
+                {[1, 2].map((n) => (
+                  <div key={n} className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
+                    <div className="h-52 w-full bg-slate-100 rounded-xl" />
+                    <div className="w-2/3 h-6 bg-slate-100 rounded" />
+                    <div className="w-full h-12 bg-slate-50 rounded" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service) => (
               <div
                 key={service.id}
@@ -125,6 +144,7 @@ export const Services = () => {
               </div>
             ))}
           </div>
+          )}
         </Container>
       </div>
     </>

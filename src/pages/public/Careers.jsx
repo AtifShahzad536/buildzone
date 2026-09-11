@@ -20,7 +20,7 @@ import Button from '../../components/common/Button';
 import SEOHead from '../../components/common/SEOHead';
 
 export const Careers = () => {
-  const { data: careersData } = useGetCareersQuery();
+  const { data: careersData, isLoading } = useGetCareersQuery();
   const careers = (careersData && Array.isArray(careersData) && careersData.length > 0)
     ? careersData
     : initialCareers;
@@ -89,7 +89,26 @@ export const Careers = () => {
               subtitle="All positions are open to global candidates with relevant production experience."
             />
 
-            <div className="space-y-4">
+            {isLoading && (!careersData || careersData.length === 0) ? (
+              <div className="py-6">
+                <div className="flex flex-col items-center justify-center text-center space-y-3 mb-8">
+                  <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
+                  <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                    Loading Open Positions...
+                  </p>
+                </div>
+                <div className="space-y-4 animate-pulse">
+                  {[1, 2, 3].map((n) => (
+                    <div key={n} className="p-6 sm:p-8 bg-white border border-slate-200 rounded-lg space-y-3">
+                      <div className="w-24 h-5 bg-slate-100 rounded" />
+                      <div className="w-1/2 h-6 bg-slate-100 rounded" />
+                      <div className="w-3/4 h-4 bg-slate-50 rounded" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-4">
               {careers?.map((job) => (
                 <div
                   key={job.id}
@@ -131,6 +150,7 @@ export const Careers = () => {
                 </div>
               ))}
             </div>
+            )}
           </div>
         </Container>
       </div>

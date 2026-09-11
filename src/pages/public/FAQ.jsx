@@ -12,7 +12,7 @@ export const FAQ = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [openItems, setOpenItems] = useState({ 0: true, 1: true });
 
-  const { data: faqsData } = useGetFaqsQuery();
+  const { data: faqsData, isLoading } = useGetFaqsQuery();
   const faqs = (faqsData && Array.isArray(faqsData) && faqsData.length > 0)
     ? faqsData
     : initialFaqs;
@@ -85,7 +85,25 @@ export const FAQ = () => {
           </div>
 
           {/* 2-Column FAQ Accordion Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 items-start">
+          {isLoading && (!faqsData || faqsData.length === 0) ? (
+            <div className="py-8">
+              <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
+                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                  Loading Knowledge Base...
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-pulse">
+                {[1, 2, 3, 4].map((n) => (
+                  <div key={n} className="border border-slate-200 bg-white rounded-xl p-5 space-y-3">
+                    <div className="w-3/4 h-5 bg-slate-100 rounded" />
+                    <div className="w-full h-8 bg-slate-50 rounded" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 items-start">
             {filtered?.map((faq, index) => {
               const isOpen = !!openItems[index];
               return (
@@ -126,6 +144,7 @@ export const FAQ = () => {
               );
             })}
           </div>
+          )}
         </Container>
       </div>
     </>
