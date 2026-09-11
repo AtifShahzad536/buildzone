@@ -120,7 +120,29 @@ export const Team = () => {
           </div>
 
           {/* Team Members Grid - Clean, Simple, Borderless */}
-          {filteredTeam.length === 0 ? (
+          {isLoading ? (
+            <div className="py-8">
+              {/* Spinner */}
+              <div className="flex flex-col items-center justify-center text-center space-y-3 mb-12">
+                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                  Loading Team Directory...
+                </p>
+              </div>
+
+              {/* Skeleton Placeholder Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 animate-pulse">
+                {[1, 2, 3].map((n) => (
+                  <div key={n} className="flex flex-col items-start w-full space-y-4">
+                    <div className="w-full aspect-[4/5] rounded-2xl bg-slate-100" />
+                    <div className="w-3/4 h-5 bg-slate-100 rounded" />
+                    <div className="w-1/3 h-3 bg-slate-100 rounded" />
+                    <div className="w-full h-8 bg-slate-50 rounded" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : filteredTeam.length === 0 ? (
             <div className="text-center py-16 max-w-md mx-auto">
               <div className="w-12 h-12 bg-blue-50 text-[#0066FF] rounded-2xl flex items-center justify-center mx-auto mb-3">
                 <Users className="w-6 h-6" />
