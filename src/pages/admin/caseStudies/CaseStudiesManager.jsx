@@ -189,7 +189,7 @@ export const CaseStudiesManager = () => {
                       <div className="flex items-center gap-3">
                         <img
                           src={hero}
-                          alt={cs.title}
+                          alt={cs.title || "Case study showcase"}
                           className="w-14 h-10 object-cover rounded-lg border border-slate-200 shadow-2xs shrink-0"
                           onError={(e) => {
                             e.target.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80';
@@ -245,9 +245,9 @@ export const CaseStudiesManager = () => {
             {/* Modal Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white shrink-0">
               <div>
-                <h3 className="font-display text-base sm:text-lg font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-base sm:text-lg font-bold uppercase text-[#0B1938]">
                   {editingId ? 'Edit Architecture Case Study' : 'Publish New Case Study'}
-                </h3>
+                </h2>
                 <span className="text-[10px] font-mono text-slate-400">
                   {editingId ? 'Updating ID: ' + editingId : 'Creating new client showcase'}
                 </span>

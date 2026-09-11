@@ -143,14 +143,14 @@ export const TeamManager = () => {
                   <div className="flex items-center gap-3.5 mb-4">
                     <img
                       src={member.image}
-                      alt={member.name}
+                      alt={member.name || "Team member photo"}
                       className="w-14 h-14 rounded-full object-cover border-2 border-blue-100 shadow-2xs shrink-0"
                       onError={(e) => {
                         e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80';
                       }}
                     />
                     <div>
-                      <h3 className="font-display text-base font-bold uppercase text-[#0B1938]">{member.name}</h3>
+                      <h2 className="font-display text-base font-bold uppercase text-[#0B1938]">{member.name}</h2>
                       <p className="font-mono text-xs text-[#0066FF] font-semibold">{member.position}</p>
                     </div>
                   </div>
@@ -209,9 +209,9 @@ export const TeamManager = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
           <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">
+              <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">
                 {editingId ? "Edit Partner Profile" : "Add Team Partner"}
-              </h3>
+              </h2>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}

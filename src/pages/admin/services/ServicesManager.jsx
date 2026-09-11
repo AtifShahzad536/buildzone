@@ -158,7 +158,7 @@ export const ServicesManager = () => {
                   <Badge variant="cyan" size="sm">{s.category}</Badge>
                 </div>
 
-                <h3 className="font-display text-base font-bold uppercase text-[#0B1938] mb-2">{s.title}</h3>
+                <h2 className="font-display text-base font-bold uppercase text-[#0B1938] mb-2">{s.title}</h2>
                 <p className="text-xs text-slate-600 line-clamp-3 mb-4 leading-relaxed font-sans">{s.shortDescription}</p>
 
                 <div className="flex flex-wrap gap-1.5 mb-4">
@@ -202,9 +202,9 @@ export const ServicesManager = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
           <div className="w-full max-w-xl bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">
+              <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">
                 {editingId ? 'Edit Engineering Service' : 'Add New Service Capability'}
-              </h3>
+              </h2>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4 font-sans text-xs">

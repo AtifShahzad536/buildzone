@@ -396,9 +396,9 @@ export const StartProject = () => {
                                   </span>
                                   {isSelected && <Check className="w-3.5 h-3.5 text-[#0066FF] stroke-[3]" />}
                                 </div>
-                                <h4 className="font-display font-bold text-xs text-[#0066FF] uppercase">
+                                <h3 className="font-display font-bold text-xs text-[#0066FF] uppercase">
                                   {tier.title}
-                                </h4>
+                                </h3>
                                 <p className="text-[11px] text-slate-500 font-sans mt-1 leading-snug">
                                   {tier.desc}
                                 </p>

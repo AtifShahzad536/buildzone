@@ -74,7 +74,7 @@ export const CaseStudyDetails = () => {
           <div className="aspect-[21/9] w-full overflow-hidden bg-slate-100 rounded-lg border border-slate-200 mb-16">
             <img
               src={study.heroImage}
-              alt={study.title ? `${study.title} case study visual` : "Client case study architectural visual"}
+              alt={study.title || "Client case study visual"}
               loading="lazy"
               className="w-full h-full object-cover"
             />

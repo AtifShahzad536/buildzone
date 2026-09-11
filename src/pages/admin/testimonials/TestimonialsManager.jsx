@@ -157,7 +157,7 @@ export const TestimonialsManager = () => {
                 <div className="flex items-center gap-3">
                   <img
                     src={avatar}
-                    alt={author}
+                    alt={author || "Client avatar"}
                     className="w-10 h-10 rounded-full object-cover border border-slate-200 shadow-2xs"
                     onError={(e) => {
                       e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';
@@ -202,9 +202,9 @@ export const TestimonialsManager = () => {
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white shrink-0">
               <div>
-                <h3 className="font-display text-base sm:text-lg font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-base sm:text-lg font-bold uppercase text-[#0B1938]">
                   {editingId ? 'Edit Client Testimonial' : 'Publish New Testimonial'}
-                </h3>
+                </h2>
                 <span className="text-[10px] font-mono text-slate-400">
                   {editingId ? 'Updating ID: ' + editingId : 'New Endorsement'}
                 </span>

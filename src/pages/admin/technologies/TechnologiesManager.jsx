@@ -66,7 +66,7 @@ export const TechnologiesManager = () => {
                 </div>
                 <Badge variant="cyan" size="sm">{tech.category}</Badge>
               </div>
-              <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] mb-1">{tech.name}</h3>
+              <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] mb-1">{tech.name}</h2>
               <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">{tech.description}</p>
             </div>
           </div>
@@ -76,7 +76,7 @@ export const TechnologiesManager = () => {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
           <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
-            <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">Add Technology</h3>
+            <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">Add Technology</h2>
             <form onSubmit={handleCreate} className="space-y-4 font-sans">
               <div>
                 <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Name *</label>

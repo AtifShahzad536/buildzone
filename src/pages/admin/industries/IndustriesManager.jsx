@@ -84,7 +84,7 @@ export const IndustriesManager = () => {
                 <Badge variant="cyan" size="sm">Active</Badge>
               </div>
 
-              <h3 className="font-display text-base font-bold uppercase text-[#0B1938] mb-2">{ind.name}</h3>
+              <h2 className="font-display text-base font-bold uppercase text-[#0B1938] mb-2">{ind.name}</h2>
               <p className="text-xs text-slate-600 line-clamp-2 mb-4 leading-relaxed">{ind.shortDescription}</p>
             </div>
 
@@ -105,7 +105,7 @@ export const IndustriesManager = () => {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
           <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
-            <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">Add Industry Vertical</h3>
+            <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">Add Industry Vertical</h2>
             <form onSubmit={handleCreate} className="space-y-4 font-sans">
               <div>
                 <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Industry Name *</label>

@@ -150,9 +150,9 @@ export const SettingsManager = () => {
         {/* Tab 1: General */}
         {activeTab === 'general' && (
           <div className="space-y-5">
-            <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
+            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
               Branding & Visual Identity
-            </h3>
+            </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <ImageUpload
@@ -199,9 +199,9 @@ export const SettingsManager = () => {
         {activeTab === 'hero' && (
           <div className="space-y-5">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
+              <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
                 Hero Showcase & Video Configuration
-              </h3>
+              </h2>
               <span className="px-2 py-0.5 bg-blue-50 text-[#0066FF] border border-blue-200 text-[10px] font-mono font-bold rounded-full">
                 LIVE CONTROLS
               </span>
@@ -419,9 +419,9 @@ export const SettingsManager = () => {
         {/* Tab 3: Contact */}
         {activeTab === 'contact' && (
           <div className="space-y-4">
-            <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
+            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
               Customer Support & Inbound Communication
-            </h3>
+            </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -493,9 +493,9 @@ export const SettingsManager = () => {
         {/* Tab 4: SEO */}
         {activeTab === 'seo' && (
           <div className="space-y-4">
-            <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
+            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
               SEO & Social Graph Preview
-            </h3>
+            </h2>
 
             <ImageUpload
               label="Social OpenGraph / Twitter Banner (1200x630)"
@@ -534,9 +534,9 @@ export const SettingsManager = () => {
         {/* Tab 5: Social */}
         {activeTab === 'social' && (
           <div className="space-y-4">
-            <h3 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
+            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
               Official Social Profile URLs
-            </h3>
+            </h2>
 
             <div>
               <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">

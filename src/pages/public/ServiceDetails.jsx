@@ -113,7 +113,7 @@ export const ServiceDetails = () => {
                 <div key={idx} className="p-6 bg-white border border-slate-200 rounded-lg shadow-sm space-y-3">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-[#0066FF] shrink-0" />
-                    <h3 className="font-display font-bold text-base uppercase text-[#0B1938]">{del}</h3>
+                    <h2 className="font-display font-bold text-base uppercase text-[#0B1938]">{del}</h2>
                   </div>
                   <p className="text-xs text-slate-600 font-sans leading-relaxed">
                     Engineered according to strict enterprise code reviews and automated test suites.
@@ -162,7 +162,7 @@ export const ServiceDetails = () => {
                       <span className="font-mono text-2xl font-black text-[#0066FF] block mb-3">
                         {step.step}
                       </span>
-                      <h4 className="font-display font-bold text-base uppercase text-[#0B1938] mb-2">{step.title}</h4>
+                      <h3 className="font-display font-bold text-base uppercase text-[#0B1938] mb-2">{step.title}</h3>
                       <p className="text-xs text-slate-600 font-sans leading-relaxed">{step.desc}</p>
                     </div>
                   </div>

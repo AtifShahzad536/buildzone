@@ -75,7 +75,7 @@ export const BlogDetails = () => {
                 <div className="flex items-center gap-2">
                   <img
                     src={post.authorAvatar}
-                    alt={post.author}
+                    alt={post.author || "Author avatar"}
                     className="w-8 h-8 object-cover rounded-full border border-blue-200"
                   />
                   <div className="text-left">
@@ -109,7 +109,7 @@ export const BlogDetails = () => {
             <div className="aspect-[16/9] w-full overflow-hidden bg-slate-100 rounded-lg border border-slate-200 mb-12">
               <img
                 src={post.featuredImage}
-                alt={post.title}
+                alt={post.title || "Blog article cover"}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -139,13 +139,13 @@ export const BlogDetails = () => {
             <div className="mt-12 p-6 sm:p-8 bg-blue-50/50 border border-blue-200 rounded-lg flex flex-col sm:flex-row items-center gap-6">
               <img
                 src={post.authorAvatar}
-                alt={post.author}
+                alt={post.author || "Author portrait"}
                 className="w-16 h-16 object-cover rounded-full border border-blue-400 shrink-0"
               />
               <div className="text-center sm:text-left space-y-1">
-                <h4 className="font-display text-base font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-base font-bold uppercase text-[#0B1938]">
                   Written by {post.author}
-                </h4>
+                </h2>
                 <p className="font-mono text-xs text-[#0066FF] font-semibold">{post.authorRole}</p>
                 <p className="text-xs text-slate-600 font-sans leading-relaxed pt-1">
                   Leading applied machine learning, distributed cloud systems, and production software architecture at BuildZone.

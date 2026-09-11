@@ -1,5 +1,6 @@
 import React from 'react';
 import { Terminal, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useGetTeamQuery } from '../../services/api';
 import { initialTeam } from '../../data/team';
 import Container from '../../components/common/Container';
 import SectionTitle from '../../components/common/SectionTitle';
@@ -8,6 +9,9 @@ import SEOHead from '../../components/common/SEOHead';
 import { LinkedInIcon, GitHubIcon } from '../../components/common/BrandIcons';
 
 export const Team = () => {
+  const { data: teamData } = useGetTeamQuery();
+  const team = (teamData && teamData.length > 0) ? teamData : initialTeam;
+
   return (
     <>
       <SEOHead
@@ -33,80 +37,94 @@ export const Team = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {initialTeam.map((member) => (
-              <div
-                key={member.id}
-                className="bg-white border border-slate-200 hover:border-[#0066FF]/40 rounded-lg transition-all flex flex-col justify-between group shadow-sm hover:shadow-md overflow-hidden"
-              >
-                <div>
-                  {/* Photo Banner */}
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100 relative">
-                    <img
-                      src={member.image}
-                      alt={member.name ? `${member.name} - ${member.position || 'Team Member'}` : "BuildZone Engineering Team Member"}
-                      loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
-                    />
-                  </div>
+            {team.map((member, idx) => {
+              const memberId = member.id || member._id || `team-member-${idx}`;
+              const skillsList = Array.isArray(member.skills)
+                ? member.skills
+                : typeof member.skills === 'string'
+                ? member.skills.split(',').map(s => s.trim()).filter(Boolean)
+                : [];
 
-                  <div className="p-6">
-                    <h2 className="text-xl font-bold font-display uppercase text-[#0B1938] mb-1">
-                      {member.name}
-                    </h2>
-                    <p className="font-mono text-xs font-bold text-[#0066FF] uppercase tracking-wider mb-4">
-                      {member.position}
-                    </p>
+              return (
+                <div
+                  key={memberId}
+                  className="bg-white border border-slate-200 hover:border-[#0066FF]/40 rounded-lg transition-all flex flex-col justify-between group shadow-sm hover:shadow-md overflow-hidden"
+                >
+                  <div>
+                    {/* Photo Banner */}
+                    <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100 relative">
+                      <img
+                        src={member.image || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'}
+                        alt={member.name || "BuildZone team member"}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                        onError={(e) => {
+                          e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80';
+                        }}
+                      />
+                    </div>
 
-                    <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed mb-6">
-                      {member.bio}
-                    </p>
+                    <div className="p-6">
+                      <h2 className="text-xl font-bold font-display uppercase text-[#0B1938] mb-1">
+                        {member.name}
+                      </h2>
+                      <p className="font-mono text-xs font-bold text-[#0066FF] uppercase tracking-wider mb-4">
+                        {member.position || 'Partner'}
+                      </p>
 
-                    {/* Key Technical Skills */}
-                    <div className="mb-6">
-                      <h4 className="font-mono text-[10px] uppercase tracking-widest text-slate-400 mb-2 font-bold">
-                        Specialized Core Competencies:
-                      </h4>
-                      <div className="flex flex-wrap gap-1.5">
-                        {member.skills.map((skill) => (
-                          <Badge key={skill} size="sm" variant="default">
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>
+                      <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed mb-6">
+                        {member.bio}
+                      </p>
+
+                      {/* Key Technical Skills */}
+                      {skillsList.length > 0 && (
+                        <div className="mb-6">
+                          <h3 className="font-mono text-[10px] uppercase tracking-widest text-slate-400 mb-2 font-bold">
+                            Specialized Core Competencies:
+                          </h3>
+                          <div className="flex flex-wrap gap-1.5">
+                            {skillsList.map((skill) => (
+                              <Badge key={skill} size="sm" variant="default">
+                                {skill}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
 
-                {/* Social Handles */}
-                <div className="p-6 pt-0 flex items-center gap-3 border-t border-slate-100 mt-2">
-                  {member.linkedin && (
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 bg-slate-100 border border-slate-200 rounded text-slate-600 hover:text-[#0066FF] hover:border-[#0066FF] transition-all"
-                      aria-label="LinkedIn"
-                    >
-                      <LinkedInIcon className="w-4 h-4" />
-                    </a>
-                  )}
-                  {member.github && (
-                    <a
-                      href={member.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 bg-slate-100 border border-slate-200 rounded text-slate-600 hover:text-[#0066FF] hover:border-[#0066FF] transition-all"
-                      aria-label="GitHub"
-                    >
-                      <GitHubIcon className="w-4 h-4" />
-                    </a>
-                  )}
-                  <span className="font-mono text-[10px] text-slate-400 uppercase ml-auto font-semibold">
-                    Verified Partner
-                  </span>
+                  {/* Social Handles */}
+                  <div className="p-6 pt-0 flex items-center gap-3 border-t border-slate-100 mt-2">
+                    {member.linkedin && (
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-2 bg-slate-100 border border-slate-200 rounded text-slate-600 hover:text-[#0066FF] hover:border-[#0066FF] transition-all"
+                        aria-label="LinkedIn"
+                      >
+                        <LinkedInIcon className="w-4 h-4" />
+                      </a>
+                    )}
+                    {member.github && (
+                      <a
+                        href={member.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-2 bg-slate-100 border border-slate-200 rounded text-slate-600 hover:text-[#0066FF] hover:border-[#0066FF] transition-all"
+                        aria-label="GitHub"
+                      >
+                        <GitHubIcon className="w-4 h-4" />
+                      </a>
+                    )}
+                    <span className="font-mono text-[10px] text-slate-400 uppercase ml-auto font-semibold">
+                      Verified Partner
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </Container>
       </div>
@@ -115,3 +133,4 @@ export const Team = () => {
 };
 
 export default Team;
+

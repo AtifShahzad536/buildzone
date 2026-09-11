@@ -167,7 +167,7 @@ export const ProjectsManager = () => {
                         {proj.image ? (
                           <img
                             src={proj.image}
-                            alt={proj.name}
+                            alt={proj.name || "Project thumbnail"}
                             className="w-full h-full object-cover"
                             onError={(e) => {
                               e.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=300&q=80';
@@ -259,9 +259,9 @@ export const ProjectsManager = () => {
             {/* Modal Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white shrink-0">
               <div>
-                <h3 className="font-display text-base sm:text-lg font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-base sm:text-lg font-bold uppercase text-[#0B1938]">
                   {editingId ? "Edit Project Showcase" : "Create New Project Showcase"}
-                </h3>
+                </h2>
                 <span className="text-[10px] font-mono text-slate-400">
                   {editingId ? "Updating ID: " + editingId : "Add a new client case showcase"}
                 </span>

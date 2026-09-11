@@ -72,7 +72,7 @@ export const FaqsManager = () => {
               <div className="flex items-center gap-2">
                 <span className="font-mono text-[10px] text-[#0066FF] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full font-bold uppercase">{faq.category}</span>
               </div>
-              <h3 className="font-display text-base font-bold text-[#0B1938] uppercase">{faq.question}</h3>
+              <h2 className="font-display text-base font-bold text-[#0B1938] uppercase">{faq.question}</h2>
               <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed pt-1">{faq.answer}</p>
             </div>
             <button onClick={() => handleDelete(faq.id)} className="p-1.5 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer shrink-0">
@@ -85,7 +85,7 @@ export const FaqsManager = () => {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
           <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
-            <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">Add FAQ</h3>
+            <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">Add FAQ</h2>
             <form onSubmit={handleCreate} className="space-y-4 font-sans">
               <div>
                 <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Question *</label>

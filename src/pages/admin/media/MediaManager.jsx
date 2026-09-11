@@ -153,7 +153,7 @@ export const MediaManager = () => {
               <div className="aspect-video w-full bg-slate-900/5 overflow-hidden relative">
                 <img
                   src={item.url}
-                  alt={item.name}
+                  alt={item.name || "Media asset"}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   onError={(e) => {
                     e.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';
@@ -215,9 +215,9 @@ export const MediaManager = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
           <div className="w-full max-w-lg bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h3 className="font-display text-lg font-bold uppercase text-[#0B1938]">
+              <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">
                 Upload CDN Media Asset
-              </h3>
+              </h2>
             </div>
 
             <form onSubmit={handleSave} className="space-y-4 font-sans text-xs">
