@@ -21,7 +21,7 @@ export const Home = () => {
     <>
       <SEOHead
         title="BuildZone Technology #1 Software House in Sialkot | AI & Web"
-        description="BuildZone is the leading software house in Sialkot, Pakistan. We develop custom software, mobile apps, enterprise ERPs, and AI solutions for global clients."
+        description="BuildZone Technology is the leading software house in Sialkot, Pakistan. We develop custom software, mobile apps, enterprise ERPs, and AI solutions for global clients."
 
         keywords="Software House in Sialkot, Best Software House in Sialkot, No 1 Software House in Sialkot, Top IT Company in Sialkot, Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Solutions Sialkot, ERP Systems Sialkot"
         canonical="https://buildzonetechnology.com/"
