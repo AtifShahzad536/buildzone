@@ -1,7 +1,6 @@
 import React from 'react';
 import { Terminal, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useGetTeamQuery } from '../../services/api';
-import { initialTeam } from '../../data/team';
 import Container from '../../components/common/Container';
 import SectionTitle from '../../components/common/SectionTitle';
 import Badge from '../../components/common/Badge';
@@ -10,7 +9,7 @@ import { LinkedInIcon, GitHubIcon } from '../../components/common/BrandIcons';
 
 export const Team = () => {
   const { data: teamData } = useGetTeamQuery();
-  const team = (teamData && teamData.length > 0) ? teamData : initialTeam;
+  const team = Array.isArray(teamData) ? teamData : [];
 
   return (
     <>
