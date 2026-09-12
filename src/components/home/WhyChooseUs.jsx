@@ -62,8 +62,8 @@ export const WhyChooseUs = () => {
           {/* Left Column: Heading, Statement & Copy */}
           <div className="lg:col-span-6 space-y-6">
             {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-blue-200/80 bg-blue-50/50 shadow-2xs">
-              <span className="font-mono text-[11px] font-bold text-[#0066FF] uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200/80 bg-blue-50/50 shadow-2xs">
+              <span className="font-sans text-xs font-bold text-[#0066FF] uppercase tracking-wide">
                 WHY BUILDZONE
               </span>
             </div>
@@ -119,7 +119,7 @@ export const WhyChooseUs = () => {
                       <span className="font-display font-bold text-xs uppercase text-[#0B1938] block tracking-wide">
                         FRONTEND
                       </span>
-                      <span className="font-mono text-[10px] text-slate-500 block truncate">
+                      <span className="font-sans text-[10.5px] text-slate-500 block truncate">
                         Web • Mobile • Desktop
                       </span>
                     </div>
@@ -140,7 +140,7 @@ export const WhyChooseUs = () => {
                       <span className="font-display font-bold text-xs uppercase text-[#0B1938] block tracking-wide">
                         API LAYER
                       </span>
-                      <span className="font-mono text-[10px] text-slate-500 block truncate">
+                      <span className="font-sans text-[10.5px] text-slate-500 block truncate">
                         REST • GraphQL • WebSocket
                       </span>
                     </div>
@@ -171,7 +171,7 @@ export const WhyChooseUs = () => {
                         <span className="font-display font-bold text-[11px] uppercase text-[#0B1938] block tracking-wide">
                           SERVICES
                         </span>
-                        <span className="font-mono text-[9px] text-slate-500 block truncate">
+                        <span className="font-sans text-[9.5px] text-slate-500 block truncate">
                           Microservices • Containers
                         </span>
                       </div>
@@ -186,7 +186,7 @@ export const WhyChooseUs = () => {
                         <span className="font-display font-bold text-[11px] uppercase text-[#0B1938] block tracking-wide">
                           QUEUES
                         </span>
-                        <span className="font-mono text-[9px] text-slate-500 block truncate">
+                        <span className="font-sans text-[9.5px] text-slate-500 block truncate">
                           Kafka • RabbitMQ • Redis
                         </span>
                       </div>
@@ -263,7 +263,7 @@ export const WhyChooseUs = () => {
                       <span className="font-display font-bold text-xs uppercase text-[#0B1938] block tracking-wide">
                         DISTRIBUTED DATA
                       </span>
-                      <span className="font-mono text-[10px] text-slate-500 block mt-0.5">
+                      <span className="font-sans text-[10.5px] text-slate-500 block mt-0.5">
                         PostgreSQL • MongoDB • S3
                       </span>
                     </div>
@@ -273,7 +273,7 @@ export const WhyChooseUs = () => {
               </div>
 
               {/* Right Vertical Feature Navigation Sidebar */}
-              <div className="hidden sm:flex flex-col items-start gap-4 pl-4 border-l border-slate-200/80 text-[10px] font-mono tracking-wider font-bold">
+              <div className="hidden sm:flex flex-col items-start gap-4 pl-4 border-l border-slate-200/80 text-[11px] font-sans tracking-wide font-semibold">
                 {tags.map((tag) => {
                   const isActive = activeTag === tag;
                   return (
@@ -282,7 +282,7 @@ export const WhyChooseUs = () => {
                       onClick={() => setActiveTag(tag)}
                       className={`relative text-left transition-colors cursor-pointer ${
                         isActive
-                          ? 'text-[#0066FF] font-black'
+                          ? 'text-[#0066FF] font-bold'
                           : 'text-slate-400 hover:text-slate-600'
                       }`}
                     >
@@ -326,7 +326,7 @@ export const WhyChooseUs = () => {
               <div className="pt-1">
                 <Link
                   to={item.link}
-                  className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#0066FF] group-hover:text-blue-700 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-sans font-bold text-[#0066FF] group-hover:text-blue-700 transition-colors"
                 >
                   <span>{item.ctaText}</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

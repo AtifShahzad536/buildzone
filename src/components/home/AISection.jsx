@@ -56,7 +56,7 @@ export const AISection = () => {
               We go beyond simple API wrappers. We architect custom LLM pipelines, autonomous reasoning agents, and private vector infrastructure that transform complex manual workflows into automated operational efficiency.
             </p>
 
-            <ul className="space-y-3 font-mono text-xs sm:text-sm text-slate-700">
+            <ul className="space-y-3 font-sans text-xs sm:text-sm text-slate-700 font-medium">
               {[
                 'Private on-premise & cloud vector databases',
                 'Multi-model LLM routing (Claude, OpenAI, Gemini, Llama)',

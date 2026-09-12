@@ -55,7 +55,7 @@ export const Footer = () => {
               {siteConfig.description}
             </p>
 
-            <div className="pt-1 space-y-2 font-mono text-[11px] sm:text-xs text-slate-700">
+            <div className="pt-1 space-y-2 font-sans text-xs text-slate-700">
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
                 <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
@@ -74,7 +74,7 @@ export const Footer = () => {
                   <a href={`tel:${siteConfig.contact.phone}`} className="font-bold hover:text-[#0066FF] transition-colors">
                     {settings?.phone || siteConfig.contact.phone}
                   </a>
-                  <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-bold">
+                  <span className="text-[10px] font-sans text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-bold">
                     Call & WhatsApp
                   </span>
                 </div>
@@ -177,7 +177,7 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Legal Bar */}
-        <div className="pt-6 sm:pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] sm:text-xs font-mono text-slate-500 text-center sm:text-left">
+        <div className="pt-6 sm:pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-sans text-slate-500 text-center sm:text-left">
           <p>© {currentYear} {companyName}. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
             <Link to="/privacy-policy" className="hover:text-[#0066FF] transition-colors">

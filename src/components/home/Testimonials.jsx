@@ -49,7 +49,7 @@ export const Testimonials = () => {
                   <h3 className="font-display font-bold text-xs sm:text-sm uppercase text-[#0B1938]">
                     {t.author}
                   </h3>
-                  <p className="font-mono text-[10px] sm:text-[11px] text-slate-500">
+                  <p className="font-sans text-[11px] sm:text-xs text-slate-500">
                     {t.role}, <span className="text-[#0066FF] font-semibold">{t.company}</span>
                   </p>
                 </div>

@@ -12,11 +12,11 @@
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
   --sans: 'Plus Jakarta Sans', 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: 'Plus Jakarta Sans', 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --heading: 'Plus Jakarta Sans', 'Outfit', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
+  font: 16px/150% var(--sans);
+  letter-spacing: -0.01em;
   color-scheme: light dark;
   color: var(--text);
   background: var(--bg);

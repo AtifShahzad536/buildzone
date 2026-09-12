@@ -39,7 +39,7 @@ export const IndustriesPreview = () => {
                 </p>
               </div>
 
-              <div className="pt-4 mt-2 flex items-center gap-1 font-mono text-[11px] font-bold text-[#0066FF] uppercase tracking-wider group-hover:translate-x-1 transition-transform">
+              <div className="pt-4 mt-2 flex items-center gap-1 font-sans text-xs font-bold text-[#0066FF] uppercase tracking-wide group-hover:translate-x-1 transition-transform">
                 <span>Solutions</span>
                 <ArrowRight className="w-3 h-3" />
               </div>

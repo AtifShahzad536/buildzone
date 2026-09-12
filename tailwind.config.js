@@ -52,10 +52,10 @@ export default {
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-        heading: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Outfit', 'Inter', 'sans-serif'],
+        heading: ['"Plus Jakarta Sans"', 'Outfit', 'sans-serif'],
         body: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'Fira Code', 'monospace'],
+        mono: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         'none': '0px',

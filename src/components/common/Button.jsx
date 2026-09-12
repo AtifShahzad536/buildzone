@@ -15,7 +15,7 @@ export const Button = React.forwardRef(({
   type = 'button',
   ...props
 }, ref) => {
-  const baseStyles = "relative inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none rounded-md focus:outline-none focus:ring-2 focus:ring-[#0066FF]/40";
+  const baseStyles = "relative inline-flex items-center justify-center font-sans text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none rounded-md focus:outline-none focus:ring-2 focus:ring-[#0066FF]/40";
 
   const variants = {
     primary: "bg-[#0066FF] text-white hover:bg-[#0052CC] active:bg-[#0040A8] shadow-sm hover:shadow-md border border-transparent font-bold",

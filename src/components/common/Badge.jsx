@@ -28,7 +28,7 @@ export const Badge = ({
     <span
       className={twMerge(
         clsx(
-          "inline-flex items-center gap-1.5 font-mono uppercase tracking-wider border font-bold",
+          "inline-flex items-center gap-1.5 font-sans uppercase tracking-wide border font-bold text-xs",
           variants[variant],
           sizes[size],
           className

@@ -63,7 +63,7 @@ export const ServicesPreview = () => {
       <Container>
         {/* Section Header Matching Screenshot */}
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF] block">
+          <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#0066FF] block">
             WHAT WE DO
           </span>
           <h2 className="text-3xl sm:text-4xl font-black font-display tracking-tight text-[#0B1938]">

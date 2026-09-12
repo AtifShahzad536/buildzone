@@ -86,9 +86,9 @@ export const Hero = () => {
           <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
             
             {/* 1. Top Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-[#0047BA] inline-block"></span>
-              <span className="font-mono text-[10.5px] sm:text-[11px] font-bold uppercase tracking-wider text-[#0047BA]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-50 border border-blue-200/90 rounded-full shadow-2xs">
+              <span className="w-2 h-2 rounded-full bg-[#0047BA] inline-block animate-pulse"></span>
+              <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-wide text-[#0047BA]">
                 {badgeText}
               </span>
             </div>
@@ -195,7 +195,7 @@ export const Hero = () => {
                           <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white translate-x-0.5" />
                         </div>
                         <div className="absolute bottom-4 left-4 right-4 text-center z-10">
-                          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-black/60 backdrop-blur-md rounded-full text-white font-mono text-xs font-bold uppercase tracking-wider border border-white/10 shadow-sm">
+                          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-black/60 backdrop-blur-md rounded-full text-white font-sans text-xs font-semibold uppercase tracking-wide border border-white/10 shadow-sm">
                             Click to Watch Video Showcase
                           </span>
                         </div>
@@ -250,7 +250,7 @@ export const Hero = () => {
                   <div className="grid grid-cols-12 min-h-[360px]">
                     
                     {/* Left Mini Sidebar */}
-                    <div className="col-span-3 border-r border-slate-100 bg-[#FAFBFD] p-3 space-y-1 font-mono text-[11px]">
+                    <div className="col-span-3 border-r border-slate-100 bg-[#FAFBFD] p-3 space-y-1 font-sans text-[11.5px]">
                       <div className="flex items-center gap-2 px-2.5 py-1.5 bg-[#EFF6FF] text-[#0047BA] font-bold rounded-lg border border-blue-200 shadow-2xs">
                         <LayoutGrid className="w-3.5 h-3.5" />
                         <span>Overview</span>
@@ -327,7 +327,7 @@ export const Hero = () => {
                             <span className="font-display font-bold text-[11px] text-[#0B1938]">
                               Revenue Overview
                             </span>
-                            <span className="text-[9px] font-mono text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-300 font-black">
+                            <span className="text-[9.5px] font-sans text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-300 font-bold">
                               $45,780 ↑ 8.2%
                             </span>
                           </div>
@@ -366,7 +366,7 @@ export const Hero = () => {
                             </svg>
 
                             {/* X-Axis Months */}
-                            <div className="flex justify-between text-[8px] font-mono text-slate-600 font-bold mt-1 px-1">
+                            <div className="flex justify-between text-[9px] font-sans text-slate-600 font-semibold mt-1 px-1">
                               <span>Jan</span>
                               <span>Feb</span>
                               <span>Mar</span>
@@ -407,7 +407,7 @@ export const Hero = () => {
                             </svg>
                           </div>
 
-                          <div className="space-y-0.5 text-[9px] font-mono">
+                          <div className="space-y-0.5 text-[10px] font-sans">
                             <div className="flex items-center justify-between text-slate-700">
                               <span className="flex items-center gap-1 font-medium">
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF]"></span> Web
@@ -442,21 +442,21 @@ export const Hero = () => {
                               <CheckCircle2 className="w-3 h-3 text-[#0066FF]" />
                               New user registered
                             </span>
-                            <span className="font-mono text-[9px] text-slate-600 font-bold">2m ago</span>
+                            <span className="font-sans text-[9.5px] text-slate-500 font-semibold">2m ago</span>
                           </div>
                           <div className="flex items-center justify-between text-slate-700">
                             <span className="flex items-center gap-1.5 font-medium">
                               <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                               New order received
                             </span>
-                            <span className="font-mono text-[9px] text-slate-600 font-bold">15m ago</span>
+                            <span className="font-sans text-[9.5px] text-slate-500 font-semibold">15m ago</span>
                           </div>
                           <div className="flex items-center justify-between text-slate-700">
                             <span className="flex items-center gap-1.5 font-medium">
                               <CheckCircle2 className="w-3 h-3 text-indigo-600" />
                               Subscription updated
                             </span>
-                            <span className="font-mono text-[9px] text-slate-600 font-bold">1h ago</span>
+                            <span className="font-sans text-[9.5px] text-slate-500 font-semibold">1h ago</span>
                           </div>
                         </div>
                       </div>
@@ -467,13 +467,13 @@ export const Hero = () => {
                 </div>
 
                 {/* 2. Overlapping Modern Mobile Smartphone Mockup (Left Front) */}
-                <div className="hidden sm:block absolute -left-6 bottom-4 w-44 bg-white border-2 border-slate-300 rounded-[28px] p-2.5 shadow-[0_20px_40px_rgba(11,25,56,0.18)] z-20 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+                <div className="hidden sm:block absolute -left-6 bottom-4 w-44 bg-white border-2 border-slate-300 rounded-[28px] p-2.5 shadow-[0_20px_40px_rgba(11,25,56,0.18)] z-20 transform -rotate-1 hover:rotate-0 transition-transform duration-300 font-sans">
                   
                   {/* Phone Speaker & Camera Notch */}
                   <div className="w-12 h-1 bg-slate-300 rounded-full mx-auto mb-1.5"></div>
                   
                   {/* Status Bar */}
-                  <div className="flex items-center justify-between px-1 text-[8px] font-mono text-slate-700 mb-2">
+                  <div className="flex items-center justify-between px-1 text-[9px] font-sans text-slate-700 mb-2">
                     <span className="font-bold">9:41</span>
                     <div className="flex items-center gap-1">
                       <Wifi className="w-2.5 h-2.5" />
@@ -484,7 +484,7 @@ export const Hero = () => {
                   {/* Phone Inner Screen Content */}
                   <div className="bg-[#FAFBFD] border border-slate-100 rounded-2xl p-2.5 space-y-2.5 text-center">
                     <div>
-                      <span className="text-[9px] font-mono font-bold uppercase text-slate-700 block">
+                      <span className="text-[9.5px] font-sans font-bold uppercase text-slate-700 block">
                         Project Status
                       </span>
                     </div>
@@ -514,13 +514,13 @@ export const Hero = () => {
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <span className="font-display font-black text-xs text-[#0B1938]">75%</span>
-                        <span className="text-[6.5px] font-mono text-slate-600 font-bold uppercase">Completed</span>
+                        <span className="text-[7px] font-sans text-slate-600 font-bold uppercase">Completed</span>
                       </div>
                     </div>
 
                     {/* Tasks Checklist */}
-                    <div className="text-left space-y-1 pt-1 border-t border-slate-100">
-                      <span className="text-[8.5px] font-mono font-bold uppercase text-slate-700 block mb-1">
+                    <div className="text-left space-y-1 pt-1 border-t border-slate-100 font-sans">
+                      <span className="text-[9px] font-sans font-bold uppercase text-slate-700 block mb-1">
                         Tasks
                       </span>
                       {[
@@ -529,7 +529,7 @@ export const Hero = () => {
                         "Testing",
                         "Deployment"
                       ].map((task, tIdx) => (
-                        <div key={tIdx} className="flex items-center justify-between text-[9px] text-slate-800 font-medium">
+                        <div key={tIdx} className="flex items-center justify-between text-[9.5px] text-slate-800 font-medium">
                           <span className="flex items-center gap-1">
                             <span className="w-1 h-1 rounded-full bg-[#0066FF]"></span>
                             <span className="truncate max-w-[85px]">{task}</span>

@@ -53,7 +53,7 @@ export const BlogPreview = () => {
           <div className="lg:col-span-6">
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full bg-[#0066FF] animate-pulse"></span>
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#0066FF]">
+              <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#0066FF]">
                 Featured Publication
               </span>
             </div>
@@ -75,19 +75,19 @@ export const BlogPreview = () => {
                   
                   {/* Top Category Badge */}
                   <div className="absolute top-4 left-4 px-3 py-1 bg-white/95 backdrop-blur-md rounded-lg shadow-sm border border-white/40 flex items-center gap-1.5">
-                    <Sparkles className="w-3 h-3 text-[#0066FF]" />
-                    <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-[#0B1938]">
+                    <Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />
+                    <span className="font-sans text-[11px] font-bold uppercase tracking-wide text-[#0B1938]">
                       {featuredBlog.category}
                     </span>
                   </div>
 
                   {/* Read Time & Date Badge */}
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90 text-xs font-mono">
-                    <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded">
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90 text-xs font-sans">
+                    <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-md">
                       <Calendar className="w-3.5 h-3.5 text-cyan-300" />
                       <span>{featuredBlog.publishedDate}</span>
                     </div>
-                    <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded">
+                    <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-md">
                       <Clock className="w-3.5 h-3.5 text-cyan-300" />
                       <span>{featuredBlog.readTime}</span>
                     </div>
@@ -96,7 +96,7 @@ export const BlogPreview = () => {
 
                 {/* Content Section */}
                 <div className="p-6 sm:p-7">
-                  <h3 className="text-xl sm:text-2xl font-bold font-display uppercase tracking-tight text-[#0B1938] mb-3 group-hover:text-[#0066FF] transition-colors leading-snug">
+                  <h3 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-[#0B1938] mb-3 group-hover:text-[#0066FF] transition-colors leading-snug">
                     {featuredBlog.title}
                   </h3>
 
@@ -109,7 +109,7 @@ export const BlogPreview = () => {
                     {featuredBlog.tags?.map((t) => (
                       <span
                         key={t}
-                        className="px-2.5 py-1 bg-[#F8FAFC] border border-slate-200 text-slate-700 font-mono text-[10px] font-semibold rounded-md group-hover:border-blue-200 group-hover:text-[#0066FF] transition-colors"
+                        className="px-2.5 py-1 bg-[#F8FAFC] border border-slate-200 text-slate-700 font-sans text-[11px] font-semibold rounded-md group-hover:border-blue-200 group-hover:text-[#0066FF] transition-colors"
                       >
                         #{t}
                       </span>
@@ -132,10 +132,10 @@ export const BlogPreview = () => {
                       className="w-9 h-9 rounded-full object-cover border-2 border-white shadow-xs"
                     />
                     <div>
-                      <div className="font-mono text-xs font-bold text-[#0B1938]">
+                      <div className="font-sans text-xs font-bold text-[#0B1938]">
                         {featuredBlog.author}
                       </div>
-                      <div className="text-[10.5px] text-slate-500 font-mono">
+                      <div className="text-[11px] text-slate-500 font-sans">
                         {featuredBlog.authorRole}
                       </div>
                     </div>
@@ -143,7 +143,7 @@ export const BlogPreview = () => {
 
                   <Link
                     to={`/blog/${featuredBlog.slug}`}
-                    className="font-mono text-xs font-bold uppercase tracking-wider text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1.5 group/btn"
+                    className="font-sans text-xs font-bold uppercase tracking-wide text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1.5 group/btn"
                   >
                     <span>Read Article</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
@@ -165,7 +165,7 @@ export const BlogPreview = () => {
                   placeholder="Filter engineering publications by title or tag..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full bg-white border border-slate-200 focus:border-[#0066FF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 font-mono focus:outline-none shadow-2xs transition-colors"
+                  className="w-full bg-white border border-slate-200 focus:border-[#0066FF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 font-sans focus:outline-none shadow-2xs transition-colors"
                 />
                 <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
               </div>
@@ -190,27 +190,27 @@ export const BlogPreview = () => {
                       className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300"
                       loading="lazy"
                     />
-                    <div className="absolute top-1.5 left-1.5 px-1.5 py-0.5 bg-black/60 backdrop-blur-md rounded text-[8.5px] font-mono font-bold text-white uppercase">
+                    <div className="absolute top-1.5 left-1.5 px-2 py-0.5 bg-black/70 backdrop-blur-md rounded text-[9px] font-sans font-bold text-white uppercase tracking-wide">
                       {blog.category}
                     </div>
                   </div>
 
                   {/* Text Content */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 text-[10px] font-mono text-slate-500 mb-1">
+                    <div className="flex items-center gap-2 text-[11px] font-sans text-slate-500 mb-1">
                       <span>{blog.publishedDate}</span>
                       <span>•</span>
-                      <span className="flex items-center gap-1 text-[#0066FF]">
+                      <span className="flex items-center gap-1 text-[#0066FF] font-medium">
                         <Clock className="w-2.5 h-2.5" />
                         <span>{blog.readTime}</span>
                       </span>
                     </div>
 
-                    <h4 className="font-display font-bold text-xs sm:text-sm text-[#0B1938] group-hover:text-[#0066FF] transition-colors leading-snug line-clamp-2 uppercase">
+                    <h4 className="font-display font-bold text-xs sm:text-sm text-[#0B1938] group-hover:text-[#0066FF] transition-colors leading-snug line-clamp-2">
                       {blog.title}
                     </h4>
 
-                    <div className="flex items-center gap-1.5 mt-1.5 text-[10px] font-mono text-slate-500">
+                    <div className="flex items-center gap-1.5 mt-1.5 text-[11px] font-sans text-slate-500">
                       <span>By {blog.author}</span>
                     </div>
                   </div>
@@ -223,7 +223,7 @@ export const BlogPreview = () => {
               ))}
 
               {filteredSideBlogs.length === 0 && (
-                <div className="p-8 text-center bg-slate-50 border border-slate-200 rounded-xl text-slate-500 text-xs font-mono">
+                <div className="p-8 text-center bg-slate-50 border border-slate-200 rounded-xl text-slate-500 text-xs font-sans">
                   No publications match "{searchTerm}". Try another query or clear search.
                 </div>
               )}

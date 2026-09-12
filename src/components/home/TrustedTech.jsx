@@ -51,7 +51,7 @@ export const TrustedTech = () => {
         {/* Left Sticky / Fixed Label Badge on Desktop */}
         <div className="hidden lg:flex items-center gap-2 pl-8 pr-6 shrink-0 z-20 bg-white border-r border-slate-100 py-1">
           <span className="w-2 h-2 rounded-full bg-[#0066FF] animate-pulse"></span>
-          <span className="font-mono text-xs text-[#0B1938] uppercase tracking-widest font-black whitespace-nowrap">
+          <span className="font-sans text-xs text-[#0B1938] uppercase tracking-wider font-bold whitespace-nowrap">
             ENTERPRISE STACK:
           </span>
         </div>
@@ -69,10 +69,10 @@ export const TrustedTech = () => {
                   <div className="w-5 h-5 rounded bg-white border border-slate-200/80 flex items-center justify-center text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white transition-colors">
                     <Icon className="w-3 h-3" />
                   </div>
-                  <span className="font-mono text-xs sm:text-sm font-bold text-[#0B1938] group-hover:text-[#0066FF] transition-colors whitespace-nowrap">
+                  <span className="font-sans text-xs sm:text-sm font-bold text-[#0B1938] group-hover:text-[#0066FF] transition-colors whitespace-nowrap">
                     {tech.name}
                   </span>
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-slate-700 font-bold px-1.5 py-0.5 bg-slate-200/80 rounded group-hover:bg-blue-100 group-hover:text-[#0047BA] transition-colors hidden sm:inline-block">
+                  <span className="font-sans text-[10px] uppercase tracking-wide text-slate-700 font-semibold px-1.5 py-0.5 bg-slate-200/80 rounded group-hover:bg-blue-100 group-hover:text-[#0047BA] transition-colors hidden sm:inline-block">
                     {tech.category}
                   </span>
                 </div>

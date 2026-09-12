@@ -199,7 +199,7 @@ export const Process = () => {
                   className="flex flex-col items-center text-center group cursor-pointer transition-all"
                 >
                   {/* Step Number Circle / Badge */}
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all mb-2.5 ${
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-sans text-xs font-bold transition-all mb-2.5 ${
                     isActive
                       ? 'bg-[#0066FF] text-white shadow-md shadow-blue-500/30 ring-4 ring-blue-100 scale-105'
                       : 'bg-white text-slate-500 border border-slate-200 group-hover:border-[#0066FF] group-hover:text-[#0066FF]'
@@ -208,7 +208,7 @@ export const Process = () => {
                   </div>
 
                   {/* Step Label */}
-                  <span className={`font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-colors max-w-[120px] leading-tight ${
+                  <span className={`font-sans text-[11px] sm:text-xs font-bold uppercase tracking-wide transition-colors max-w-[120px] leading-tight ${
                     isActive
                       ? 'text-[#0066FF] font-black'
                       : 'text-slate-500 group-hover:text-slate-800'
@@ -228,8 +228,8 @@ export const Process = () => {
           <div className="lg:col-span-6 space-y-6">
             
             {/* Step Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-blue-200/80 bg-blue-50/50 shadow-2xs">
-              <span className="font-mono text-[11px] font-bold text-[#0066FF] uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200/80 bg-blue-50/50 shadow-2xs">
+              <span className="font-sans text-xs font-bold text-[#0066FF] uppercase tracking-wide">
                 {activeStep.badge}
               </span>
             </div>
