@@ -32,7 +32,7 @@ export const CaseStudyDetails = () => {
   return (
     <>
       <SEOHead
-        title={`${study.title} — Case Study`}
+        title={`${study.title} | BuildZone`}
         description={study.challenge}
       />
 

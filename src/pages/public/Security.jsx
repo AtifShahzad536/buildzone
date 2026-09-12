@@ -18,8 +18,10 @@ export const Security = () => {
   return (
     <>
       <SEOHead
-        title="Security, Compliance & Data Privacy Architecture"
+        title="Security & Compliance | BuildZone"
         description="Learn about BuildZone's enterprise security protocols, automated vulnerability scanning, SOC 2, HIPAA, and GDPR compliance standards."
+        keywords="Enterprise Software Security, SOC 2 HIPAA Sialkot, Secure Software Development, Best Software House in Sialkot, Top IT Company Sialkot"
+        canonical="https://buildzonetechnology.com/security"
       />
 
       <div className="py-12 sm:py-20">

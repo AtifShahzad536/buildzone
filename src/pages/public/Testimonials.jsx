@@ -15,8 +15,10 @@ export const Testimonials = () => {
   return (
     <>
       <SEOHead
-        title="Verified Client Reviews & Testimonials"
-        description="Read what CTOs, Founders, and Engineering Executives say about their partnerships with BuildZone."
+        title="Client Reviews & Ratings | BuildZone"
+        description="Read 150+ verified 5-star client reviews from founders and executives who partner with BuildZone, Sialkot's leading digital engineering firm."
+        keywords="BuildZone Reviews, Software House in Sialkot Ratings, Best IT Company Sialkot, Top Software House in Sialkot, Best Software House in Sialkot"
+        canonical="https://buildzonetechnology.com/testimonials"
       />
 
       <div className="py-12 sm:py-20">

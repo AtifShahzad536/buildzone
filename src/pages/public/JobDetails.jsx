@@ -64,7 +64,7 @@ export const JobDetails = () => {
   return (
     <>
       <SEOHead
-        title={`${job.title} — Careers`}
+        title={`${job.title} | BuildZone Careers`}
         description={job.shortDescription}
       />
 

@@ -12,11 +12,13 @@ export const SEOHead = ({
 }) => {
   const settings = useSelector((state) => state.settings);
   const companyName = settings?.companyName || siteConfig.name;
+  
   const fullTitle = title 
-    ? `${title} | ${companyName} — No. 1 Software House in Sialkot` 
-    : `${companyName} — No. 1 Software House in Sialkot | Custom Software, ERP & AI Engineering`;
+    ? (title.includes(companyName) ? title : `${title} | ${companyName}`)
+    : `${companyName} | Best Software House in Sialkot`;
+    
   const metaDesc = description || settings?.metaDescription || siteConfig.description;
-  const metaKeywords = keywords || "Software House in Sialkot, Best Software House in Sialkot, No 1 Software House in Sialkot, Custom Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Solutions Sialkot, ERP Systems Sialkot Pakistan";
+  const metaKeywords = keywords || "Best Software House in Sialkot, No 1 Software House in Sialkot, Top Software House in Sialkot, Software House in Sialkot, Best IT Company in Sialkot, Custom Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Solutions Sialkot, ERP Systems Sialkot Pakistan";
 
   useEffect(() => {
     document.title = fullTitle;

@@ -16,8 +16,10 @@ export const CaseStudies = () => {
   return (
     <>
       <SEOHead
-        title="Engineering Case Studies — Measurable Business Impact"
-        description="Deep-dive architectural breakdowns showing how BuildZone engineered high-concurrency systems, AI pipelines, and SaaS platforms."
+        title="Case Studies & Engineering Impact | BuildZone"
+        description="Read architectural deep dives and business transformation results delivered by BuildZone, Sialkot's premier software engineering company."
+        keywords="Software Engineering Case Studies, Best Software House in Sialkot, No 1 Software House in Sialkot, ERP Case Studies Sialkot, AI Projects Sialkot"
+        canonical="https://buildzonetechnology.com/case-studies"
       />
 
       <div className="py-12 sm:py-20">

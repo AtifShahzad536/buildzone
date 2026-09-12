@@ -20,11 +20,37 @@ export const Home = () => {
   return (
     <>
       <SEOHead
-        title="BuildZone Technology #1 Software House in Sialkot | AI & Web"
-        description="BuildZone Technology is the leading software house in Sialkot, Pakistan. We develop custom software, mobile apps, enterprise ERPs, and AI solutions for global clients."
-
-        keywords="Software House in Sialkot, Best Software House in Sialkot, No 1 Software House in Sialkot, Top IT Company in Sialkot, Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Solutions Sialkot, ERP Systems Sialkot"
+        title="BuildZone | Best Software House in Sialkot"
+        description="BuildZone Technology is recognized as the best and #1 software house in Sialkot, Pakistan. We develop custom software, mobile apps, enterprise ERPs, and AI solutions for global startups and local exporters."
+        keywords="Best Software House in Sialkot, No 1 Software House in Sialkot, Top Software House in Sialkot, Software House in Sialkot, Best IT Company in Sialkot, Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Solutions Sialkot, ERP Systems Sialkot Pakistan, BuildZone Technology"
         canonical="https://buildzonetechnology.com/"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": ["LocalBusiness", "ProfessionalService", "Organization"],
+          "name": "BuildZone Technology",
+          "alternateName": ["Best Software House in Sialkot", "No 1 Software House in Sialkot", "Top Software House in Sialkot", "BuildZone Software House"],
+          "url": "https://buildzonetechnology.com/",
+          "logo": "https://buildzonetechnology.com/logo.png",
+          "description": "Best and No. 1 Software House in Sialkot providing high-end custom software development, enterprise ERP solutions, mobile apps, and AI engineering.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Executive Tech District, Paris Road",
+            "addressLocality": "Sialkot",
+            "addressRegion": "Punjab",
+            "postalCode": "51310",
+            "addressCountry": "PK"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 32.4945,
+            "longitude": 74.5229
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "150"
+          }
+        }}
       />
 
 

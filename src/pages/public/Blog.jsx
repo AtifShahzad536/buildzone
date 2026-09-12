@@ -28,8 +28,10 @@ export const Blog = () => {
   return (
     <>
       <SEOHead
-        title="Engineering Blog — Architecture, AI & Scalability"
-        description="Deep dives, system design patterns, and case studies written by BuildZone senior engineers and principal architects."
+        title="Engineering Blog | BuildZone"
+        description="In-depth technical articles, system design guides, and AI case studies published by senior architects at BuildZone, the best software house in Sialkot."
+        keywords="Software Engineering Blog Sialkot, AI Articles, Web Development Guides, Best Software House in Sialkot Blog, Top IT Company Sialkot"
+        canonical="https://buildzonetechnology.com/blog"
       />
 
       <div className="py-12 sm:py-20">

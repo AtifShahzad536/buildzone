@@ -23,8 +23,10 @@ export const Technologies = () => {
   return (
     <>
       <SEOHead
-        title="Modern Engineering Stacks — Web, Mobile, Cloud & AI"
-        description="Explore the battle-tested frameworks, databases, LLM engines, and cloud providers utilized in BuildZone deployments."
+        title="Modern Engineering Tech Stack | BuildZone"
+        description="Discover the battle-tested frontend, backend, mobile, cloud, and AI technologies used by BuildZone, the #1 software house in Sialkot."
+        keywords="Tech Stack Sialkot, React Nextjs Developers Sialkot, Python AI Sialkot, Flutter Developers Sialkot, Best Software House in Sialkot, Top IT Company Sialkot"
+        canonical="https://buildzonetechnology.com/technologies"
       />
 
       <div className="py-12 sm:py-20">

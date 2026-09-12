@@ -23,8 +23,10 @@ export const AIDevelopment = () => {
   return (
     <>
       <SEOHead
-        title="Custom AI Development & Autonomous Agent Engineering"
-        description="Enterprise LLM applications, custom RAG vector search, fine-tuned open-source models, and automated AI workflows."
+        title="AI Development & Solutions | BuildZone"
+        description="BuildZone delivers enterprise LLM applications, custom RAG pipelines, autonomous AI agents, and machine learning models for global businesses and Sialkot exporters."
+        keywords="AI Development Sialkot, AI Software House Sialkot, Custom AI Agents, Enterprise LLMs, Machine Learning Sialkot, Best Software House in Sialkot, AI Solutions Sialkot"
+        canonical="https://buildzonetechnology.com/ai-development"
       />
 
       <div className="py-12 sm:py-20">

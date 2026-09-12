@@ -32,7 +32,7 @@ export const IndustryDetails = () => {
   return (
     <>
       <SEOHead
-        title={`${industry.name} — Industry Solutions`}
+        title={`${industry.name} Solutions | BuildZone`}
         description={industry.shortDescription}
       />
 

@@ -20,9 +20,9 @@ export const About = () => {
   return (
     <>
       <SEOHead
-        title="About BuildZone — #1 Software House in Sialkot, Pakistan"
-        description="Learn about BuildZone, the leading software house in Sialkot, Pakistan. Discover our engineering leadership, enterprise standards, and mission to deliver world-class digital products."
-        keywords="About BuildZone, Software House in Sialkot, Top IT Company in Sialkot, Best Software Company Sialkot Pakistan, Software Engineering Sialkot"
+        title="About Us | BuildZone"
+        description="Learn about BuildZone, the best & #1 software house in Sialkot, Pakistan. Discover our engineering leadership, enterprise standards, and mission to deliver world-class digital products."
+        keywords="About BuildZone, Best Software House in Sialkot, No 1 Software House in Sialkot, Top IT Company in Sialkot, Best Software Company Sialkot Pakistan, Software Engineering Sialkot"
         canonical="https://buildzonetechnology.com/about"
       />
 

@@ -64,7 +64,7 @@ export const WhyChooseUs = () => {
             {/* Pill Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200/80 bg-blue-50/50 shadow-2xs">
               <span className="font-sans text-xs font-bold text-[#0066FF] uppercase tracking-wide">
-                WHY BUILDZONE
+                WHY BUILDZONE • SIALKOT'S #1 SOFTWARE HOUSE
               </span>
             </div>
 
@@ -81,12 +81,12 @@ export const WhyChooseUs = () => {
             {/* Prominent Subtitle */}
             <h3 className="text-xl sm:text-2xl font-display font-bold text-[#1E293B] leading-snug tracking-tight">
               Built by senior engineers. <br />
-              Designed for what comes next.
+              Designed for global scale.
             </h3>
 
             {/* Body Paragraph */}
             <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed max-w-lg">
-              We don’t just build features. We engineer the systems behind them — with architecture, security and delivery decisions made for the scale your business is heading toward.
+              As the best software house in Sialkot, we don’t just build features. We engineer high-performance systems with enterprise architecture, bank-grade security, and agile delivery designed to scale your business locally and globally.
             </p>
           </div>
 

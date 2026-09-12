@@ -61,16 +61,16 @@ export const ServicesPreview = () => {
   return (
     <section className="py-16 sm:py-24 bg-white relative border-t border-slate-100">
       <Container>
-        {/* Section Header Matching Screenshot */}
+        {/* Section Header Matching High-Impact SEO Keywords */}
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
           <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#0066FF] block">
-            WHAT WE DO
+            WHAT WE DO • SIALKOT'S TOP SOFTWARE PODS
           </span>
           <h2 className="text-3xl sm:text-4xl font-black font-display tracking-tight text-[#0B1938]">
-            Our Services
+            Enterprise Software & AI Services
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 font-sans">
-            End-to-end software solutions tailored to your business goals.
+            End-to-end custom software development, mobile apps, ERPs, and custom AI engineered by the best software house in Sialkot.
           </p>
         </div>
 

@@ -64,8 +64,10 @@ export const Team = () => {
   return (
     <>
       <SEOHead
-        title="Our Team — Software Engineers, QA Testers & Leadership | BuildZone"
-        description="Meet BuildZone's elite digital engineering talent: Senior Software Developers, QA Engineers, AI Researchers, and Executive Architects."
+        title="Our Team | BuildZone"
+        description="Meet BuildZone's elite digital engineering talent: Senior Software Developers, QA Engineers, AI Researchers, and Executive Architects in Sialkot, Pakistan."
+        keywords="BuildZone Team, Software Engineers Sialkot, Developers in Sialkot, Best Software House in Sialkot, Top IT Company Sialkot"
+        canonical="https://buildzonetechnology.com/team"
       />
 
       <div className="py-14 sm:py-24 bg-white min-h-[70vh]">

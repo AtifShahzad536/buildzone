@@ -13,9 +13,9 @@ export const FeaturedProjects = () => {
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <SectionTitle
-            badge="Engineered Case Studies"
+            badge="ENGINEERED CASE STUDIES • SHIPPED IN SIALKOT & GLOBALLY"
             title="Featured Client Deployments"
-            subtitle="Explore high-concurrency platforms, AI applications, and enterprise systems built for industry leaders."
+            subtitle="Explore high-concurrency platforms, AI applications, and custom enterprise software engineered by Sialkot's premier software house."
             className="mb-0"
           />
           <Link to="/portfolio" className="hidden md:inline-block">

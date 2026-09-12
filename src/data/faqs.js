@@ -1,5 +1,23 @@
 export const initialFaqs = [
   {
+    id: "faq-sialkot-1",
+    question: "Why is BuildZone recognized as the Best Software House in Sialkot?",
+    category: "About BuildZone",
+    answer: "BuildZone Technology is ranked as the best software house in Sialkot due to our enterprise-grade engineering practices, proven track record of 250+ delivered projects, Silicon Valley technology standards, and deep domain expertise in building custom ERPs, mobile apps, and scalable web platforms for local exporters and global clients."
+  },
+  {
+    id: "faq-sialkot-2",
+    question: "Which is the No 1 Software House in Sialkot for AI & web development?",
+    category: "Expertise",
+    answer: "BuildZone Technology is the No. 1 software house in Sialkot specializing in modern full-stack web applications (React, Next.js, Node.js), iOS/Android mobile apps (Flutter, React Native), and state-of-the-art AI automation agents tailored for high-growth businesses."
+  },
+  {
+    id: "faq-sialkot-3",
+    question: "What custom software solutions do you build for Sialkot exporters & manufacturers?",
+    category: "Industries",
+    answer: "We engineer specialized export management ERPs, inventory & production tracking systems, international B2B e-commerce portals, and automated logistics dashboards specifically designed for Sialkot's surgical, sportswear, leather, and manufacturing exporters."
+  },
+  {
     id: "faq-1",
     question: "How much does custom software development cost?",
     category: "Pricing & Scope",

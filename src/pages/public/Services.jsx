@@ -17,8 +17,10 @@ export const Services = () => {
   return (
     <>
       <SEOHead
-        title="Software Engineering Services | BuildZone"
-        description="Explore our specialized full-lifecycle software development and AI services."
+        title="Custom Software, Web & AI Services | BuildZone"
+        description="Explore enterprise custom software development, mobile apps, ERP systems, web applications, and AI engineering services by BuildZone, the #1 software house in Sialkot."
+        keywords="Software Services Sialkot, Custom Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Development Sialkot, ERP Systems Sialkot, Best Software House in Sialkot, Top IT Company in Sialkot"
+        canonical="https://buildzonetechnology.com/services"
       />
 
       <div className="py-12 sm:py-20 bg-[#F8FAFC]">

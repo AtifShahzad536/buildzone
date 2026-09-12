@@ -17,7 +17,7 @@ export const FinalCTA = () => {
             <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-blue-100/80 border border-blue-200 rounded-full">
               <Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
-                Ready to Build?
+                Ready to Build with Sialkot's #1 Software House?
               </span>
             </div>
 
@@ -26,7 +26,7 @@ export const FinalCTA = () => {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed max-w-2xl mx-auto">
-              Schedule a technical discovery session with our senior architects. We’ll review your requirements, recommend the optimal stack, and deliver a detailed scope within 48 hours.
+              Schedule a discovery session with our senior architects at BuildZone Sialkot. We’ll review your requirements, recommend the optimal stack, and deliver a detailed scope within 24 hours.
             </p>
 
             {/* Mobile & Desktop Single Row Button Bar */}

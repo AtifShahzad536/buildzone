@@ -35,7 +35,7 @@ export const ServiceDetails = () => {
   return (
     <>
       <SEOHead
-        title={`${service.title} — Engineering Services`}
+        title={`${service.title} | BuildZone`}
         description={service.shortDescription}
       />
 

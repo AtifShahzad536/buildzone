@@ -24,8 +24,10 @@ export const Portfolio = () => {
   return (
     <>
       <SEOHead
-        title="Portfolio — Shipped Enterprise & Startup Products"
-        description="Explore our track record of high-performance web applications, mobile apps, SaaS platforms, and AI systems."
+        title="Portfolio & Case Studies | BuildZone"
+        description="Explore 250+ enterprise web platforms, mobile apps, SaaS products, and custom AI systems built by BuildZone, the top-rated software house in Sialkot."
+        keywords="BuildZone Portfolio, Software House in Sialkot Projects, Web Development Sialkot Case Studies, Mobile Apps Sialkot, Top IT Company Sialkot, Best Software House in Sialkot"
+        canonical="https://buildzonetechnology.com/portfolio"
       />
 
       <div className="py-12 sm:py-20">

@@ -17,8 +17,10 @@ export const Industries = () => {
   return (
     <>
       <SEOHead
-        title="Industry Solutions — Enterprise Sector Expertise"
-        description="Software architecture and compliance for Healthcare, FinTech, E-Commerce, Logistics, EdTech and more."
+        title="Industry Solutions & Sector Expertise | BuildZone"
+        description="Tailored software systems, compliant medical apps, FinTech platforms, and manufacturing ERPs engineered by the best software house in Sialkot."
+        keywords="Industry Software Sialkot, Exporters ERP Sialkot, Healthcare Software Sialkot, FinTech Development Sialkot, Best Software House in Sialkot"
+        canonical="https://buildzonetechnology.com/industries"
       />
 
       <div className="py-12 sm:py-20">

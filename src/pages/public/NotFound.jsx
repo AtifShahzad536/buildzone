@@ -8,7 +8,7 @@ import SEOHead from '../../components/common/SEOHead';
 export const NotFound = () => {
   return (
     <>
-      <SEOHead title="404 — Page Not Found" description="The requested route does not exist." />
+      <SEOHead title="404 Page Not Found | BuildZone" description="The requested route does not exist." />
       <div className="py-20 sm:py-32 flex items-center justify-center text-center">
         <Container className="max-w-2xl">
           <div className="p-8 sm:p-12 bg-white border border-slate-200 rounded-lg shadow-sm space-y-6">

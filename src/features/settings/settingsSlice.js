@@ -10,7 +10,7 @@ const initialState = storedSettings
       contactEmail: siteConfig.contact.email,
       phone: siteConfig.contact.phone,
       address: siteConfig.contact.address,
-      metaTitle: `${siteConfig.name} — Premier Software Engineering & AI Solutions`,
+      metaTitle: `${siteConfig.name} | Best Software House in Sialkot`,
       metaDescription: siteConfig.description,
       socialLinks: { ...siteConfig.social },
       heroBgColor: '#F2F2F2',
@@ -34,7 +34,7 @@ export const settingsSlice = createSlice({
       state.contactEmail = siteConfig.contact.email;
       state.phone = siteConfig.contact.phone;
       state.address = siteConfig.contact.address;
-      state.metaTitle = `${siteConfig.name} — Premier Software Engineering & AI Solutions`;
+      state.metaTitle = `${siteConfig.name} | Best Software House in Sialkot`;
       state.metaDescription = siteConfig.description;
       state.socialLinks = { ...siteConfig.social };
       state.heroBgColor = '#F2F2F2';

@@ -12,9 +12,9 @@ export const IndustriesPreview = () => {
     <section className="py-16 sm:py-24 bg-[#F8FAFC] relative">
       <Container>
         <SectionTitle
-          badge="Domain Expertise"
+          badge="DOMAIN EXPERTISE • SIALKOT EXPORTERS & GLOBAL ENTERPRISES"
           title="Engineered for High-Stakes Industries"
-          subtitle="We tailor regulatory compliance, architecture security, and workflows to your exact sector standards."
+          subtitle="We tailor regulatory compliance, architecture security, export ERP systems, and workflows to your exact sector standards."
           center
         />
 
