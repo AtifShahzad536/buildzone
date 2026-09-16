@@ -156,3 +156,252 @@ code {
   animation: pulseGlowRing 2s infinite;
 }
 
+@keyframes dataFlow {
+  0% {
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes float3d {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0.5deg);
+  }
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes laserPulse {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-data-flow {
+  animation: dataFlow 1.2s linear infinite;
+}
+
+.animate-float-3d {
+  animation: float3d 4s ease-in-out infinite;
+}
+
+.animate-orbit-slow {
+  animation: orbitSpin 25s linear infinite;
+}
+
+.animate-text-shimmer {
+  background-size: 200% 200%;
+  animation: textShimmer 4s ease infinite;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@keyframes badgeShine {
+  0% {
+    transform: translateX(-100%);
+  }
+  50%, 100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes beamScan {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(200%);
+    opacity: 0;
+  }
+}
+
+@keyframes pulseRadar {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-badge-shine {
+  animation: badgeShine 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-beam-scan {
+  animation: beamScan 2.5s ease-in-out infinite;
+}
+
+.animate-pulse-radar {
+  animation: pulseRadar 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverseSlow {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes radarSweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circuitFlowV {
+  0% {
+    top: -10%;
+    opacity: 0;
+    transform: translateY(0) scaleY(0.4);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1.2);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1.2);
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+    transform: translateY(0) scaleY(0.4);
+  }
+}
+
+@keyframes pulseGlowDot {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px #0066FF);
+  }
+  50% {
+    transform: scale(1.4);
+    filter: drop-shadow(0 0 12px #38BDF8);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spinReverseSlow 28s linear infinite;
+}
+
+.animate-radar-sweep {
+  animation: radarSweep 5s linear infinite;
+}
+
+.animate-circuit-flow {
+  animation: circuitFlowV 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-circuit-flow-fast {
+  animation: circuitFlowV 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-pulse-glow-dot {
+  animation: pulseGlowDot 2s ease-in-out infinite;
+}
+
+@keyframes highwayStream {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+@keyframes energyDash {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-highway-stream {
+  background-size: 200% 100%;
+  animation: highwayStream 3s linear infinite;
+}
+
+.animate-energy-dash {
+  animation: energyDash 2s linear infinite;
+}
+
+.isometric-perspective {
+  perspective: 1400px;
+}
+
