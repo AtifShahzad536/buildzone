@@ -53,7 +53,7 @@ export const AISection = () => {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
-              We go beyond simple API wrappers. As the leading AI and software house in Sialkot, we architect custom LLM pipelines, autonomous reasoning agents, and private vector infrastructure that transform complex manual workflows into automated operational efficiency.
+              We go beyond simple API wrappers. As the leading AI and software agency in Sialkot, we architect custom LLM pipelines, autonomous reasoning agents, and private vector infrastructure that transform complex manual workflows into automated operational efficiency.
             </p>
 
             <ul className="space-y-3 font-sans text-xs sm:text-sm text-slate-700 font-medium">

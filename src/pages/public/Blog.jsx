@@ -29,8 +29,8 @@ export const Blog = () => {
     <>
       <SEOHead
         title="Engineering Blog | BuildZone"
-        description="In-depth technical articles, system design guides, and AI case studies published by senior architects at BuildZone, the best software house in Sialkot."
-        keywords="Software Engineering Blog Sialkot, AI Articles, Web Development Guides, Best Software House in Sialkot Blog, Top IT Company Sialkot"
+        description="In-depth technical articles, system design guides, and AI case studies published by senior architects at BuildZone, the best software agency in Sialkot."
+        keywords="Software Engineering Blog Sialkot, AI Articles, Web Development Guides, Best Software Agency in Sialkot Blog, Best Software House in Sialkot Blog, Top IT Company Sialkot"
         canonical="https://buildzonetechnology.com/blog"
       />
 

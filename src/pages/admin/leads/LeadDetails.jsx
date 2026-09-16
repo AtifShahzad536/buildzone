@@ -105,7 +105,7 @@ Are you available for a brief discussion this week?
 
 Best regards,
 Lead Solutions Architect
-BuildZone Technology — #1 Software House in Sialkot
+BuildZone Technology — #1 Software Agency in Sialkot
 Website: https://buildzonetechnology.com
 WhatsApp: +92 105464116 | Email: info@buildzonetechnology.com`
       );

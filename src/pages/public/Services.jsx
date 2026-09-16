@@ -18,8 +18,8 @@ export const Services = () => {
     <>
       <SEOHead
         title="Custom Software, Web & AI Services | BuildZone"
-        description="Explore enterprise custom software development, mobile apps, ERP systems, web applications, and AI engineering services by BuildZone, the #1 software house in Sialkot."
-        keywords="Software Services Sialkot, Custom Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Development Sialkot, ERP Systems Sialkot, Best Software House in Sialkot, Top IT Company in Sialkot"
+        description="Explore enterprise custom software development, mobile apps, ERP systems, web applications, and AI engineering services by BuildZone, the #1 software agency in Sialkot."
+        keywords="Software Services Sialkot, Custom Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Development Sialkot, ERP Systems Sialkot, Best Software House in Sialkot, Best Software Agency in Sialkot, Top IT Company in Sialkot"
         canonical="https://buildzonetechnology.com/services"
       />
 

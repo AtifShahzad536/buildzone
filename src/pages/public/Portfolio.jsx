@@ -25,8 +25,8 @@ export const Portfolio = () => {
     <>
       <SEOHead
         title="Portfolio & Case Studies | BuildZone"
-        description="Explore 250+ enterprise web platforms, mobile apps, SaaS products, and custom AI systems built by BuildZone, the top-rated software house in Sialkot."
-        keywords="BuildZone Portfolio, Software House in Sialkot Projects, Web Development Sialkot Case Studies, Mobile Apps Sialkot, Top IT Company Sialkot, Best Software House in Sialkot"
+        description="Explore 250+ enterprise web platforms, mobile apps, SaaS products, and custom AI systems built by BuildZone, the top-rated software agency in Sialkot."
+        keywords="BuildZone Portfolio, Software House in Sialkot Projects, Software Agency in Sialkot, Web Development Sialkot Case Studies, Mobile Apps Sialkot, Top IT Company Sialkot, Best Software House in Sialkot"
         canonical="https://buildzonetechnology.com/portfolio"
       />
 

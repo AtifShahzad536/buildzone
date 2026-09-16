@@ -21,8 +21,8 @@ export const About = () => {
     <>
       <SEOHead
         title="About Us | BuildZone"
-        description="Learn about BuildZone, the best & #1 software house in Sialkot, Pakistan. Discover our engineering leadership, enterprise standards, and mission to deliver world-class digital products."
-        keywords="About BuildZone, Best Software House in Sialkot, No 1 Software House in Sialkot, Top IT Company in Sialkot, Best Software Company Sialkot Pakistan, Software Engineering Sialkot"
+        description="Learn about BuildZone, the best & #1 software agency in Sialkot, Pakistan. Discover our engineering leadership, enterprise standards, and mission to deliver world-class digital products."
+        keywords="About BuildZone, Best Software House in Sialkot, No 1 Software House in Sialkot, Best Software Agency in Sialkot, Top IT Company in Sialkot, Best Software Company Sialkot Pakistan, Software Engineering Sialkot"
         canonical="https://buildzonetechnology.com/about"
       />
 
@@ -33,14 +33,14 @@ export const About = () => {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
               <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
-                SIALKOT'S PREMIER IT & SOFTWARE HOUSE
+                SIALKOT'S PREMIER IT & SOFTWARE AGENCY
               </span>
             </div>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-6 leading-tight">
               WE ARE BUILDZONE
             </h1>
             <p className="text-base sm:text-lg text-slate-600 font-sans leading-relaxed">
-              The #1 software house in Sialkot and premier digital engineering consultancy, partnering with local exporters, ambitious startups, and global enterprises to build high-scale, mission-critical digital products.
+              The #1 software agency in Sialkot and premier digital engineering consultancy, partnering with local exporters, ambitious startups, and global enterprises to build high-scale, mission-critical digital products.
             </p>
           </div>
 

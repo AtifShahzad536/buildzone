@@ -17,7 +17,7 @@ export const FinalCTA = () => {
             <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-blue-100/80 border border-blue-200 rounded-full">
               <Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
-                Ready to Build with Sialkot's #1 Software House?
+                Ready to Build with Sialkot's #1 Software Agency?
               </span>
             </div>
 

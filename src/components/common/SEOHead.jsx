@@ -15,10 +15,10 @@ export const SEOHead = ({
   
   const fullTitle = title 
     ? (title.includes(companyName) ? title : `${title} | ${companyName}`)
-    : `${companyName} | Best Software House in Sialkot`;
+    : `${companyName} | Best Software Agency in Sialkot`;
     
   const metaDesc = description || settings?.metaDescription || siteConfig.description;
-  const metaKeywords = keywords || "Best Software House in Sialkot, No 1 Software House in Sialkot, Top Software House in Sialkot, Software House in Sialkot, Best IT Company in Sialkot, Custom Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Solutions Sialkot, ERP Systems Sialkot Pakistan";
+  const metaKeywords = keywords || "Best Software House in Sialkot, No 1 Software House in Sialkot, Top Software House in Sialkot, Software House in Sialkot, Best Software Agency in Sialkot, Top Software Agency Sialkot, Best IT Company in Sialkot, Custom Software Development Sialkot, Web Development Sialkot, Mobile App Development Sialkot, AI Solutions Sialkot, ERP Systems Sialkot Pakistan";
 
   useEffect(() => {
     document.title = fullTitle;

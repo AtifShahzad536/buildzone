@@ -542,7 +542,7 @@ const customBaseQuery = async (args) => {
       heroBadgeText: 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
       heroTitlePrefix: 'We Build Digital Products That',
       heroTitleAccent: 'Scale Your Business',
-      heroDescription: 'BuildZone is a software house delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.',
+      heroDescription: 'BuildZone is a premier software agency delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.',
       statsClients: '150+',
       statsProjects: '250+',
       statsExperience: '5+',

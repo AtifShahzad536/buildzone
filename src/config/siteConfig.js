@@ -2,9 +2,9 @@ export const siteConfig = {
   name: "BuildZone",
   shortName: "BuildZone",
   legalName: "BuildZone Technology (Pvt) Ltd.",
-  tagline: "BEST & NO. 1 SOFTWARE HOUSE IN SIALKOT | GLOBAL SOFTWARE & AI ENGINEERING",
-  subheading: "BuildZone Technology is the best and leading software house in Sialkot, delivering custom enterprise ERPs, web platforms, mobile apps, and AI automation for global businesses and local exporters.",
-  description: "BuildZone is the Best & #1 Software House in Sialkot, Pakistan. We deliver custom software development, enterprise ERP systems, AI automation, mobile apps, and high-performance web platforms for startups, exporters, and enterprises worldwide.",
+  tagline: "BEST & NO. 1 SOFTWARE AGENCY IN SIALKOT | GLOBAL SOFTWARE & AI ENGINEERING",
+  subheading: "BuildZone Technology is the best and leading software agency in Sialkot, delivering custom enterprise ERPs, web platforms, mobile apps, and AI automation for global businesses and local exporters.",
+  description: "BuildZone is the Best & #1 Software Agency in Sialkot, Pakistan. We deliver custom software development, enterprise ERP systems, AI automation, mobile apps, and high-performance web platforms for startups, exporters, and enterprises worldwide.",
   url: "https://buildzonetechnology.com",
   foundedYear: 2020,
   

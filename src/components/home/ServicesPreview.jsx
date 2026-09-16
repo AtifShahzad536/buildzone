@@ -64,13 +64,13 @@ export const ServicesPreview = () => {
         {/* Section Header Matching High-Impact SEO Keywords */}
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
           <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#0066FF] block">
-            WHAT WE DO • SIALKOT'S TOP SOFTWARE PODS
+            WHAT WE DO • SIALKOT'S TOP SOFTWARE AGENCY
           </span>
           <h2 className="text-3xl sm:text-4xl font-black font-display tracking-tight text-[#0B1938]">
             Enterprise Software & AI Services
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 font-sans">
-            End-to-end custom software development, mobile apps, ERPs, and custom AI engineered by the best software house in Sialkot.
+            End-to-end custom software development, mobile apps, ERPs, and custom AI engineered by the premier software agency in Sialkot.
           </p>
         </div>
 

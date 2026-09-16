@@ -182,7 +182,7 @@ export const WhyChooseUs = () => {
               </span>
               
               <span className="font-sans text-[11px] font-extrabold text-[#0066FF] uppercase tracking-wider">
-                WHY BUILDZONE • SIALKOT'S #1 SOFTWARE HOUSE
+                WHY BUILDZONE • SIALKOT'S #1 SOFTWARE AGENCY
               </span>
             </div>
 
@@ -208,7 +208,7 @@ export const WhyChooseUs = () => {
 
             {/* Body Description */}
             <p className="text-sm sm:text-[15px] text-slate-600 font-sans leading-relaxed max-w-lg">
-              As the premier software house in Sialkot, we don't just write code. We engineer mission-critical, enterprise-grade systems with fault-tolerant cloud architecture, bank-grade zero-trust security, and high-velocity agile delivery.
+              As the premier software agency in Sialkot, we don't just write code. We engineer mission-critical, enterprise-grade systems with fault-tolerant cloud architecture, bank-grade zero-trust security, and high-velocity agile delivery.
             </p>
 
             {/* Interactive Architecture Mode Tabs */}

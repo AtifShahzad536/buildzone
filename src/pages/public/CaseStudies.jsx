@@ -18,7 +18,7 @@ export const CaseStudies = () => {
       <SEOHead
         title="Case Studies & Engineering Impact | BuildZone"
         description="Read architectural deep dives and business transformation results delivered by BuildZone, Sialkot's premier software engineering company."
-        keywords="Software Engineering Case Studies, Best Software House in Sialkot, No 1 Software House in Sialkot, ERP Case Studies Sialkot, AI Projects Sialkot"
+        keywords="Software Engineering Case Studies, Best Software Agency in Sialkot, Best Software House in Sialkot, No 1 Software House in Sialkot, ERP Case Studies Sialkot, AI Projects Sialkot"
         canonical="https://buildzonetechnology.com/case-studies"
       />
 

@@ -15,7 +15,7 @@ export const FeaturedProjects = () => {
           <SectionTitle
             badge="ENGINEERED CASE STUDIES • SHIPPED IN SIALKOT & GLOBALLY"
             title="Featured Client Deployments"
-            subtitle="Explore high-concurrency platforms, AI applications, and custom enterprise software engineered by Sialkot's premier software house."
+            subtitle="Explore high-concurrency platforms, AI applications, and custom enterprise software engineered by Sialkot's premier software agency."
             className="mb-0"
           />
           <Link to="/portfolio" className="hidden md:inline-block">

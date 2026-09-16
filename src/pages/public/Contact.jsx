@@ -77,8 +77,8 @@ export const Contact = () => {
     <>
       <SEOHead
         title="Contact Us | BuildZone"
-        description="Connect with BuildZone, the best & top-rated software house in Sialkot, Pakistan. Scope your next custom software, ERP system, mobile app, or AI solution."
-        keywords="Contact Software House in Sialkot, Best Software House in Sialkot, No 1 Software House in Sialkot, IT Company in Sialkot, Software House in Sialkot Address, BuildZone Sialkot Phone WhatsApp, Hire Developers Sialkot"
+        description="Connect with BuildZone, the best & top-rated software agency in Sialkot, Pakistan. Scope your next custom software, ERP system, mobile app, or AI solution."
+        keywords="Contact Software Agency in Sialkot, Contact Software House in Sialkot, Best Software Agency in Sialkot, Best Software House in Sialkot, No 1 Software House in Sialkot, No 1 Software Agency in Sialkot, IT Company in Sialkot, Software House in Sialkot Address, BuildZone Sialkot Phone WhatsApp, Hire Developers Sialkot"
         canonical="https://buildzonetechnology.com/contact"
       />
 

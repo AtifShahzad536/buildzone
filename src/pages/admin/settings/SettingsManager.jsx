@@ -43,7 +43,7 @@ export const SettingsManager = () => {
     heroBadgeText: reduxSettings.heroBadgeText || 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
     heroTitlePrefix: reduxSettings.heroTitlePrefix || 'We Build Digital Products That',
     heroTitleAccent: reduxSettings.heroTitleAccent || 'Scale Your Business',
-    heroDescription: reduxSettings.heroDescription || 'BuildZone is a software house delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.',
+    heroDescription: reduxSettings.heroDescription || 'BuildZone is a premier software agency delivering custom web, mobile, and AI-powered solutions that help startups and enterprises innovate, automate and grow.',
     statsClients: reduxSettings.statsClients || '150+',
     statsProjects: reduxSettings.statsProjects || '250+',
     statsExperience: reduxSettings.statsExperience || '5+',

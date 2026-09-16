@@ -35,8 +35,8 @@ export const FAQ = () => {
     <>
       <SEOHead
         title="Frequently Asked Questions | BuildZone"
-        description="Get detailed answers on custom software development costs, project delivery timelines, IP ownership, and SLAs from BuildZone, the best software house in Sialkot."
-        keywords="Software House Sialkot FAQ, Software Development Cost Sialkot, Hire Developers Sialkot, Best Software House in Sialkot, No 1 Software House in Sialkot"
+        description="Get detailed answers on custom software development costs, project delivery timelines, IP ownership, and SLAs from BuildZone, the best software agency in Sialkot."
+        keywords="Software Agency Sialkot FAQ, Software House Sialkot FAQ, Software Development Cost Sialkot, Hire Developers Sialkot, Best Software Agency in Sialkot, Best Software House in Sialkot, No 1 Software House in Sialkot"
         canonical="https://buildzonetechnology.com/faq"
       />
 
