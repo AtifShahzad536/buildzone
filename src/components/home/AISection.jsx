@@ -13,6 +13,7 @@ import Container from '../common/Container';
 import SectionTitle from '../common/SectionTitle';
 import Button from '../common/Button';
 import Badge from '../common/Badge';
+import ScrollReveal from '../common/ScrollReveal';
 
 const aiCapabilities = [
   {
@@ -43,7 +44,7 @@ export const AISection = () => {
       <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left Column: Headline & Intro */}
-          <div className="lg:col-span-5 space-y-6">
+          <ScrollReveal animation="fade-right" duration={0.7} className="lg:col-span-5 space-y-6">
             <Badge variant="cyan" size="md" icon={<Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />}>
               Next-Generation Intelligence • Sialkot AI Hub
             </Badge>
@@ -77,16 +78,16 @@ export const AISection = () => {
                 </Button>
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: 4 Capability Cards */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <ScrollReveal animation="fade-left" delay={0.2} stagger={0.1} className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {aiCapabilities.map((cap, index) => {
               const Icon = cap.icon;
               return (
                 <div
                   key={index}
-                  className="p-6 bg-[#F8FAFC] border border-slate-200 hover:border-[#0066FF]/40 rounded-lg transition-all duration-200 group shadow-sm hover:shadow-md"
+                  className="p-6 bg-[#F8FAFC] border border-slate-200 hover:border-[#0066FF]/40 rounded-lg transition-all duration-300 group shadow-sm hover:shadow-md transform hover:-translate-y-1"
                 >
                   <div className="w-11 h-11 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white transition-all mb-4">
                     <Icon className="w-5 h-5" />
@@ -102,7 +103,7 @@ export const AISection = () => {
                 </div>
               );
             })}
-          </div>
+          </ScrollReveal>
         </div>
       </Container>
     </section>

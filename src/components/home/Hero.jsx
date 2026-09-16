@@ -28,6 +28,8 @@ import {
 import { useGetSettingsQuery } from '../../services/api';
 import Container from '../common/Container';
 import Button from '../common/Button';
+import ScrollReveal from '../common/ScrollReveal';
+import CountUp from '../common/CountUp';
 
 export const Hero = () => {
   const reduxSettings = useSelector((state) => state.settings);
@@ -59,7 +61,7 @@ export const Hero = () => {
 
   const getYouTubeId = (url) => {
     if (!url) return null;
-    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=)|youtube-nocookie\.com\/embed\/)([\w-]{11})/);
+    const match = url.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
     return match ? match[1] : null;
   };
 
@@ -86,79 +88,89 @@ export const Hero = () => {
           <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
             
             {/* 1. Top Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-50 border border-blue-200/90 rounded-full shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-[#0047BA] inline-block animate-pulse"></span>
-              <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-wide text-[#0047BA]">
-                {badgeText}
-              </span>
-            </div>
+            <ScrollReveal animation="fade-down" delay={0.1} duration={0.6}>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-50 border border-blue-200/90 rounded-full shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-[#0047BA] inline-block animate-pulse"></span>
+                <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-wide text-[#0047BA]">
+                  {badgeText}
+                </span>
+              </div>
+            </ScrollReveal>
 
             {/* 2. Main High-Impact Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] font-black font-display tracking-tight text-[#0B1938] leading-[1.12]">
-              {titlePrefix}{' '}
-              <span className="text-[#0066FF] block sm:inline">
-                {titleAccent}
-              </span>
-            </h1>
+            <ScrollReveal animation="fade-up" delay={0.2} duration={0.7}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] font-black font-display tracking-tight text-[#0B1938] leading-[1.12]">
+                {titlePrefix}{' '}
+                <span className="text-[#0066FF] block sm:inline">
+                  {titleAccent}
+                </span>
+              </h1>
+            </ScrollReveal>
 
             {/* 3. Subtitle Paragraph */}
-            <p className="text-sm sm:text-base text-slate-700 font-sans leading-relaxed max-w-xl mx-auto lg:mx-0">
-              {subtitle}
-            </p>
+            <ScrollReveal animation="fade-up" delay={0.3} duration={0.7}>
+              <p className="text-sm sm:text-base text-slate-700 font-sans leading-relaxed max-w-xl mx-auto lg:mx-0">
+                {subtitle}
+              </p>
+            </ScrollReveal>
 
             {/* 4. Action CTAs */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-              <Link to="/start-project">
-                <Button
-                  variant="primary"
-                  size="md"
-                  className="bg-[#0066FF] hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-sm"
-                  rightIcon={<ArrowRight className="w-4 h-4" />}
+            <ScrollReveal animation="fade-up" delay={0.4} duration={0.7}>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+                <Link to="/start-project">
+                  <Button
+                    variant="primary"
+                    size="md"
+                    className="bg-[#0066FF] hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-sm transform transition hover:-translate-y-0.5"
+                    rightIcon={<ArrowRight className="w-4 h-4" />}
+                  >
+                    Start a Project
+                  </Button>
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={() => setIsVideoModalOpen(true)}
+                  className="px-5 py-2.5 bg-white border border-slate-300 hover:border-[#0066FF] text-[#0B1938] hover:text-[#0066FF] rounded-lg font-sans text-sm font-semibold transition-all flex items-center gap-2 shadow-2xs cursor-pointer group transform transition hover:-translate-y-0.5"
                 >
-                  Start a Project
-                </Button>
-              </Link>
-
-              <button
-                type="button"
-                onClick={() => setIsVideoModalOpen(true)}
-                className="px-5 py-2.5 bg-white border border-slate-300 hover:border-[#0066FF] text-[#0B1938] hover:text-[#0066FF] rounded-lg font-sans text-sm font-semibold transition-all flex items-center gap-2 shadow-2xs cursor-pointer group"
-              >
-                <div className="w-6 h-6 rounded-full border border-slate-300 group-hover:border-[#0066FF] flex items-center justify-center text-[#0066FF] transition-colors">
-                  <Play className="w-3 h-3 fill-current ml-0.5" />
-                </div>
-                <span>Watch Intro</span>
-              </button>
-            </div>
-
-            {/* 5. Four Stats Row Below CTAs */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-300/80">
-              {stats.map((stat, idx) => {
-                const Icon = stat.icon;
-                return (
-                  <div key={idx} className="flex items-center gap-2.5 text-left">
-                    <div className="text-[#0066FF] shrink-0">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="font-display font-black text-lg sm:text-xl text-[#0B1938] leading-none">
-                        {stat.value}
-                      </div>
-                      <div className="font-sans text-[11px] text-slate-700 font-bold leading-tight mt-0.5">
-                        {stat.label}
-                      </div>
-                    </div>
+                  <div className="w-6 h-6 rounded-full border border-slate-300 group-hover:border-[#0066FF] flex items-center justify-center text-[#0066FF] transition-colors">
+                    <Play className="w-3 h-3 fill-current ml-0.5" />
                   </div>
-                );
-              })}
-            </div>
+                  <span>Watch Intro</span>
+                </button>
+              </div>
+            </ScrollReveal>
+
+            {/* 5. Four Stats Row Below CTAs with Scroll-Triggered Animated Counters */}
+            <ScrollReveal animation="fade-up" delay={0.5} duration={0.7}>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-300/80">
+                {stats.map((stat, idx) => {
+                  const Icon = stat.icon;
+                  return (
+                    <div key={idx} className="flex items-center gap-2.5 text-left group">
+                      <div className="text-[#0066FF] shrink-0 transition-transform group-hover:scale-110 duration-200">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="font-display font-black text-lg sm:text-xl text-[#0B1938] leading-none">
+                          <CountUp value={stat.value} duration={1600} />
+                        </div>
+                        <div className="font-sans text-[11px] text-slate-700 font-bold leading-tight mt-0.5">
+                          {stat.label}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </ScrollReveal>
 
           </div>
 
           {/* ========================================================================= */}
           {/* RIGHT COLUMN: Pixel-Perfect SaaS Dashboard & Mobile Device Showcase       */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-6 relative w-full pt-4 lg:pt-0">
+          <ScrollReveal animation="zoom-in" delay={0.25} duration={0.8} className="lg:col-span-6 relative w-full pt-4 lg:pt-0">
             
             {/* If Admin chose Showcase Video (Laptop & Mobile Website Scroll Animation) */}
             {heroMediaType === 'video' && heroVideoUrl && !videoLoadError ? (
@@ -545,7 +557,7 @@ export const Hero = () => {
               </div>
             )}
 
-          </div>
+          </ScrollReveal>
 
         </div>
       </Container>

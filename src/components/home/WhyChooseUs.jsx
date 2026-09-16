@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Container from '../common/Container';
+import ScrollReveal from '../common/ScrollReveal';
 
 export const WhyChooseUs = () => {
   const [activeTag, setActiveTag] = useState('SCALABLE');
@@ -170,7 +171,7 @@ export const WhyChooseUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* LEFT COLUMN: Headings, Live Subtitle, Mode Switcher & Telemetry Card */}
-          <div className="lg:col-span-6 space-y-6">
+          <ScrollReveal animation="fade-right" duration={0.7} className="lg:col-span-6 space-y-6">
             
             {/* Live Status Cyber Badge with Scanning Beam */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-blue-200/90 bg-white/90 backdrop-blur-md shadow-xs shadow-blue-500/10 relative overflow-hidden group cursor-default">
@@ -225,67 +226,68 @@ export const WhyChooseUs = () => {
                     <button
                       key={key}
                       onClick={() => setActiveTag(key)}
-                      className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-bold font-sans transition-all duration-200 cursor-pointer border ${
-                        isActive
-                          ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-md shadow-blue-500/25 scale-[1.02]'
-                          : 'bg-white/80 hover:bg-white text-slate-600 hover:text-[#0066FF] border-slate-200 hover:border-blue-200'
+                      type="button"
+                      className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
+                        isActive 
+                          ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-md shadow-blue-500/25 scale-[1.02]' 
+                          : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
                       }`}
                     >
-                      <Icon className="w-3.5 h-3.5 shrink-0" />
-                      <span>{mode.key}</span>
+                      <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#0066FF]'}`} />
+                      <span className="font-sans text-[11px] tracking-tight truncate">{key}</span>
                     </button>
                   );
                 })}
               </div>
             </div>
 
-            {/* Dynamic Live Telemetry HUD Card */}
-            <div className="p-4 rounded-2xl bg-white/90 border border-blue-100 shadow-md shadow-blue-500/5 backdrop-blur-md relative overflow-hidden transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-2xl pointer-events-none -mr-10 -mt-10" />
-              
-              <div className="flex items-center justify-between mb-2.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#0066FF] flex items-center justify-center">
-                    <Terminal className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-[#0B1938] block font-display">
+            {/* Active Architecture Mode Live Telemetry Card */}
+            <div className="p-4 rounded-2xl bg-white/90 border border-slate-200/90 shadow-sm backdrop-blur-sm space-y-3 transition-all duration-300">
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-ping" />
+                    <h4 className="font-display font-black text-sm text-[#0B1938] tracking-tight">
                       {currentMode.title}
-                    </span>
-                    <span className="text-[11px] text-slate-500 font-sans block">
-                      {currentMode.subtitle}
-                    </span>
+                    </h4>
                   </div>
+                  <p className="text-xs text-slate-500 font-sans mt-0.5">
+                    {currentMode.subtitle}
+                  </p>
                 </div>
-
-                <div className="text-right">
-                  <span className="text-sm font-black text-[#0066FF] font-display block">
+                <div className="text-right shrink-0">
+                  <span className="font-display font-black text-sm sm:text-base text-[#0066FF] block">
                     {currentMode.metric}
                   </span>
-                  <span className="text-[10px] text-slate-400 font-medium block">
+                  <span className="text-[10px] text-slate-400 font-sans block">
                     {currentMode.metricSub}
                   </span>
                 </div>
               </div>
 
-              {/* Mode Feature Chips & Live Micro Stats */}
-              <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
-                <div className="flex flex-wrap gap-1.5">
-                  {currentMode.chips.map((chip, i) => (
-                    <span 
-                      key={i} 
-                      className="inline-flex items-center text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-50 text-slate-600 border border-slate-200/80"
-                    >
-                      {chip}
-                    </span>
-                  ))}
-                </div>
+              {/* Badges / Chips */}
+              <div className="flex flex-wrap gap-1.5 pt-1 border-t border-slate-100">
+                {currentMode.chips.map((chip, i) => (
+                  <span 
+                    key={i} 
+                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-100 text-[10.5px] font-sans font-semibold text-slate-700 border border-slate-200"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-[#0066FF]" />
+                    {chip}
+                  </span>
+                ))}
+              </div>
 
-                <div className="flex items-center gap-3 text-[11px] font-mono text-slate-500 shrink-0">
-                  <span className="flex items-center gap-1 text-emerald-600 font-bold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              {/* Latency & Uptime Benchmarks */}
+              <div className="flex items-center justify-between text-[11px] font-mono pt-1 text-slate-500 bg-slate-50 px-2.5 py-1.5 rounded-lg border border-slate-200/70">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-slate-400">P99 Latency:</span>
+                  <span className="text-emerald-600 font-bold">
                     {currentMode.latency}
                   </span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-slate-400">SLO Uptime:</span>
                   <span className="text-blue-600 font-bold">
                     {currentMode.uptime}
                   </span>
@@ -294,10 +296,10 @@ export const WhyChooseUs = () => {
 
             </div>
 
-          </div>
+          </ScrollReveal>
 
           {/* RIGHT COLUMN: 3D Animated Concentric Gyroscope Rings & Live Flowing Electric Lights */}
-          <div className="lg:col-span-6 relative flex items-center justify-center">
+          <ScrollReveal animation="zoom-in" delay={0.2} duration={0.8} className="lg:col-span-6 relative flex items-center justify-center">
             
             <div 
               ref={cardRef}
@@ -618,12 +620,12 @@ export const WhyChooseUs = () => {
               </div>
 
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
 
         {/* ================= BOTTOM 4-COLUMN BENTO PILLARS GRID ================= */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20 pt-12 border-t border-slate-200/80">
+        <ScrollReveal animation="fade-up" delay={0.2} stagger={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20 pt-12 border-t border-slate-200/80">
           {pillars.map((item, idx) => (
             <div 
               key={idx} 
@@ -678,7 +680,7 @@ export const WhyChooseUs = () => {
 
             </div>
           ))}
-        </div>
+        </ScrollReveal>
 
       </Container>
     </section>

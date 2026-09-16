@@ -6,24 +6,27 @@ import { renderIcon } from '../../utils/helpers';
 import Container from '../common/Container';
 import SectionTitle from '../common/SectionTitle';
 import Button from '../common/Button';
+import ScrollReveal from '../common/ScrollReveal';
 
 export const IndustriesPreview = () => {
   return (
     <section className="py-16 sm:py-24 bg-[#F8FAFC] relative">
       <Container>
-        <SectionTitle
-          badge="DOMAIN EXPERTISE • SIALKOT EXPORTERS & GLOBAL ENTERPRISES"
-          title="Engineered for High-Stakes Industries"
-          subtitle="We tailor regulatory compliance, architecture security, export ERP systems, and workflows to your exact sector standards."
-          center
-        />
+        <ScrollReveal animation="fade-up" duration={0.65}>
+          <SectionTitle
+            badge="DOMAIN EXPERTISE • SIALKOT EXPORTERS & GLOBAL ENTERPRISES"
+            title="Engineered for High-Stakes Industries"
+            subtitle="We tailor regulatory compliance, architecture security, export ERP systems, and workflows to your exact sector standards."
+            center
+          />
+        </ScrollReveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-12">
+        <ScrollReveal animation="fade-up" delay={0.15} stagger={0.06} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-12">
           {initialIndustries.slice(0, 8).map((ind) => (
             <Link
               key={ind.id}
               to={`/industries/${ind.slug}`}
-              className="p-5 sm:p-6 bg-white border border-slate-200 hover:border-[#0066FF]/50 rounded-lg transition-all duration-200 flex flex-col justify-between group hover:-translate-y-1 shadow-sm hover:shadow-md"
+              className="p-5 sm:p-6 bg-white border border-slate-200 hover:border-[#0066FF]/50 rounded-lg transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5 shadow-sm hover:shadow-md"
             >
               <div>
                 <div className="w-10 h-10 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white transition-all mb-4">
@@ -45,15 +48,15 @@ export const IndustriesPreview = () => {
               </div>
             </Link>
           ))}
-        </div>
+        </ScrollReveal>
 
-        <div className="mt-12 text-center">
+        <ScrollReveal animation="fade-up" delay={0.2} duration={0.6} className="mt-12 text-center">
           <Link to="/industries">
             <Button variant="secondary" size="md">
               Explore All 11 Industry Sectors
             </Button>
           </Link>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   );

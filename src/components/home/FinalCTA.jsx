@@ -3,23 +3,25 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, ShieldCheck, Clock, CheckCircle2 } from 'lucide-react';
 import Container from '../common/Container';
 import Button from '../common/Button';
+import ScrollReveal from '../common/ScrollReveal';
 
 export const FinalCTA = () => {
   return (
     <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
       <Container>
-        <div className="relative p-8 sm:p-12 md:p-16 bg-gradient-to-br from-blue-50/90 via-white to-blue-50/50 border border-blue-200/80 rounded-2xl overflow-hidden text-center max-w-5xl mx-auto shadow-md">
-          {/* Subtle Light Glow & Grid Accents */}
-          <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
+        <ScrollReveal animation="zoom-in" duration={0.7}>
+          <div className="relative p-8 sm:p-12 md:p-16 bg-gradient-to-br from-blue-50/90 via-white to-blue-50/50 border border-blue-200/80 rounded-2xl overflow-hidden text-center max-w-5xl mx-auto shadow-md">
+            {/* Subtle Light Glow & Grid Accents */}
+            <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-blue-100/80 border border-blue-200 rounded-full">
-              <Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
-                Ready to Build with Sialkot's #1 Software Agency?
-              </span>
-            </div>
+            <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-blue-100/80 border border-blue-200 rounded-full">
+                <Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+                  Ready to Build with Sialkot's #1 Software Agency?
+                </span>
+              </div>
 
             <h2 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938] leading-tight">
               LET'S ENGINEER YOUR NEXT DIGITAL BREAKTHROUGH
@@ -70,8 +72,9 @@ export const FinalCTA = () => {
             </div>
           </div>
         </div>
-      </Container>
-    </section>
+      </ScrollReveal>
+    </Container>
+  </section>
   );
 };
 

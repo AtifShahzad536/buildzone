@@ -6,26 +6,29 @@ import Container from '../common/Container';
 import SectionTitle from '../common/SectionTitle';
 import Badge from '../common/Badge';
 import Button from '../common/Button';
+import ScrollReveal from '../common/ScrollReveal';
 
 export const FeaturedProjects = () => {
   return (
     <section className="py-16 sm:py-24 bg-white relative">
       <Container>
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <SectionTitle
-            badge="ENGINEERED CASE STUDIES • SHIPPED IN SIALKOT & GLOBALLY"
-            title="Featured Client Deployments"
-            subtitle="Explore high-concurrency platforms, AI applications, and custom enterprise software engineered by Sialkot's premier software agency."
-            className="mb-0"
-          />
-          <Link to="/portfolio" className="hidden md:inline-block">
-            <Button variant="secondary" size="md" rightIcon={<ArrowRight className="w-4 h-4" />}>
-              View All Work
-            </Button>
-          </Link>
-        </div>
+        <ScrollReveal animation="fade-up" duration={0.65}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <SectionTitle
+              badge="ENGINEERED CASE STUDIES • SHIPPED IN SIALKOT & GLOBALLY"
+              title="Featured Client Deployments"
+              subtitle="Explore high-concurrency platforms, AI applications, and custom enterprise software engineered by Sialkot's premier software agency."
+              className="mb-0"
+            />
+            <Link to="/portfolio" className="hidden md:inline-block">
+              <Button variant="secondary" size="md" rightIcon={<ArrowRight className="w-4 h-4" />}>
+                View All Work
+              </Button>
+            </Link>
+          </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ScrollReveal animation="fade-up" delay={0.15} stagger={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {initialProjects.slice(0, 3).map((project) => (
             <div
               key={project.id}
@@ -110,7 +113,7 @@ export const FeaturedProjects = () => {
               </div>
             </div>
           ))}
-        </div>
+        </ScrollReveal>
 
         <div className="mt-10 text-center md:hidden">
           <Link to="/portfolio" className="w-full inline-block">

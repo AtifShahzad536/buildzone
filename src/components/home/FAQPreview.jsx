@@ -5,6 +5,7 @@ import { initialFaqs } from '../../data/faqs';
 import Container from '../common/Container';
 import SectionTitle from '../common/SectionTitle';
 import Button from '../common/Button';
+import ScrollReveal from '../common/ScrollReveal';
 
 export const FAQPreview = () => {
   // Support independent open state for smooth 2-column expansion
@@ -20,15 +21,17 @@ export const FAQPreview = () => {
   return (
     <section className="py-16 sm:py-24 bg-[#F8FAFC] relative">
       <Container>
-        <SectionTitle
-          badge="Clear Answers"
-          title="Frequently Asked Questions"
-          subtitle="Everything you need to know about our pricing models, engagement terms, and delivery processes."
-          center
-        />
+        <ScrollReveal animation="fade-up" duration={0.65}>
+          <SectionTitle
+            badge="Clear Answers"
+            title="Frequently Asked Questions"
+            subtitle="Everything you need to know about our pricing models, engagement terms, and delivery processes."
+            center
+          />
+        </ScrollReveal>
 
         {/* 2-Column Responsive FAQ Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mt-12 items-start">
+        <ScrollReveal animation="fade-up" delay={0.15} stagger={0.06} className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mt-12 items-start">
           {initialFaqs.slice(0, 6).map((faq, index) => {
             const isOpen = !!openItems[index];
             return (
@@ -68,15 +71,15 @@ export const FAQPreview = () => {
               </div>
             );
           })}
-        </div>
+        </ScrollReveal>
 
-        <div className="mt-12 text-center">
+        <ScrollReveal animation="fade-up" delay={0.2} duration={0.6} className="mt-12 text-center">
           <Link to="/faq">
             <Button variant="secondary" size="md" rightIcon={<ArrowRight className="w-4 h-4" />}>
               View All Frequently Asked Questions
             </Button>
           </Link>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   );
