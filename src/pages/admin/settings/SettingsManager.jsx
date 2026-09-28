@@ -37,9 +37,9 @@ export const SettingsManager = () => {
     salesEmail: reduxSettings.salesEmail || 'sales@buildzonetechnology.com',
     
     // Hero Showcase & Video configuration
-    heroMediaType: reduxSettings.heroMediaType || 'video', // 'mockup' | 'video'
+    heroMediaType: reduxSettings.heroMediaType || 'mockup', // 'mockup' | 'video'
     heroBgColor: reduxSettings.heroBgColor || '#F2F2F2',
-    heroVideoUrl: reduxSettings.heroVideoUrl || 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+    heroVideoUrl: (reduxSettings.heroVideoUrl && !reduxSettings.heroVideoUrl.includes('dQw4w9WgXcQ')) ? reduxSettings.heroVideoUrl : '',
     heroBadgeText: reduxSettings.heroBadgeText || 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
     heroTitlePrefix: reduxSettings.heroTitlePrefix || 'We Build Digital Products That',
     heroTitleAccent: reduxSettings.heroTitleAccent || 'Scale Your Business',

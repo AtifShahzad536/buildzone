@@ -5,6 +5,7 @@ import SEOHead from '../../components/common/SEOHead';
 import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
 
 // Below-the-fold components lazy loaded to eliminate render-blocking JS for initial LCP
+const AboutSection = lazy(() => import('../../components/home/AboutSection'));
 const ServicesPreview = lazy(() => import('../../components/home/ServicesPreview'));
 const FeaturedProjects = lazy(() => import('../../components/home/FeaturedProjects'));
 const IndustriesPreview = lazy(() => import('../../components/home/IndustriesPreview'));
@@ -70,6 +71,7 @@ export const Home = () => {
 
         {/* Below the fold (streamed asynchronously with zero impact on LCP) */}
         <Suspense fallback={<div className="min-h-[200px]" />}>
+          <AboutSection />
           <ServicesPreview />
           <FeaturedProjects />
           <IndustriesPreview />

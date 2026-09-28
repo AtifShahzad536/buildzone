@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { 
-  ArrowRight, 
-  Play, 
-  Users, 
-  Rocket, 
-  Award, 
-  Headphones, 
-  Search, 
-  Bell, 
-  User, 
-  TrendingUp, 
-  CheckCircle2, 
-  Check, 
+import {
+  ArrowRight,
+  Play,
+  Users,
+  Rocket,
+  Award,
+  Headphones,
+  Search,
+  Bell,
+  User,
+  TrendingUp,
+  CheckCircle2,
+  Check,
   Sparkles,
   X,
   Layers,
@@ -49,8 +49,8 @@ export const Hero = () => {
   const subtitle = settings?.heroDescription || "BuildZone Technology is the premier software agency in Sialkot, delivering custom enterprise ERPs, mobile apps, scalable web portals, and AI-powered solutions that help businesses and exporters grow globally.";
 
   const rawVideoUrl = settings?.heroVideoUrl || "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ";
-  const heroVideoUrl = rawVideoUrl.includes('youtube.com/embed') 
-    ? rawVideoUrl.replace('youtube.com/embed', 'youtube-nocookie.com/embed') 
+  const heroVideoUrl = rawVideoUrl.includes('youtube.com/embed')
+    ? rawVideoUrl.replace('youtube.com/embed', 'youtube-nocookie.com/embed')
     : rawVideoUrl;
   const heroMediaType = settings?.heroMediaType || "video"; // 'video' | 'mockup'
 
@@ -75,18 +75,18 @@ export const Hero = () => {
   const heroBgColor = settings?.heroBgColor || "#F2F2F2";
 
   return (
-    <section 
+    <section
       className="relative pt-24 sm:pt-28 pb-14 sm:pb-20 overflow-hidden"
       style={{ backgroundColor: heroBgColor }}
     >
       <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          
+
           {/* ========================================================================= */}
           {/* LEFT COLUMN: Clean High-Impact Headline & Copy                            */}
           {/* ========================================================================= */}
           <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
-            
+
             {/* 1. Top Pill Badge */}
             <ScrollReveal animation="fade-down" delay={0.1} duration={0.6}>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-50 border border-blue-200/90 rounded-full shadow-2xs">
@@ -171,7 +171,7 @@ export const Hero = () => {
           {/* RIGHT COLUMN: Pixel-Perfect SaaS Dashboard & Mobile Device Showcase       */}
           {/* ========================================================================= */}
           <ScrollReveal animation="zoom-in" delay={0.25} duration={0.8} className="lg:col-span-6 relative w-full pt-4 lg:pt-0">
-            
+
             {/* If Admin chose Showcase Video (Laptop & Mobile Website Scroll Animation) */}
             {heroMediaType === 'video' && heroVideoUrl && !videoLoadError ? (
               <div className="relative w-full flex items-center justify-center bg-transparent border-0 rounded-none shadow-none">
@@ -231,10 +231,10 @@ export const Hero = () => {
             ) : (
               /* Interactive SaaS Dashboard Mockup + Overlapping Mobile Frame */
               <div className="relative w-full max-w-[620px] mx-auto perspective-1000 min-h-[420px] sm:min-h-[460px]">
-                
+
                 {/* 1. Main Desktop SaaS Dashboard Container */}
                 <div className="bg-white border border-slate-200/90 rounded-2xl shadow-[0_20px_50px_rgba(11,25,56,0.08)] overflow-hidden font-sans text-xs transition-transform duration-300 hover:shadow-[0_25px_60px_rgba(0,102,255,0.12)] min-h-[420px] sm:min-h-[460px]">
-                  
+
                   {/* Top Bar */}
                   <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-white">
                     <div className="flex items-center gap-2">
@@ -260,7 +260,7 @@ export const Hero = () => {
 
                   {/* Dashboard Body (Sidebar + Content) */}
                   <div className="grid grid-cols-12 min-h-[360px]">
-                    
+
                     {/* Left Mini Sidebar */}
                     <div className="col-span-3 border-r border-slate-100 bg-[#FAFBFD] p-3 space-y-1 font-sans text-[11.5px]">
                       <div className="flex items-center gap-2 px-2.5 py-1.5 bg-[#EFF6FF] text-[#0047BA] font-bold rounded-lg border border-blue-200 shadow-2xs">
@@ -295,7 +295,7 @@ export const Hero = () => {
 
                     {/* Main Content Area */}
                     <div className="col-span-9 p-4 space-y-4">
-                      
+
                       {/* Overview Header */}
                       <div className="flex items-center justify-between">
                         <span className="font-display font-bold text-xs uppercase tracking-wide text-[#0B1938] block">
@@ -332,7 +332,7 @@ export const Hero = () => {
 
                       {/* Middle Row: Revenue Chart & Top Channels */}
                       <div className="grid grid-cols-12 gap-3">
-                        
+
                         {/* Revenue Overview Curve */}
                         <div className="col-span-7 p-3 bg-white border border-slate-200 rounded-xl shadow-2xs">
                           <div className="flex items-center justify-between mb-2">
@@ -353,7 +353,7 @@ export const Hero = () => {
                                   <stop offset="100%" stopColor="#0066FF" stopOpacity="0.0" />
                                 </linearGradient>
                               </defs>
-                              
+
                               {/* Grid lines */}
                               <line x1="0" y1="20" x2="200" y2="20" stroke="#F1F5F9" strokeWidth="1" />
                               <line x1="0" y1="50" x2="200" y2="50" stroke="#F1F5F9" strokeWidth="1" />
@@ -480,10 +480,10 @@ export const Hero = () => {
 
                 {/* 2. Overlapping Modern Mobile Smartphone Mockup (Left Front) */}
                 <div className="hidden sm:block absolute -left-6 bottom-4 w-44 bg-white border-2 border-slate-300 rounded-[28px] p-2.5 shadow-[0_20px_40px_rgba(11,25,56,0.18)] z-20 transform -rotate-1 hover:rotate-0 transition-transform duration-300 font-sans">
-                  
+
                   {/* Phone Speaker & Camera Notch */}
                   <div className="w-12 h-1 bg-slate-300 rounded-full mx-auto mb-1.5"></div>
-                  
+
                   {/* Status Bar */}
                   <div className="flex items-center justify-between px-1 text-[9px] font-sans text-slate-700 mb-2">
                     <span className="font-bold">9:41</span>

@@ -6,7 +6,7 @@
   * {
     border-color: #E2E8F0;
   }
-  
+
   html {
     color-scheme: light;
   }
@@ -43,6 +43,7 @@
 }
 
 @layer utilities {
+
   /* Modern Crisp Light Glassmorphism */
   .tech-glass {
     background: rgba(255, 255, 255, 0.95);
@@ -66,7 +67,7 @@
   /* Clean Blueprint & Dot Grids */
   .bg-cyber-grid {
     background-size: 32px 32px;
-    background-image: 
+    background-image:
       linear-gradient(to right, rgba(11, 25, 56, 0.04) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(11, 25, 56, 0.04) 1px, transparent 1px);
   }

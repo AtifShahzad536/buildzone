@@ -2,8 +2,21 @@ import { createSlice } from '@reduxjs/toolkit';
 import { siteConfig } from '../../config/siteConfig';
 
 const storedSettings = localStorage.getItem('buildzone_settings');
-const initialState = storedSettings
-  ? JSON.parse(storedSettings)
+let parsed = null;
+try {
+  if (storedSettings) {
+    parsed = JSON.parse(storedSettings);
+    if (parsed.heroVideoUrl && parsed.heroVideoUrl.includes('dQw4w9WgXcQ')) {
+      parsed.heroVideoUrl = '';
+      parsed.heroMediaType = 'mockup';
+    }
+  }
+} catch (e) {
+  parsed = null;
+}
+
+const initialState = parsed
+  ? parsed
   : {
       companyName: siteConfig.name,
       tagline: siteConfig.tagline,
@@ -14,7 +27,8 @@ const initialState = storedSettings
       metaDescription: siteConfig.description,
       socialLinks: { ...siteConfig.social },
       heroBgColor: '#F2F2F2',
-      heroMediaType: 'video',
+      heroMediaType: 'mockup',
+      heroVideoUrl: '',
       isDirty: false,
     };
 

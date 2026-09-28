@@ -1,552 +1,373 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
+  Search, 
+  Palette, 
   Code2, 
-  Users, 
-  Zap, 
-  Globe, 
-  Smartphone, 
-  Server, 
-  Settings, 
-  Database, 
-  HardDrive, 
-  Layers, 
-  CheckCircle2, 
-  GitBranch, 
-  Terminal, 
-  Cpu, 
   ShieldCheck, 
   Rocket, 
-  Search, 
-  FileText,
-  Boxes,
-  ArrowRight,
-  ArrowLeft,
-  Sparkles,
-  Activity,
-  CheckCircle,
-  Radio,
-  Play,
+  CheckCircle2, 
+  Clock, 
+  Play, 
   Pause,
-  Navigation,
-  Palette,
-  Shield
+  ChevronRight,
+  Check,
+  Zap,
+  Layers,
+  Sparkles
 } from 'lucide-react';
 import Container from '../common/Container';
+import ScrollReveal from '../common/ScrollReveal';
 
-const highwayStations = [
+const processSteps = [
   {
     id: "01",
-    label: "DISCOVERY & BLUEPRINT",
-    stationName: "STATION 01: ARCHITECTURE BLUEPRINT",
-    tagline: "Understand the problem before writing a single line.",
-    desc: "We dive deep into your domain, define system constraints, design data schemas, and establish clear technical milestones with zero guesswork.",
+    stepNumber: "STEP 01",
+    title: "Discovery & Technical Planning",
+    timeline: "Week 1",
+    tagline: "Aligning goals, defining requirements, and mapping out the technical blueprint.",
+    description: "Before writing any code, we collaborate with your team to understand your business objectives, analyze user needs, and architect a future-proof data schema and milestone roadmap with zero ambiguity.",
     icon: Search,
-    color: "from-blue-600 to-cyan-500",
-    techStack: ["Domain Modeling", "PostgreSQL Schemas", "System Spec", "Sprint Roadmap"],
-    metrics: [
-      { value: "100%", label: "REQUIREMENT CLARITY" },
-      { value: "3-5 DAYS", label: "SPRINT 0 TIMELINE" },
-      { value: "0", label: "SCOPE CREEP RISK" }
+    color: "from-blue-600 to-sky-500",
+    deliverables: [
+      "Product Requirements Document (PRD)",
+      "System Architecture & Database ERD",
+      "Sprint-by-Sprint Delivery Roadmap",
+      "Fixed Scope & Budget Transparency"
     ],
-    features: [
-      { title: "User Journeys & Personas", desc: "Detailed functional requirements mapping." },
-      { title: "Entity-Relationship Diagrams", desc: "Optimized indexing & data caching plans." },
-      { title: "Fixed Milestone Roadmap", desc: "Predictable delivery with zero ambiguity." }
-    ]
+    tools: ["Miro", "Jira", "PostgreSQL ERD", "System Specs"],
+    image: "/process-discovery.jpg",
+    badge: "100% Requirement Clarity",
+    milestoneNotice: "Architecture Blueprint Approved • Week 1 Signoff"
   },
   {
     id: "02",
-    label: "UI/UX DESIGN SYSTEM",
-    stationName: "STATION 02: ATOMIC DESIGN LAB",
-    tagline: "Crafting fluid experiences that users love.",
-    desc: "We design high-fidelity, interactive prototypes backed by atomic design tokens, ergonomic dark/light themes, and strict WCAG accessibility.",
+    stepNumber: "STEP 02",
+    title: "UI/UX Design & Interactive Prototypes",
+    timeline: "Week 2 - 3",
+    tagline: "Crafting beautiful, intuitive, and conversion-focused user interfaces.",
+    description: "We translate specifications into sleek, human-centered UI/UX designs. You get clickable interactive Figma prototypes with complete design tokens, responsive layouts, and WCAG-compliant accessibility.",
     icon: Palette,
-    color: "from-cyan-500 to-teal-400",
-    techStack: ["Atomic Tokens", "Figma Prototyping", "WCAG AA", "Micro-Interactions"],
-    metrics: [
-      { value: "100%", label: "WCAG AA COMPLIANT" },
-      { value: "150+", label: "DESIGN TOKENS" },
-      { value: "60 FPS", label: "FLUID ANIMATIONS" }
+    color: "from-sky-500 to-indigo-500",
+    deliverables: [
+      "Low-Fidelity Wireframes & User Flows",
+      "High-Fidelity Component Design System",
+      "Clickable Interactive Figma Prototype",
+      "Mobile & Desktop Responsive Views"
     ],
-    features: [
-      { title: "Unified Design Tokens", desc: "Scalable typography, colors & spacing system." },
-      { title: "Clickable User Testing", desc: "Real user feedback on interactive prototypes." },
-      { title: "Micro-Interactions", desc: "Silky 60fps transitions and delight moments." }
-    ]
+    tools: ["Figma", "Design Tokens", "Tailwind CSS", "WCAG 2.1 AA"],
+    image: "/process-discovery.jpg",
+    badge: "Interactive Prototype Ready",
+    milestoneNotice: "150+ Design Tokens & Figma Prototype • WCAG AA"
   },
   {
     id: "03",
-    label: "AGILE FULL-STACK",
-    stationName: "STATION 03: CLOUD ENGINE REACTOR",
-    tagline: "From first idea to scalable production reality.",
-    desc: "Our senior full-stack squads engineer high-performance microservices, clean APIs, and modern frontends built for exponential scale.",
-    icon: Cpu,
+    stepNumber: "STEP 03",
+    title: "Agile Full-Stack Engineering",
+    timeline: "Week 3 - 6",
+    tagline: "Writing clean, maintainable, and high-performance production code.",
+    description: "Our senior software engineers build your web and mobile applications using modern frameworks. With bi-weekly sprint demos, you see tangible progress and working features throughout development.",
+    icon: Code2,
     color: "from-blue-600 to-indigo-600",
-    techStack: ["Next.js", "React", "Node.js", "FastAPI", "Go", "Docker"],
-    metrics: [
-      { value: "1.5M+", label: "RPS THROUGHPUT" },
-      { value: "Sub-10ms", label: "P99 LATENCY" },
-      { value: "100%", label: "SENIOR TALENT" }
+    deliverables: [
+      "Modern Frontend & Backend Microservices",
+      "RESTful & GraphQL API Integrations",
+      "Clean, Documented & Tested Codebase",
+      "Bi-Weekly Staged Demos for Client Review"
     ],
-    features: [
-      { title: "Modern Tech Frameworks", desc: "Next.js, Python, FastAPI & Go microservices." },
-      { title: "Direct Architect Squads", desc: "Principal engineers without junior layers." },
-      { title: "2-Week Agile Sprints", desc: "Live staged demos & continuous momentum." }
-    ]
+    tools: ["React", "Next.js", "Node.js", "Python", "PostgreSQL", "Docker"],
+    image: "/about-office.jpg",
+    badge: "Senior Engineers • Clean Code",
+    milestoneNotice: "Senior Full-Stack Squad • 2-Week Sprint Demos"
   },
   {
     id: "04",
-    label: "AUTOMATED QA",
-    stationName: "STATION 04: CYBER DEFENSE SHIELD",
-    tagline: "Zero regressions. 100% release confidence.",
-    desc: "Automated end-to-end testing, static security analysis, performance benchmarks, and penetration testing embedded into every single PR.",
+    stepNumber: "STEP 04",
+    title: "Automated QA & Security Auditing",
+    timeline: "Week 7",
+    tagline: "Ensuring flawless performance, zero regressions, and enterprise security.",
+    description: "Every build undergoes automated end-to-end testing, cross-browser compatibility checks, OWASP security vulnerability assessments, and performance optimization before hitting production.",
     icon: ShieldCheck,
-    color: "from-emerald-600 to-teal-500",
-    techStack: ["Playwright E2E", "Jest / Vitest", "OWASP Top 10", "k6 Load Testing"],
-    metrics: [
-      { value: "95%+", label: "TEST COVERAGE" },
-      { value: "0", label: "CRITICAL VULNERABILITIES" },
-      { value: "50k+", label: "LOAD TEST RPS" }
+    color: "from-emerald-500 to-teal-500",
+    deliverables: [
+      "Automated Unit & E2E Test Suites",
+      "OWASP Security & Penetration Testing",
+      "Cross-Browser & Device Compatibility",
+      "Lighthouse 95+ Performance Tuning"
     ],
-    features: [
-      { title: "Automated CI/CD Test Suite", desc: "Unit, integration & Playwright E2E suites." },
-      { title: "Load & Stress Simulation", desc: "Simulating 50k+ concurrent users under peak load." },
-      { title: "OWASP Top 10 Security Audit", desc: "Automated static & dynamic code vulnerability scans." }
-    ]
+    tools: ["Playwright", "Jest", "k6 Load Testing", "OWASP ZAP", "Lighthouse"],
+    image: "/about-office.jpg",
+    badge: "99.8% Test Coverage",
+    milestoneNotice: "142/142 Unit & E2E Tests Passed • 0 Vulnerabilities"
   },
   {
     id: "05",
-    label: "ZERO-DOWNTIME CLOUD",
-    stationName: "STATION 05: MULTI-REGION ORBIT",
-    tagline: "Infrastructure as code with automated failover.",
-    desc: "Terraform-provisioned multi-region Kubernetes clusters with automated auto-scaling, blue-green deployments, and sub-second failover.",
-    icon: Globe,
-    color: "from-sky-600 to-blue-600",
-    techStack: ["Kubernetes (EKS)", "Terraform IaC", "Blue/Green", "Multi-AZ Sync"],
-    metrics: [
-      { value: "0s", label: "DEPLOY DOWNTIME" },
-      { value: "Multi-AZ", label: "GEO REDUNDANCY" },
-      { value: "< 200ms", label: "AUTO FAILOVER" }
-    ],
-    features: [
-      { title: "Kubernetes & Docker", desc: "Containerized microservices with auto-healing pods." },
-      { title: "Blue-Green Releases", desc: "Zero downtime deployments with instant rollback." },
-      { title: "Multi-AZ Cloud Storage", desc: "Automated cross-region backups and continuous sync." }
-    ]
-  },
-  {
-    id: "06",
-    label: "24/7 SLA SUPPORT",
-    stationName: "STATION 06: OBSERVABILITY RADAR",
-    tagline: "Continuous APM telemetry and rapid on-call response.",
-    desc: "Around-the-clock telemetry, distributed tracing with OpenTelemetry, automated anomaly detection, and rapid incident response teams.",
-    icon: Activity,
-    color: "from-indigo-600 to-purple-600",
-    techStack: ["OpenTelemetry", "Datadog", "Prometheus", "PagerDuty"],
-    metrics: [
-      { value: "24/7/365", label: "ACTIVE OBSERVABILITY" },
-      { value: "< 5 Min", label: "P1 ALERT RESPONSE" },
-      { value: "99.99%", label: "HISTORICAL UPTIME" }
-    ],
-    features: [
-      { title: "Dedicated On-Call Squad", desc: "Direct Slack & PagerDuty escalation channel." },
-      { title: "Real-Time APM Dashboards", desc: "Datadog & Grafana live metrics & trace streams." },
-      { title: "Executive Health Reports", desc: "Monthly performance, uptime and security audits." }
-    ]
-  },
-  {
-    id: "07",
-    label: "CONTINUOUS SCALING",
-    stationName: "STATION 07: QUANTUM GROWTH LAUNCHPAD",
-    tagline: "Engineered to grow seamlessly with your business.",
-    desc: "Ongoing feature expansion, query optimization, cost minimization, and architectural upgrades as your user base expands into millions.",
+    stepNumber: "STEP 05",
+    title: "Deployment, Training & 24/7 Support",
+    timeline: "Launch & Beyond",
+    tagline: "Seamless cloud go-live, team onboarding, and ongoing scaling.",
+    description: "We handle zero-downtime production deployment on AWS/Cloud, provide thorough team training, and offer 24/7 monitoring, security patches, and continuous feature expansion as your business scales.",
     icon: Rocket,
-    color: "from-blue-600 to-cyan-400",
-    techStack: ["pgvector AI", "Spot Instances", "Edge Caching", "Elastic Compute"],
-    metrics: [
-      { value: "10M+", label: "SCALING CAPACITY" },
-      { value: "-40%", label: "AVG CLOUD BILL" },
-      { value: "Continuous", label: "INNOVATION ROADMAP" }
+    color: "from-blue-600 to-cyan-500",
+    deliverables: [
+      "Zero-Downtime Multi-Region Cloud Launch",
+      "Admin Training & Documentation Handover",
+      "Real-Time Telemetry & APM Monitoring",
+      "Dedicated 24/7 SLA Support & Scaling"
     ],
-    features: [
-      { title: "Database Query Optimization", desc: "Index tuning & distributed cache layering." },
-      { title: "Cloud Cost Efficiency", desc: "Automated spot instances & serverless offloading." },
-      { title: "Continuous Product Sprints", desc: "Ongoing feature acceleration for new market targets." }
-    ]
+    tools: ["AWS", "Kubernetes", "CI/CD Actions", "Datadog", "24/7 Support"],
+    image: "/about-office.jpg",
+    badge: "Zero-Downtime Guarantee",
+    milestoneNotice: "99.99% Uptime Guarantee • 24/7 SLA Support"
   }
 ];
 
 export const Process = () => {
-  const [activeStationIdx, setActiveStationIdx] = useState(2); // Station 03 default
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef(null);
+  const [activeStepIdx, setActiveStepIdx] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
 
-  const activeStation = highwayStations[activeStationIdx];
-
-  // Auto-cruise interval
+  // Auto progression if user enables cruise
   useEffect(() => {
     let timer;
-    if (isPlaying) {
+    if (isAutoPlaying) {
       timer = setInterval(() => {
-        setActiveStationIdx((prev) => (prev + 1) % highwayStations.length);
-      }, 3500);
+        setActiveStepIdx((prev) => (prev + 1) % processSteps.length);
+      }, 5000);
     }
     return () => clearInterval(timer);
-  }, [isPlaying]);
+  }, [isAutoPlaying]);
 
-  // Smooth 3D tilt tracking
-  const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMousePos({ x, y });
-  };
-
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setMousePos({ x: 0, y: 0 });
-  };
-
-  const nextStation = () => {
-    setActiveStationIdx((prev) => (prev + 1) % highwayStations.length);
-  };
-
-  const prevStation = () => {
-    setActiveStationIdx((prev) => (prev - 1 + highwayStations.length) % highwayStations.length);
-  };
+  const activeStep = processSteps[activeStepIdx];
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FBFDFF] relative overflow-hidden border-t border-slate-100 selection:bg-blue-500/20">
+    <section className="py-20 lg:py-28 bg-[#F8FAFC] relative overflow-hidden border-t border-slate-200/80">
       
-      {/* Background Subtle Tech Matrix & Ambient Glows */}
-      <div className="absolute inset-0 bg-[radial-gradient(#0066FF_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-[0.03] pointer-events-none" />
-      <div className="absolute top-1/4 right-[-5%] w-[600px] h-[600px] bg-gradient-to-br from-blue-400/10 via-cyan-400/10 to-transparent rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
-      <div className="absolute bottom-10 left-[-5%] w-[500px] h-[500px] bg-gradient-to-tr from-indigo-400/10 via-sky-300/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+      {/* Background Subtle Gradient & Grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(#0066FF_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.03] pointer-events-none" />
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
 
       <Container className="relative z-10">
         
-        {/* ================= SECTION HEADER ================= */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="space-y-3 max-w-2xl">
-            {/* Live Indicator Pill */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-blue-200/90 bg-white/90 backdrop-blur-md shadow-xs shadow-blue-500/10 relative overflow-hidden group cursor-default">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent animate-badge-shine pointer-events-none" />
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0066FF]" />
-              </span>
-              <span className="font-sans text-[11px] font-extrabold text-[#0066FF] uppercase tracking-wider">
-                ENGINEERING VOYAGE • 3D CYBER PIPELINE
+        {/* ========================================================================= */}
+        {/* SECTION HEADER: Clean, Professional & Human-Friendly                       */}
+        {/* ========================================================================= */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+          <ScrollReveal animation="fade-down" delay={0.1}>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-50 border border-blue-200/90 rounded-full shadow-2xs mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#0066FF] animate-pulse" />
+              <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#0047BA]">
+                HOW WE WORK • PROVEN DELIVERY FRAMEWORK
               </span>
             </div>
+          </ScrollReveal>
 
-            {/* Kinetic Title */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938] leading-[1.08]">
-              FROM FIRST BLUEPRINT <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#0099FF] to-[#38BDF8] animate-text-shimmer inline-block">
-                TO GLOBAL PRODUCTION HIGHWAY.
-              </span>
+          <ScrollReveal animation="fade-up" delay={0.2}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-[#0B1938] leading-[1.12]">
+              From First Concept to{' '}
+              <span className="text-[#0066FF]">Production Success.</span>
             </h2>
+          </ScrollReveal>
 
-            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
-              Explore our end-to-end 7-station software lifecycle. Each milestone is engineered with zero compromise on speed, bank-grade security, and enterprise reliability.
+          <ScrollReveal animation="fade-up" delay={0.3}>
+            <p className="mt-4 text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+              We follow a transparent, agile methodology designed to turn your complex ideas into scalable digital products on time, within budget, and with zero guesswork.
             </p>
-          </div>
-
-          {/* Autoplay & Navigation Controls */}
-          <div className="flex items-center gap-3 shrink-0">
-            <button
-              type="button"
-              onClick={() => setIsPlaying(!isPlaying)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold font-sans border transition-all cursor-pointer shadow-xs ${
-                isPlaying
-                  ? 'bg-blue-50 text-[#0066FF] border-blue-300 ring-2 ring-blue-100'
-                  : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300'
-              }`}
-            >
-              {isPlaying ? <Pause className="w-3.5 h-3.5 text-[#0066FF]" /> : <Play className="w-3.5 h-3.5" />}
-              <span>{isPlaying ? 'Cruising (Auto)' : 'Auto-Cruise Tour'}</span>
-            </button>
-
-            <div className="flex items-center gap-1.5">
-              <button
-                type="button"
-                onClick={prevStation}
-                className="w-9 h-9 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-700 hover:text-[#0066FF] transition-colors cursor-pointer shadow-xs"
-                title="Previous Station"
-              >
-                <ArrowLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={nextStation}
-                className="w-9 h-9 rounded-xl bg-[#0066FF] hover:bg-blue-600 border border-[#0066FF] flex items-center justify-center text-white transition-colors cursor-pointer shadow-md shadow-blue-500/25"
-                title="Next Station"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
 
-        {/* ================= 3D CYBER PIPELINE HIGHWAY CANVAS (LIGHT MATCHING THEME) ================= */}
-        <div 
-          ref={containerRef}
-          onMouseMove={handleMouseMove}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className="relative w-full rounded-3xl bg-white/90 backdrop-blur-xl p-6 sm:p-10 border border-blue-100 shadow-xl shadow-blue-500/5 overflow-hidden isometric-perspective mb-10"
-        >
-          {/* Subtle Cyber Grid & Light Sheen */}
-          <div className="absolute inset-0 bg-[radial-gradient(#0066FF_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.035] pointer-events-none" />
-          <div className="absolute top-0 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-[#0066FF]/40 to-transparent" />
-
-          {/* 3D Parallax Container */}
-          <div 
-            className="relative py-6 transition-transform duration-300 ease-out preserve-3d"
-            style={{
-              transform: isHovered
-                ? `rotateX(${mousePos.y * -8 + 4}deg) rotateY(${mousePos.x * 10}deg)`
-                : 'rotateX(4deg) rotateY(0deg)'
-            }}
-          >
-            
-            {/* ================= THE NEON CYBER HIGHWAY ROAD RIBBON (LIGHT EDITION) ================= */}
-            <div className="relative w-full mb-8">
-              
-              {/* Highway Base Conduit Beam */}
-              <div className="h-3.5 bg-slate-100 border border-blue-100 rounded-full relative overflow-hidden shadow-inner">
-                {/* Flowing Laser Current */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400 to-transparent animate-highway-stream opacity-40" />
-              </div>
-
-              {/* Progress Level Glow Bar */}
-              <div 
-                className="absolute top-0 left-0 h-3.5 bg-gradient-to-r from-[#0066FF] via-[#0099FF] to-[#38BDF8] rounded-full transition-all duration-500 ease-out shadow-[0_0_14px_rgba(0,102,255,0.4)]"
-                style={{ width: `${((activeStationIdx + 0.5) / highwayStations.length) * 100}%` }}
-              >
-                {/* Flowing Laser Bead on Head */}
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-2 border-[#0066FF] shadow-[0_0_10px_#0066FF] animate-ping" />
-              </div>
-
-            </div>
-
-            {/* ================= 7 ELEVATED 3D ISOMETRIC STATIONS ================= */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4 relative z-10">
-              {highwayStations.map((station, idx) => {
-                const isActive = idx === activeStationIdx;
-                const isPassed = idx < activeStationIdx;
-                const Icon = station.icon;
-
-                return (
-                  <div
-                    key={station.id}
-                    onClick={() => setActiveStationIdx(idx)}
-                    className={`relative p-4 rounded-2xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center group ${
-                      isActive
-                        ? 'bg-white border-2 border-[#0066FF] ring-4 ring-blue-100 shadow-2xl shadow-blue-500/15 -translate-y-3'
-                        : isPassed
-                        ? 'bg-blue-50/50 border border-blue-100 hover:border-blue-300 hover:bg-white hover:-translate-y-1'
-                        : 'bg-slate-50/70 border border-slate-200/80 hover:border-blue-200 hover:bg-white hover:-translate-y-1'
-                    }`}
-                  >
-                    {/* Active Pulsing Antenna Beacon */}
-                    {isActive && (
-                      <div className="absolute -top-3 flex items-center justify-center">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#0066FF] shadow-[0_0_10px_#0066FF] animate-ping" />
-                      </div>
-                    )}
-
-                    {/* Elevated 3D Station Number Badge */}
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center font-display font-black text-xs mb-2.5 transition-all ${
-                      isActive
-                        ? 'bg-[#0066FF] text-white shadow-md shadow-blue-500/30 scale-110'
-                        : isPassed
-                        ? 'bg-blue-100 text-[#0066FF] font-bold'
-                        : 'bg-slate-100 text-slate-500 border border-slate-200'
+        {/* ========================================================================= */}
+        {/* STEPPER NAVIGATION: 5 Connected Interactive Milestones                    */}
+        {/* ========================================================================= */}
+        <ScrollReveal animation="fade-up" delay={0.35}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3 mb-8">
+            {processSteps.map((step, idx) => {
+              const StepIcon = step.icon;
+              const isActive = activeStepIdx === idx;
+              return (
+                <button
+                  key={step.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveStepIdx(idx);
+                    setIsAutoPlaying(false);
+                  }}
+                  className={`group relative p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 cursor-pointer border ${
+                    isActive
+                      ? 'bg-white border-[#0066FF] shadow-lg shadow-blue-500/10 ring-2 ring-[#0066FF]/20 -translate-y-1'
+                      : 'bg-white/70 hover:bg-white border-slate-200/80 hover:border-slate-300 shadow-2xs hover:-translate-y-0.5'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className={`font-mono text-xs font-black px-2 py-0.5 rounded-md ${
+                      isActive ? 'bg-[#0066FF] text-white' : 'bg-slate-100 text-slate-500 group-hover:text-slate-800'
                     }`}>
-                      {station.id}
-                    </div>
-
-                    {/* Station Hologram Icon */}
-                    <div className={`w-10 h-10 rounded-2xl flex items-center justify-center mb-2.5 transition-all ${
-                      isActive
-                        ? 'bg-gradient-to-br from-[#0066FF] to-[#0099FF] text-white shadow-md shadow-blue-500/20'
-                        : isPassed
-                        ? 'bg-white text-[#0066FF] shadow-2xs border border-blue-100'
-                        : 'bg-white text-slate-400 group-hover:text-[#0066FF] group-hover:bg-blue-50 border border-slate-200'
-                    }`}>
-                      <Icon className="w-5 h-5" />
-                    </div>
-
-                    {/* Station Name Label */}
-                    <span className={`font-display text-[11px] sm:text-xs font-black uppercase tracking-wider leading-tight line-clamp-2 ${
-                      isActive
-                        ? 'text-[#0B1938]'
-                        : isPassed
-                        ? 'text-[#1E293B]'
-                        : 'text-slate-500 group-hover:text-slate-800'
-                    }`}>
-                      {station.label}
+                      {step.id}
                     </span>
-
-                    {/* Active Live Status Indicator */}
-                    <div className="mt-3 pt-2 border-t border-slate-100 w-full flex items-center justify-center gap-1.5">
-                      <span className={`w-1.5 h-1.5 rounded-full ${
-                        isActive
-                          ? 'bg-[#0066FF] animate-pulse'
-                          : isPassed
-                          ? 'bg-emerald-500'
-                          : 'bg-slate-300'
-                      }`} />
-                      <span className={`text-[9.5px] font-sans font-bold uppercase ${
-                        isActive
-                          ? 'text-[#0066FF]'
-                          : isPassed
-                          ? 'text-emerald-600'
-                          : 'text-slate-400'
-                      }`}>
-                        {isActive ? 'Active' : isPassed ? 'Done' : 'Upcoming'}
-                      </span>
-                    </div>
-
+                    <span className="font-sans text-[10.5px] font-bold text-slate-400 group-hover:text-slate-600">
+                      {step.timeline}
+                    </span>
                   </div>
-                );
-              })}
-            </div>
 
+                  <div className="flex items-center gap-2">
+                    <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                      isActive ? 'text-[#0066FF]' : 'text-slate-400 group-hover:text-[#0066FF]'
+                    }`}>
+                      <StepIcon className="w-4 h-4" />
+                    </div>
+                    <span className={`font-display text-xs sm:text-sm font-bold truncate ${
+                      isActive ? 'text-[#0B1938]' : 'text-slate-700'
+                    }`}>
+                      {step.title.split('&')[0]}
+                    </span>
+                  </div>
+
+                  {/* Active Indicator Underline */}
+                  {isActive && (
+                    <div className="absolute -bottom-1 left-6 right-6 h-1 bg-[#0066FF] rounded-full" />
+                  )}
+                </button>
+              );
+            })}
           </div>
+        </ScrollReveal>
 
-          {/* Bottom Live Highway Telemetry Status Bar */}
-          <div className="relative z-10 pt-4 mt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-xs font-sans text-slate-500">
-            <div className="flex items-center gap-2 text-[#0066FF] font-bold">
-              <Navigation className="w-4 h-4 animate-pulse" />
-              <span>STATION LOCATOR: {activeStation.stationName}</span>
-            </div>
-
-            <div className="flex items-center gap-4 text-[11px]">
-              <span>Milestone: <strong className="text-[#0B1938]">{activeStationIdx + 1} of 7</strong></span>
-              <span>Velocity: <strong className="text-emerald-600">100% On-Schedule</strong></span>
-              <span>Quality Gate: <strong className="text-[#0066FF]">Verified</strong></span>
-            </div>
-          </div>
-
-        </div>
-
-        {/* ================= ACTIVE STATION MISSION BRIEF CONSOLE (BENTO HUD) ================= */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-white border border-blue-100 shadow-xl shadow-blue-500/5 relative overflow-hidden">
-          {/* Corner Ambient Glow */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-blue-100/40 via-cyan-50/20 to-transparent rounded-full blur-2xl pointer-events-none -mr-20 -mt-20" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+        {/* ========================================================================= */}
+        {/* MAIN SHOWCASE CARD: Seamless Full-Bleed Panorama Background (Like About)  */}
+        {/* ========================================================================= */}
+        <ScrollReveal animation="zoom-in" delay={0.4}>
+          <div className="relative w-full bg-white rounded-3xl border border-slate-200/90 shadow-xl shadow-slate-200/50 overflow-hidden">
             
-            {/* Left: Station Brief & Deliverables */}
-            <div className="lg:col-span-7 space-y-5">
+            {/* ========================================================================= */}
+            {/* BACKGROUND IMAGE LAYER (Right-Aligned Seamless Panorama)                  */}
+            {/* ========================================================================= */}
+            <div className="absolute inset-y-0 right-0 w-full lg:w-[58%] xl:w-[55%] h-full z-0 pointer-events-none overflow-hidden">
+              <img
+                src={activeStep.image}
+                alt={activeStep.title}
+                className="w-full h-full object-cover object-[center_35%] transition-all duration-700 filter brightness-[0.98]"
+              />
+              {/* Seamless White Gradient Fades from Left to Right */}
+              <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 via-35% to-transparent" />
+              <div className="hidden lg:block absolute inset-y-0 left-0 w-72 bg-gradient-to-r from-white via-white/95 to-transparent" />
+              <div className="hidden lg:block absolute inset-y-0 left-0 w-28 bg-white" />
               
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-[#0066FF] border border-blue-200 text-xs font-extrabold font-sans uppercase tracking-wider">
-                <activeStation.icon className="w-3.5 h-3.5" />
-                <span>{activeStation.stationName}</span>
-              </div>
-
-              {/* Title & Tagline */}
-              <div className="space-y-1">
-                <h3 className="text-2xl sm:text-3xl font-black font-display uppercase text-[#0B1938] tracking-tight">
-                  {activeStation.tagline}
-                </h3>
-                <p className="text-sm sm:text-[15px] text-slate-600 font-sans leading-relaxed pt-1">
-                  {activeStation.desc}
-                </p>
-              </div>
-
-              {/* 3 Core Station Deliverables */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                {activeStation.features.map((feat, fIdx) => (
-                  <div key={fIdx} className="p-3.5 rounded-2xl bg-slate-50/90 border border-slate-200/80 space-y-1 hover:border-blue-200 transition-colors">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#0B1938] font-display">
-                      <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      <span>{feat.title}</span>
-                    </div>
-                    <p className="text-[11px] text-slate-500 font-sans leading-snug">
-                      {feat.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Tech Stack Chips */}
-              <div className="pt-2 flex flex-wrap items-center gap-2">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider font-display mr-1">
-                  Stack &amp; Tooling:
-                </span>
-                {activeStation.techStack.map((tech, tIdx) => (
-                  <span 
-                    key={tIdx} 
-                    className="px-2.5 py-1 rounded-lg bg-blue-50 text-[#0066FF] border border-blue-100 text-xs font-bold font-sans"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
+              {/* Mobile / Tablet Overlay for 100% crisp legibility */}
+              <div className="lg:hidden absolute inset-0 bg-white/94 backdrop-blur-xs" />
             </div>
 
-            {/* Right: Telemetry KPI Cards */}
-            <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+            {/* Floating Top-Right Pill on Desktop */}
+            <div className="hidden sm:flex absolute top-6 right-6 z-20 px-3.5 py-1.5 bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-full items-center gap-2 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-mono text-xs font-bold text-[#0B1938]">
+                {activeStep.badge}
+              </span>
+            </div>
+
+            {/* Floating Bottom-Right Milestone Signoff Card on Desktop */}
+            <div className="hidden lg:flex absolute bottom-6 right-6 z-20 bg-white/90 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/90 shadow-lg shadow-blue-500/5 items-center gap-2.5 max-w-xs animate-float-micro">
+              <div className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 text-[#0066FF] flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-4 h-4" />
+              </div>
+              <div className="text-left">
+                <div className="font-display font-bold text-[11.5px] text-[#0B1938] leading-tight">
+                  {activeStep.milestoneNotice}
+                </div>
+                <div className="font-sans text-[10px] text-slate-500 mt-0.5">
+                  Verified Client Milestone
+                </div>
+              </div>
+            </div>
+
+            {/* ========================================================================= */}
+            {/* FOREGROUND CONTENT (Left-Aligned Narrative & Deliverables)                */}
+            {/* ========================================================================= */}
+            <div className="relative z-10 p-6 sm:p-8 lg:p-10 max-w-xl lg:max-w-2xl space-y-6">
               
-              <div className="p-5 rounded-2xl bg-gradient-to-br from-[#0B1938] via-[#0D1E42] to-[#071126] text-white border border-slate-700 shadow-xl space-y-4">
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                  <span className="font-sans text-xs text-slate-300 font-bold uppercase tracking-wider">
-                    STATION KPI BENCHMARKS
+              <div>
+                {/* Step Badge & Timeline */}
+                <div className="flex items-center gap-2.5 mb-3">
+                  <span className="px-2.5 py-1 bg-blue-50 text-[#0066FF] font-mono text-xs font-black rounded-lg border border-blue-200">
+                    {activeStep.stepNumber}
                   </span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/40">
-                    VERIFIED
+                  <span className="flex items-center gap-1 text-slate-500 font-sans text-xs font-semibold">
+                    <Clock className="w-3.5 h-3.5 text-[#0066FF]" />
+                    Estimated Duration: <strong className="text-slate-800">{activeStep.timeline}</strong>
                   </span>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3">
-                  {activeStation.metrics.map((m, mIdx) => (
-                    <div key={mIdx} className="space-y-1 text-center">
-                      <div className="font-display font-black text-xl sm:text-2xl text-cyan-400 tracking-tight">
-                        {m.value}
+                {/* Title & Tagline */}
+                <h3 className="text-2xl sm:text-3xl lg:text-[32px] font-black font-display text-[#0B1938] tracking-tight leading-tight">
+                  {activeStep.title}
+                </h3>
+                <p className="mt-1.5 font-sans text-xs sm:text-sm font-bold text-[#0066FF]">
+                  {activeStep.tagline}
+                </p>
+
+                {/* Detailed Description */}
+                <p className="mt-4 text-sm text-slate-600 font-sans leading-relaxed">
+                  {activeStep.description}
+                </p>
+
+                {/* Key Deliverables Checklist */}
+                <div className="mt-6 pt-6 border-t border-slate-100">
+                  <span className="font-display text-xs font-extrabold uppercase tracking-wider text-[#0B1938] block mb-3">
+                    Key Deliverables & Milestones:
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {activeStep.deliverables.map((item, dIdx) => (
+                      <div 
+                        key={dIdx} 
+                        className="flex items-start gap-2 bg-white/80 backdrop-blur-xs p-2.5 rounded-xl border border-slate-200/80 shadow-2xs hover:border-blue-300 transition-colors"
+                      >
+                        <CheckCircle2 className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
+                        <span className="font-sans text-xs font-medium text-slate-700 leading-snug">
+                          {item}
+                        </span>
                       </div>
-                      <div className="font-sans text-[9px] uppercase font-bold text-slate-300 leading-tight">
-                        {m.label}
-                      </div>
-                    </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Tools & Next Button */}
+              <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="text-[11px] font-bold text-slate-400 mr-1">Tools & Tech:</span>
+                  {activeStep.tools.map((tool, tIdx) => (
+                    <span 
+                      key={tIdx} 
+                      className="px-2.5 py-1 bg-white/90 border border-slate-200 text-slate-700 rounded-md font-mono text-[10.5px] font-semibold shadow-2xs"
+                    >
+                      {tool}
+                    </span>
                   ))}
                 </div>
-              </div>
 
-              {/* Next Station Navigation Card */}
-              <div className="p-4 rounded-2xl bg-blue-50/80 border border-blue-100 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-bold text-[#0066FF] uppercase tracking-wider block font-sans">
-                    NEXT UP IN HIGHWAY
-                  </span>
-                  <span className="text-xs font-black text-[#0B1938] font-display block">
-                    {highwayStations[(activeStationIdx + 1) % highwayStations.length].stationName}
-                  </span>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                    className="px-3 py-1.5 rounded-lg border border-slate-200 hover:border-slate-300 text-slate-600 font-sans text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer bg-white/80"
+                  >
+                    {isAutoPlaying ? <Pause className="w-3.5 h-3.5 text-[#0066FF]" /> : <Play className="w-3.5 h-3.5" />}
+                    <span>{isAutoPlaying ? 'Pause Tour' : 'Auto Tour'}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setActiveStepIdx((prev) => (prev + 1) % processSteps.length)}
+                    className="px-4 py-1.5 bg-[#0066FF] hover:bg-blue-600 text-white rounded-lg font-sans text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
+                  >
+                    <span>Next Step</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={nextStation}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0066FF] hover:bg-blue-600 text-white text-xs font-bold font-sans shadow-md shadow-blue-500/25 transition-all cursor-pointer group"
-                >
-                  <span>Advance</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
               </div>
 
             </div>
 
           </div>
-        </div>
+        </ScrollReveal>
 
       </Container>
     </section>

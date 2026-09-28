@@ -536,9 +536,9 @@ const customBaseQuery = async (args) => {
       whatsappMessage: 'Hello BuildZone Team, I would like to discuss a new software engineering project.',
       address: 'Executive Tech District, Paris Road, Sialkot',
 
-      heroMediaType: 'video',
+      heroMediaType: 'mockup',
       heroBgColor: '#F2F2F2',
-      heroVideoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+      heroVideoUrl: '',
       heroBadgeText: 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
       heroTitlePrefix: 'We Build Digital Products That',
       heroTitleAccent: 'Scale Your Business',
@@ -549,6 +549,13 @@ const customBaseQuery = async (args) => {
       statsSupport: '24/7',
     };
     let settings = getOrSeed('settings', defaultSettings);
+    if (settings && typeof settings === 'object') {
+      if (settings.heroVideoUrl && settings.heroVideoUrl.includes('dQw4w9WgXcQ')) {
+        settings.heroVideoUrl = '';
+        settings.heroMediaType = 'mockup';
+        saveToStorage('settings', settings);
+      }
+    }
     if (method === 'GET') return { data: settings };
     if (method === 'PUT' || method === 'POST') {
       settings = { ...settings, ...body };

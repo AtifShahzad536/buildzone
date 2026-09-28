@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Copy, Check, Terminal, ExternalLink } from 'lucide-react';
+import { Copy, Check, ExternalLink } from 'lucide-react';
 import { toast } from 'sonner';
 
 /**
  * Robust, secure, and beautiful RichTextRenderer for Articles & Case Studies
- * Supports Markdown Headings, Bulleted & Numbered Lists, Code blocks with copy,
- * Blockquotes, Tables, Images, Links, Text Alignment, and custom accents.
+ * Supports Markdown Headings, Lists, Code blocks with copy,
+ * Blockquotes, Markdown Tables, HTML <table>, Images, Links, Text Alignment.
  */
 export const RichTextRenderer = ({ content = '', className = '' }) => {
   if (!content) return null;
@@ -53,25 +53,13 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
   const formatInlineText = (text) => {
     if (!text) return text;
 
-    // Split text into tokens based on markdown syntax
-    const parts = [];
-    let remaining = text;
-    let key = 0;
-
-    // Simple regex replacements for clean rendering
-    // 1. Links [text](url)
-    // 2. Bold **text**
-    // 3. Italic *text* or _text_
-    // 4. Code `code`
-    // 5. Strikethrough ~~text~~
-
-    // Check if contains HTML tags directly
-    if (/<[a-z][\s\S]*>/i.test(remaining)) {
-      return <span dangerouslySetInnerHTML={{ __html: remaining }} />;
+    // If text contains HTML tags (e.g., <strong>, <img src=...>, <a href=...>)
+    if (/<[a-z][\s\S]*>/i.test(text)) {
+      return <span dangerouslySetInnerHTML={{ __html: text }} />;
     }
 
     const inlineRegex = /(\*\*.*?\*\*|\*.*?\*|`.*?`|~~.*?~~|\[.*?\]\(.*?\))/g;
-    const splitParts = remaining.split(inlineRegex);
+    const splitParts = text.split(inlineRegex);
 
     return splitParts.map((chunk, index) => {
       if (!chunk) return null;
@@ -125,7 +113,32 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
     });
   };
 
-  // Split content into blocks (paragraphs, headers, lists, codeblocks, tables, blockquotes, alignments)
+  // Helper to test if a line is a Markdown table row
+  const isTableRow = (line) => {
+    const t = line.trim();
+    return t.startsWith('|') && t.endsWith('|') && t.split('|').length >= 3;
+  };
+
+  // Helper to test if a line is a Markdown table separator (| --- | :---: | ---: |)
+  const isTableSeparator = (line) => {
+    const t = line.trim();
+    if (!isTableRow(t)) return false;
+    const cells = t.split('|').slice(1, -1);
+    return cells.every(c => /^[\s:-]+$/.test(c.trim()) && c.includes('-'));
+  };
+
+  // Helper to parse alignment from table separator
+  const parseAlignments = (sepLine) => {
+    const cells = sepLine.trim().split('|').slice(1, -1);
+    return cells.map(c => {
+      const s = c.trim();
+      if (s.startsWith(':') && s.endsWith(':')) return 'center';
+      if (s.endsWith(':')) return 'right';
+      return 'left';
+    });
+  };
+
+  // Split content into blocks
   const lines = content.replace(/\r\n/g, '\n').split('\n');
   const renderedElements = [];
   let i = 0;
@@ -133,6 +146,12 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
   while (i < lines.length) {
     const line = lines[i];
     const trimmed = line.trim();
+
+    // Skip empty lines
+    if (!trimmed) {
+      i++;
+      continue;
+    }
 
     // 1. Code Block (```lang)
     if (trimmed.startsWith('```')) {
@@ -150,7 +169,84 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       continue;
     }
 
-    // 2. Headings
+    // 2. HTML <table> Block Support (Multi-line or single-line <table>)
+    if (/<table[\s>]/i.test(trimmed)) {
+      const tableLines = [];
+      while (i < lines.length) {
+        tableLines.push(lines[i]);
+        if (/<\/table>/i.test(lines[i])) {
+          i++;
+          break;
+        }
+        i++;
+      }
+      const tableHtml = tableLines.join('\n');
+      renderedElements.push(
+        <div key={`html-table-${i}`} className="overflow-x-auto my-6 rounded-xl border border-slate-200 shadow-xs">
+          <div dangerouslySetInnerHTML={{ __html: tableHtml }} />
+        </div>
+      );
+      continue;
+    }
+
+    // 3. Markdown Table Support (| col 1 | col 2 |)
+    if (isTableRow(trimmed) && i + 1 < lines.length && isTableSeparator(lines[i + 1])) {
+      const headerLine = trimmed;
+      const sepLine = lines[i + 1];
+      const alignments = parseAlignments(sepLine);
+      const headers = headerLine.split('|').slice(1, -1).map(h => h.trim());
+
+      i += 2; // skip header and separator
+      const dataRows = [];
+
+      while (i < lines.length && isTableRow(lines[i])) {
+        const rowCells = lines[i].split('|').slice(1, -1).map(c => c.trim());
+        dataRows.push(rowCells);
+        i++;
+      }
+
+      renderedElements.push(
+        <div key={`md-table-${i}`} className="overflow-x-auto my-6 rounded-xl border border-slate-200 shadow-xs bg-white">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-slate-50 border-b border-slate-200">
+                {headers.map((h, hIdx) => {
+                  const align = alignments[hIdx] || 'left';
+                  return (
+                    <th
+                      key={hIdx}
+                      className={`px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1938] font-display border-r last:border-r-0 border-slate-200 text-${align}`}
+                    >
+                      {formatInlineText(h)}
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {dataRows.map((row, rIdx) => (
+                <tr key={rIdx} className="hover:bg-slate-50/80 transition-colors">
+                  {row.map((cell, cIdx) => {
+                    const align = alignments[cIdx] || 'left';
+                    return (
+                      <td
+                        key={cIdx}
+                        className={`px-4 py-3 text-sm text-slate-700 border-r last:border-r-0 border-slate-200 text-${align}`}
+                      >
+                        {formatInlineText(cell)}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      continue;
+    }
+
+    // 4. Headings
     if (trimmed.startsWith('### ')) {
       renderedElements.push(
         <h3 key={`h3-${i}`} className="text-xl sm:text-2xl font-black font-display uppercase tracking-tight text-[#0B1938] mt-8 mb-3">
@@ -182,7 +278,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       continue;
     }
 
-    // 3. Blockquote (> quote)
+    // 5. Blockquote (> quote)
     if (trimmed.startsWith('> ')) {
       const quoteLines = [];
       while (i < lines.length && lines[i].trim().startsWith('>')) {
@@ -204,7 +300,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       continue;
     }
 
-    // 4. Horizontal Divider (--- or ***)
+    // 6. Horizontal Divider (--- or ***)
     if (trimmed === '---' || trimmed === '***' || trimmed === '___') {
       renderedElements.push(
         <hr key={`hr-${i}`} className="my-8 border-t border-slate-200" />
@@ -213,7 +309,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       continue;
     }
 
-    // 5. Image Embed ![Alt](url)
+    // 7. Image Embed ![Alt](url)
     const imageMatch = trimmed.match(/^!\[(.*?)\]\((.*?)\)$/);
     if (imageMatch) {
       const [, altText, imageUrl] = imageMatch;
@@ -240,7 +336,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       continue;
     }
 
-    // 6. Bulleted Lists (- or * or •)
+    // 8. Bulleted Lists (- or * or •)
     if (/^[-*•]\s+/.test(trimmed)) {
       const listItems = [];
       while (i < lines.length && /^[-*•]\s+/.test(lines[i].trim())) {
@@ -260,10 +356,9 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       continue;
     }
 
-    // 7. Numbered Lists (1. 2. etc.)
+    // 9. Numbered Lists (1. 2. etc.)
     if (/^\d+\.\s+/.test(trimmed)) {
       const listItems = [];
-      let itemNum = 1;
       while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
         listItems.push(lines[i].trim().replace(/^\d+\.\s+/, ''));
         i++;
@@ -283,7 +378,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       continue;
     }
 
-    // 8. Text Alignment Blocks (e.g. :::center ... ::: or <center>)
+    // 10. Text Alignment Blocks (e.g. :::center ... ::: or <center>)
     if (trimmed.startsWith(':::center') || trimmed.startsWith('<center>')) {
       const centerLines = [];
       i++;
@@ -324,7 +419,16 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       continue;
     }
 
-    // 9. Standard Paragraph
+    // 11. Multi-line HTML Elements (e.g. <div>, <section>, <p>, etc.)
+    if (/^<[a-z][\s\S]*>/i.test(trimmed) && !trimmed.startsWith('<span')) {
+      renderedElements.push(
+        <div key={`html-block-${i}`} className="my-4" dangerouslySetInnerHTML={{ __html: trimmed }} />
+      );
+      i++;
+      continue;
+    }
+
+    // 12. Standard Paragraph
     if (trimmed.length > 0) {
       renderedElements.push(
         <p key={`p-${i}`} className="text-sm sm:text-base leading-relaxed text-slate-700 font-sans my-4">
