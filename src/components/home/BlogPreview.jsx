@@ -10,6 +10,7 @@ import {
   TrendingUp,
   User
 } from 'lucide-react';
+import { useGetBlogsQuery } from '../../services/api';
 import { initialBlogs } from '../../data/blogs';
 import Container from '../common/Container';
 import SectionTitle from '../common/SectionTitle';
@@ -17,20 +18,28 @@ import Button from '../common/Button';
 
 export const BlogPreview = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const { data: blogsData } = useGetBlogsQuery();
 
-  // Primary featured big blog on the left panel
-  const featuredBlog = initialBlogs[0];
+  const blogs = (blogsData && Array.isArray(blogsData) && blogsData.length > 0)
+    ? blogsData
+    : initialBlogs;
+
+  // Primary featured big blog on the left panel (most recent blog)
+  const featuredBlog = blogs[0] || initialBlogs[0];
 
   // Remaining articles for the right panel search feed
-  const sideBlogs = initialBlogs.slice(1);
+  const sideBlogs = blogs.slice(1);
 
   // Filtered side blogs based on search input
   const filteredSideBlogs = sideBlogs.filter(blog => {
     const term = searchTerm.toLowerCase();
+    const title = (blog.title || '').toLowerCase();
+    const category = (blog.category || '').toLowerCase();
+    const tags = Array.isArray(blog.tags) ? blog.tags : [];
     return (
-      blog.title.toLowerCase().includes(term) ||
-      blog.category.toLowerCase().includes(term) ||
-      (blog.tags && blog.tags.some(t => t.toLowerCase().includes(term)))
+      title.includes(term) ||
+      category.includes(term) ||
+      tags.some(t => String(t).toLowerCase().includes(term))
     );
   });
 
@@ -63,8 +72,8 @@ export const BlogPreview = () => {
                 {/* Large Cover Image with Badges */}
                 <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
                   <img
-                    src={featuredBlog.featuredImage}
-                    alt={featuredBlog.title ? `${featuredBlog.title} publication cover` : "Featured engineering publication"}
+                    src={featuredBlog?.featuredImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80'}
+                    alt={featuredBlog?.title ? `${featuredBlog.title} publication cover` : "Featured engineering publication"}
                     width="600"
                     height="300"
                     decoding="async"
@@ -77,7 +86,7 @@ export const BlogPreview = () => {
                   <div className="absolute top-4 left-4 px-3 py-1 bg-white/95 backdrop-blur-md rounded-lg shadow-sm border border-white/40 flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />
                     <span className="font-sans text-[11px] font-bold uppercase tracking-wide text-[#0B1938]">
-                      {featuredBlog.category}
+                      {featuredBlog?.category || 'AI & Architecture'}
                     </span>
                   </div>
 
@@ -85,11 +94,11 @@ export const BlogPreview = () => {
                   <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90 text-xs font-sans">
                     <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-md">
                       <Calendar className="w-3.5 h-3.5 text-cyan-300" />
-                      <span>{featuredBlog.publishedDate}</span>
+                      <span>{featuredBlog?.publishedDate || 'Recently Published'}</span>
                     </div>
                     <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-md">
                       <Clock className="w-3.5 h-3.5 text-cyan-300" />
-                      <span>{featuredBlog.readTime}</span>
+                      <span>{featuredBlog?.readTime || '5 min read'}</span>
                     </div>
                   </div>
                 </div>
@@ -97,18 +106,18 @@ export const BlogPreview = () => {
                 {/* Content Section */}
                 <div className="p-6 sm:p-7">
                   <h3 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-[#0B1938] mb-3 group-hover:text-[#0066FF] transition-colors leading-snug">
-                    {featuredBlog.title}
+                    {featuredBlog?.title}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed mb-6 line-clamp-3">
-                    {featuredBlog.excerpt}
+                    {featuredBlog?.excerpt}
                   </p>
 
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
-                    {featuredBlog.tags?.map((t) => (
+                    {(Array.isArray(featuredBlog?.tags) ? featuredBlog.tags : []).map((t, idx) => (
                       <span
-                        key={t}
+                        key={idx}
                         className="px-2.5 py-1 bg-[#F8FAFC] border border-slate-200 text-slate-700 font-sans text-[11px] font-semibold rounded-md group-hover:border-blue-200 group-hover:text-[#0066FF] transition-colors"
                       >
                         #{t}
@@ -123,8 +132,8 @@ export const BlogPreview = () => {
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <img
-                      src={featuredBlog.authorAvatar}
-                      alt={featuredBlog.author ? `${featuredBlog.author} avatar` : "Author avatar"}
+                      src={featuredBlog?.authorAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80'}
+                      alt={featuredBlog?.author ? `${featuredBlog.author} avatar` : "Author avatar"}
                       width="36"
                       height="36"
                       loading="lazy"
@@ -133,16 +142,16 @@ export const BlogPreview = () => {
                     />
                     <div>
                       <div className="font-sans text-xs font-bold text-[#0B1938]">
-                        {featuredBlog.author}
+                        {featuredBlog?.author || 'BuildZone Editorial'}
                       </div>
                       <div className="text-[11px] text-slate-500 font-sans">
-                        {featuredBlog.authorRole}
+                        {featuredBlog?.authorRole || 'Senior Engineering Team'}
                       </div>
                     </div>
                   </div>
 
                   <Link
-                    to={`/blog/${featuredBlog.slug}`}
+                    to={`/blog/${featuredBlog?.slug || featuredBlog?.id}`}
                     className="font-sans text-xs font-bold uppercase tracking-wide text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1.5 group/btn"
                   >
                     <span>Read Article</span>
@@ -171,18 +180,18 @@ export const BlogPreview = () => {
               </div>
             </div>
 
-            {/* List of 6 Line-Wise Articles */}
+            {/* List of Line-Wise Articles */}
             <div className="space-y-2.5">
               {filteredSideBlogs.slice(0, 6).map((blog) => (
                 <Link
-                  key={blog.id}
-                  to={`/blog/${blog.slug}`}
+                  key={blog.id || blog.slug}
+                  to={`/blog/${blog.slug || blog.id}`}
                   className="p-3 bg-white border border-slate-200 hover:border-[#0066FF] rounded-xl transition-all duration-200 flex items-center gap-3.5 group shadow-2xs hover:shadow-md hover:bg-blue-50/40"
                 >
                   {/* Thumbnail Image */}
                   <div className="w-20 sm:w-24 h-18 sm:h-20 rounded-lg overflow-hidden shrink-0 bg-slate-100 relative">
                     <img
-                      src={blog.featuredImage}
+                      src={blog.featuredImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80'}
                       alt={blog.title ? `${blog.title} article cover` : "Article cover thumbnail"}
                       width="96"
                       height="80"
@@ -191,18 +200,18 @@ export const BlogPreview = () => {
                       loading="lazy"
                     />
                     <div className="absolute top-1.5 left-1.5 px-2 py-0.5 bg-black/70 backdrop-blur-md rounded text-[9px] font-sans font-bold text-white uppercase tracking-wide">
-                      {blog.category}
+                      {blog.category || 'Tech'}
                     </div>
                   </div>
 
                   {/* Text Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 text-[11px] font-sans text-slate-500 mb-1">
-                      <span>{blog.publishedDate}</span>
+                      <span>{blog.publishedDate || 'Recently Published'}</span>
                       <span>•</span>
                       <span className="flex items-center gap-1 text-[#0066FF] font-medium">
                         <Clock className="w-2.5 h-2.5" />
-                        <span>{blog.readTime}</span>
+                        <span>{blog.readTime || '5 min read'}</span>
                       </span>
                     </div>
 
@@ -211,7 +220,7 @@ export const BlogPreview = () => {
                     </h4>
 
                     <div className="flex items-center gap-1.5 mt-1.5 text-[11px] font-sans text-slate-500">
-                      <span>By {blog.author}</span>
+                      <span>By {blog.author || 'BuildZone Editorial'}</span>
                     </div>
                   </div>
 
