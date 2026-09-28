@@ -50,10 +50,10 @@ export function useInView(options = {}) {
 /**
  * Hook to smoothly animate numbers from 0 to a target value when scrolled into view.
  */
-export function useCountUp({ target, duration = 1800, startOnView = true }) {
-  const [count, setCount] = useState(0);
+export function useCountUp({ target, duration = 1600, startOnView = true }) {
+  const [count, setCount] = useState(target);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.01, rootMargin: '150px 0px 150px 0px', triggerOnce: true });
 
   useEffect(() => {
     if (startOnView && !inView) return;
@@ -107,5 +107,5 @@ export function useCountUp({ target, duration = 1800, startOnView = true }) {
     };
   }, [target, duration, inView, startOnView, hasAnimated]);
 
-  return { ref, count: hasAnimated ? count : '0' };
+  return { ref, count };
 }
