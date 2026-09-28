@@ -8,9 +8,9 @@ export const AboutSection = () => {
     <section className="relative w-full bg-white overflow-hidden py-16 sm:py-24 lg:py-32 border-b border-slate-200/80">
       
       {/* ========================================================================= */}
-      {/* BACKGROUND IMAGE LAYER (Right Aligned Full-Bleed Panorama)                */}
+      {/* BACKGROUND IMAGE LAYER (Desktop Right Aligned Full-Bleed Panorama)        */}
       {/* ========================================================================= */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[62%] xl:w-[60%] h-full z-0 pointer-events-none">
+      <div className="hidden lg:block absolute inset-y-0 right-0 w-[62%] xl:w-[60%] h-full z-0 pointer-events-none">
         <img
           src="/about-office.jpg"
           alt="Buildzone Technology Engineering Team"
@@ -19,12 +19,9 @@ export const AboutSection = () => {
         />
         
         {/* Seamless White Gradient Fades from Left to Right */}
-        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 via-30% to-transparent" />
-        <div className="hidden lg:block absolute inset-y-0 left-0 w-72 bg-gradient-to-r from-white via-white/95 to-transparent" />
-        <div className="hidden lg:block absolute inset-y-0 left-0 w-32 bg-white" />
-        
-        {/* Mobile / Tablet Overlay for 100% crisp legibility */}
-        <div className="lg:hidden absolute inset-0 bg-white/92 backdrop-blur-xs" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 via-30% to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-72 bg-gradient-to-r from-white via-white/95 to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-32 bg-white" />
       </div>
 
       {/* Decorative Dot Matrix on top-left (matches reference) */}
@@ -65,9 +62,24 @@ export const AboutSection = () => {
 
           {/* Description Text */}
           <ScrollReveal animation="fade-up" delay={0.2} duration={0.6}>
-            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed max-w-lg mb-8 sm:mb-10">
+            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed max-w-lg mb-6 sm:mb-8">
               Buildzone Technology is a forward-thinking software development company dedicated to delivering innovative, scalable, and reliable digital solutions. We combine creativity with technology to help businesses grow and succeed in the digital world.
             </p>
+
+            {/* Standalone Image Card on Mobile & Tablets (hidden on Desktop) */}
+            <div className="lg:hidden mb-8 rounded-2xl overflow-hidden shadow-lg border border-slate-200/90 relative group">
+              <img
+                src="/about-office.jpg"
+                alt="Buildzone Technology Headquarters"
+                className="w-full h-52 sm:h-64 object-cover object-[center_35%]"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1938]/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-[11px] font-mono font-bold bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20">
+                <span>📍 Buildzone Tech Studio</span>
+                <span className="text-emerald-400">● Active Headquarters</span>
+              </div>
+            </div>
           </ScrollReveal>
 
           {/* 3 Columns: Mission • Vision • Value */}

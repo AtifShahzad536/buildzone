@@ -238,21 +238,18 @@ export const Process = () => {
           <div className="relative w-full bg-white rounded-3xl border border-slate-200/90 shadow-xl shadow-slate-200/50 overflow-hidden">
             
             {/* ========================================================================= */}
-            {/* BACKGROUND IMAGE LAYER (Right-Aligned Seamless Panorama)                  */}
+            {/* BACKGROUND IMAGE LAYER (Desktop Right-Aligned Seamless Panorama)          */}
             {/* ========================================================================= */}
-            <div className="absolute inset-y-0 right-0 w-full lg:w-[58%] xl:w-[55%] h-full z-0 pointer-events-none overflow-hidden">
+            <div className="hidden lg:block absolute inset-y-0 right-0 w-[58%] xl:w-[55%] h-full z-0 pointer-events-none overflow-hidden">
               <img
                 src={activeStep.image}
                 alt={activeStep.title}
                 className="w-full h-full object-cover object-[center_35%] transition-all duration-700 filter brightness-[0.98]"
               />
               {/* Seamless White Gradient Fades from Left to Right */}
-              <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 via-35% to-transparent" />
-              <div className="hidden lg:block absolute inset-y-0 left-0 w-72 bg-gradient-to-r from-white via-white/95 to-transparent" />
-              <div className="hidden lg:block absolute inset-y-0 left-0 w-28 bg-white" />
-              
-              {/* Mobile / Tablet Overlay for 100% crisp legibility */}
-              <div className="lg:hidden absolute inset-0 bg-white/94 backdrop-blur-xs" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 via-35% to-transparent" />
+              <div className="absolute inset-y-0 left-0 w-72 bg-gradient-to-r from-white via-white/95 to-transparent" />
+              <div className="absolute inset-y-0 left-0 w-28 bg-white" />
             </div>
 
             {/* Floating Top-Right Pill on Desktop */}
