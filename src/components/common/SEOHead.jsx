@@ -50,15 +50,16 @@ export const SEOHead = ({
     ogTitleTag.setAttribute('content', fullTitle);
 
     // Canonical link
-    if (canonical) {
-      let canonicalTag = document.querySelector('link[rel="canonical"]');
-      if (!canonicalTag) {
-        canonicalTag = document.createElement('link');
-        canonicalTag.setAttribute('rel', 'canonical');
-        document.head.appendChild(canonicalTag);
-      }
-      canonicalTag.setAttribute('href', canonical);
+    const currentPath = typeof window !== 'undefined' ? window.location.pathname.replace(/\/+$/, '') : '';
+    const resolvedCanonical = canonical || (currentPath ? `https://buildzonetechnology.com${currentPath}` : 'https://buildzonetechnology.com/');
+    
+    let canonicalTag = document.querySelector('link[rel="canonical"]');
+    if (!canonicalTag) {
+      canonicalTag = document.createElement('link');
+      canonicalTag.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalTag);
     }
+    canonicalTag.setAttribute('href', resolvedCanonical);
 
     // JSON-LD structured schema
     if (schema) {

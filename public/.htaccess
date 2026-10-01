@@ -2,7 +2,16 @@
   RewriteEngine On
   RewriteBase /
 
-  # Explicit MIME types for SEO & Crawlers
+  # 1. Canonical HTTPS Enforcement (301 Permanent)
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP_HOST} ^(www\.)?buildzonetechnology\.com$ [NC]
+  RewriteRule ^(.*)$ https://buildzonetechnology.com/$1 [R=301,L]
+
+  # 2. Canonical Non-WWW Enforcement (301 Permanent)
+  RewriteCond %{HTTP_HOST} ^www\.buildzonetechnology\.com$ [NC]
+  RewriteRule ^(.*)$ https://buildzonetechnology.com/$1 [R=301,L]
+
+  # 3. Explicit MIME types for SEO & Crawlers
   AddType application/xml .xml
   AddType text/plain .txt
   AddType application/manifest+json .webmanifest
