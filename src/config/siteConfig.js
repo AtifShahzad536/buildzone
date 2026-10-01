@@ -34,8 +34,11 @@ export const siteConfig = {
     linkedin: "https://linkedin.com/company/buildzone-tech",
     github: "https://github.com/buildzone-tech",
     twitter: "https://twitter.com/buildzone_tech",
-    discord: "https://discord.gg/buildzone",
+    instagram: "https://instagram.com/buildzone.official",
+    facebook: "https://facebook.com/buildzonetech",
+    tiktok: "https://tiktok.com/@buildzone_dev",
     youtube: "https://youtube.com/@buildzone_tech",
+    discord: "https://discord.gg/buildzone",
   },
 
   // Brand aesthetics

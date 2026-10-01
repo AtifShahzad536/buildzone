@@ -36,6 +36,18 @@ export const SettingsManager = () => {
     whatsappMessage: reduxSettings.whatsappMessage || 'Hello BuildZone Team, I would like to discuss a new software engineering project.',
     salesEmail: reduxSettings.salesEmail || 'sales@buildzonetechnology.com',
     
+    socialLinks: {
+      linkedin: 'https://linkedin.com/company/buildzone-tech',
+      github: 'https://github.com/buildzone-labs',
+      twitter: 'https://x.com/buildzone_dev',
+      instagram: 'https://instagram.com/buildzone.official',
+      facebook: 'https://facebook.com/buildzonetech',
+      tiktok: 'https://tiktok.com/@buildzone_dev',
+      youtube: 'https://youtube.com/@buildzone-tech',
+      whatsapp: 'https://wa.me/92105464116',
+      ...(reduxSettings.socialLinks || {}),
+    },
+
     // Hero Showcase & Video configuration
     heroMediaType: reduxSettings.heroMediaType || 'mockup', // 'mockup' | 'video'
     heroBgColor: reduxSettings.heroBgColor || '#F2F2F2',
@@ -60,6 +72,18 @@ export const SettingsManager = () => {
       setFormData(prev => ({
         ...prev,
         ...dbSettings,
+        socialLinks: {
+          linkedin: 'https://linkedin.com/company/buildzone-tech',
+          github: 'https://github.com/buildzone-labs',
+          twitter: 'https://x.com/buildzone_dev',
+          instagram: 'https://instagram.com/buildzone.official',
+          facebook: 'https://facebook.com/buildzonetech',
+          tiktok: 'https://tiktok.com/@buildzone_dev',
+          youtube: 'https://youtube.com/@buildzone-tech',
+          whatsapp: 'https://wa.me/92105464116',
+          ...(prev.socialLinks || {}),
+          ...(dbSettings.socialLinks || {}),
+        },
         heroMediaType: dbSettings.heroMediaType || prev.heroMediaType || 'video',
         heroBgColor: dbSettings.heroBgColor || prev.heroBgColor || '#F2F2F2',
         heroVideoUrl: sanitizedVideoUrl,
@@ -538,53 +562,143 @@ export const SettingsManager = () => {
         {/* Tab 5: Social */}
         {activeTab === 'social' && (
           <div className="space-y-4">
-            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
-              Official Social Profile URLs
-            </h2>
-
             <div>
-              <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
-                LinkedIn Company URL
-              </label>
-              <input
-                type="url"
-                value={formData.socialLinks?.linkedin || ''}
-                onChange={(e) => setFormData({
-                  ...formData,
-                  socialLinks: { ...formData.socialLinks, linkedin: e.target.value }
-                })}
-                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
-              />
+              <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider border-b border-slate-100 pb-2">
+                Official Social Profile URLs & Handles
+              </h2>
+              <p className="font-sans text-xs text-slate-500 pt-1">
+                These URLs dynamically update the Announcement Bar marquee, Footer icons, and all contact endpoints.
+              </p>
             </div>
 
-            <div>
-              <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
-                GitHub Organization URL
-              </label>
-              <input
-                type="url"
-                value={formData.socialLinks?.github || ''}
-                onChange={(e) => setFormData({
-                  ...formData,
-                  socialLinks: { ...formData.socialLinks, github: e.target.value }
-                })}
-                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
-              />
-            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  WhatsApp Direct URL / Link
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://wa.me/92105464116"
+                  value={formData.socialLinks?.whatsapp || ''}
+                  onChange={(e) => setFormData({
+                    ...formData,
+                    socialLinks: { ...formData.socialLinks, whatsapp: e.target.value }
+                  })}
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                />
+              </div>
 
-            <div>
-              <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
-                Twitter / X Profile URL
-              </label>
-              <input
-                type="url"
-                value={formData.socialLinks?.twitter || ''}
-                onChange={(e) => setFormData({
-                  ...formData,
-                  socialLinks: { ...formData.socialLinks, twitter: e.target.value }
-                })}
-                className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
-              />
+              <div>
+                <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  Instagram Profile URL
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://instagram.com/buildzone.official"
+                  value={formData.socialLinks?.instagram || ''}
+                  onChange={(e) => setFormData({
+                    ...formData,
+                    socialLinks: { ...formData.socialLinks, instagram: e.target.value }
+                  })}
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  Facebook Page URL
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://facebook.com/buildzonetech"
+                  value={formData.socialLinks?.facebook || ''}
+                  onChange={(e) => setFormData({
+                    ...formData,
+                    socialLinks: { ...formData.socialLinks, facebook: e.target.value }
+                  })}
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  TikTok Profile URL
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://tiktok.com/@buildzone_dev"
+                  value={formData.socialLinks?.tiktok || ''}
+                  onChange={(e) => setFormData({
+                    ...formData,
+                    socialLinks: { ...formData.socialLinks, tiktok: e.target.value }
+                  })}
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  LinkedIn Company URL
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://linkedin.com/company/buildzone-tech"
+                  value={formData.socialLinks?.linkedin || ''}
+                  onChange={(e) => setFormData({
+                    ...formData,
+                    socialLinks: { ...formData.socialLinks, linkedin: e.target.value }
+                  })}
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  YouTube Channel URL
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://youtube.com/@buildzone-tech"
+                  value={formData.socialLinks?.youtube || ''}
+                  onChange={(e) => setFormData({
+                    ...formData,
+                    socialLinks: { ...formData.socialLinks, youtube: e.target.value }
+                  })}
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  GitHub Organization URL
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://github.com/buildzone-labs"
+                  value={formData.socialLinks?.github || ''}
+                  onChange={(e) => setFormData({
+                    ...formData,
+                    socialLinks: { ...formData.socialLinks, github: e.target.value }
+                  })}
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  Twitter / X Profile URL
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://x.com/buildzone_dev"
+                  value={formData.socialLinks?.twitter || ''}
+                  onChange={(e) => setFormData({
+                    ...formData,
+                    socialLinks: { ...formData.socialLinks, twitter: e.target.value }
+                  })}
+                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                />
+              </div>
             </div>
           </div>
         )}

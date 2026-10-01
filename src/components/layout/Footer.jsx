@@ -11,7 +11,16 @@ import {
 import { siteConfig } from '../../config/siteConfig';
 import { useGetSettingsQuery } from '../../services/api';
 import Container from '../common/Container';
-import { LinkedInIcon, GitHubIcon, TwitterIcon } from '../common/BrandIcons';
+import { 
+  LinkedInIcon, 
+  GitHubIcon, 
+  TwitterIcon, 
+  InstagramIcon, 
+  FacebookIcon, 
+  TikTokIcon, 
+  WhatsAppIcon, 
+  YouTubeIcon 
+} from '../common/BrandIcons';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -19,6 +28,22 @@ export const Footer = () => {
   const { data: dbSettings } = useGetSettingsQuery();
   const settings = dbSettings || reduxSettings;
   const companyName = settings?.companyName || siteConfig.name;
+
+  const social = {
+    ...siteConfig.social,
+    ...(settings?.socialLinks || {}),
+  };
+
+  const footerSocialList = [
+    { key: 'whatsapp', name: 'WhatsApp', url: social.whatsapp || (settings?.whatsappNumber ? `https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, '')}` : null), icon: WhatsAppIcon, hoverBg: 'hover:bg-[#25D366] hover:border-[#25D366]' },
+    { key: 'linkedin', name: 'LinkedIn', url: social.linkedin, icon: LinkedInIcon, hoverBg: 'hover:bg-[#0A66C2] hover:border-[#0A66C2]' },
+    { key: 'instagram', name: 'Instagram', url: social.instagram, icon: InstagramIcon, hoverBg: 'hover:bg-[#E4405F] hover:border-[#E4405F]' },
+    { key: 'facebook', name: 'Facebook', url: social.facebook, icon: FacebookIcon, hoverBg: 'hover:bg-[#1877F2] hover:border-[#1877F2]' },
+    { key: 'tiktok', name: 'TikTok', url: social.tiktok, icon: TikTokIcon, hoverBg: 'hover:bg-[#000000] hover:border-[#000000]' },
+    { key: 'youtube', name: 'YouTube', url: social.youtube, icon: YouTubeIcon, hoverBg: 'hover:bg-[#FF0000] hover:border-[#FF0000]' },
+    { key: 'github', name: 'GitHub', url: social.github, icon: GitHubIcon, hoverBg: 'hover:bg-[#0B1938] hover:border-[#0B1938]' },
+    { key: 'twitter', name: 'Twitter / X', url: social.twitter, icon: TwitterIcon, hoverBg: 'hover:bg-[#1DA1F2] hover:border-[#1DA1F2]' },
+  ].filter(item => Boolean(item.url));
 
   return (
     <footer className="bg-white border-t border-slate-200 text-slate-600 font-sans pt-10 sm:pt-16 pb-8 sm:pb-12">
@@ -85,36 +110,23 @@ export const Footer = () => {
               </div>
             </div>
 
-
-            {/* Social Icons */}
-            <div className="flex items-center gap-2 pt-1">
-              <a
-                href={siteConfig.social.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 sm:w-9 sm:h-9 bg-[#F8FAFC] border border-slate-200 rounded-md flex items-center justify-center text-slate-600 hover:text-white hover:bg-[#0066FF] hover:border-[#0066FF] transition-all shadow-2xs"
-                aria-label="LinkedIn"
-              >
-                <LinkedInIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </a>
-              <a
-                href={siteConfig.social.github}
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 sm:w-9 sm:h-9 bg-[#F8FAFC] border border-slate-200 rounded-md flex items-center justify-center text-slate-600 hover:text-white hover:bg-[#0066FF] hover:border-[#0066FF] transition-all shadow-2xs"
-                aria-label="GitHub"
-              >
-                <GitHubIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </a>
-              <a
-                href={siteConfig.social.twitter}
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 sm:w-9 sm:h-9 bg-[#F8FAFC] border border-slate-200 rounded-md flex items-center justify-center text-slate-600 hover:text-white hover:bg-[#0066FF] hover:border-[#0066FF] transition-all shadow-2xs"
-                aria-label="Twitter"
-              >
-                <TwitterIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </a>
+            {/* Dynamic Social Icons */}
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              {footerSocialList.map(item => {
+                const IconComponent = item.icon;
+                return (
+                  <a
+                    key={item.key}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-8 h-8 sm:w-9 sm:h-9 bg-[#F8FAFC] border border-slate-200 rounded-md flex items-center justify-center text-slate-600 hover:text-white transition-all shadow-2xs ${item.hoverBg}`}
+                    aria-label={item.name}
+                  >
+                    <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 

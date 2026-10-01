@@ -115,6 +115,15 @@ function sendLeadEmailNotification($lead) {
     </body>
     </html>";
 
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type:text/html;charset=UTF-8\r\n";
+    $headers .= "From: BuildZone Alerts <info@buildzonetechnology.com>\r\n";
+    $headers .= "Reply-To: " . ($email !== 'N/A' ? $email : "info@buildzonetechnology.com") . "\r\n";
+    $headers .= "X-Mailer: BuildZone-Notification-Engine/2.0\r\n";
+
+    return @mail($to, $subject, $message, $headers);
+}
+
 function sendDirectClientEmail($to, $subject, $content) {
     $formattedBody = nl2br(htmlspecialchars($content));
 
@@ -216,12 +225,63 @@ function getSeedData($resource) {
             ]
         ];
     }
+    if ($resource === 'settings') {
+        return [
+            "companyName" => "BuildZone",
+            "tagline" => "BEST SOFTWARE AGENCY IN SIALKOT | GLOBAL SOFTWARE & AI ENGINEERING",
+            "contactEmail" => "info@buildzonetechnology.com",
+            "salesEmail" => "info@buildzonetechnology.com",
+            "phone" => "+92105464116",
+            "whatsappNumber" => "+92105464116",
+            "whatsappMessage" => "Hello BuildZone Team, I would like to discuss a new software engineering project.",
+            "address" => "Executive Tech District, Paris Road",
+            "heroMediaType" => "video",
+            "heroBgColor" => "#F2F2F2",
+            "heroVideoUrl" => "https://youtu.be/egpm1YixC4Q",
+            "heroBadgeText" => "⭐ BEST SOFTWARE AGENCY IN SIALKOT • GLOBAL IT ENGINEERING",
+            "heroTitlePrefix" => "We Build Digital Products That",
+            "heroTitleAccent" => "Scale Your Business",
+            "heroDescription" => "BuildZone Technology is the premier software agency in Sialkot, delivering custom enterprise ERPs, mobile apps, scalable web portals, and AI-powered solutions.",
+            "statsClients" => "150+",
+            "statsProjects" => "250+",
+            "statsExperience" => "5+",
+            "statsSupport" => "24/7",
+            "socialLinks" => [
+                "linkedin" => "https://linkedin.com/company/buildzone-tech",
+                "github" => "https://github.com/buildzone-tech",
+                "twitter" => "https://twitter.com/buildzone_tech",
+                "instagram" => "https://instagram.com/buildzone.official",
+                "facebook" => "https://facebook.com/buildzonetech",
+                "tiktok" => "https://tiktok.com/@buildzone_dev",
+                "youtube" => "https://youtube.com/@buildzone_tech"
+            ]
+        ];
+    }
     return [];
 }
 
 // Get raw JSON body
 $rawInput = file_get_contents('php://input');
 $body = json_decode($rawInput, true) ?? $_POST;
+
+// Dedicated handler for single-document settings resource
+if ($resource === 'settings') {
+    $currentSettings = loadData('settings');
+    if (!is_array($currentSettings) || empty($currentSettings)) {
+        $currentSettings = getSeedData('settings');
+    }
+    if ($method === 'GET') {
+        sendResponse($currentSettings);
+    }
+    if ($method === 'PUT' || $method === 'PATCH' || $method === 'POST') {
+        $merged = array_merge($currentSettings, $body);
+        if (isset($body['socialLinks']) && is_array($body['socialLinks'])) {
+            $merged['socialLinks'] = array_merge($currentSettings['socialLinks'] ?? [], $body['socialLinks']);
+        }
+        saveData('settings', $merged);
+        sendResponse($merged);
+    }
+}
 
 // Route handlers
 switch ($method) {
