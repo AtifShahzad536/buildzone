@@ -13,6 +13,7 @@ import Loader from '../../../components/common/Loader';
 import EmptyState from '../../../components/common/EmptyState';
 import ConfirmModal from '../../../components/common/ConfirmModal';
 import ImageUpload from '../../../components/common/ImageUpload';
+import { LinkedInIcon, GitHubIcon } from '../../../components/common/BrandIcons';
 
 export const TeamManager = () => {
   const { data: team, isLoading, refetch } = useGetTeamQuery();
@@ -172,13 +173,13 @@ export const TeamManager = () => {
                 <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     {member.linkedin && (
-                      <a href={member.linkedin} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#0066FF] transition-colors">
-                        <Linkedin className="w-3.5 h-3.5" />
+                      <a href={member.linkedin} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#0066FF] transition-colors" aria-label="LinkedIn Profile">
+                        <LinkedInIcon className="w-3.5 h-3.5 fill-current" />
                       </a>
                     )}
                     {member.github && (
-                      <a href={member.github} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#0B1938] transition-colors">
-                        <Github className="w-3.5 h-3.5" />
+                      <a href={member.github} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#0B1938] transition-colors" aria-label="GitHub Profile">
+                        <GitHubIcon className="w-3.5 h-3.5 fill-current" />
                       </a>
                     )}
                   </div>
