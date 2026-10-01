@@ -536,9 +536,9 @@ const customBaseQuery = async (args) => {
       whatsappMessage: 'Hello BuildZone Team, I would like to discuss a new software engineering project.',
       address: 'Executive Tech District, Paris Road, Sialkot',
 
-      heroMediaType: 'mockup',
+      heroMediaType: 'video',
       heroBgColor: '#F2F2F2',
-      heroVideoUrl: '',
+      heroVideoUrl: 'https://youtu.be/egpm1YixC4Q',
       heroBadgeText: 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
       heroTitlePrefix: 'We Build Digital Products That',
       heroTitleAccent: 'Scale Your Business',
@@ -551,8 +551,8 @@ const customBaseQuery = async (args) => {
     let settings = getOrSeed('settings', defaultSettings);
     if (settings && typeof settings === 'object') {
       if (settings.heroVideoUrl && settings.heroVideoUrl.includes('dQw4w9WgXcQ')) {
-        settings.heroVideoUrl = '';
-        settings.heroMediaType = 'mockup';
+        settings.heroVideoUrl = 'https://youtu.be/egpm1YixC4Q';
+        settings.heroMediaType = 'video';
         saveToStorage('settings', settings);
       }
     }

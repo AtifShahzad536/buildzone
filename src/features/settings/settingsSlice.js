@@ -7,8 +7,8 @@ try {
   if (storedSettings) {
     parsed = JSON.parse(storedSettings);
     if (parsed.heroVideoUrl && parsed.heroVideoUrl.includes('dQw4w9WgXcQ')) {
-      parsed.heroVideoUrl = '';
-      parsed.heroMediaType = 'mockup';
+      parsed.heroVideoUrl = 'https://youtu.be/egpm1YixC4Q';
+      parsed.heroMediaType = 'video';
     }
   }
 } catch (e) {
@@ -27,8 +27,8 @@ const initialState = parsed
       metaDescription: siteConfig.description,
       socialLinks: { ...siteConfig.social },
       heroBgColor: '#F2F2F2',
-      heroMediaType: 'mockup',
-      heroVideoUrl: '',
+      heroMediaType: 'video',
+      heroVideoUrl: 'https://youtu.be/egpm1YixC4Q',
       isDirty: false,
     };
 

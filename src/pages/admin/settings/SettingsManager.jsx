@@ -39,7 +39,7 @@ export const SettingsManager = () => {
     // Hero Showcase & Video configuration
     heroMediaType: reduxSettings.heroMediaType || 'mockup', // 'mockup' | 'video'
     heroBgColor: reduxSettings.heroBgColor || '#F2F2F2',
-    heroVideoUrl: (reduxSettings.heroVideoUrl && !reduxSettings.heroVideoUrl.includes('dQw4w9WgXcQ')) ? reduxSettings.heroVideoUrl : '',
+    heroVideoUrl: (reduxSettings.heroVideoUrl && !reduxSettings.heroVideoUrl.includes('dQw4w9WgXcQ')) ? reduxSettings.heroVideoUrl : 'https://youtu.be/egpm1YixC4Q',
     heroBadgeText: reduxSettings.heroBadgeText || 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
     heroTitlePrefix: reduxSettings.heroTitlePrefix || 'We Build Digital Products That',
     heroTitleAccent: reduxSettings.heroTitleAccent || 'Scale Your Business',
@@ -53,12 +53,16 @@ export const SettingsManager = () => {
   // Sync DB settings into formData when received from server
   useEffect(() => {
     if (dbSettings && typeof dbSettings === 'object') {
+      const sanitizedVideoUrl = (dbSettings.heroVideoUrl && !dbSettings.heroVideoUrl.includes('dQw4w9WgXcQ'))
+        ? dbSettings.heroVideoUrl
+        : 'https://youtu.be/egpm1YixC4Q';
+
       setFormData(prev => ({
         ...prev,
         ...dbSettings,
         heroMediaType: dbSettings.heroMediaType || prev.heroMediaType || 'video',
         heroBgColor: dbSettings.heroBgColor || prev.heroBgColor || '#F2F2F2',
-        heroVideoUrl: dbSettings.heroVideoUrl || prev.heroVideoUrl,
+        heroVideoUrl: sanitizedVideoUrl,
         heroBadgeText: dbSettings.heroBadgeText || prev.heroBadgeText,
         heroTitlePrefix: dbSettings.heroTitlePrefix || prev.heroTitlePrefix,
         heroTitleAccent: dbSettings.heroTitleAccent || prev.heroTitleAccent,

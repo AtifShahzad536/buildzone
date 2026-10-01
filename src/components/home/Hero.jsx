@@ -59,7 +59,10 @@ export const Hero = () => {
     return match ? match[1] : null;
   };
 
-  const rawVideoUrl = settings?.heroVideoUrl || "https://youtu.be/egpm1YixC4Q";
+  const cleanVideoUrl = (settings?.heroVideoUrl && !settings.heroVideoUrl.includes('dQw4w9WgXcQ'))
+    ? settings.heroVideoUrl
+    : "https://youtu.be/egpm1YixC4Q";
+  const rawVideoUrl = cleanVideoUrl;
   const ytId = getYouTubeId(rawVideoUrl);
   const heroVideoUrl = ytId
     ? `https://www.youtube-nocookie.com/embed/${ytId}`
