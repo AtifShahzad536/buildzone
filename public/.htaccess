@@ -2,31 +2,27 @@
   RewriteEngine On
   RewriteBase /
 
-  # 1. Canonical HTTPS Enforcement (301 Permanent)
-  RewriteCond %{HTTPS} off
-  RewriteCond %{HTTP_HOST} ^(www\.)?buildzonetechnology\.com$ [NC]
-  RewriteRule ^(.*)$ https://buildzonetechnology.com/$1 [R=301,L]
-
-  # 2. Canonical Non-WWW Enforcement (301 Permanent)
+  # 1. Single-Hop Canonical HTTPS & Non-WWW Enforcement (301 Permanent)
+  RewriteCond %{HTTPS} off [OR]
   RewriteCond %{HTTP_HOST} ^www\.buildzonetechnology\.com$ [NC]
-  RewriteRule ^(.*)$ https://buildzonetechnology.com/$1 [R=301,L]
+  RewriteRule ^(.*)$ https://buildzonetechnology.com/$1 [R=301,L,NE]
 
-  # 3. Explicit MIME types for SEO & Crawlers
+  # 2. Explicit MIME types for SEO & Crawlers
   AddType application/xml .xml
   AddType text/plain .txt
   AddType application/manifest+json .webmanifest
 
-  # Route all API requests to the PHP REST API handler
+  # 3. Route all API requests to the PHP REST API handler
   RewriteCond %{REQUEST_URI} ^/api [NC]
   RewriteRule ^api(/.*)?$ api/index.php [QSA,L]
 
-  # Serve existing files and directories directly
+  # 4. Serve existing files and directories directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Redirect all other requests to index.html (SPA Routing)
-  RewriteRule ^ index.html [L]
+  # 5. Route all other requests through index.php for Dynamic Server Canonical & Meta Injection
+  RewriteRule ^ index.php [L]
 </IfModule>
 
 

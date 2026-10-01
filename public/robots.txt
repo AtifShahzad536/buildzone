@@ -17,4 +17,3 @@ Disallow: /404
 
 # Sitemaps
 Sitemap: https://buildzonetechnology.com/sitemap.xml
-Sitemap: https://buildzonetech.vercel.app/sitemap.xml
