@@ -155,7 +155,7 @@ export const Careers = () => {
     <>
       <SEOHead
         title="Careers & Engineering Openings | BuildZone"
-        description="Join BuildZone's globally distributed team of senior software engineers, AI researchers, and system architects. High autonomy, top-tier compensation, 100% remote."
+        description="Join BuildZone's elite team of software developers, AI engineers, and system architects. High autonomy, top compensation, and remote work."
         keywords="Software Agency Jobs in Sialkot, Software House Jobs in Sialkot, IT Jobs Sialkot, Software Engineer Jobs Sialkot, Web Developer Jobs Sialkot, BuildZone Careers, Best Software Agency in Sialkot, Best Software House in Sialkot"
         canonical="https://buildzonetechnology.com/careers"
       />

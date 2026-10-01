@@ -183,7 +183,7 @@ export const WhyChooseUs = () => {
               </span>
               
               <span className="font-sans text-[11px] font-extrabold text-[#0066FF] uppercase tracking-wider">
-                WHY BUILDZONE • SIALKOT'S #1 SOFTWARE AGENCY
+                WHY BUILDZONE • SIALKOT'S BEST SOFTWARE AGENCY
               </span>
             </div>
 

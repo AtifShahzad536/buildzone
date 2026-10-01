@@ -130,7 +130,7 @@ function sendDirectClientEmail($to, $subject, $content) {
       <div style='max-width: 620px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);'>
         <div style='background: #0B1938; padding: 24px; text-align: center;'>
           <h1 style='margin: 0; font-size: 22px; color: #ffffff; font-weight: bold; letter-spacing: -0.5px;'>BuildZone Technology</h1>
-          <p style='margin: 4px 0 0; color: #0066FF; font-size: 11px; font-family: monospace; font-weight: bold; letter-spacing: 1.5px;'>#1 SOFTWARE HOUSE IN SIALKOT</p>
+          <p style='margin: 4px 0 0; color: #0066FF; font-size: 11px; font-family: monospace; font-weight: bold; letter-spacing: 1.5px;'>BEST SOFTWARE AGENCY IN SIALKOT</p>
         </div>
         <div style='padding: 32px 28px; font-size: 14px; line-height: 1.65; color: #334155; font-family: sans-serif;'>
           {$formattedBody}

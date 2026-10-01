@@ -21,8 +21,8 @@ export const About = () => {
     <>
       <SEOHead
         title="About Us | BuildZone"
-        description="Learn about BuildZone, the best & #1 software agency in Sialkot, Pakistan. Discover our engineering leadership, enterprise standards, and mission to deliver world-class digital products."
-        keywords="About BuildZone, Best Software House in Sialkot, No 1 Software House in Sialkot, Best Software Agency in Sialkot, Top IT Company in Sialkot, Best Software Company Sialkot Pakistan, Software Engineering Sialkot"
+        description="Discover BuildZone, the best software agency in Sialkot. Learn about our engineering leadership, quality standards, and custom software development."
+        keywords="About BuildZone, Best Software House in Sialkot, Top Software House in Sialkot, Best Software Agency in Sialkot, Top IT Company in Sialkot, Best Software Company Sialkot Pakistan, Software Engineering Sialkot"
         canonical="https://buildzonetechnology.com/about"
       />
 
@@ -40,7 +40,7 @@ export const About = () => {
               WE ARE BUILDZONE
             </h1>
             <p className="text-base sm:text-lg text-slate-600 font-sans leading-relaxed">
-              The #1 software agency in Sialkot and premier digital engineering consultancy, partnering with local exporters, ambitious startups, and global enterprises to build high-scale, mission-critical digital products.
+              The best software agency in Sialkot and premier digital engineering consultancy, partnering with local exporters, ambitious startups, and global enterprises to build high-scale, mission-critical digital products.
             </p>
           </div>
 

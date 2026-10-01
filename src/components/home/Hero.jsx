@@ -43,7 +43,7 @@ export const Hero = () => {
   const [isEmbedPlaying, setIsEmbedPlaying] = useState(false);
 
   // Settings values with defaults matching local SEO ranking requirements
-  const badgeText = settings?.heroBadgeText || "⭐ BEST & NO. 1 SOFTWARE AGENCY IN SIALKOT • GLOBAL IT ENGINEERING";
+  const badgeText = settings?.heroBadgeText || "⭐ BEST SOFTWARE AGENCY IN SIALKOT • GLOBAL IT ENGINEERING";
   const titlePrefix = settings?.heroTitlePrefix || "We Build Digital Products That";
   const titleAccent = settings?.heroTitleAccent || "Scale Your Business";
   const subtitle = settings?.heroDescription || "BuildZone Technology is the premier software agency in Sialkot, delivering custom enterprise ERPs, mobile apps, scalable web portals, and AI-powered solutions that help businesses and exporters grow globally.";
