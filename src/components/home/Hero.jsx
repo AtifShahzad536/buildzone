@@ -48,12 +48,6 @@ export const Hero = () => {
   const titleAccent = settings?.heroTitleAccent || "Scale Your Business";
   const subtitle = settings?.heroDescription || "BuildZone Technology is the premier software agency in Sialkot, delivering custom enterprise ERPs, mobile apps, scalable web portals, and AI-powered solutions that help businesses and exporters grow globally.";
 
-  const rawVideoUrl = settings?.heroVideoUrl || "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ";
-  const heroVideoUrl = rawVideoUrl.includes('youtube.com/embed')
-    ? rawVideoUrl.replace('youtube.com/embed', 'youtube-nocookie.com/embed')
-    : rawVideoUrl;
-  const heroMediaType = settings?.heroMediaType || "video"; // 'video' | 'mockup'
-
   const isEmbedVideo = (url) => {
     if (!url) return false;
     return url.includes('youtube.com') || url.includes('youtube-nocookie.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
@@ -64,6 +58,15 @@ export const Hero = () => {
     const match = url.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
     return match ? match[1] : null;
   };
+
+  const rawVideoUrl = settings?.heroVideoUrl || "https://youtu.be/egpm1YixC4Q";
+  const ytId = getYouTubeId(rawVideoUrl);
+  const heroVideoUrl = ytId
+    ? `https://www.youtube-nocookie.com/embed/${ytId}`
+    : (rawVideoUrl.includes('youtube.com/embed')
+        ? rawVideoUrl.replace('youtube.com/embed', 'youtube-nocookie.com/embed')
+        : rawVideoUrl);
+  const heroMediaType = settings?.heroMediaType || "video"; // 'video' | 'mockup'
 
   const stats = [
     { icon: Users, value: settings?.statsClients || "150+", label: "Happy Clients" },
