@@ -41,6 +41,17 @@ export const siteConfig = {
     discord: "https://discord.gg/buildzone",
   },
 
+  socialVisibility: {
+    whatsapp: true,
+    instagram: true,
+    facebook: true,
+    tiktok: true,
+    linkedin: true,
+    youtube: true,
+    github: true,
+    twitter: true,
+  },
+
   // Brand aesthetics
   brand: {
     primaryColor: "#00F0FF",

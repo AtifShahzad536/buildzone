@@ -253,7 +253,18 @@ function getSeedData($resource) {
                 "instagram" => "https://instagram.com/buildzone.official",
                 "facebook" => "https://facebook.com/buildzonetech",
                 "tiktok" => "https://tiktok.com/@buildzone_dev",
-                "youtube" => "https://youtube.com/@buildzone_tech"
+                "youtube" => "https://youtube.com/@buildzone_tech",
+                "whatsapp" => "https://wa.me/92105464116"
+            ],
+            "socialVisibility" => [
+                "whatsapp" => true,
+                "instagram" => true,
+                "facebook" => true,
+                "tiktok" => true,
+                "linkedin" => true,
+                "youtube" => true,
+                "github" => true,
+                "twitter" => true
             ]
         ];
     }
@@ -277,6 +288,9 @@ if ($resource === 'settings') {
         $merged = array_merge($currentSettings, $body);
         if (isset($body['socialLinks']) && is_array($body['socialLinks'])) {
             $merged['socialLinks'] = array_merge($currentSettings['socialLinks'] ?? [], $body['socialLinks']);
+        }
+        if (isset($body['socialVisibility']) && is_array($body['socialVisibility'])) {
+            $merged['socialVisibility'] = array_merge($currentSettings['socialVisibility'] ?? [], $body['socialVisibility']);
         }
         saveData('settings', $merged);
         sendResponse($merged);

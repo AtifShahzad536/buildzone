@@ -34,6 +34,19 @@ export const Footer = () => {
     ...(settings?.socialLinks || {}),
   };
 
+  const visibility = {
+    whatsapp: true,
+    instagram: true,
+    facebook: true,
+    tiktok: true,
+    linkedin: true,
+    youtube: true,
+    github: true,
+    twitter: true,
+    ...(siteConfig.socialVisibility || {}),
+    ...(settings?.socialVisibility || {}),
+  };
+
   const footerSocialList = [
     { key: 'whatsapp', name: 'WhatsApp', url: social.whatsapp || (settings?.whatsappNumber ? `https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, '')}` : null), icon: WhatsAppIcon, hoverBg: 'hover:bg-[#25D366] hover:border-[#25D366]' },
     { key: 'linkedin', name: 'LinkedIn', url: social.linkedin, icon: LinkedInIcon, hoverBg: 'hover:bg-[#0A66C2] hover:border-[#0A66C2]' },
@@ -43,7 +56,7 @@ export const Footer = () => {
     { key: 'youtube', name: 'YouTube', url: social.youtube, icon: YouTubeIcon, hoverBg: 'hover:bg-[#FF0000] hover:border-[#FF0000]' },
     { key: 'github', name: 'GitHub', url: social.github, icon: GitHubIcon, hoverBg: 'hover:bg-[#0B1938] hover:border-[#0B1938]' },
     { key: 'twitter', name: 'Twitter / X', url: social.twitter, icon: TwitterIcon, hoverBg: 'hover:bg-[#1DA1F2] hover:border-[#1DA1F2]' },
-  ].filter(item => Boolean(item.url));
+  ].filter(item => visibility[item.key] !== false && Boolean(item.url));
 
   return (
     <footer className="bg-white border-t border-slate-200 text-slate-600 font-sans pt-10 sm:pt-16 pb-8 sm:pb-12">

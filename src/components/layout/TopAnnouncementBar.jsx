@@ -43,12 +43,26 @@ export const TopAnnouncementBar = () => {
     ...(settings?.socialLinks || {}),
   };
 
+  const visibility = {
+    whatsapp: true,
+    instagram: true,
+    facebook: true,
+    tiktok: true,
+    linkedin: true,
+    youtube: true,
+    github: true,
+    twitter: true,
+    ...(siteConfig.socialVisibility || {}),
+    ...(settings?.socialVisibility || {}),
+  };
+
   const whatsappPhone = settings?.whatsappNumber || siteConfig.contact.phone || '+92 10 5464116';
   const whatsappUrl = social.whatsapp || `https://wa.me/${whatsappPhone.replace(/[^0-9]/g, '')}`;
 
-  // Build dynamic list of active social items from settings
-  const dynamicSocialList = [
+  // Build dynamic list of active social items from settings (filtered by visibility)
+  const rawSocialList = [
     {
+      key: 'whatsapp',
       name: 'WhatsApp',
       handle: whatsappPhone,
       url: whatsappUrl,
@@ -56,6 +70,7 @@ export const TopAnnouncementBar = () => {
       icon: <WhatsAppIcon className="w-3.5 h-3.5 fill-current" />
     },
     {
+      key: 'linkedin',
       name: 'LinkedIn',
       handle: extractHandle(social.linkedin, '@buildzone-tech'),
       url: social.linkedin || siteConfig.social.linkedin,
@@ -63,6 +78,7 @@ export const TopAnnouncementBar = () => {
       icon: <LinkedInIcon className="w-3.5 h-3.5 fill-current" />
     },
     {
+      key: 'instagram',
       name: 'Instagram',
       handle: extractHandle(social.instagram, '@buildzone.official'),
       url: social.instagram || siteConfig.social.instagram,
@@ -70,6 +86,7 @@ export const TopAnnouncementBar = () => {
       icon: <InstagramIcon className="w-3.5 h-3.5 fill-current" />
     },
     {
+      key: 'facebook',
       name: 'Facebook',
       handle: extractHandle(social.facebook, 'buildzonetech'),
       url: social.facebook || siteConfig.social.facebook,
@@ -77,20 +94,23 @@ export const TopAnnouncementBar = () => {
       icon: <FacebookIcon className="w-3.5 h-3.5 fill-current" />
     },
     {
+      key: 'tiktok',
       name: 'TikTok',
       handle: extractHandle(social.tiktok, '@buildzone_dev'),
       url: social.tiktok || siteConfig.social.tiktok,
       color: '#00F2FE',
       icon: <TikTokIcon className="w-3.5 h-3.5 fill-current" />
     },
-    ...(social.youtube ? [{
+    {
+      key: 'youtube',
       name: 'YouTube',
       handle: extractHandle(social.youtube, '@buildzone-tech'),
       url: social.youtube,
       color: '#FF0000',
       icon: <YouTubeIcon className="w-3.5 h-3.5 fill-current" />
-    }] : []),
+    },
     {
+      key: 'github',
       name: 'GitHub',
       handle: extractHandle(social.github, 'buildzone-labs'),
       url: social.github || siteConfig.social.github,
@@ -98,6 +118,7 @@ export const TopAnnouncementBar = () => {
       icon: <GitHubIcon className="w-3.5 h-3.5 fill-current" />
     },
     {
+      key: 'twitter',
       name: 'Twitter',
       handle: extractHandle(social.twitter, '@buildzone_dev'),
       url: social.twitter || siteConfig.social.twitter,
@@ -106,8 +127,15 @@ export const TopAnnouncementBar = () => {
     }
   ];
 
+  const dynamicSocialList = rawSocialList.filter(
+    item => visibility[item.key] !== false && Boolean(item.url)
+  );
+
+  // Fallback if all are hidden
+  const displayItems = dynamicSocialList.length > 0 ? dynamicSocialList : rawSocialList.slice(0, 3);
+
   // Duplicated cycle chain for seamless continuous scrolling
-  const cycleItems = [...dynamicSocialList, ...dynamicSocialList, ...dynamicSocialList];
+  const cycleItems = [...displayItems, ...displayItems, ...displayItems];
 
   return (
     <div className="bg-[#0B1938] text-white border-b border-slate-800 text-[12px] font-sans select-none overflow-hidden relative z-50">
