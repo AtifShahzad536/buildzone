@@ -28,9 +28,18 @@ export const Testimonials = () => {
 
   const scrollToIndex = (index) => {
     if (!sliderRef.current) return;
-    const card = sliderRef.current.children[index];
+    const container = sliderRef.current;
+    const card = container.children[index];
     if (card) {
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      const cardLeft = card.offsetLeft;
+      const cardWidth = card.offsetWidth;
+      const containerWidth = container.offsetWidth;
+      const targetScroll = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+      
+      container.scrollTo({
+        left: Math.max(0, targetScroll),
+        behavior: 'smooth'
+      });
       setActiveIndex(index);
     }
   };

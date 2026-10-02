@@ -56,17 +56,29 @@ export const WhatsAppChatbot = () => {
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToBottom = (smooth = true) => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current.scrollHeight,
+        behavior: smooth ? 'smooth' : 'auto'
+      });
+    }
   };
 
   useEffect(() => {
     if (isOpen) {
-      scrollToBottom();
+      // Isolate scroll within the container without scrolling the window
+      setTimeout(() => scrollToBottom(false), 50);
     }
-  }, [messages, isOpen]);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen && messages.length > 1) {
+      scrollToBottom(true);
+    }
+  }, [messages, isTyping]);
 
   const handleSendMessage = (textToSend) => {
     const text = (textToSend || inputText).trim();
@@ -122,7 +134,11 @@ export const WhatsAppChatbot = () => {
       
       {/* 1. Compact Ergonomic Chatbot Drawer (Cyber Dark Theme) */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-[92vw] sm:w-[360px] md:w-[370px] h-[440px] sm:h-[470px] max-h-[70vh] bg-[#0A1128] rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-slate-800 flex flex-col overflow-hidden animate-scaleUp origin-bottom-right">
+        <div 
+          className="absolute bottom-16 right-0 w-[92vw] sm:w-[360px] md:w-[370px] h-[440px] sm:h-[470px] max-h-[70vh] bg-[#0A1128] rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-slate-800 flex flex-col overflow-hidden animate-scaleUp origin-bottom-right overscroll-contain"
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
+        >
           
           {/* Vibrant Cyber Navy & Blue Header */}
           <div className="bg-gradient-to-r from-[#0B1528] via-[#0052CC] to-[#0066FF] text-white p-3.5 sm:p-4 flex items-center justify-between border-b border-slate-800 shadow-xs">
@@ -170,8 +186,11 @@ export const WhatsAppChatbot = () => {
             </button>
           </div>
 
-          {/* Messages Container */}
-          <div className="flex-1 p-3.5 overflow-y-auto bg-[#060B18] space-y-3 text-xs leading-relaxed">
+          {/* Messages Container (Scroll-Isolated) */}
+          <div 
+            ref={messagesContainerRef}
+            className="flex-1 p-3.5 overflow-y-auto overscroll-contain bg-[#060B18] space-y-3 text-xs leading-relaxed"
+          >
             {messages.map((msg) => {
               const isBot = msg.sender === 'bot';
               return (
@@ -203,11 +222,10 @@ export const WhatsAppChatbot = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-bounce [animation-delay:0.4s]"></span>
               </div>
             )}
-            <div ref={messagesEndRef} />
           </div>
 
           {/* Quick Prompts Carousel */}
-          <div className="p-2 bg-[#070E1C] border-t border-slate-800/80 overflow-x-auto whitespace-nowrap flex gap-1.5 no-scrollbar">
+          <div className="p-2 bg-[#070E1C] border-t border-slate-800/80 overflow-x-auto overscroll-contain whitespace-nowrap flex gap-1.5 no-scrollbar">
             {quickPrompts.map((prompt, idx) => (
               <button
                 key={idx}
