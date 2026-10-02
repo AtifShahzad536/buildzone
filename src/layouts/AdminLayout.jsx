@@ -57,14 +57,14 @@ export const AdminLayout = () => {
   };
 
   return (
-    <div className="h-screen overflow-hidden bg-[#F8FAFC] text-slate-800 flex flex-col font-sans">
+    <div className="h-screen overflow-hidden bg-[#060B18] text-slate-100 flex flex-col font-sans">
       {/* Top Admin Header Bar */}
-      <header className="h-16 shrink-0 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between z-30 sticky top-0 shadow-2xs">
+      <header className="h-16 shrink-0 bg-[#0B1528] border-b border-slate-800 px-4 sm:px-6 flex items-center justify-between z-30 sticky top-0 shadow-lg">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={() => setMobileNavOpen(!mobileNavOpen)}
-            className="lg:hidden p-1.5 text-slate-600 hover:text-[#0066FF] transition-colors"
+            className="lg:hidden p-1.5 text-slate-400 hover:text-[#00F0FF] transition-colors"
           >
             {mobileNavOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -73,14 +73,12 @@ export const AdminLayout = () => {
             <img
               src="/logo.png"
               alt="BuildZone Admin Logo"
-              className="h-8 w-auto object-contain shrink-0 mix-blend-multiply"
+              className="h-8 w-auto object-contain shrink-0 drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]"
             />
-            <img
-              src="/LOGO%20TEXT.png"
-              alt="BuildZone Admin Text"
-              className="h-5 sm:h-6 max-w-[130px] w-auto object-contain shrink-0 mix-blend-multiply"
-            />
-            <span className="font-mono text-[10px] text-[#0066FF] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full uppercase font-bold hidden md:inline-block ml-1">
+            <span className="font-display font-black text-base tracking-wider text-white hidden sm:inline-block">
+              BUILDZONE <span className="text-[#00F0FF]">TECH</span>
+            </span>
+            <span className="font-mono text-[10px] text-[#00F0FF] bg-[#0066FF]/15 border border-[#00F0FF]/30 px-2 py-0.5 rounded-full uppercase font-bold hidden md:inline-block ml-1">
               Admin Portal
             </span>
           </Link>
@@ -88,9 +86,9 @@ export const AdminLayout = () => {
 
         {/* User Role Badge & Live Site Link */}
         <div className="flex items-center gap-3 sm:gap-4">
-          <div className="flex items-center gap-1.5 bg-blue-50 border border-blue-200 px-2.5 py-1 rounded-lg">
-            <Shield className="w-3.5 h-3.5 text-[#0066FF]" />
-            <span className="text-[11px] font-mono text-[#0066FF] font-bold tracking-wide">
+          <div className="flex items-center gap-1.5 bg-[#070E1C] border border-slate-800 px-2.5 py-1 rounded-lg">
+            <Shield className="w-3.5 h-3.5 text-[#00F0FF]" />
+            <span className="text-[11px] font-mono text-slate-200 font-bold tracking-wide">
               Admin
             </span>
           </div>
@@ -99,7 +97,7 @@ export const AdminLayout = () => {
             to="/"
             target="_blank"
             rel="noreferrer"
-            className="hidden md:inline-flex items-center gap-1 text-xs font-mono text-slate-600 hover:text-[#0066FF] transition-colors font-medium"
+            className="hidden md:inline-flex items-center gap-1 text-xs font-mono text-slate-400 hover:text-[#00F0FF] transition-colors font-medium"
           >
             <span>Live Site</span>
             <ExternalLink className="w-3 h-3" />
@@ -107,7 +105,7 @@ export const AdminLayout = () => {
 
           <button
             onClick={handleLogout}
-            className="p-2 text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition-colors rounded-lg cursor-pointer"
+            className="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-950/40 transition-colors rounded-lg cursor-pointer"
             title="Logout"
           >
             <LogOut className="w-4 h-4" />
@@ -118,7 +116,7 @@ export const AdminLayout = () => {
       <div className="flex-1 flex overflow-hidden">
         {/* Fixed Sidebar Navigation */}
         <aside
-          className={`fixed inset-y-16 left-0 z-20 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transition-transform duration-200 lg:static lg:h-full lg:translate-x-0 shrink-0 shadow-2xs ${
+          className={`fixed inset-y-16 left-0 z-20 w-64 bg-[#0B1528] border-r border-slate-800 flex flex-col justify-between transition-transform duration-200 lg:static lg:h-full lg:translate-x-0 shrink-0 shadow-xl ${
             mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
@@ -140,11 +138,11 @@ export const AdminLayout = () => {
                   onClick={() => setMobileNavOpen(false)}
                   className={`flex items-center gap-2.5 px-3 py-2 text-xs font-mono rounded-lg transition-all ${
                     isActive
-                      ? 'bg-[#0066FF] text-white font-bold shadow-xs'
-                      : 'text-slate-600 hover:text-[#0066FF] hover:bg-blue-50/70 font-medium'
+                      ? 'bg-gradient-to-r from-[#0066FF] to-[#00F0FF] text-white font-bold shadow-md shadow-blue-500/20'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-[#0066FF]'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-[#00F0FF]'}`} />
                   <span>{item.label}</span>
                 </Link>
               );
@@ -152,13 +150,13 @@ export const AdminLayout = () => {
           </div>
 
           {/* User Account Strip */}
-          <div className="p-3.5 border-t border-slate-200 bg-[#F8FAFC] shrink-0">
+          <div className="p-3.5 border-t border-slate-800 bg-[#070E1C] shrink-0">
             <div className="flex items-center justify-between text-xs font-mono">
               <div className="truncate">
-                <span className="text-[#0B1938] font-bold block truncate">{user?.name || 'Administrator'}</span>
-                <span className="text-[10px] text-slate-500 truncate block">{user?.email || 'admin@buildzone.tech'}</span>
+                <span className="text-white font-bold block truncate">{user?.name || 'Administrator'}</span>
+                <span className="text-[10px] text-slate-400 truncate block">{user?.email || 'admin@buildzone.tech'}</span>
               </div>
-              <span className="px-2 py-0.5 bg-blue-50 border border-blue-200 text-[#0066FF] text-[9px] rounded-full uppercase font-bold shrink-0">
+              <span className="px-2 py-0.5 bg-[#0066FF]/20 border border-[#00F0FF]/30 text-[#00F0FF] text-[9px] rounded-full uppercase font-bold shrink-0">
                 {role}
               </span>
             </div>
@@ -166,7 +164,7 @@ export const AdminLayout = () => {
         </aside>
 
         {/* Scrollable Main Content Area */}
-        <main className="flex-1 h-full overflow-y-auto p-4 sm:p-6 lg:p-8 bg-[#F8FAFC]">
+        <main className="flex-1 h-full overflow-y-auto p-4 sm:p-6 lg:p-8 bg-[#060B18]">
           <Outlet />
         </main>
       </div>

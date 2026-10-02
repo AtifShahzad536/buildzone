@@ -17,11 +17,11 @@ export const SectionTitle = ({
           </Badge>
         </div>
       )}
-      <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938] leading-[1.1]">
+      <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-display uppercase tracking-tight text-white leading-[1.1]">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+        <p className="text-sm sm:text-base text-slate-400 font-sans leading-relaxed">
           {subtitle}
         </p>
       )}

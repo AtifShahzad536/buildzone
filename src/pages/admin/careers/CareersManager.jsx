@@ -64,30 +64,30 @@ export const CareersManager = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white">
             CAREERS & CANDIDATES
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans pt-1">
             Manage active job openings and candidate resumes.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="bg-slate-100 border border-slate-200 p-1 rounded-lg flex">
+          <div className="bg-[#070E1C] border border-slate-800 p-1 rounded-xl flex">
             <button
               onClick={() => setActiveTab('jobs')}
-              className={`px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-md transition-colors cursor-pointer ${
-                activeTab === 'jobs' ? 'bg-[#0066FF] text-white shadow-xs' : 'text-slate-600 hover:text-[#0066FF]'
+              className={`px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-lg transition-all cursor-pointer ${
+                activeTab === 'jobs' ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white shadow-md' : 'text-slate-400 hover:text-white'
               }`}
             >
               Open Roles ({careers?.length || 0})
             </button>
             <button
               onClick={() => setActiveTab('apps')}
-              className={`px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-md transition-colors cursor-pointer ${
-                activeTab === 'apps' ? 'bg-[#0066FF] text-white shadow-xs' : 'text-slate-600 hover:text-[#0066FF]'
+              className={`px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-lg transition-all cursor-pointer ${
+                activeTab === 'apps' ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white shadow-md' : 'text-slate-400 hover:text-white'
               }`}
             >
               Applications ({applications?.length || 0})
@@ -99,7 +99,7 @@ export const CareersManager = () => {
             size="sm"
             onClick={() => setIsModalOpen(true)}
             leftIcon={<Plus className="w-4 h-4" />}
-            className="shadow-sm"
+            className="shadow-sm cursor-pointer"
           >
             Post Job
           </Button>
@@ -107,28 +107,28 @@ export const CareersManager = () => {
       </div>
 
       {activeTab === 'jobs' ? (
-        <div className="border border-slate-200 bg-white rounded-xl overflow-hidden shadow-2xs">
+        <div className="border border-slate-800 bg-[#0B1528] rounded-2xl overflow-hidden shadow-xl">
           <table className="w-full text-left font-mono text-xs border-collapse">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
-                <th className="py-3 px-4 font-semibold">Role Title</th>
-                <th className="py-3 px-4 font-semibold">Department</th>
-                <th className="py-3 px-4 font-semibold">Location</th>
-                <th className="py-3 px-4 font-semibold">Salary Range</th>
-                <th className="py-3 px-4 text-right font-semibold">Actions</th>
+              <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px] bg-[#070E1C]">
+                <th className="py-3.5 px-4 font-semibold">Role Title</th>
+                <th className="py-3.5 px-4 font-semibold">Department</th>
+                <th className="py-3.5 px-4 font-semibold">Location</th>
+                <th className="py-3.5 px-4 font-semibold">Salary Range</th>
+                <th className="py-3.5 px-4 text-right font-semibold">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-800/80">
               {careers?.map((job) => (
-                <tr key={job.id} className="hover:bg-blue-50/40 transition-colors">
-                  <td className="py-3.5 px-4 font-bold text-[#0B1938] text-sm">{job.title}</td>
+                <tr key={job.id} className="hover:bg-[#070E1C]/80 transition-colors">
+                  <td className="py-3.5 px-4 font-bold text-white text-sm">{job.title}</td>
                   <td className="py-3.5 px-4"><Badge variant="cyan" size="sm">{job.department}</Badge></td>
-                  <td className="py-3.5 px-4 text-slate-700">{job.location}</td>
-                  <td className="py-3.5 px-4 text-emerald-600 font-bold">{job.salaryRange}</td>
+                  <td className="py-3.5 px-4 text-slate-300">{job.location}</td>
+                  <td className="py-3.5 px-4 text-emerald-400 font-bold">{job.salaryRange}</td>
                   <td className="py-3.5 px-4 text-right">
                     <button 
                       onClick={() => handleDeleteClick(job.id, job.title)} 
-                      className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                      className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors cursor-pointer"
                       aria-label={`Delete job ${job.title}`}
                     >
                       <Trash2 className="w-4 h-4" />
@@ -140,32 +140,32 @@ export const CareersManager = () => {
           </table>
         </div>
       ) : (
-        <div className="border border-slate-200 bg-white rounded-xl overflow-hidden shadow-2xs">
+        <div className="border border-slate-800 bg-[#0B1528] rounded-2xl overflow-hidden shadow-xl">
           <table className="w-full text-left font-mono text-xs border-collapse">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
-                <th className="py-3 px-4 font-semibold">Candidate</th>
-                <th className="py-3 px-4 font-semibold">Position</th>
-                <th className="py-3 px-4 font-semibold">Contact</th>
-                <th className="py-3 px-4 font-semibold">Portfolio Link</th>
-                <th className="py-3 px-4 font-semibold">Applied Date</th>
+              <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px] bg-[#070E1C]">
+                <th className="py-3.5 px-4 font-semibold">Candidate</th>
+                <th className="py-3.5 px-4 font-semibold">Position</th>
+                <th className="py-3.5 px-4 font-semibold">Contact</th>
+                <th className="py-3.5 px-4 font-semibold">Portfolio Link</th>
+                <th className="py-3.5 px-4 font-semibold">Applied Date</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-800/80">
               {applications?.map((app) => (
-                <tr key={app.id} className="hover:bg-blue-50/40 transition-colors">
-                  <td className="py-3.5 px-4 font-bold text-[#0B1938]">{app.name}</td>
-                  <td className="py-3.5 px-4 text-[#0066FF] font-semibold">{app.position}</td>
-                  <td className="py-3.5 px-4 text-slate-700">{app.email}</td>
+                <tr key={app.id} className="hover:bg-[#070E1C]/80 transition-colors">
+                  <td className="py-3.5 px-4 font-bold text-white">{app.name}</td>
+                  <td className="py-3.5 px-4 text-[#00F0FF] font-semibold">{app.position}</td>
+                  <td className="py-3.5 px-4 text-slate-300">{app.email}</td>
                   <td className="py-3.5 px-4">
                     {app.portfolio ? (
-                      <a href={app.portfolio} target="_blank" rel="noreferrer" className="text-[#0066FF] hover:underline flex items-center gap-1 font-semibold">
+                      <a href={app.portfolio} target="_blank" rel="noreferrer" className="text-[#00F0FF] hover:underline flex items-center gap-1 font-semibold">
                         <span>Profile Link</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
-                    ) : 'None'}
+                    ) : <span className="text-slate-500">None</span>}
                   </td>
-                  <td className="py-3.5 px-4 text-slate-500">{formatDate(app.appliedAt)}</td>
+                  <td className="py-3.5 px-4 text-slate-400">{formatDate(app.appliedAt)}</td>
                 </tr>
               ))}
             </tbody>
@@ -174,61 +174,61 @@ export const CareersManager = () => {
       )}
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
-          <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
-            <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">Post Open Role</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+          <div className="w-full max-w-md bg-[#0B1528] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
+            <h2 className="font-display text-lg font-bold uppercase text-white">Post Open Role</h2>
             <form onSubmit={handleCreate} className="space-y-4 font-sans">
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Job Title *</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">Job Title *</label>
                 <input
                   type="text"
                   required
                   value={formData.title}
                   onChange={e => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g. Lead AI Engineer"
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Department</label>
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">Department</label>
                   <select
                     value={formData.department}
                     onChange={e => setFormData({ ...formData, department: e.target.value })}
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner cursor-pointer font-medium"
                   >
-                    <option value="Engineering">Engineering</option>
-                    <option value="AI & Data Science">AI & Data Science</option>
-                    <option value="Infrastructure">Infrastructure</option>
-                    <option value="UI/UX Design">UI/UX Design</option>
+                    <option value="Engineering" className="bg-[#0B1528] text-white">Engineering</option>
+                    <option value="AI & Data Science" className="bg-[#0B1528] text-white">AI & Data Science</option>
+                    <option value="Infrastructure" className="bg-[#0B1528] text-white">Infrastructure</option>
+                    <option value="UI/UX Design" className="bg-[#0B1528] text-white">UI/UX Design</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Salary Range</label>
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">Salary Range</label>
                   <input
                     type="text"
                     value={formData.salaryRange}
                     onChange={e => setFormData({ ...formData, salaryRange: e.target.value })}
                     placeholder="$100k - $140k"
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Brief Description *</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">Brief Description *</label>
                 <textarea
                   rows={3}
                   required
                   value={formData.shortDescription}
                   onChange={e => setFormData({ ...formData, shortDescription: e.target.value })}
                   placeholder="Brief summary of duties and team context..."
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-sans leading-relaxed"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-800">
                 <Button variant="ghost" size="sm" onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button type="submit" variant="primary" size="sm" isLoading={isCreating}>Post Job</Button>
               </div>

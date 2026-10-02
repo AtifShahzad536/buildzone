@@ -79,17 +79,17 @@ export const MediaManager = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+            <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white">
               MEDIA & CDN ASSETS
             </h1>
-            <span className="px-2 py-0.5 bg-blue-50 text-[#0066FF] border border-blue-200 text-[10px] font-mono font-bold rounded-full">
+            <span className="px-2 py-0.5 bg-[#0066FF]/20 text-[#00F0FF] border border-[#00F0FF]/30 text-[10px] font-mono font-bold rounded-full">
               {mediaList?.length || 0} ASSETS
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans pt-1">
             Upload and copy production image URLs to use anywhere across Projects, Case Studies, Blogs, and Team profiles.
           </p>
         </div>
@@ -102,7 +102,7 @@ export const MediaManager = () => {
             setIsModalOpen(true);
           }}
           leftIcon={<Plus className="w-4 h-4" />}
-          className="shadow-sm"
+          className="shadow-sm cursor-pointer"
         >
           Upload Asset
         </Button>
@@ -116,9 +116,9 @@ export const MediaManager = () => {
             placeholder="Search assets by file name or category..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white border border-slate-300 pl-9 pr-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono font-medium"
+            className="w-full bg-[#0B1528] border border-slate-700 pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-mono font-medium"
           />
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
         </div>
 
         {/* Category Pills */}
@@ -129,8 +129,8 @@ export const MediaManager = () => {
               onClick={() => setSelectedCategory(cat)}
               className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 selectedCategory === cat
-                  ? 'bg-[#0066FF] text-white shadow-2xs'
-                  : 'bg-white border border-slate-200 text-slate-600 hover:text-[#0B1938] hover:bg-slate-50'
+                  ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white shadow-md'
+                  : 'bg-[#0B1528] border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
               }`}
             >
               {cat}
@@ -148,9 +148,9 @@ export const MediaManager = () => {
           return (
             <div
               key={id}
-              className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs flex flex-col justify-between group hover:shadow-md hover:border-blue-200 transition-all relative"
+              className="bg-[#0B1528] border border-slate-800 rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between group hover:border-[#00F0FF]/40 hover:shadow-2xl transition-all relative"
             >
-              <div className="aspect-video w-full bg-slate-900/5 overflow-hidden relative">
+              <div className="aspect-video w-full bg-black/40 overflow-hidden relative">
                 <img
                   src={item.url}
                   alt={item.name || "Media asset"}
@@ -159,26 +159,26 @@ export const MediaManager = () => {
                     e.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80';
                   }}
                 />
-                <div className="absolute top-2.5 left-2.5 px-2 py-0.5 bg-white/95 backdrop-blur-xs font-mono text-[9px] text-[#0066FF] font-bold uppercase rounded-md shadow-2xs border border-slate-100">
+                <div className="absolute top-2.5 left-2.5 px-2 py-0.5 bg-black/80 backdrop-blur-sm font-mono text-[9px] text-[#00F0FF] font-bold uppercase rounded-md shadow-md border border-[#00F0FF]/30">
                   {item.category || 'Asset'}
                 </div>
               </div>
 
               <div className="p-4">
-                <div className="font-mono text-xs font-bold text-[#0B1938] truncate mb-1" title={item.name}>
+                <div className="font-mono text-xs font-bold text-white truncate mb-1" title={item.name}>
                   {item.name}
                 </div>
-                <div className="flex items-center justify-between font-mono text-[10px] text-slate-500">
+                <div className="flex items-center justify-between font-mono text-[10px] text-slate-400">
                   <span>{item.size || '1.2 MB'}</span>
                   <span>{item.date || 'Active'}</span>
                 </div>
               </div>
 
-              <div className="p-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+              <div className="p-2.5 bg-[#070E1C] border-t border-slate-800 flex items-center justify-between">
                 <button
                   onClick={() => handleCopy(item.url, id)}
                   className={`p-1 font-mono text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer transition-colors ${
-                    isCopied ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-[#0066FF]'
+                    isCopied ? 'text-emerald-400 font-bold' : 'text-slate-400 hover:text-[#00F0FF]'
                   }`}
                   title="Copy URL"
                 >
@@ -191,14 +191,14 @@ export const MediaManager = () => {
                     href={item.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-1 text-slate-400 hover:text-[#0066FF] transition-colors"
+                    className="p-1 text-slate-400 hover:text-[#00F0FF] transition-colors"
                     title="Open Full Image"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                   <button
                     onClick={() => handleDelete(id, item.name)}
-                    className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
+                    className="p-1 text-slate-400 hover:text-rose-400 transition-colors cursor-pointer"
                     title="Delete Asset"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -212,12 +212,19 @@ export const MediaManager = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
-          <div className="w-full max-w-lg bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
+          <div className="w-full max-w-lg bg-[#0B1528] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <h2 className="font-display text-lg font-bold uppercase text-white">
                 Upload CDN Media Asset
               </h2>
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="text-slate-400 hover:text-white font-mono text-sm cursor-pointer"
+              >
+                ✕
+              </button>
             </div>
 
             <form onSubmit={handleSave} className="space-y-4 font-sans text-xs">
@@ -230,7 +237,7 @@ export const MediaManager = () => {
               />
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Asset Name *
                 </label>
                 <input
@@ -239,29 +246,29 @@ export const MediaManager = () => {
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. medflow-telehealth-preview.png"
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-mono"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Asset Category
                 </label>
                 <select
                   value={formData.category}
                   onChange={e => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner cursor-pointer font-medium"
                 >
-                  <option value="Projects">Projects</option>
-                  <option value="Hero">Hero & Backgrounds</option>
-                  <option value="Blog">Blog Covers</option>
-                  <option value="Team">Team Headshots</option>
-                  <option value="Branding">Branding & Logos</option>
-                  <option value="Icons">Icons & Badges</option>
+                  <option value="Projects" className="bg-[#0B1528] text-white">Projects</option>
+                  <option value="Hero" className="bg-[#0B1528] text-white">Hero & Backgrounds</option>
+                  <option value="Blog" className="bg-[#0B1528] text-white">Blog Covers</option>
+                  <option value="Team" className="bg-[#0B1528] text-white">Team Headshots</option>
+                  <option value="Branding" className="bg-[#0B1528] text-white">Branding & Logos</option>
+                  <option value="Icons" className="bg-[#0B1528] text-white">Icons & Badges</option>
                 </select>
               </div>
 
-              <div className="flex justify-end gap-2 pt-4 border-t border-slate-100">
+              <div className="flex justify-end gap-2 pt-4 border-t border-slate-800">
                 <Button
                   type="button"
                   variant="ghost"

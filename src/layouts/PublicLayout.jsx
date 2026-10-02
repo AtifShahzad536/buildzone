@@ -5,10 +5,14 @@ import Footer from '../components/layout/Footer';
 import ScrollToTop from '../components/common/ScrollToTop';
 import WhatsAppChatbot from '../components/common/WhatsAppChatbot';
 import ScrollProgressBar from '../components/common/ScrollProgressBar';
+import PageTransitionBlinds from '../components/common/PageTransitionBlinds';
+import SplashScreen from '../components/common/SplashScreen';
 
 export const PublicLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0B1938] selection:bg-blue-100 selection:text-[#0066FF]">
+    <div className="min-h-screen flex flex-col bg-[#060B18] text-slate-100 selection:bg-[#0066FF] selection:text-white relative">
+      <SplashScreen />
+      <PageTransitionBlinds />
       <ScrollProgressBar />
       <ScrollToTop />
       <Navbar />

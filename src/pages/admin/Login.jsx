@@ -68,10 +68,10 @@ export const Login = () => {
   return (
     <div className="space-y-6">
       <div className="text-center space-y-1">
-        <h2 className="text-xl font-bold font-display uppercase tracking-tight text-[#0B1938]">
+        <h2 className="text-xl font-bold font-display uppercase tracking-tight text-white">
           Administrator Authentication
         </h2>
-        <p className="text-xs text-slate-600 font-sans">
+        <p className="text-xs text-slate-400 font-sans">
           Secured access restricted exclusively to authorized administrators.
         </p>
       </div>
@@ -79,7 +79,7 @@ export const Login = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 font-sans">
 
         <div>
-          <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+          <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 font-bold mb-1">
             Admin Email Address
           </label>
           <div className="relative">
@@ -88,15 +88,15 @@ export const Login = () => {
               placeholder="e.g. admin@buildzone.tech"
               autoComplete="username"
               {...register('email')}
-              className="w-full bg-white border border-slate-300 pl-8 pr-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+              className="w-full bg-[#070E1C] border border-slate-800 pl-8 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-sm font-medium"
             />
-            <Mail className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
+            <Mail className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5" />
           </div>
-          {errors.email && <p className="font-mono text-[10px] text-rose-600 mt-1">{errors.email.message}</p>}
+          {errors.email && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.email.message}</p>}
         </div>
 
         <div>
-          <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+          <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 font-bold mb-1">
             Security Key / Password
           </label>
           <div className="relative">
@@ -105,18 +105,18 @@ export const Login = () => {
               placeholder="Enter your security password"
               autoComplete="current-password"
               {...register('password')}
-              className="w-full bg-white border border-slate-300 pl-8 pr-9 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+              className="w-full bg-[#070E1C] border border-slate-800 pl-8 pr-9 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-sm"
             />
-            <Lock className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
+            <Lock className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5" />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-2.5 top-2.5 text-slate-400 hover:text-slate-600 cursor-pointer p-0.5"
+              className="absolute right-2.5 top-2.5 text-slate-500 hover:text-slate-300 cursor-pointer p-0.5"
             >
               {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
             </button>
           </div>
-          {errors.password && <p className="font-mono text-[10px] text-rose-600 mt-1">{errors.password.message}</p>}
+          {errors.password && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.password.message}</p>}
         </div>
 
         <Button

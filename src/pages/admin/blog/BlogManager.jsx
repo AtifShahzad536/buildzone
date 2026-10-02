@@ -115,17 +115,17 @@ export const BlogManager = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+            <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white">
               BLOG & KNOWLEDGE CMS
             </h1>
-            <span className="px-2 py-0.5 bg-blue-50 text-[#0066FF] border border-blue-200 text-[10px] font-mono font-bold rounded-full">
+            <span className="px-2 py-0.5 bg-[#0066FF]/20 text-[#00F0FF] border border-[#00F0FF]/30 text-[10px] font-mono font-bold rounded-full">
               {blogs?.length || 0} ARTICLES
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans pt-1">
             Publish technical whitepapers, architecture articles, and industry insights with rich formatting.
           </p>
         </div>
@@ -135,7 +135,7 @@ export const BlogManager = () => {
           size="sm"
           onClick={handleOpenCreate}
           leftIcon={<Plus className="w-4 h-4" />}
-          className="shadow-sm"
+          className="shadow-sm cursor-pointer"
         >
           Compose Article
         </Button>
@@ -151,11 +151,11 @@ export const BlogManager = () => {
           onAction={handleOpenCreate}
         />
       ) : (
-        <div className="border border-slate-200 bg-white rounded-2xl overflow-hidden shadow-2xs">
+        <div className="border border-slate-800 bg-[#0B1528] rounded-2xl overflow-hidden shadow-xl">
           <div className="overflow-x-auto">
             <table className="w-full text-left font-mono text-xs border-collapse min-w-[700px]">
               <thead>
-                <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
+                <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px] bg-[#070E1C]">
                   <th className="py-3 px-4 font-semibold w-20">Banner</th>
                   <th className="py-3 px-4 font-semibold">Title & Author</th>
                   <th className="py-3 px-4 font-semibold">Category</th>
@@ -163,14 +163,14 @@ export const BlogManager = () => {
                   <th className="py-3 px-4 text-right font-semibold">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-800/80">
                 {blogs?.map((post) => {
                   const postId = post.id || post._id;
                   return (
-                    <tr key={postId} className="hover:bg-blue-50/40 transition-colors">
+                    <tr key={postId} className="hover:bg-[#070E1C]/80 transition-colors">
                       {/* Thumbnail */}
                       <td className="py-3 px-4 w-20">
-                        <div className="w-14 h-10 rounded-lg overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
+                        <div className="w-14 h-10 rounded-lg overflow-hidden bg-[#070E1C] border border-slate-800 flex items-center justify-center shrink-0">
                           {post.featuredImage ? (
                             <img
                               src={post.featuredImage}
@@ -181,21 +181,21 @@ export const BlogManager = () => {
                               }}
                             />
                           ) : (
-                            <ImageIcon className="w-4 h-4 text-slate-400" />
+                            <ImageIcon className="w-4 h-4 text-slate-500" />
                           )}
                         </div>
                       </td>
 
                       <td className="py-3.5 px-4">
-                        <div className="font-bold text-[#0B1938] text-sm max-w-md truncate">{post.title}</div>
-                        <div className="text-[11px] text-[#0066FF] font-medium">By {post.author} • {post.readTime}</div>
+                        <div className="font-bold text-white text-sm max-w-md truncate">{post.title}</div>
+                        <div className="text-[11px] text-[#00F0FF] font-medium">By {post.author} • {post.readTime}</div>
                       </td>
 
                       <td className="py-3.5 px-4">
                         <Badge variant="cyan" size="sm">{post.category}</Badge>
                       </td>
 
-                      <td className="py-3.5 px-4 text-slate-700">
+                      <td className="py-3.5 px-4 text-slate-300">
                         {formatDate(post.publishedDate || post.createdAt)}
                       </td>
 
@@ -204,7 +204,7 @@ export const BlogManager = () => {
                           <button
                             type="button"
                             onClick={() => handleOpenEdit(post)}
-                            className="p-1.5 text-slate-400 hover:text-[#0066FF] hover:bg-blue-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                            className="p-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-[#070E1C] rounded-lg transition-colors cursor-pointer shrink-0"
                             title="Edit Article"
                           >
                             <Edit2 className="w-4 h-4" />
@@ -212,7 +212,7 @@ export const BlogManager = () => {
                           <button 
                             type="button"
                             onClick={() => handleDeleteClick(postId, post.title)} 
-                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                            className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors cursor-pointer shrink-0"
                             title="Delete Article"
                             aria-label={`Delete article ${post.title}`}
                           >
@@ -231,16 +231,16 @@ export const BlogManager = () => {
 
       {/* Create / Edit Modal with Rich Editor */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
-          <div className="w-full max-w-4xl bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8 max-h-[92vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
+          <div className="w-full max-w-4xl bg-[#0B1528] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8 max-h-[92vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <h2 className="font-display text-lg font-bold uppercase text-white">
                 {editingId ? "Edit Technical Article" : "Compose New Technical Article"}
               </h2>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-slate-600 font-mono text-sm cursor-pointer p-1"
+                className="text-slate-400 hover:text-white font-mono text-sm cursor-pointer p-1"
               >
                 ✕
               </button>
@@ -257,7 +257,7 @@ export const BlogManager = () => {
               />
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Article Title *
                 </label>
                 <input
@@ -266,43 +266,43 @@ export const BlogManager = () => {
                   value={formData.title}
                   onChange={e => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g. Scaling Distributed Microservices with Kafka & Kubernetes"
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-medium"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Category *
                   </label>
                   <select
                     value={formData.category}
                     onChange={e => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner cursor-pointer font-medium"
                   >
-                    <option value="AI">AI & Machine Learning</option>
-                    <option value="SaaS">SaaS Architecture</option>
-                    <option value="Web Development">Web Engineering</option>
-                    <option value="Mobile Development">Mobile Apps</option>
-                    <option value="DevOps">Cloud & DevOps</option>
-                    <option value="Security">Enterprise Security</option>
+                    <option value="AI" className="bg-[#0B1528] text-white">AI & Machine Learning</option>
+                    <option value="SaaS" className="bg-[#0B1528] text-white">SaaS Architecture</option>
+                    <option value="Web Development" className="bg-[#0B1528] text-white">Web Engineering</option>
+                    <option value="Mobile Development" className="bg-[#0B1528] text-white">Mobile Apps</option>
+                    <option value="DevOps" className="bg-[#0B1528] text-white">Cloud & DevOps</option>
+                    <option value="Security" className="bg-[#0B1528] text-white">Enterprise Security</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Author Name
                   </label>
                   <input
                     type="text"
                     value={formData.author}
                     onChange={e => setFormData({ ...formData, author: e.target.value })}
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-medium"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Read Estimate
                   </label>
                   <input
@@ -310,13 +310,13 @@ export const BlogManager = () => {
                     value={formData.readTime}
                     onChange={e => setFormData({ ...formData, readTime: e.target.value })}
                     placeholder="e.g. 5 min read"
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-medium"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Tags (Comma separated)
                 </label>
                 <input
@@ -324,12 +324,12 @@ export const BlogManager = () => {
                   value={formData.tags}
                   onChange={e => setFormData({ ...formData, tags: e.target.value })}
                   placeholder="AI, Architecture, Scalability, LLM, Cloud"
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-mono"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Short Excerpt / SEO Summary *
                 </label>
                 <textarea
@@ -338,7 +338,7 @@ export const BlogManager = () => {
                   value={formData.excerpt}
                   onChange={e => setFormData({ ...formData, excerpt: e.target.value })}
                   placeholder="A concise summary highlighting the engineering insights..."
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-sans leading-relaxed"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-sans leading-relaxed"
                 />
               </div>
 
@@ -351,7 +351,7 @@ export const BlogManager = () => {
                 minHeight="380px"
               />
 
-              <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-100">
+              <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-800">
                 <Button 
                   type="button" 
                   variant="outline" 

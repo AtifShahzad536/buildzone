@@ -10,16 +10,16 @@ export const App = () => {
       <BrowserRouter>
         {/* Toast Notification Container */}
         <Toaster
-          theme="light"
+          theme="dark"
           position="top-right"
           toastOptions={{
             style: {
-              background: '#FFFFFF',
-              border: '1px solid #E2E8F0',
-              color: '#0B1938',
+              background: '#0B1528',
+              border: '1px solid #1E293B',
+              color: '#F8FAFC',
               fontFamily: 'Inter, sans-serif',
               borderRadius: '12px',
-              boxShadow: '0 10px 25px -5px rgba(11, 25, 56, 0.1)',
+              boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.5)',
             },
           }}
         />

@@ -23,19 +23,19 @@ export const Industries = () => {
         canonical="https://buildzonetechnology.com/industries"
       />
 
-      <div className="py-12 sm:py-20">
+      <div className="py-12 sm:py-20 bg-[#060B18]">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
-              <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-full mb-4 shadow-[0_0_15px_rgba(0,102,255,0.15)]">
+              <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                 DOMAIN SPECIALIZATION
               </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-4">
-              INDUSTRY VERTICALS
+            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-white mb-4">
+              INDUSTRY <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">VERTICALS</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
               We engineer mission-critical systems designed around real-world regulatory constraints, security compliance, and workflow patterns.
             </p>
           </div>
@@ -43,17 +43,17 @@ export const Industries = () => {
           {isLoading && (!industriesData || industriesData.length === 0) ? (
             <div className="py-8">
               <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
-                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
-                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                <div className="w-10 h-10 border-3 border-slate-800 border-t-[#00F0FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-400 tracking-widest uppercase font-semibold">
                   Loading Industries...
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
                 {[1, 2, 3].map((n) => (
-                  <div key={n} className="bg-white border border-slate-200 rounded-lg p-6 space-y-4">
-                    <div className="w-12 h-12 bg-slate-100 rounded-lg" />
-                    <div className="w-2/3 h-5 bg-slate-100 rounded" />
-                    <div className="w-full h-12 bg-slate-50 rounded" />
+                  <div key={n} className="bg-[#0B1528] border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <div className="w-12 h-12 bg-slate-800/60 rounded-xl" />
+                    <div className="w-2/3 h-5 bg-slate-800/60 rounded" />
+                    <div className="w-full h-12 bg-slate-800/40 rounded" />
                   </div>
                 ))}
               </div>
@@ -63,29 +63,29 @@ export const Industries = () => {
             {industries?.map((ind) => (
               <div
                 key={ind.id}
-                className="bg-white border border-slate-200 hover:border-[#0066FF]/50 rounded-lg p-6 flex flex-col justify-between group shadow-sm hover:shadow-md transition-all"
+                className="bg-[#0B1528] border border-slate-800/90 hover:border-[#00F0FF]/50 rounded-2xl p-7 flex flex-col justify-between group shadow-xl hover:shadow-[0_0_25px_rgba(0,240,255,0.12)] transition-all duration-300"
               >
                 <div>
-                  <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white transition-all mb-5">
+                  <div className="w-12 h-12 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-xl flex items-center justify-center text-[#00F0FF] group-hover:bg-[#0066FF] group-hover:text-white transition-all duration-300 mb-5 shadow-[0_0_15px_rgba(0,102,255,0.2)]">
                     {renderIcon(ind.iconName, { className: "w-6 h-6" })}
                   </div>
 
-                  <h2 className="text-xl font-bold font-display uppercase tracking-tight text-[#0B1938] mb-3 group-hover:text-[#0066FF] transition-colors">
+                  <h2 className="text-xl font-bold font-display uppercase tracking-tight text-white mb-3 group-hover:text-[#00F0FF] transition-colors">
                     {ind.name}
                   </h2>
 
-                  <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed mb-6">
                     {ind.shortDescription}
                   </p>
 
-                  <div className="space-y-2 mb-6">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400 font-bold block">
+                  <div className="space-y-2 mb-6 p-4 rounded-xl bg-[#070E1C] border border-slate-800/80">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-[#00F0FF] font-bold block">
                       Engineered Capabilities:
                     </span>
-                    <ul className="space-y-1 font-mono text-xs text-slate-700">
+                    <ul className="space-y-1.5 font-mono text-xs text-slate-300">
                       {ind.solutions?.slice(0, 3).map((sol) => (
-                        <li key={sol} className="flex items-center gap-1.5">
-                          <span className="text-[#0066FF] font-bold">✓</span>
+                        <li key={sol} className="flex items-center gap-2">
+                          <span className="text-[#00F0FF] font-bold">✓</span>
                           <span>{sol}</span>
                         </li>
                       ))}
@@ -95,10 +95,10 @@ export const Industries = () => {
 
                 <Link
                   to={`/industries/${ind.slug}`}
-                  className="pt-4 border-t border-slate-100 font-mono text-xs font-bold uppercase tracking-wider text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1.5 group/btn transition-colors"
+                  className="pt-4 border-t border-slate-800 font-mono text-xs font-bold uppercase tracking-wider text-[#00F0FF] hover:text-white inline-flex items-center gap-1.5 group/btn transition-colors"
                 >
                   <span>Explore Sector Architecture</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform text-[#00F0FF]" />
                 </Link>
               </div>
             ))}

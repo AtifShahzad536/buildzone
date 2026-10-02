@@ -53,7 +53,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
   const formatInlineText = (text) => {
     if (!text) return text;
 
-    // If text contains HTML tags (e.g., <strong>, <img src=...>, <a href=...>)
+    // If text contains HTML tags (e.g., <strong>, <em>, <a href="...">)
     if (/<[a-z][\s\S]*>/i.test(text)) {
       return <span dangerouslySetInnerHTML={{ __html: text }} />;
     }
@@ -66,12 +66,12 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
 
       // Bold **text**
       if (chunk.startsWith('**') && chunk.endsWith('**') && chunk.length >= 4) {
-        return <strong key={index} className="font-bold text-[#0B1938]">{chunk.slice(2, -2)}</strong>;
+        return <strong key={index} className="font-bold text-white">{chunk.slice(2, -2)}</strong>;
       }
 
       // Italic *text*
       if (chunk.startsWith('*') && chunk.endsWith('*') && chunk.length >= 2) {
-        return <em key={index} className="italic text-slate-700">{chunk.slice(1, -1)}</em>;
+        return <em key={index} className="italic text-slate-300">{chunk.slice(1, -1)}</em>;
       }
 
       // Inline Code `code`
@@ -79,7 +79,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
         return (
           <code
             key={index}
-            className="px-1.5 py-0.5 mx-0.5 rounded bg-slate-100 border border-slate-200 text-[#0066FF] font-mono text-[12px] font-semibold"
+            className="px-1.5 py-0.5 mx-0.5 rounded bg-[#070E1C] border border-slate-800 text-[#00F0FF] font-mono text-[12px] font-semibold"
           >
             {chunk.slice(1, -1)}
           </code>
@@ -88,7 +88,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
 
       // Strikethrough ~~text~~
       if (chunk.startsWith('~~') && chunk.endsWith('~~') && chunk.length >= 4) {
-        return <del key={index} className="line-through text-slate-400">{chunk.slice(2, -2)}</del>;
+        return <del key={index} className="line-through text-slate-500">{chunk.slice(2, -2)}</del>;
       }
 
       // Links [text](url)
@@ -101,7 +101,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
             href={linkUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#0066FF] font-semibold underline decoration-[#0066FF]/40 hover:decoration-[#0066FF] underline-offset-2 transition-colors inline-flex items-center gap-0.5"
+            className="text-[#00F0FF] font-semibold underline decoration-[#00F0FF]/40 hover:decoration-[#00F0FF] underline-offset-2 transition-colors inline-flex items-center gap-0.5"
           >
             <span>{linkText}</span>
             <ExternalLink className="w-3 h-3 inline ml-0.5 opacity-70" />
@@ -182,7 +182,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       }
       const tableHtml = tableLines.join('\n');
       renderedElements.push(
-        <div key={`html-table-${i}`} className="overflow-x-auto my-6 rounded-xl border border-slate-200 shadow-xs">
+        <div key={`html-table-${i}`} className="overflow-x-auto my-6 rounded-xl border border-slate-800 bg-[#0B1528] shadow-xs">
           <div dangerouslySetInnerHTML={{ __html: tableHtml }} />
         </div>
       );
@@ -206,16 +206,16 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       }
 
       renderedElements.push(
-        <div key={`md-table-${i}`} className="overflow-x-auto my-6 rounded-xl border border-slate-200 shadow-xs bg-white">
+        <div key={`md-table-${i}`} className="overflow-x-auto my-6 rounded-xl border border-slate-800 shadow-xs bg-[#0B1528]">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200">
+              <tr className="bg-[#070E1C] border-b border-slate-800">
                 {headers.map((h, hIdx) => {
                   const align = alignments[hIdx] || 'left';
                   return (
                     <th
                       key={hIdx}
-                      className={`px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1938] font-display border-r last:border-r-0 border-slate-200 text-${align}`}
+                      className={`px-4 py-3 text-xs font-bold uppercase tracking-wider text-white font-display border-r last:border-r-0 border-slate-800 text-${align}`}
                     >
                       {formatInlineText(h)}
                     </th>
@@ -223,15 +223,15 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
                 })}
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-800/60">
               {dataRows.map((row, rIdx) => (
-                <tr key={rIdx} className="hover:bg-slate-50/80 transition-colors">
+                <tr key={rIdx} className="hover:bg-slate-800/30 transition-colors">
                   {row.map((cell, cIdx) => {
                     const align = alignments[cIdx] || 'left';
                     return (
                       <td
                         key={cIdx}
-                        className={`px-4 py-3 text-sm text-slate-700 border-r last:border-r-0 border-slate-200 text-${align}`}
+                        className={`px-4 py-3 text-sm text-slate-300 border-r last:border-r-0 border-slate-800 text-${align}`}
                       >
                         {formatInlineText(cell)}
                       </td>
@@ -249,7 +249,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
     // 4. Headings
     if (trimmed.startsWith('### ')) {
       renderedElements.push(
-        <h3 key={`h3-${i}`} className="text-xl sm:text-2xl font-black font-display uppercase tracking-tight text-[#0B1938] mt-8 mb-3">
+        <h3 key={`h3-${i}`} className="text-xl sm:text-2xl font-black font-display uppercase tracking-tight text-white mt-8 mb-3">
           {formatInlineText(trimmed.slice(4))}
         </h3>
       );
@@ -259,8 +259,8 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
 
     if (trimmed.startsWith('## ')) {
       renderedElements.push(
-        <h2 key={`h2-${i}`} className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938] mt-10 mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
-          <span className="w-1.5 h-6 bg-[#0066FF] rounded-full inline-block"></span>
+        <h2 key={`h2-${i}`} className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white mt-10 mb-4 pb-2 border-b border-slate-800 flex items-center gap-2">
+          <span className="w-1.5 h-6 bg-[#00F0FF] rounded-full inline-block"></span>
           <span>{formatInlineText(trimmed.slice(3))}</span>
         </h2>
       );
@@ -270,7 +270,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
 
     if (trimmed.startsWith('# ')) {
       renderedElements.push(
-        <h1 key={`h1-${i}`} className="text-3xl sm:text-4xl font-black font-display uppercase tracking-tight text-[#0B1938] mt-12 mb-5">
+        <h1 key={`h1-${i}`} className="text-3xl sm:text-4xl font-black font-display uppercase tracking-tight text-white mt-12 mb-5">
           {formatInlineText(trimmed.slice(2))}
         </h1>
       );
@@ -288,7 +288,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
       renderedElements.push(
         <blockquote
           key={`quote-${i}`}
-          className="my-6 p-4 sm:p-5 bg-blue-50/50 border-l-4 border-[#0066FF] rounded-r-xl italic font-sans text-slate-800 text-sm sm:text-base leading-relaxed shadow-2xs"
+          className="my-6 p-4 sm:p-5 bg-[#0B1528] border-l-4 border-[#00F0FF] rounded-r-xl italic font-sans text-slate-200 text-sm sm:text-base leading-relaxed shadow-lg border-y border-r border-slate-800/60"
         >
           {quoteLines.map((ql, qIdx) => (
             <p key={qIdx} className={qIdx > 0 ? 'mt-2' : ''}>
@@ -303,7 +303,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
     // 6. Horizontal Divider (--- or ***)
     if (trimmed === '---' || trimmed === '***' || trimmed === '___') {
       renderedElements.push(
-        <hr key={`hr-${i}`} className="my-8 border-t border-slate-200" />
+        <hr key={`hr-${i}`} className="my-8 border-t border-slate-800" />
       );
       i++;
       continue;
@@ -314,11 +314,15 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
     if (imageMatch) {
       const [, altText, imageUrl] = imageMatch;
       renderedElements.push(
-        <figure key={`img-${i}`} className="my-8 rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
-          <div className="aspect-[16/9] w-full overflow-hidden bg-slate-900/5">
+        <figure key={`img-${i}`} className="my-8 rounded-2xl overflow-hidden border border-slate-800 bg-[#0B1528] shadow-sm">
+          <div className="aspect-[16/9] w-full overflow-hidden bg-slate-950">
             <img
               src={imageUrl}
-              alt={altText || 'Article illustration'}
+              alt={altText ? altText : 'Article visual graphic'}
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="675"
               className="w-full h-full object-cover"
               onError={(e) => {
                 e.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80';
@@ -326,7 +330,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
             />
           </div>
           {altText && (
-            <figcaption className="p-3 text-center font-mono text-xs text-slate-500 bg-white border-t border-slate-100">
+            <figcaption className="p-3 text-center font-mono text-xs text-slate-400 bg-[#070E1C] border-t border-slate-800">
               {altText}
             </figcaption>
           )}
@@ -344,10 +348,10 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
         i++;
       }
       renderedElements.push(
-        <ul key={`ul-${i}`} className="my-5 space-y-2.5 pl-2 font-sans text-slate-700">
+        <ul key={`ul-${i}`} className="my-5 space-y-2.5 pl-2 font-sans text-slate-300">
           {listItems.map((item, lIdx) => (
             <li key={lIdx} className="flex items-start gap-3 text-sm sm:text-base leading-relaxed">
-              <span className="w-2 h-2 mt-2 rounded-full bg-[#0066FF] shrink-0"></span>
+              <span className="w-2 h-2 mt-2 rounded-full bg-[#00F0FF] shrink-0"></span>
               <span className="flex-1">{formatInlineText(item)}</span>
             </li>
           ))}
@@ -364,10 +368,10 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
         i++;
       }
       renderedElements.push(
-        <ol key={`ol-${i}`} className="my-5 space-y-3 pl-2 font-sans text-slate-700">
+        <ol key={`ol-${i}`} className="my-5 space-y-3 pl-2 font-sans text-slate-300">
           {listItems.map((item, lIdx) => (
             <li key={lIdx} className="flex items-start gap-3 text-sm sm:text-base leading-relaxed">
-              <span className="w-6 h-6 rounded-full bg-blue-100 text-[#0066FF] font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 border border-blue-200">
+              <span className="w-6 h-6 rounded-full bg-[#0066FF]/20 text-[#00F0FF] font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 border border-[#00F0FF]/30">
                 {lIdx + 1}
               </span>
               <span className="flex-1 pt-0.5">{formatInlineText(item)}</span>
@@ -387,7 +391,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
         i++;
       }
       renderedElements.push(
-        <div key={`center-${i}`} className="my-6 text-center font-sans text-slate-700">
+        <div key={`center-${i}`} className="my-6 text-center font-sans text-slate-300">
           {centerLines.map((cl, cIdx) => (
             <p key={cIdx} className="text-sm sm:text-base leading-relaxed">
               {formatInlineText(cl)}
@@ -407,7 +411,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
         i++;
       }
       renderedElements.push(
-        <div key={`right-${i}`} className="my-6 text-right font-sans text-slate-700">
+        <div key={`right-${i}`} className="my-6 text-right font-sans text-slate-300">
           {rightLines.map((rl, rIdx) => (
             <p key={rIdx} className="text-sm sm:text-base leading-relaxed">
               {formatInlineText(rl)}
@@ -431,7 +435,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
     // 12. Standard Paragraph
     if (trimmed.length > 0) {
       renderedElements.push(
-        <p key={`p-${i}`} className="text-sm sm:text-base leading-relaxed text-slate-700 font-sans my-4">
+        <p key={`p-${i}`} className="text-sm sm:text-base leading-relaxed text-slate-300 font-sans my-4">
           {formatInlineText(trimmed)}
         </p>
       );
@@ -441,7 +445,7 @@ export const RichTextRenderer = ({ content = '', className = '' }) => {
   }
 
   return (
-    <div className={`article-rich-content font-sans leading-relaxed text-slate-800 space-y-2 ${className}`}>
+    <div className={`article-rich-content font-sans leading-relaxed text-slate-300 space-y-2 ${className}`}>
       {renderedElements}
     </div>
   );

@@ -9,23 +9,24 @@ export default {
     extend: {
       colors: {
         background: {
-          DEFAULT: '#FFFFFF',
-          subtle: '#F8FAFC',
-          card: '#FFFFFF',
-          elevated: '#F1F5F9',
-          dark: '#0B1938',
+          DEFAULT: '#060B18',
+          subtle: '#0A1128',
+          card: '#0B1528',
+          elevated: '#111E38',
+          dark: '#030712',
         },
         primary: {
           DEFAULT: '#0066FF',
           dark: '#0052CC',
           hover: '#0077FF',
-          light: '#EFF6FF',
+          light: '#0A1E4A',
+          neon: '#00F0FF',
         },
         navy: {
-          DEFAULT: '#0B1938',
-          dark: '#071126',
-          light: '#1E293B',
-          muted: '#334155',
+          DEFAULT: '#060B18',
+          dark: '#030712',
+          light: '#0B1528',
+          muted: '#1E293B',
         },
         secondary: {
           DEFAULT: '#0284C7',
@@ -34,19 +35,19 @@ export default {
         },
         accent: {
           blue: '#0066FF',
-          cyan: '#0284C7',
+          cyan: '#00F0FF',
           emerald: '#10B981',
           rose: '#EF4444',
           amber: '#F59E0B',
         },
         border: {
-          DEFAULT: '#E2E8F0',
-          subtle: '#F1F5F9',
-          glow: 'rgba(0, 102, 255, 0.25)',
+          DEFAULT: '#1E293B',
+          subtle: '#0F172A',
+          glow: 'rgba(0, 102, 255, 0.35)',
         },
         text: {
-          primary: '#0B1938',
-          secondary: '#334155',
+          primary: '#F8FAFC',
+          secondary: '#94A3B8',
           muted: '#64748B',
         }
       },

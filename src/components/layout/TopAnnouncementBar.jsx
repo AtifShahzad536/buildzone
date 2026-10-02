@@ -138,17 +138,17 @@ export const TopAnnouncementBar = () => {
   const cycleItems = [...displayItems, ...displayItems, ...displayItems];
 
   return (
-    <div className="bg-[#0B1938] text-white border-b border-slate-800 text-[12px] font-sans select-none overflow-hidden relative z-50">
+    <div className="bg-[#060B18] text-white border-b border-slate-800/80 text-[12px] font-sans select-none overflow-hidden relative z-50">
       
       {/* Edge Gradient Fade Masks */}
-      <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-[#0B1938] to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-[#0B1938] to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-[#060B18] to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-[#060B18] to-transparent z-10 pointer-events-none"></div>
 
       <div className="py-1.5 flex items-center">
         
         {/* Pinned Left Live Indicator on Desktop */}
-        <div className="hidden md:flex items-center gap-2 pl-4 pr-3 shrink-0 z-20 bg-[#0B1938] border-r border-slate-800">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <div className="hidden md:flex items-center gap-2 pl-4 pr-3 shrink-0 z-20 bg-[#060B18] border-r border-slate-800/80">
+          <span className="w-2 h-2 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF] animate-pulse"></span>
           <span className="font-bold text-slate-200 tracking-wide text-[11px] flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />
             <span>GLOBAL NETWORK</span>
@@ -176,7 +176,7 @@ export const TopAnnouncementBar = () => {
                 <span className="font-semibold text-white tracking-normal text-[12px]">
                   {item.name}:
                 </span>
-                <span className="text-slate-300 group-hover/item:text-[#38BDF8] transition-colors font-medium text-[12px]">
+                <span className="text-slate-300 group-hover/item:text-[#00F0FF] transition-colors font-medium text-[12px]">
                   {item.handle}
                 </span>
                 <span className="text-slate-600 font-bold ml-2">/</span>
@@ -186,7 +186,7 @@ export const TopAnnouncementBar = () => {
         </div>
 
         {/* Pinned Right Fast Booking CTA on Desktop */}
-        <div className="hidden lg:flex items-center gap-2 pl-3 pr-4 shrink-0 z-20 bg-[#0B1938] border-l border-slate-800">
+        <div className="hidden lg:flex items-center gap-2 pl-3 pr-4 shrink-0 z-20 bg-[#060B18] border-l border-slate-800/80">
           <a
             href={whatsappUrl}
             target="_blank"

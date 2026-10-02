@@ -18,12 +18,12 @@ export const Button = React.forwardRef(({
   const baseStyles = "relative inline-flex items-center justify-center font-sans text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none rounded-md focus:outline-none focus:ring-2 focus:ring-[#0066FF]/40";
 
   const variants = {
-    primary: "bg-[#0066FF] text-white hover:bg-[#0052CC] active:bg-[#0040A8] shadow-sm hover:shadow-md border border-transparent font-bold",
-    secondary: "bg-white text-[#0B1938] border border-slate-300 hover:border-[#0066FF] hover:text-[#0066FF] hover:bg-blue-50/40 shadow-sm",
-    outline: "bg-transparent text-[#0B1938] border border-slate-300 hover:border-[#0066FF] hover:text-[#0066FF] hover:bg-blue-50/40",
-    gradient: "bg-gradient-to-r from-[#0066FF] to-[#0284C7] text-white font-bold border border-transparent hover:brightness-105 shadow-sm",
-    danger: "bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100",
-    ghost: "bg-transparent text-slate-600 hover:text-[#0066FF] hover:bg-blue-50/60 border border-transparent",
+    primary: "bg-[#0066FF] text-white hover:bg-blue-600 active:bg-[#0052CC] shadow-md shadow-blue-500/20 border border-blue-400/30 font-bold",
+    secondary: "bg-[#0B1528] text-slate-100 border border-slate-700/80 hover:border-[#0066FF] hover:text-[#00F0FF] hover:bg-[#111E38] shadow-sm",
+    outline: "bg-transparent text-slate-200 border border-slate-700 hover:border-[#0066FF] hover:text-[#00F0FF] hover:bg-slate-800/60",
+    gradient: "bg-gradient-to-r from-[#0066FF] to-[#00F0FF] text-white font-bold border border-transparent hover:brightness-110 shadow-md shadow-blue-500/25",
+    danger: "bg-rose-950/80 text-rose-300 border border-rose-800/80 hover:bg-rose-900/80",
+    ghost: "bg-transparent text-slate-300 hover:text-[#00F0FF] hover:bg-slate-800/60 border border-transparent",
   };
 
   const sizes = {

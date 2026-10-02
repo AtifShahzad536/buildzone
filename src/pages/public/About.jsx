@@ -26,27 +26,26 @@ export const About = () => {
         canonical="https://buildzonetechnology.com/about"
       />
 
-      <div className="py-12 sm:py-20">
+      <div className="py-12 sm:py-20 bg-[#060B18]">
         <Container>
           {/* Top Hero Section */}
           <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-24">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
-              <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/15 border border-[#0066FF]/40 rounded-full mb-4 shadow-xs">
+              <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                 SIALKOT'S PREMIER IT & SOFTWARE AGENCY
               </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-6 leading-tight">
-              WE ARE BUILDZONE
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight text-white mb-6 leading-tight">
+              WE ARE <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">BUILDZONE</span>
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 font-sans leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
               The best software agency in Sialkot and premier digital engineering consultancy, partnering with local exporters, ambitious startups, and global enterprises to build high-scale, mission-critical digital products.
             </p>
           </div>
 
-
           {/* Stats Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-8 bg-white border border-slate-200 rounded-lg shadow-sm mb-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-8 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl mb-20">
             {[
               { num: "150+", label: "Products Shipped" },
               { num: "99.9%", label: "Average SLA Uptime" },
@@ -54,10 +53,12 @@ export const About = () => {
               { num: "98%", label: "Client Retention" },
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-3xl sm:text-4xl font-black font-display text-[#0066FF] mb-1">
-                  {stat.num}
+                <div className="text-3xl sm:text-4xl font-black font-display text-white mb-1">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-[#00F0FF]">
+                    {stat.num}
+                  </span>
                 </div>
-                <div className="font-mono text-xs text-slate-500 uppercase tracking-wider font-semibold">
+                <div className="font-mono text-xs text-slate-400 uppercase tracking-wider font-semibold">
                   {stat.label}
                 </div>
               </div>
@@ -66,22 +67,22 @@ export const About = () => {
 
           {/* Mission & Vision Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-            <div className="p-8 bg-white border border-slate-200 rounded-lg shadow-sm space-y-4">
-              <div className="w-10 h-10 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF]">
+            <div className="p-8 bg-[#0B1528] border border-slate-800 hover:border-[#00F0FF]/40 rounded-2xl shadow-xl transition-all space-y-4 group">
+              <div className="w-10 h-10 bg-[#122038] border border-slate-700/80 rounded-xl flex items-center justify-center text-[#00F0FF] group-hover:scale-110 transition-transform">
                 <Target className="w-5 h-5" />
               </div>
-              <h2 className="text-2xl font-bold font-display uppercase text-[#0B1938]">Our Mission</h2>
-              <p className="text-slate-600 font-sans text-sm leading-relaxed">
+              <h2 className="text-2xl font-bold font-display uppercase text-white group-hover:text-[#00F0FF] transition-colors">Our Mission</h2>
+              <p className="text-slate-300 font-sans text-sm leading-relaxed">
                 To eliminate technical debt before it happens by applying senior architectural rigor, modern cloud primitives, and pragmatic AI automation to build enduring digital products that drive exponential business value.
               </p>
             </div>
 
-            <div className="p-8 bg-white border border-slate-200 rounded-lg shadow-sm space-y-4">
-              <div className="w-10 h-10 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF]">
+            <div className="p-8 bg-[#0B1528] border border-slate-800 hover:border-[#00F0FF]/40 rounded-2xl shadow-xl transition-all space-y-4 group">
+              <div className="w-10 h-10 bg-[#122038] border border-slate-700/80 rounded-xl flex items-center justify-center text-[#00F0FF] group-hover:scale-110 transition-transform">
                 <Sparkles className="w-5 h-5" />
               </div>
-              <h2 className="text-2xl font-bold font-display uppercase text-[#0B1938]">Our Vision</h2>
-              <p className="text-slate-600 font-sans text-sm leading-relaxed">
+              <h2 className="text-2xl font-bold font-display uppercase text-white group-hover:text-[#00F0FF] transition-colors">Our Vision</h2>
+              <p className="text-slate-300 font-sans text-sm leading-relaxed">
                 To be the global benchmark for high-velocity software engineering—recognized for uncompromising code quality, transparent partnerships, and pioneering applications of generative AI and autonomous systems.
               </p>
             </div>
@@ -116,12 +117,12 @@ export const About = () => {
               ].map((val, i) => {
                 const Icon = val.icon;
                 return (
-                  <div key={i} className="p-6 bg-white border border-slate-200 rounded-lg shadow-sm space-y-3">
-                    <div className="w-10 h-10 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF]">
+                  <div key={i} className="p-6 bg-[#0B1528] border border-slate-800 hover:border-[#00F0FF]/40 rounded-2xl shadow-xl transition-all space-y-3 group">
+                    <div className="w-10 h-10 bg-[#122038] border border-slate-700/80 rounded-xl flex items-center justify-center text-[#00F0FF] group-hover:scale-110 transition-transform">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-bold font-display uppercase text-[#0B1938]">{val.title}</h3>
-                    <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed">{val.desc}</p>
+                    <h3 className="text-lg font-bold font-display uppercase text-white group-hover:text-[#00F0FF] transition-colors">{val.title}</h3>
+                    <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">{val.desc}</p>
                   </div>
                 );
               })}
@@ -129,11 +130,12 @@ export const About = () => {
           </div>
 
           {/* Call to action */}
-          <div className="p-8 sm:p-12 bg-gradient-to-br from-blue-50/90 via-white to-blue-50/50 border border-blue-200/80 rounded-2xl text-center space-y-6 max-w-4xl mx-auto shadow-md">
-            <h2 className="text-2xl sm:text-4xl font-black font-display uppercase text-[#0B1938]">
+          <div className="p-8 sm:p-12 bg-gradient-to-br from-[#0B1528] via-[#0A1226] to-[#070E1C] border border-slate-800/90 rounded-2xl text-center space-y-6 max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
+            <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#0066FF]/20 rounded-full blur-3xl pointer-events-none" />
+            <h2 className="text-2xl sm:text-4xl font-black font-display uppercase text-white">
               Meet the Engineers Behind the Architecture
             </h2>
-            <p className="text-slate-600 font-sans text-sm max-w-xl mx-auto">
+            <p className="text-slate-300 font-sans text-sm max-w-xl mx-auto">
               Our partners and lead architects remain directly hands-on with every enterprise engagement.
             </p>
             <div className="flex flex-row items-center justify-center gap-3">

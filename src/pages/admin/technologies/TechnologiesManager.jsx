@@ -35,12 +35,12 @@ export const TechnologiesManager = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white">
             TECHNOLOGY STACK CATALOG
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans pt-1">
             Maintain supported engineering frameworks, databases, and AI tooling.
           </p>
         </div>
@@ -50,7 +50,7 @@ export const TechnologiesManager = () => {
           size="sm"
           onClick={() => setIsModalOpen(true)}
           leftIcon={<Plus className="w-4 h-4" />}
-          className="shadow-sm"
+          className="shadow-sm cursor-pointer"
         >
           Add Tech
         </Button>
@@ -58,66 +58,66 @@ export const TechnologiesManager = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {technologies?.map((tech) => (
-          <div key={tech.id} className="p-5 bg-white border border-slate-200 rounded-xl shadow-2xs flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div key={tech.id} className="p-5 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl flex flex-col justify-between hover:border-[#00F0FF]/40 hover:shadow-2xl transition-all">
             <div>
               <div className="flex items-center justify-between mb-3">
-                <div className="w-9 h-9 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-center text-[#0066FF]">
+                <div className="w-9 h-9 bg-[#0066FF]/20 border border-[#00F0FF]/30 rounded-xl flex items-center justify-center text-[#00F0FF]">
                   {renderIcon(tech.iconName, { className: "w-4 h-4" })}
                 </div>
                 <Badge variant="cyan" size="sm">{tech.category}</Badge>
               </div>
-              <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] mb-1">{tech.name}</h2>
-              <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">{tech.description}</p>
+              <h2 className="font-display text-sm font-bold uppercase text-white mb-1">{tech.name}</h2>
+              <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed font-sans">{tech.description}</p>
             </div>
           </div>
         ))}
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
-          <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
-            <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">Add Technology</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+          <div className="w-full max-w-md bg-[#0B1528] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
+            <h2 className="font-display text-lg font-bold uppercase text-white">Add Technology</h2>
             <form onSubmit={handleCreate} className="space-y-4 font-sans">
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Name *</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">Name *</label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Supabase / GraphQL"
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Category</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">Category</label>
                 <select
                   value={formData.category}
                   onChange={e => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner cursor-pointer font-medium"
                 >
-                  <option value="Frontend">Frontend</option>
-                  <option value="Backend">Backend</option>
-                  <option value="Mobile">Mobile</option>
-                  <option value="Database">Database</option>
-                  <option value="AI">AI</option>
-                  <option value="Cloud">Cloud</option>
+                  <option value="Frontend" className="bg-[#0B1528] text-white">Frontend</option>
+                  <option value="Backend" className="bg-[#0B1528] text-white">Backend</option>
+                  <option value="Mobile" className="bg-[#0B1528] text-white">Mobile</option>
+                  <option value="Database" className="bg-[#0B1528] text-white">Database</option>
+                  <option value="AI" className="bg-[#0B1528] text-white">AI</option>
+                  <option value="Cloud" className="bg-[#0B1528] text-white">Cloud</option>
                 </select>
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Description</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">Description</label>
                 <textarea
                   rows={2}
                   value={formData.description}
                   onChange={e => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Short explanation of how this is utilized in production..."
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-800">
                 <Button variant="ghost" size="sm" onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button type="submit" variant="primary" size="sm" isLoading={isCreating}>Add Technology</Button>
               </div>

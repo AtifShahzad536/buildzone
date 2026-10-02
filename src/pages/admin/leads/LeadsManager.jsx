@@ -71,12 +71,12 @@ export const LeadsManager = () => {
   return (
     <div className="space-y-6">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white">
             LEAD PIPELINE CRM
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans pt-1">
             Manage incoming inquiries, update negotiation status, and track conversion timelines.
           </p>
         </div>
@@ -90,10 +90,10 @@ export const LeadsManager = () => {
             <button
               key={st}
               onClick={() => setStatusFilter(st)}
-              className={`px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all rounded-lg border cursor-pointer ${
+              className={`px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all rounded-xl border cursor-pointer ${
                 statusFilter === st
-                  ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-xs'
-                  : 'bg-white text-slate-600 border-slate-200 hover:text-[#0066FF] hover:border-slate-300'
+                  ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white border-[#00F0FF]/40 shadow-md'
+                  : 'bg-[#0B1528] text-slate-300 border-slate-800 hover:text-[#00F0FF] hover:border-slate-700'
               }`}
             >
               {st}
@@ -108,9 +108,9 @@ export const LeadsManager = () => {
             placeholder="Search by name, email, company..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white border border-slate-300 pl-9 pr-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+            className="w-full bg-[#070E1C] border border-slate-800 pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-xl shadow-inner"
           />
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
         </div>
       </div>
 
@@ -121,10 +121,10 @@ export const LeadsManager = () => {
           description="There are currently no inquiries matching your active search or status filter."
         />
       ) : (
-        <div className="border border-slate-200 bg-white rounded-xl overflow-x-auto shadow-2xs">
+        <div className="border border-slate-800 bg-[#0B1528] rounded-2xl overflow-x-auto shadow-xl">
           <table className="w-full text-left font-mono text-xs border-collapse min-w-[860px]">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
+              <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px] bg-[#070E1C]">
                 <th className="py-3 px-4 font-semibold">Contact</th>
                 <th className="py-3 px-4 font-semibold">Service Required</th>
                 <th className="py-3 px-4 font-semibold">Budget / Timeline</th>
@@ -133,27 +133,27 @@ export const LeadsManager = () => {
                 <th className="py-3 px-4 text-right font-semibold">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-800/60">
               {filtered?.map((lead) => {
                 const leadId = lead.id || lead._id;
                 return (
-                  <tr key={leadId} className="hover:bg-blue-50/40 transition-colors">
+                  <tr key={leadId} className="hover:bg-slate-800/30 transition-colors">
                     <td className="py-3.5 px-4">
-                      <div className="font-bold text-[#0B1938] text-sm">{lead.name}</div>
-                      <div className="text-[11px] text-slate-500">{lead.email}</div>
-                      {lead.company && <div className="text-[10px] text-[#0066FF] font-semibold">{lead.company} • {lead.country}</div>}
+                      <div className="font-bold text-white text-sm">{lead.name}</div>
+                      <div className="text-[11px] text-slate-400">{lead.email}</div>
+                      {lead.company && <div className="text-[10px] text-[#00F0FF] font-semibold">{lead.company} • {lead.country}</div>}
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-700">
-                      <span className="font-bold text-[#0066FF]">{lead.service}</span>
+                    <td className="py-3.5 px-4 text-slate-300">
+                      <span className="font-bold text-[#00F0FF]">{lead.service}</span>
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-700">
-                      <div className="font-medium">{lead.budget || 'Not specified'}</div>
-                      <div className="text-[10px] text-slate-500">{lead.timeline || 'Flexible'}</div>
+                    <td className="py-3.5 px-4 text-slate-300">
+                      <div className="font-medium text-white">{lead.budget || 'Not specified'}</div>
+                      <div className="text-[10px] text-slate-400">{lead.timeline || 'Flexible'}</div>
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-500 text-[11px]">
+                    <td className="py-3.5 px-4 text-slate-400 text-[11px]">
                       {lead.source || 'Website'}
                     </td>
 
@@ -161,10 +161,10 @@ export const LeadsManager = () => {
                       <select
                         value={lead.status}
                         onChange={(e) => handleStatusChange(leadId, e.target.value)}
-                        className="bg-slate-50 border border-slate-200 px-2.5 py-1 text-xs font-mono text-[#0B1938] font-bold focus:outline-none focus:border-[#0066FF] rounded-lg cursor-pointer"
+                        className="bg-[#070E1C] border border-slate-700 px-2.5 py-1 text-xs font-mono text-white font-bold focus:outline-none focus:border-[#00F0FF] rounded-lg cursor-pointer"
                       >
                         {statuses.filter(s => s !== 'All').map(s => (
-                          <option key={s} value={s}>{s}</option>
+                          <option key={s} value={s} className="bg-[#070E1C] text-white">{s}</option>
                         ))}
                       </select>
                     </td>
@@ -173,7 +173,7 @@ export const LeadsManager = () => {
                       <div className="flex items-center justify-end gap-1.5 whitespace-nowrap">
                         <Link
                           to={`${ADMIN_BASE_PATH}/leads/${leadId}`}
-                          className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-blue-50 hover:bg-[#0066FF] text-[#0066FF] hover:text-white border border-blue-200 hover:border-[#0066FF] rounded-lg font-mono font-bold text-[11px] transition-all cursor-pointer shadow-2xs whitespace-nowrap shrink-0"
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-[#0066FF]/20 hover:bg-gradient-to-r hover:from-[#0066FF] hover:to-[#00D4FF] text-[#00F0FF] hover:text-white border border-[#00F0FF]/30 hover:border-transparent rounded-lg font-mono font-bold text-[11px] transition-all cursor-pointer shadow-xs whitespace-nowrap shrink-0"
                           title="View Lead Details"
                         >
                           <Eye className="w-3.5 h-3.5 shrink-0" />
@@ -181,7 +181,7 @@ export const LeadsManager = () => {
                         </Link>
                         <button
                           onClick={() => handleDeleteClick(leadId, lead.name)}
-                          className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                          className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-950/40 rounded-lg transition-colors cursor-pointer shrink-0"
                           title="Delete Lead"
                           aria-label={`Delete lead for ${lead.name}`}
                         >

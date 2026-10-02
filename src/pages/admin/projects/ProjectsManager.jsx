@@ -116,12 +116,12 @@ export const ProjectsManager = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white">
             PROJECT & PORTFOLIO MANAGER
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans pt-1">
             Publish client products, upload showcase media to Cloudinary, and manage public portfolio links.
           </p>
         </div>
@@ -131,7 +131,7 @@ export const ProjectsManager = () => {
           size="sm"
           onClick={handleOpenCreate}
           leftIcon={<Plus className="w-4 h-4" />}
-          className="shadow-sm shrink-0"
+          className="shadow-sm shrink-0 cursor-pointer"
         >
           Add New Project
         </Button>
@@ -144,26 +144,26 @@ export const ProjectsManager = () => {
           description="Click 'Add New Project' to publish your first client engineering showcase."
         />
       ) : (
-        <div className="border border-slate-200 bg-white rounded-xl overflow-x-auto shadow-2xs">
+        <div className="border border-slate-800 bg-[#0B1528] rounded-2xl overflow-x-auto shadow-xl">
           <table className="w-full text-left font-mono text-xs border-collapse min-w-[860px]">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px] bg-slate-50">
-                <th className="py-3 px-4 font-semibold">Cover</th>
-                <th className="py-3 px-4 font-semibold">Project & Client</th>
-                <th className="py-3 px-4 font-semibold">Category</th>
-                <th className="py-3 px-4 font-semibold">Tech Stack</th>
-                <th className="py-3 px-4 font-semibold">Outcome Metrics</th>
-                <th className="py-3 px-4 text-right font-semibold">Actions</th>
+              <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px] bg-[#070E1C]">
+                <th className="py-3.5 px-4 font-semibold">Cover</th>
+                <th className="py-3.5 px-4 font-semibold">Project & Client</th>
+                <th className="py-3.5 px-4 font-semibold">Category</th>
+                <th className="py-3.5 px-4 font-semibold">Tech Stack</th>
+                <th className="py-3.5 px-4 font-semibold">Outcome Metrics</th>
+                <th className="py-3.5 px-4 text-right font-semibold">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-800/80">
               {projects?.map((proj) => {
                 const projId = proj.id || proj._id;
                 return (
-                  <tr key={projId} className="hover:bg-blue-50/40 transition-colors">
+                  <tr key={projId} className="hover:bg-[#070E1C]/80 transition-colors">
                     {/* Cover Thumbnail */}
                     <td className="py-3 px-4 w-20">
-                      <div className="w-14 h-10 rounded-lg overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
+                      <div className="w-14 h-10 rounded-lg overflow-hidden bg-[#070E1C] border border-slate-800 flex items-center justify-center shrink-0">
                         {proj.image ? (
                           <img
                             src={proj.image}
@@ -174,21 +174,21 @@ export const ProjectsManager = () => {
                             }}
                           />
                         ) : (
-                          <ImageIcon className="w-4 h-4 text-slate-400" />
+                          <ImageIcon className="w-4 h-4 text-slate-500" />
                         )}
                       </div>
                     </td>
 
                     <td className="py-3.5 px-4">
-                      <div className="font-bold text-[#0B1938] text-sm flex items-center gap-2">
+                      <div className="font-bold text-white text-sm flex items-center gap-2">
                         <span>{proj.name}</span>
                         {proj.featured && (
-                          <span className="px-1.5 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded text-[9px] font-bold">
+                          <span className="px-1.5 py-0.5 bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded text-[9px] font-bold">
                             FEATURED
                           </span>
                         )}
                       </div>
-                      <div className="text-[11px] text-[#0066FF] font-medium">
+                      <div className="text-[11px] text-[#00F0FF] font-medium">
                         {proj.client || 'Internal Product'} • {proj.industry || 'Tech'}
                       </div>
                     </td>
@@ -197,17 +197,17 @@ export const ProjectsManager = () => {
                       <Badge variant="cyan" size="sm">{proj.serviceCategory || proj.category}</Badge>
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-700">
+                    <td className="py-3.5 px-4 text-slate-300">
                       <div className="flex flex-wrap gap-1 max-w-xs">
                         {proj.technologies?.slice(0, 3).map(t => (
-                          <span key={t} className="px-2 py-0.5 bg-slate-100 border border-slate-200 text-slate-700 rounded-md text-[10px] font-medium">
+                          <span key={t} className="px-2 py-0.5 bg-[#070E1C] border border-slate-800 text-slate-300 rounded-md text-[10px] font-medium">
                             {t}
                           </span>
                         ))}
                       </div>
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-600 text-[11px] max-w-xs truncate">
+                    <td className="py-3.5 px-4 text-slate-400 text-[11px] max-w-xs truncate">
                       {proj.results || 'Production deployed'}
                     </td>
 
@@ -218,7 +218,7 @@ export const ProjectsManager = () => {
                             href={proj.liveUrl} 
                             target="_blank" 
                             rel="noreferrer" 
-                            className="p-1.5 text-slate-400 hover:text-[#0066FF] hover:bg-blue-50 rounded-lg transition-colors inline-flex items-center cursor-pointer shrink-0"
+                            className="p-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-[#070E1C] rounded-lg transition-colors inline-flex items-center cursor-pointer shrink-0"
                             title="Open Live URL"
                             aria-label={`Open live link for ${proj.name}`}
                           >
@@ -228,7 +228,7 @@ export const ProjectsManager = () => {
                         <button
                           type="button"
                           onClick={() => handleOpenEdit(proj)}
-                          className="p-1.5 text-slate-400 hover:text-[#0066FF] hover:bg-blue-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                          className="p-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-[#070E1C] rounded-lg transition-colors cursor-pointer shrink-0"
                           title="Edit Project"
                         >
                           <Edit2 className="w-4 h-4" />
@@ -236,7 +236,7 @@ export const ProjectsManager = () => {
                         <button 
                           type="button"
                           onClick={() => handleDeleteClick(projId, proj.name)} 
-                          className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                          className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors cursor-pointer shrink-0"
                           title="Delete Project"
                           aria-label={`Delete project ${proj.name}`}
                         >
@@ -254,12 +254,12 @@ export const ProjectsManager = () => {
 
       {/* Create / Edit Project Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs">
-          <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-2xl shadow-2xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-sm">
+          <div className="w-full max-w-2xl bg-[#0B1528] border border-slate-800 rounded-2xl shadow-2xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white shrink-0">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-[#0B1528] shrink-0">
               <div>
-                <h2 className="font-display text-base sm:text-lg font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-base sm:text-lg font-bold uppercase text-white">
                   {editingId ? "Edit Project Showcase" : "Create New Project Showcase"}
                 </h2>
                 <span className="text-[10px] font-mono text-slate-400">
@@ -269,7 +269,7 @@ export const ProjectsManager = () => {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer font-bold"
+                className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer font-bold"
                 title="Close"
               >
                 ✕
@@ -277,7 +277,7 @@ export const ProjectsManager = () => {
             </div>
 
             {/* Scrollable Body */}
-            <form onSubmit={handleSubmit} id="projectForm" className="p-6 space-y-4 font-sans text-xs overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-slate-300">
+            <form onSubmit={handleSubmit} id="projectForm" className="p-6 space-y-4 font-sans text-xs overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-slate-700">
               {/* Project Image Upload / Cloudinary */}
               <ImageUpload
                 label="Project Showcase Image / Mockup *"
@@ -289,7 +289,7 @@ export const ProjectsManager = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Project Name *
                   </label>
                   <input
@@ -298,12 +298,12 @@ export const ProjectsManager = () => {
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. MedFlow Telehealth Suite"
-                    className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-medium"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Client / Organization *
                   </label>
                   <input
@@ -312,33 +312,33 @@ export const ProjectsManager = () => {
                     value={formData.client}
                     onChange={e => setFormData({ ...formData, client: e.target.value })}
                     placeholder="e.g. MedFlow Global Health"
-                    className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-medium"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Category *
                   </label>
                   <select
                     value={formData.serviceCategory}
                     onChange={e => setFormData({ ...formData, serviceCategory: e.target.value, category: e.target.value })}
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner cursor-pointer font-medium"
                   >
-                    <option value="Healthcare">Healthcare</option>
-                    <option value="FinTech">FinTech & Banking</option>
-                    <option value="AI">AI & Machine Learning</option>
-                    <option value="Logistics">Logistics & Supply Chain</option>
-                    <option value="SaaS">Enterprise SaaS</option>
-                    <option value="Mobile">Mobile Solutions</option>
-                    <option value="Cloud">Cloud Infrastructure</option>
+                    <option value="Healthcare" className="bg-[#0B1528] text-white">Healthcare</option>
+                    <option value="FinTech" className="bg-[#0B1528] text-white">FinTech & Banking</option>
+                    <option value="AI" className="bg-[#0B1528] text-white">AI & Machine Learning</option>
+                    <option value="Logistics" className="bg-[#0B1528] text-white">Logistics & Supply Chain</option>
+                    <option value="SaaS" className="bg-[#0B1528] text-white">Enterprise SaaS</option>
+                    <option value="Mobile" className="bg-[#0B1528] text-white">Mobile Solutions</option>
+                    <option value="Cloud" className="bg-[#0B1528] text-white">Cloud Infrastructure</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Industry Sector *
                   </label>
                   <input
@@ -347,12 +347,12 @@ export const ProjectsManager = () => {
                     value={formData.industry}
                     onChange={e => setFormData({ ...formData, industry: e.target.value })}
                     placeholder="e.g. Healthcare, Banking"
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-medium"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Live Production URL
                   </label>
                   <input
@@ -360,13 +360,13 @@ export const ProjectsManager = () => {
                     value={formData.liveUrl}
                     onChange={e => setFormData({ ...formData, liveUrl: e.target.value })}
                     placeholder="https://client-product.com"
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Technologies / Tech Stack (Comma separated)
                 </label>
                 <input
@@ -374,12 +374,12 @@ export const ProjectsManager = () => {
                   value={formData.technologies}
                   onChange={e => setFormData({ ...formData, technologies: e.target.value })}
                   placeholder="React, TypeScript, WebRTC, Go, PostgreSQL, Redis, AWS"
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-mono"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Key Results & Metrics Highlight
                 </label>
                 <input
@@ -387,12 +387,12 @@ export const ProjectsManager = () => {
                   value={formData.results}
                   onChange={e => setFormData({ ...formData, results: e.target.value })}
                   placeholder="e.g. 99.98% uptime, 40% reduction in patient wait times"
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-medium"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Summary Description *
                 </label>
                 <textarea
@@ -401,7 +401,7 @@ export const ProjectsManager = () => {
                   value={formData.shortDescription}
                   onChange={e => setFormData({ ...formData, shortDescription: e.target.value })}
                   placeholder="Tell clients about the architectural challenges solved, scale handled, or unique value provided..."
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-sans leading-relaxed"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-sans leading-relaxed"
                 />
               </div>
 
@@ -411,16 +411,16 @@ export const ProjectsManager = () => {
                   id="featured"
                   checked={formData.featured}
                   onChange={e => setFormData({ ...formData, featured: e.target.checked })}
-                  className="w-4 h-4 text-[#0066FF] border-slate-300 rounded focus:ring-[#0066FF]"
+                  className="w-4 h-4 text-[#0066FF] border-slate-700 rounded bg-[#070E1C] focus:ring-[#00F0FF]"
                 />
-                <label htmlFor="featured" className="font-mono text-xs text-slate-700 cursor-pointer select-none font-medium">
+                <label htmlFor="featured" className="font-mono text-xs text-slate-300 cursor-pointer select-none font-medium">
                   Feature this project on homepage and top portfolio highlights
                 </label>
               </div>
             </form>
 
             {/* Sticky Footer */}
-            <div className="flex items-center justify-end gap-2 px-6 py-3.5 border-t border-slate-100 bg-slate-50/80 shrink-0">
+            <div className="flex items-center justify-end gap-2 px-6 py-3.5 border-t border-slate-800 bg-[#070E1C] shrink-0">
               <Button 
                 type="button" 
                 variant="outline" 

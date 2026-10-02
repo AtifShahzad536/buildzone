@@ -4,16 +4,16 @@
 
 @layer base {
   * {
-    border-color: #E2E8F0;
+    border-color: #1E293B;
   }
 
   html {
-    color-scheme: light;
+    color-scheme: dark;
   }
 
   body {
-    background-color: #F8FAFC;
-    color: #0B1938;
+    background-color: #060B18;
+    color: #F8FAFC;
     overflow-x: hidden;
     font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
     letter-spacing: -0.012em;
@@ -22,18 +22,18 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Custom Sleek Light Scrollbar */
+  /* Custom Sleek Dark Cyber Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #F1F5F9;
+    background: #060B18;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #CBD5E1;
+    background: #1E293B;
     border-radius: 4px;
   }
 
@@ -44,13 +44,13 @@
 
 @layer utilities {
 
-  /* Modern Crisp Light Glassmorphism */
+  /* Modern Cyber Dark Glassmorphism */
   .tech-glass {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(11, 21, 40, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
   }
 
   .tech-glass-hover {
@@ -58,55 +58,52 @@
   }
 
   .tech-glass-hover:hover {
-    background: #FFFFFF;
-    border-color: rgba(0, 102, 255, 0.4);
-    box-shadow: 0 12px 30px -8px rgba(0, 102, 255, 0.12);
+    background: rgba(17, 30, 56, 0.9);
+    border-color: rgba(0, 102, 255, 0.5);
+    box-shadow: 0 12px 30px -8px rgba(0, 102, 255, 0.3);
     transform: translateY(-2px);
   }
 
-  /* Clean Blueprint & Dot Grids */
+  /* Smooth Dark Radial Ambient Lights */
   .bg-cyber-grid {
-    background-size: 32px 32px;
-    background-image:
-      linear-gradient(to right, rgba(11, 25, 56, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(11, 25, 56, 0.04) 1px, transparent 1px);
+    background-image: none;
   }
 
   .bg-radial-gradient {
-    background: radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.08) 0%, rgba(2, 132, 199, 0.03) 40%, transparent 70%);
+    background: radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.15) 0%, rgba(0, 240, 255, 0.05) 40%, transparent 70%);
   }
 
-  /* Modern Light Card */
+  /* Modern Dark Card */
   .modern-card {
-    background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(11, 25, 56, 0.04);
+    background: #0B1528;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     transition: all 0.2s ease;
   }
 
   .modern-card:hover {
-    border-color: rgba(0, 102, 255, 0.4);
-    box-shadow: 0 12px 28px -6px rgba(0, 102, 255, 0.12);
+    border-color: rgba(0, 102, 255, 0.5);
+    box-shadow: 0 12px 32px -6px rgba(0, 102, 255, 0.25);
   }
 
-  /* Gradient Text matching Logo: Deep Navy ("Build") to Vibrant Blue ("Zone") */
+  /* Gradient Text matching Logo: Crisp White to Vibrant Neon Cyan / Electric Blue */
   .text-gradient-blue {
-    background: linear-gradient(135deg, #0B1938 30%, #0066FF 100%);
+    background: linear-gradient(135deg, #FFFFFF 30%, #38BDF8 70%, #0066FF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .text-gradient-neon {
-    background: linear-gradient(135deg, #0066FF 0%, #0284C7 100%);
+    background: linear-gradient(135deg, #00F0FF 0%, #0066FF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  /* 100% Solid Non-Transparent Dropdown Menu */
+  /* Solid Non-Transparent Dark Dropdown Menu */
   .nav-dropdown {
-    background-color: #FFFFFF !important;
+    background-color: #0B1528 !important;
     opacity: 1 !important;
-    box-shadow: 0 20px 40px -8px rgba(11, 25, 56, 0.15), 0 0 0 1px rgba(226, 232, 240, 1) !important;
+    box-shadow: 0 20px 50px -8px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
   }
 }

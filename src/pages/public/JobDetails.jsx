@@ -68,12 +68,12 @@ export const JobDetails = () => {
         description={job.shortDescription}
       />
 
-      <div className="py-12 sm:py-20">
+      <div className="py-12 sm:py-20 bg-[#060B18]">
         <Container>
           <div className="mb-8">
             <Link
               to="/careers"
-              className="font-mono text-xs text-slate-500 hover:text-[#0066FF] inline-flex items-center gap-1.5 uppercase tracking-wider font-semibold"
+              className="font-mono text-xs text-slate-400 hover:text-[#00F0FF] inline-flex items-center gap-1.5 uppercase tracking-wider font-semibold transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Open Positions</span>
@@ -88,35 +88,35 @@ export const JobDetails = () => {
                   {job.department}
                 </Badge>
 
-                <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+                <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-white">
                   {job.title}
                 </h1>
 
-                <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-slate-600 pt-2 border-b border-slate-200 pb-6">
+                <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-slate-400 pt-2 border-b border-slate-800 pb-6">
                   <div className="flex items-center gap-1.5">
-                    <MapPin className="w-4 h-4 text-[#0066FF]" />
+                    <MapPin className="w-4 h-4 text-[#00F0FF]" />
                     <span>{job.location}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Briefcase className="w-4 h-4 text-[#0066FF]" />
+                    <Briefcase className="w-4 h-4 text-[#00F0FF]" />
                     <span>{job.employmentType}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 font-bold text-emerald-700">
-                    <DollarSign className="w-4 h-4 text-emerald-600" />
+                  <div className="flex items-center gap-1.5 font-bold text-emerald-400 bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-800/60">
+                    <DollarSign className="w-4 h-4 text-emerald-400" />
                     <span>{job.salaryRange}</span>
                   </div>
                 </div>
               </div>
 
               {/* Responsibilities */}
-              <div className="p-8 bg-white border border-slate-200 rounded-lg shadow-sm space-y-4">
-                <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+              <div className="p-8 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl space-y-4">
+                <h2 className="font-display text-xl font-bold uppercase text-white">
                   What You'll Lead & Build
                 </h2>
-                <ul className="space-y-2.5">
+                <ul className="space-y-3">
                   {job.responsibilities?.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600 font-sans leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300 font-sans leading-relaxed">
+                      <CheckCircle2 className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -124,14 +124,14 @@ export const JobDetails = () => {
               </div>
 
               {/* Requirements */}
-              <div className="p-8 bg-white border border-slate-200 rounded-lg shadow-sm space-y-4">
-                <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+              <div className="p-8 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl space-y-4">
+                <h2 className="font-display text-xl font-bold uppercase text-white">
                   Required Qualifications
                 </h2>
-                <ul className="space-y-2.5">
+                <ul className="space-y-3">
                   {job.requirements?.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600 font-sans leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300 font-sans leading-relaxed">
+                      <CheckCircle2 className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -139,14 +139,14 @@ export const JobDetails = () => {
               </div>
 
               {/* Benefits */}
-              <div className="p-8 bg-white border border-slate-200 rounded-lg shadow-sm space-y-4">
-                <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+              <div className="p-8 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl space-y-4">
+                <h2 className="font-display text-xl font-bold uppercase text-white">
                   Perks & Compensation
                 </h2>
-                <ul className="space-y-2.5">
+                <ul className="space-y-3">
                   {job.benefits?.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600 font-sans leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300 font-sans leading-relaxed">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -156,16 +156,16 @@ export const JobDetails = () => {
 
             {/* Right Column: Application Form (Sticky) */}
             <div className="lg:col-span-5">
-              <div className="p-6 sm:p-8 bg-white border border-slate-200 rounded-lg shadow-lg sticky top-24">
+              <div className="p-6 sm:p-8 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-2xl sticky top-24">
                 {isApplied ? (
                   <div className="text-center py-10 space-y-4">
-                    <div className="w-14 h-14 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-[#0066FF] mx-auto">
+                    <div className="w-14 h-14 bg-[#0066FF]/15 border border-[#0066FF]/40 rounded-full flex items-center justify-center text-[#00F0FF] mx-auto">
                       <CheckCircle2 className="w-7 h-7" />
                     </div>
-                    <h2 className="text-xl font-bold font-display uppercase text-[#0B1938]">
+                    <h2 className="text-xl font-bold font-display uppercase text-white">
                       Application Sent!
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-600">
+                    <p className="text-xs sm:text-sm text-slate-300">
                       We’ve received your credentials. Our recruiting team will review your background and respond promptly.
                     </p>
                     <Button variant="outline" size="sm" onClick={() => setIsApplied(false)} className="mt-4">
@@ -174,87 +174,87 @@ export const JobDetails = () => {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <div className="border-b border-slate-200 pb-3 mb-4">
-                      <h2 className="font-display font-bold text-lg uppercase text-[#0B1938]">
+                    <div className="border-b border-slate-800 pb-3 mb-4">
+                      <h2 className="font-display font-bold text-lg uppercase text-white">
                         Apply for this Role
                       </h2>
-                      <p className="font-mono text-[11px] text-slate-500">Fast-track direct engineering review</p>
+                      <p className="font-mono text-[11px] text-slate-400">Fast-track direct engineering review</p>
                     </div>
 
                     <div>
-                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                         Full Name *
                       </label>
                       <input
                         type="text"
                         placeholder="e.g. Jordan Sterling"
                         {...register('name')}
-                        className="w-full bg-[#F8FAFC] border border-slate-300 px-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md"
+                        className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl"
                       />
-                      {errors.name && <p className="font-mono text-[10px] text-rose-500 mt-1">{errors.name.message}</p>}
+                      {errors.name && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.name.message}</p>}
                     </div>
 
                     <div>
-                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                         Email Address *
                       </label>
                       <input
                         type="email"
                         placeholder="jordan@dev.com"
                         {...register('email')}
-                        className="w-full bg-[#F8FAFC] border border-slate-300 px-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md"
+                        className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl"
                       />
-                      {errors.email && <p className="font-mono text-[10px] text-rose-500 mt-1">{errors.email.message}</p>}
+                      {errors.email && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.email.message}</p>}
                     </div>
 
                     <div>
-                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                         Phone Number *
                       </label>
                       <input
                         type="text"
                         placeholder="+1 (555) 000-0000"
                         {...register('phone')}
-                        className="w-full bg-[#F8FAFC] border border-slate-300 px-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md"
+                        className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl"
                       />
-                      {errors.phone && <p className="font-mono text-[10px] text-rose-500 mt-1">{errors.phone.message}</p>}
+                      {errors.phone && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.phone.message}</p>}
                     </div>
 
                     <div>
-                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                         Portfolio / GitHub / LinkedIn
                       </label>
                       <input
                         type="url"
                         placeholder="https://github.com/yourhandle"
                         {...register('portfolio')}
-                        className="w-full bg-[#F8FAFC] border border-slate-300 px-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md"
+                        className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl"
                       />
-                      {errors.portfolio && <p className="font-mono text-[10px] text-rose-500 mt-1">{errors.portfolio.message}</p>}
+                      {errors.portfolio && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.portfolio.message}</p>}
                     </div>
 
                     <div>
-                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                         Resume / CV Link *
                       </label>
                       <input
                         type="url"
                         placeholder="https://drive.google.com/... or LinkedIn"
                         {...register('resumeLink')}
-                        className="w-full bg-[#F8FAFC] border border-slate-300 px-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md"
+                        className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl"
                       />
-                      {errors.resumeLink && <p className="font-mono text-[10px] text-rose-500 mt-1">{errors.resumeLink.message}</p>}
+                      {errors.resumeLink && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.resumeLink.message}</p>}
                     </div>
 
                     <div>
-                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                      <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                         Why are you excited about BuildZone?
                       </label>
                       <textarea
                         rows={3}
                         placeholder="Highlight recent technical architectures you've built..."
                         {...register('coverLetter')}
-                        className="w-full bg-[#F8FAFC] border border-slate-300 px-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md font-sans"
+                        className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl font-sans"
                       />
                     </div>
 

@@ -68,19 +68,19 @@ export const Dashboard = () => {
   return (
     <div className="space-y-8">
       {/* Top Welcome */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white">
             OPERATIONAL DASHBOARD
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans pt-1">
             Real-time pipeline metrics, lead acquisition channels, and project status.
           </p>
         </div>
 
         <Link
           to={`${ADMIN_BASE_PATH}/leads`}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-[#0066FF] text-white hover:bg-[#0052cc] rounded-lg font-mono text-xs transition-all font-bold uppercase self-start sm:self-auto shadow-sm shadow-[#0066FF]/20"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white hover:opacity-95 rounded-xl font-mono text-xs transition-all font-bold uppercase self-start sm:self-auto shadow-md shadow-blue-500/20"
         >
           <span>Open Lead CRM</span>
           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -89,77 +89,77 @@ export const Dashboard = () => {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div className="p-5 sm:p-6 bg-white border border-slate-200 rounded-xl space-y-2 shadow-2xs">
-          <div className="flex items-center justify-between text-slate-500 font-mono text-xs">
+        <div className="p-5 sm:p-6 bg-[#0B1528] border border-slate-800 rounded-2xl space-y-2 shadow-xl hover:border-slate-700 transition-all">
+          <div className="flex items-center justify-between text-slate-400 font-mono text-xs">
             <span className="font-semibold uppercase tracking-wider">Total Leads</span>
-            <div className="p-2 bg-blue-50 text-[#0066FF] rounded-lg">
+            <div className="p-2 bg-[#070E1C] border border-slate-800 text-[#00F0FF] rounded-xl">
               <Users className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-black font-display text-[#0B1938]">{totalLeads}</div>
-          <div className="font-mono text-[11px] text-emerald-600 font-bold">+34% vs last month</div>
+          <div className="text-2xl sm:text-3xl font-black font-display text-white">{totalLeads}</div>
+          <div className="font-mono text-[11px] text-emerald-400 font-bold">+34% vs last month</div>
         </div>
 
-        <div className="p-5 sm:p-6 bg-white border border-blue-200 rounded-xl space-y-2 shadow-2xs">
-          <div className="flex items-center justify-between text-slate-500 font-mono text-xs">
+        <div className="p-5 sm:p-6 bg-[#0B1528] border border-[#0066FF]/40 rounded-2xl space-y-2 shadow-xl hover:border-[#00F0FF]/60 transition-all">
+          <div className="flex items-center justify-between text-slate-400 font-mono text-xs">
             <span className="font-semibold uppercase tracking-wider">New Inquiries</span>
-            <div className="p-2 bg-blue-50 text-[#0066FF] rounded-lg">
+            <div className="p-2 bg-[#070E1C] border border-slate-800 text-[#00F0FF] rounded-xl">
               <Clock className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-black font-display text-[#0066FF]">{newLeads}</div>
-          <div className="font-mono text-[11px] text-slate-500 font-medium">Pending initial response</div>
+          <div className="text-2xl sm:text-3xl font-black font-display text-[#00F0FF]">{newLeads}</div>
+          <div className="font-mono text-[11px] text-slate-400 font-medium">Pending initial response</div>
         </div>
 
-        <div className="p-5 sm:p-6 bg-white border border-slate-200 rounded-xl space-y-2 shadow-2xs">
-          <div className="flex items-center justify-between text-slate-500 font-mono text-xs">
+        <div className="p-5 sm:p-6 bg-[#0B1528] border border-slate-800 rounded-2xl space-y-2 shadow-xl hover:border-slate-700 transition-all">
+          <div className="flex items-center justify-between text-slate-400 font-mono text-xs">
             <span className="font-semibold uppercase tracking-wider">Proposals Active</span>
-            <div className="p-2 bg-purple-50 text-purple-600 rounded-lg">
+            <div className="p-2 bg-[#070E1C] border border-slate-800 text-purple-400 rounded-xl">
               <TrendingUp className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-black font-display text-[#0B1938]">{proposals}</div>
-          <div className="font-mono text-[11px] text-purple-600 font-bold">In review / negotiation</div>
+          <div className="text-2xl sm:text-3xl font-black font-display text-white">{proposals}</div>
+          <div className="font-mono text-[11px] text-purple-400 font-bold">In review / negotiation</div>
         </div>
 
-        <div className="p-5 sm:p-6 bg-white border border-slate-200 rounded-xl space-y-2 shadow-2xs">
-          <div className="flex items-center justify-between text-slate-500 font-mono text-xs">
+        <div className="p-5 sm:p-6 bg-[#0B1528] border border-slate-800 rounded-2xl space-y-2 shadow-xl hover:border-slate-700 transition-all">
+          <div className="flex items-center justify-between text-slate-400 font-mono text-xs">
             <span className="font-semibold uppercase tracking-wider">Closed Won</span>
-            <div className="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
+            <div className="p-2 bg-[#070E1C] border border-slate-800 text-emerald-400 rounded-xl">
               <CheckCircle2 className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-black font-display text-emerald-600">{wonLeads}</div>
-          <div className="font-mono text-[11px] text-emerald-600 font-bold">Contracted & In Progress</div>
+          <div className="text-2xl sm:text-3xl font-black font-display text-emerald-400">{wonLeads}</div>
+          <div className="font-mono text-[11px] text-emerald-400 font-bold">Contracted & In Progress</div>
         </div>
       </div>
 
       {/* Secondary Metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-2xs">
-          <div className="font-mono text-xs text-slate-500 uppercase font-semibold">Live Projects</div>
-          <div className="text-xl font-bold text-[#0B1938] mt-1">{projects?.length || 6}</div>
+        <div className="p-4 bg-[#0B1528] border border-slate-800 rounded-2xl text-center shadow-lg">
+          <div className="font-mono text-xs text-slate-400 uppercase font-semibold">Live Projects</div>
+          <div className="text-xl font-bold text-white mt-1">{projects?.length || 6}</div>
         </div>
-        <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-2xs">
-          <div className="font-mono text-xs text-slate-500 uppercase font-semibold">Published Posts</div>
-          <div className="text-xl font-bold text-[#0B1938] mt-1">{blogs?.length || 7}</div>
+        <div className="p-4 bg-[#0B1528] border border-slate-800 rounded-2xl text-center shadow-lg">
+          <div className="font-mono text-xs text-slate-400 uppercase font-semibold">Published Posts</div>
+          <div className="text-xl font-bold text-white mt-1">{blogs?.length || 7}</div>
         </div>
-        <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-2xs">
-          <div className="font-mono text-xs text-slate-500 uppercase font-semibold">Open Careers</div>
-          <div className="text-xl font-bold text-[#0B1938] mt-1">{careers?.length || 4}</div>
+        <div className="p-4 bg-[#0B1528] border border-slate-800 rounded-2xl text-center shadow-lg">
+          <div className="font-mono text-xs text-slate-400 uppercase font-semibold">Open Careers</div>
+          <div className="text-xl font-bold text-white mt-1">{careers?.length || 4}</div>
         </div>
-        <div className="p-4 bg-white border border-slate-200 rounded-xl text-center shadow-2xs">
-          <div className="font-mono text-xs text-slate-500 uppercase font-semibold">Qualified Rate</div>
-          <div className="text-xl font-bold text-[#0066FF] mt-1">78.4%</div>
+        <div className="p-4 bg-[#0B1528] border border-slate-800 rounded-2xl text-center shadow-lg">
+          <div className="font-mono text-xs text-slate-400 uppercase font-semibold">Qualified Rate</div>
+          <div className="text-xl font-bold text-[#00F0FF] mt-1">78.4%</div>
         </div>
       </div>
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left 2 Cols: Monthly Bar Chart */}
-        <div className="lg:col-span-2 p-6 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-4">
+        <div className="lg:col-span-2 p-6 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
+            <h2 className="font-display text-sm font-bold uppercase text-white tracking-wider">
               Lead Acquisition & Conversions (Last 6 Months)
             </h2>
             <Badge variant="cyan" size="sm">2026 Telemetry</Badge>
@@ -168,27 +168,27 @@ export const Dashboard = () => {
           <div className="h-64 w-full pt-4">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={monthlyData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
                 <XAxis dataKey="month" stroke="#64748B" fontSize={11} fontFamily="monospace" />
                 <YAxis stroke="#64748B" fontSize={11} fontFamily="monospace" />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0', color: '#0B1938', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                  cursor={{ fill: 'rgba(0, 102, 255, 0.05)' }}
+                  contentStyle={{ backgroundColor: '#070E1C', borderColor: '#1E293B', color: '#FFFFFF', borderRadius: '12px', boxShadow: '0 10px 25px rgba(0,0,0,0.5)' }}
+                  cursor={{ fill: 'rgba(0, 240, 255, 0.05)' }}
                 />
-                <Bar dataKey="leads" name="Total Inquiries" fill="#E2E8F0" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="won" name="Won Contracts" fill="#0066FF" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="leads" name="Total Inquiries" fill="#1E293B" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="won" name="Won Contracts" fill="#00F0FF" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* Right Col: Service Distribution */}
-        <div className="p-6 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-4 flex flex-col justify-between">
+        <div className="p-6 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl space-y-4 flex flex-col justify-between">
           <div>
-            <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider mb-1">
+            <h2 className="font-display text-sm font-bold uppercase text-white tracking-wider mb-1">
               Demand by Service
             </h2>
-            <p className="font-mono text-[11px] text-slate-500">Share of incoming inquiries</p>
+            <p className="font-mono text-[11px] text-slate-400">Share of incoming inquiries</p>
           </div>
 
           <div className="h-44 w-full">
@@ -207,16 +207,16 @@ export const Dashboard = () => {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0', color: '#0B1938', borderRadius: '8px' }} />
+                <Tooltip contentStyle={{ backgroundColor: '#070E1C', borderColor: '#1E293B', color: '#FFFFFF', borderRadius: '12px' }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
+          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
             {serviceBreakdown.map((item) => (
               <div key={item.name} className="flex items-center gap-2 text-xs font-mono">
                 <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: item.color }}></span>
-                <span className="text-slate-700 font-medium truncate">{item.name}</span>
+                <span className="text-slate-300 font-medium truncate">{item.name}</span>
               </div>
             ))}
           </div>
@@ -224,12 +224,12 @@ export const Dashboard = () => {
       </div>
 
       {/* Recent Leads Preview */}
-      <div className="p-6 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-4">
+      <div className="p-6 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-sm font-bold uppercase text-[#0B1938] tracking-wider">
+          <h2 className="font-display text-sm font-bold uppercase text-white tracking-wider">
             Latest Pipeline Inquiries
           </h2>
-          <Link to={`${ADMIN_BASE_PATH}/leads`} className="font-mono text-xs text-[#0066FF] hover:underline font-bold">
+          <Link to={`${ADMIN_BASE_PATH}/leads`} className="font-mono text-xs text-[#00F0FF] hover:underline font-bold">
             View All {totalLeads} Leads →
           </Link>
         </div>
@@ -237,7 +237,7 @@ export const Dashboard = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left font-mono text-xs border-collapse">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-500 uppercase text-[10px]">
+              <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px]">
                 <th className="pb-3 px-3">Client / Company</th>
                 <th className="pb-3 px-3">Service</th>
                 <th className="pb-3 px-3">Budget</th>
@@ -245,19 +245,19 @@ export const Dashboard = () => {
                 <th className="pb-3 px-3 text-right">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-800/60">
               {leads?.slice(0, 4).map((lead) => (
-                <tr key={lead.id} className="hover:bg-blue-50/40 transition-colors">
-                  <td className="py-3.5 px-3 text-[#0B1938] font-bold">{lead.name} <span className="text-slate-500 font-normal">({lead.company || lead.country})</span></td>
-                  <td className="py-3.5 px-3 text-[#0066FF] font-semibold">{lead.service}</td>
-                  <td className="py-3.5 px-3 text-slate-700">{lead.budget || '$10k+'}</td>
+                <tr key={lead.id} className="hover:bg-slate-800/30 transition-colors">
+                  <td className="py-3.5 px-3 text-white font-bold">{lead.name} <span className="text-slate-400 font-normal">({lead.company || lead.country})</span></td>
+                  <td className="py-3.5 px-3 text-[#00F0FF] font-semibold">{lead.service}</td>
+                  <td className="py-3.5 px-3 text-slate-300">{lead.budget || '$10k+'}</td>
                   <td className="py-3.5 px-3">
                     <Badge variant={lead.status === 'Won' ? 'emerald' : lead.status === 'Negotiation' ? 'violet' : 'cyan'} size="sm">
                       {lead.status}
                     </Badge>
                   </td>
                   <td className="py-3.5 px-3 text-right">
-                    <Link to={`${ADMIN_BASE_PATH}/leads/${lead.id}`} className="text-[#0066FF] hover:underline uppercase font-bold">
+                    <Link to={`${ADMIN_BASE_PATH}/leads/${lead.id}`} className="text-[#00F0FF] hover:underline uppercase font-bold">
                       Open →
                     </Link>
                   </td>

@@ -114,17 +114,17 @@ export const ServicesManager = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+            <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white">
               SERVICES & CAPABILITIES
             </h1>
-            <span className="px-2 py-0.5 bg-blue-50 text-[#0066FF] border border-blue-200 text-[10px] font-mono font-bold rounded-full">
+            <span className="px-2 py-0.5 bg-[#0066FF]/20 text-[#00F0FF] border border-[#00F0FF]/30 text-[10px] font-mono font-bold rounded-full">
               {services?.length || 0} CAPABILITIES
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans pt-1">
             Configure public engineering service offerings, deliverables, and technology stacks.
           </p>
         </div>
@@ -134,7 +134,7 @@ export const ServicesManager = () => {
           size="sm"
           onClick={handleOpenAdd}
           leftIcon={<Plus className="w-4 h-4" />}
-          className="shadow-sm"
+          className="shadow-sm cursor-pointer"
         >
           Add Service
         </Button>
@@ -148,24 +148,24 @@ export const ServicesManager = () => {
           return (
             <div
               key={id}
-              className="p-6 bg-white border border-slate-200 rounded-2xl shadow-2xs flex flex-col justify-between hover:shadow-md hover:border-blue-200 transition-all group relative"
+              className="p-6 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl flex flex-col justify-between hover:border-[#00F0FF]/40 hover:shadow-2xl transition-all group relative"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-2.5 bg-blue-50 border border-blue-200 text-[#0066FF] rounded-xl shadow-2xs">
+                  <div className="p-2.5 bg-[#0066FF]/20 border border-[#00F0FF]/30 text-[#00F0FF] rounded-xl shadow-sm">
                     {renderIcon(s.iconName || 'Globe', { className: "w-5 h-5" })}
                   </div>
                   <Badge variant="cyan" size="sm">{s.category}</Badge>
                 </div>
 
-                <h2 className="font-display text-base font-bold uppercase text-[#0B1938] mb-2">{s.title}</h2>
-                <p className="text-xs text-slate-600 line-clamp-3 mb-4 leading-relaxed font-sans">{s.shortDescription}</p>
+                <h2 className="font-display text-base font-bold uppercase text-white mb-2">{s.title}</h2>
+                <p className="text-xs text-slate-300 line-clamp-3 mb-4 leading-relaxed font-sans">{s.shortDescription}</p>
 
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {s.technologies?.slice(0, 4).map((t, idx) => (
                     <span
                       key={idx}
-                      className="px-2 py-0.5 bg-slate-100 border border-slate-200 text-slate-700 rounded-md text-[10px] font-mono font-medium"
+                      className="px-2 py-0.5 bg-[#070E1C] border border-slate-800 text-slate-300 rounded-md text-[10px] font-mono font-medium"
                     >
                       {t}
                     </span>
@@ -173,19 +173,19 @@ export const ServicesManager = () => {
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                <span className="font-mono text-[11px] text-[#0066FF] font-semibold">/{s.slug}</span>
+              <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
+                <span className="font-mono text-[11px] text-[#00F0FF] font-semibold">/{s.slug}</span>
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => handleOpenEdit(s)}
-                    className="p-1.5 text-slate-400 hover:text-[#0066FF] hover:bg-blue-50 rounded-lg transition-colors cursor-pointer"
+                    className="p-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-[#070E1C] rounded-lg transition-colors cursor-pointer"
                     title="Edit Service"
                   >
                     <Edit3 className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => handleDeleteClick(id, s.title)}
-                    className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                    className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors cursor-pointer"
                     title="Delete Service"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -199,17 +199,24 @@ export const ServicesManager = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
-          <div className="w-full max-w-xl bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
+          <div className="w-full max-w-xl bg-[#0B1528] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl my-8">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <h2 className="font-display text-lg font-bold uppercase text-white">
                 {editingId ? 'Edit Engineering Service' : 'Add New Service Capability'}
               </h2>
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer font-bold"
+              >
+                ✕
+              </button>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4 font-sans text-xs">
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Service Title *
                 </label>
                 <input
@@ -218,47 +225,47 @@ export const ServicesManager = () => {
                   value={formData.title}
                   onChange={e => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g. AI Agents & Machine Learning Systems"
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-medium"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Category *
                   </label>
                   <select
                     value={formData.category}
                     onChange={e => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner cursor-pointer font-medium"
                   >
-                    <option value="Engineering">Engineering</option>
-                    <option value="AI & ML">AI & ML</option>
-                    <option value="Cloud Architecture">Cloud Architecture</option>
-                    <option value="Mobile Engineering">Mobile Engineering</option>
-                    <option value="Cybersecurity">Cybersecurity</option>
-                    <option value="Design Systems">Design Systems</option>
+                    <option value="Engineering" className="bg-[#0B1528] text-white">Engineering</option>
+                    <option value="AI & ML" className="bg-[#0B1528] text-white">AI & ML</option>
+                    <option value="Cloud Architecture" className="bg-[#0B1528] text-white">Cloud Architecture</option>
+                    <option value="Mobile Engineering" className="bg-[#0B1528] text-white">Mobile Engineering</option>
+                    <option value="Cybersecurity" className="bg-[#0B1528] text-white">Cybersecurity</option>
+                    <option value="Design Systems" className="bg-[#0B1528] text-white">Design Systems</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Icon Name
                   </label>
                   <select
                     value={formData.iconName}
                     onChange={e => setFormData({ ...formData, iconName: e.target.value })}
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-mono font-bold"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner cursor-pointer font-mono font-bold"
                   >
                     {iconOptions.map(icon => (
-                      <option key={icon} value={icon}>{icon}</option>
+                      <option key={icon} value={icon} className="bg-[#0B1528] text-white">{icon}</option>
                     ))}
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Short Description *
                 </label>
                 <textarea
@@ -267,12 +274,12 @@ export const ServicesManager = () => {
                   value={formData.shortDescription}
                   onChange={e => setFormData({ ...formData, shortDescription: e.target.value })}
                   placeholder="Overview of this service capability displayed in cards and menus..."
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs leading-relaxed"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner leading-relaxed"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Hero Detailed Description
                 </label>
                 <textarea
@@ -280,12 +287,12 @@ export const ServicesManager = () => {
                   value={formData.heroDescription}
                   onChange={e => setFormData({ ...formData, heroDescription: e.target.value })}
                   placeholder="In-depth hero section explanation for the dedicated service landing page..."
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs leading-relaxed"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner leading-relaxed"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Technologies (comma separated)
                 </label>
                 <input
@@ -293,12 +300,12 @@ export const ServicesManager = () => {
                   value={formData.technologies}
                   onChange={e => setFormData({ ...formData, technologies: e.target.value })}
                   placeholder="Python, PyTorch, LangChain, OpenAI, FastAPI, Docker"
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-mono"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Key Deliverables / Benefits (comma separated)
                 </label>
                 <input
@@ -306,11 +313,11 @@ export const ServicesManager = () => {
                   value={formData.deliverables}
                   onChange={e => setFormData({ ...formData, deliverables: e.target.value })}
                   placeholder="Autonomous Agents, Fine-tuned LLMs, Custom RAG Pipeline, 99.9% Uptime"
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-4 border-t border-slate-100">
+              <div className="flex justify-end gap-2 pt-4 border-t border-slate-800">
                 <Button
                   type="button"
                   variant="ghost"

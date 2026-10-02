@@ -29,19 +29,19 @@ export const Technologies = () => {
         canonical="https://buildzonetechnology.com/technologies"
       />
 
-      <div className="py-12 sm:py-20">
+      <div className="py-12 sm:py-20 bg-[#060B18]">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
-              <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/15 border border-[#0066FF]/40 rounded-full mb-4 shadow-xs">
+              <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                 ENGINEERED STACK
               </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-4">
-              TECHNOLOGY CATALOG
+            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-white mb-4">
+              TECHNOLOGY <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">CATALOG</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
               We select modern, battle-tested technologies that balance developer velocity, extreme scalability, and long-term maintainability.
             </p>
           </div>
@@ -52,10 +52,10 @@ export const Technologies = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-all rounded-md border ${
+                className={`px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-all rounded-xl border ${
                   activeCategory === cat
-                    ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-sm'
-                    : 'bg-white text-slate-700 border-slate-300 hover:border-[#0066FF] hover:text-[#0066FF]'
+                    ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-[0_0_15px_rgba(0,102,255,0.4)]'
+                    : 'bg-[#0B1528] text-slate-300 border-slate-800 hover:border-[#00F0FF]/50 hover:text-[#00F0FF]'
                 }`}
               >
                 {cat}
@@ -67,17 +67,17 @@ export const Technologies = () => {
           {isLoading && (!technologiesData || technologiesData.length === 0) ? (
             <div className="py-8">
               <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
-                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
-                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                <div className="w-10 h-10 border-3 border-slate-800 border-t-[#00F0FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-400 tracking-widest uppercase font-semibold">
                   Loading Technology Catalog...
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-pulse">
                 {[1, 2, 3, 4].map((n) => (
-                  <div key={n} className="bg-white border border-slate-200 rounded-lg p-6 space-y-3">
-                    <div className="w-10 h-10 bg-slate-100 rounded-md" />
-                    <div className="w-2/3 h-5 bg-slate-100 rounded" />
-                    <div className="w-full h-8 bg-slate-50 rounded" />
+                  <div key={n} className="bg-[#0B1528] border border-slate-800 rounded-2xl p-6 space-y-3">
+                    <div className="w-10 h-10 bg-slate-800/60 rounded-xl" />
+                    <div className="w-2/3 h-5 bg-slate-800/60 rounded" />
+                    <div className="w-full h-8 bg-slate-800/40 rounded" />
                   </div>
                 ))}
               </div>
@@ -87,11 +87,11 @@ export const Technologies = () => {
             {filtered?.map((tech) => (
               <div
                 key={tech.id || tech.name}
-                className="p-6 bg-white border border-slate-200 hover:border-[#0066FF]/40 rounded-lg transition-all flex flex-col justify-between group shadow-sm hover:shadow-md"
+                className="p-6 bg-[#0B1528] border border-slate-800 hover:border-[#00F0FF]/50 rounded-2xl transition-all flex flex-col justify-between group shadow-xl hover:shadow-[0_0_30px_rgba(0,102,255,0.2)] hover:-translate-y-0.5"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white transition-all">
+                    <div className="w-12 h-12 bg-[#122038] border border-slate-700/80 rounded-xl flex items-center justify-center text-[#00F0FF] group-hover:scale-110 transition-all">
                       {renderIcon(tech.iconName, { className: "w-6 h-6" })}
                     </div>
                     <Badge variant="cyan" size="sm">
@@ -99,18 +99,18 @@ export const Technologies = () => {
                     </Badge>
                   </div>
 
-                  <h2 className="text-lg font-bold font-display uppercase tracking-tight text-[#0B1938] mb-2 group-hover:text-[#0066FF] transition-colors">
+                  <h2 className="text-lg font-bold font-display uppercase tracking-tight text-white mb-2 group-hover:text-[#00F0FF] transition-colors">
                     {tech.name}
                   </h2>
 
-                  <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed mb-6">
                     {tech.description}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-slate-500">
+                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between font-mono text-[11px] text-slate-400">
                   <span>Production Ready</span>
-                  <span className="text-[#0066FF] font-bold">100% Tested</span>
+                  <span className="text-[#00F0FF] font-bold">100% Tested</span>
                 </div>
               </div>
             ))}

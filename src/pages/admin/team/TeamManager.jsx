@@ -86,7 +86,7 @@ export const TeamManager = () => {
       setEditingId(null);
       setFormData(initialForm);
       refetch?.();
-    } catch (e) {
+    } catch (err) {
       toast.error(editingId ? "Failed to update team member" : "Failed to add team member");
     }
   };
@@ -101,7 +101,7 @@ export const TeamManager = () => {
       toast.success("Team member removed successfully");
       setDeleteConfirm({ isOpen: false, id: null, name: '' });
       refetch?.();
-    } catch (e) {
+    } catch (err) {
       toast.error("Failed to delete team member");
     }
   };
@@ -109,12 +109,12 @@ export const TeamManager = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white">
             TEAM & LEADERSHIP DIRECTORY
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans pt-1">
             Manage partner credentials, upload executive headshots to Cloudinary, and maintain skills.
           </p>
         </div>
@@ -124,7 +124,7 @@ export const TeamManager = () => {
           size="sm"
           onClick={handleOpenCreate}
           leftIcon={<Plus className="w-4 h-4" />}
-          className="shadow-sm shrink-0"
+          className="shadow-sm shrink-0 cursor-pointer"
         >
           Add Partner
         </Button>
@@ -141,44 +141,44 @@ export const TeamManager = () => {
           {team?.map((member) => {
             const memberId = member.id || member._id;
             return (
-              <div key={memberId} className="p-6 bg-white border border-slate-200 rounded-xl shadow-2xs flex flex-col justify-between hover:shadow-md transition-shadow">
+              <div key={memberId} className="p-6 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl flex flex-col justify-between hover:border-[#00F0FF]/40 hover:shadow-2xl transition-all">
                 <div>
                   <div className="flex items-center gap-3.5 mb-4">
                     <img
                       src={member.image}
                       alt={member.name || "Team member photo"}
-                      className="w-14 h-14 rounded-full object-cover border-2 border-blue-100 shadow-2xs shrink-0"
+                      className="w-14 h-14 rounded-full object-cover border-2 border-[#0066FF]/40 shadow-sm shrink-0"
                       onError={(e) => {
                         e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80';
                       }}
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2">
-                        <h2 className="font-display text-base font-bold uppercase text-[#0B1938] truncate">{member.name}</h2>
+                        <h2 className="font-display text-base font-bold uppercase text-white truncate">{member.name}</h2>
                         <Badge variant="cyan" size="sm">{member.department || 'Leadership'}</Badge>
                       </div>
-                      <p className="font-mono text-xs text-[#0066FF] font-semibold">{member.position}</p>
+                      <p className="font-mono text-xs text-[#00F0FF] font-semibold">{member.position}</p>
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-600 line-clamp-3 mb-4 font-sans leading-relaxed">{member.bio}</p>
+                  <p className="text-xs text-slate-300 line-clamp-3 mb-4 font-sans leading-relaxed">{member.bio}</p>
 
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {member.skills?.map(s => (
-                      <span key={s} className="px-2 py-0.5 bg-slate-100 border border-slate-200 text-slate-700 rounded-md text-[10px] font-medium">{s}</span>
+                      <span key={s} className="px-2 py-0.5 bg-[#070E1C] border border-slate-800 text-slate-300 rounded-md text-[10px] font-medium font-mono">{s}</span>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     {member.linkedin && (
-                      <a href={member.linkedin} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#0066FF] transition-colors" aria-label="LinkedIn Profile">
+                      <a href={member.linkedin} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#00F0FF] transition-colors" aria-label="LinkedIn Profile">
                         <LinkedInIcon className="w-3.5 h-3.5 fill-current" />
                       </a>
                     )}
                     {member.github && (
-                      <a href={member.github} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-[#0B1938] transition-colors" aria-label="GitHub Profile">
+                      <a href={member.github} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors" aria-label="GitHub Profile">
                         <GitHubIcon className="w-3.5 h-3.5 fill-current" />
                       </a>
                     )}
@@ -188,7 +188,7 @@ export const TeamManager = () => {
                     <button
                       type="button"
                       onClick={() => handleOpenEdit(member)}
-                      className="p-1.5 text-slate-400 hover:text-[#0066FF] hover:bg-blue-50 rounded-lg transition-colors cursor-pointer"
+                      className="p-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-[#070E1C] rounded-lg transition-colors cursor-pointer"
                       title="Edit Profile"
                     >
                       <Edit2 className="w-4 h-4" />
@@ -196,7 +196,7 @@ export const TeamManager = () => {
                     <button
                       type="button"
                       onClick={() => handleDeleteClick(memberId, member.name)}
-                      className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                      className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors cursor-pointer"
                       title="Delete Profile"
                       aria-label={`Delete team member ${member.name}`}
                     >
@@ -212,16 +212,16 @@ export const TeamManager = () => {
 
       {/* Create / Edit Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
-          <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
+          <div className="w-full max-w-md bg-[#0B1528] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <h2 className="font-display text-lg font-bold uppercase text-white">
                 {editingId ? "Edit Partner Profile" : "Add Team Partner"}
               </h2>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-slate-600 font-mono text-sm cursor-pointer"
+                className="text-slate-400 hover:text-white font-mono text-sm cursor-pointer"
               >
                 ✕
               </button>
@@ -238,7 +238,7 @@ export const TeamManager = () => {
               />
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Full Name *
                 </label>
                 <input
@@ -247,13 +247,13 @@ export const TeamManager = () => {
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Dr. Sofia Chen"
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-medium"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Position / Title *
                   </label>
                   <input
@@ -261,31 +261,31 @@ export const TeamManager = () => {
                     required
                     value={formData.position}
                     onChange={e => setFormData({ ...formData, position: e.target.value })}
-                    placeholder="e.g. Lead Full-Stack Developer / QA Engineer"
-                    className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-medium"
+                    placeholder="e.g. Lead Full-Stack Developer"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-medium"
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     Role Category / Department *
                   </label>
                   <select
                     value={formData.department}
                     onChange={e => setFormData({ ...formData, department: e.target.value })}
-                    className="w-full bg-white border border-slate-300 px-3 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs cursor-pointer font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner cursor-pointer font-medium"
                   >
-                    <option value="Leadership">Executive & Leadership</option>
-                    <option value="Engineering">Software Engineering & Developers</option>
-                    <option value="Quality Assurance">Quality Assurance & Testing (QA)</option>
-                    <option value="AI & Data">AI & Machine Learning</option>
-                    <option value="Product & Design">Product & UI/UX Design</option>
-                    <option value="DevOps & Cloud">DevOps & Cloud Architecture</option>
+                    <option value="Leadership" className="bg-[#0B1528] text-white">Executive & Leadership</option>
+                    <option value="Engineering" className="bg-[#0B1528] text-white">Software Engineering & Developers</option>
+                    <option value="Quality Assurance" className="bg-[#0B1528] text-white">Quality Assurance & Testing (QA)</option>
+                    <option value="AI & Data" className="bg-[#0B1528] text-white">AI & Machine Learning</option>
+                    <option value="Product & Design" className="bg-[#0B1528] text-white">Product & UI/UX Design</option>
+                    <option value="DevOps & Cloud" className="bg-[#0B1528] text-white">DevOps & Cloud Architecture</option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Core Competencies & Skills (Comma separated)
                 </label>
                 <input
@@ -293,13 +293,13 @@ export const TeamManager = () => {
                   value={formData.skills}
                   onChange={e => setFormData({ ...formData, skills: e.target.value })}
                   placeholder="LLM Systems, Distributed Scaling, PyTorch, Kubernetes"
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-mono"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     LinkedIn Profile
                   </label>
                   <input
@@ -307,11 +307,11 @@ export const TeamManager = () => {
                     value={formData.linkedin}
                     onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
                     placeholder="https://linkedin.com/in/..."
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                  <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                     GitHub Profile
                   </label>
                   <input
@@ -319,13 +319,13 @@ export const TeamManager = () => {
                     value={formData.github}
                     onChange={e => setFormData({ ...formData, github: e.target.value })}
                     placeholder="https://github.com/..."
-                    className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono"
+                    className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Executive Bio *
                 </label>
                 <textarea
@@ -334,11 +334,11 @@ export const TeamManager = () => {
                   value={formData.bio}
                   onChange={e => setFormData({ ...formData, bio: e.target.value })}
                   placeholder="Executive background, technical patents, prior leadership at tier-1 tech firms..."
-                  className="w-full bg-white border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-sans leading-relaxed"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner font-sans leading-relaxed"
                 />
               </div>
 
-              <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-100">
+              <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-800">
                 <Button 
                   type="button" 
                   variant="outline" 

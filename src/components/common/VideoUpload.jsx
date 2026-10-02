@@ -189,7 +189,6 @@ export const VideoUpload = ({
           setUploadProgress(Math.round(pct * 0.6));
         });
         const newSizeMB = (fileToUpload.size / (1024 * 1024)).toFixed(1);
-        console.log(`Video optimized: ${origSizeMB}MB -> ${newSizeMB}MB`);
         setOptimizingStatus(`Optimized to ${newSizeMB}MB! Uploading...`);
       } catch (compErr) {
         console.warn("Browser compression skipped or failed:", compErr);
@@ -223,17 +222,17 @@ export const VideoUpload = ({
       if (uploadedUrl && !uploadedUrl.startsWith('blob:')) {
         onChange(uploadedUrl);
         setUrlInput(uploadedUrl);
-        toast.success("Video compressed & saved to server permanently!");
+        toast.success("Video saved to server permanently!");
       } else {
         toast.error("Failed to get permanent video URL from server. Please try pasting a video link.");
       }
     } catch (err) {
       console.error("Video upload error:", err);
       if (err?.status === 413 || err?.data === 'Server Error') {
-        toast.error("Video file is too large for Vercel serverless (4.5MB limit). Please use 'Paste Video URL' tab with a direct link or YouTube/Vimeo URL.", { duration: 7000 });
+        toast.error("Video file is too large for Vercel serverless (4.5MB limit). Please use 'Paste Video URL' tab.", { duration: 7000 });
         setActiveTab('url');
       } else {
-        toast.error("Server video upload failed: " + (err?.data?.message || err?.message || "Please paste a direct video URL or YouTube/Vimeo link"));
+        toast.error("Server video upload failed: " + (err?.data?.message || err?.message || "Please paste a direct video URL"));
       }
     } finally {
       setOptimizingStatus('');
@@ -277,19 +276,19 @@ export const VideoUpload = ({
   return (
     <div className={`space-y-2.5 ${className}`}>
       <div className="flex items-center justify-between">
-        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
+        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 font-bold">
           {label}
         </label>
         
         {/* Toggle Tabs */}
-        <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-[10px] font-mono font-bold">
+        <div className="flex items-center gap-1 bg-[#070E1C] p-0.5 rounded-lg border border-slate-800 text-[10px] font-mono font-bold">
           <button
             type="button"
             onClick={() => setActiveTab('upload')}
             className={`px-2.5 py-1 rounded-md transition-all cursor-pointer flex items-center gap-1 ${
               activeTab === 'upload'
-                ? 'bg-white text-[#0066FF] shadow-2xs font-bold'
-                : 'text-slate-500 hover:text-slate-800'
+                ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white shadow-sm font-bold'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <UploadCloud className="w-3 h-3" />
@@ -300,8 +299,8 @@ export const VideoUpload = ({
             onClick={() => setActiveTab('url')}
             className={`px-2.5 py-1 rounded-md transition-all cursor-pointer flex items-center gap-1 ${
               activeTab === 'url'
-                ? 'bg-white text-[#0066FF] shadow-2xs font-bold'
-                : 'text-slate-500 hover:text-slate-800'
+                ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white shadow-sm font-bold'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <LinkIcon className="w-3 h-3" />
@@ -312,7 +311,7 @@ export const VideoUpload = ({
 
       {/* Live Video Preview Section If Value Exists */}
       {value ? (
-        <div className="relative border border-slate-200 rounded-2xl overflow-hidden bg-slate-900 p-2 group shadow-sm">
+        <div className="relative border border-slate-800 rounded-2xl overflow-hidden bg-[#070E1C] p-2 group shadow-lg">
           <div className="w-full aspect-video rounded-xl overflow-hidden bg-black flex items-center justify-center relative">
             {isEmbedVideo(value) ? (
               <iframe
@@ -335,17 +334,17 @@ export const VideoUpload = ({
 
             {/* Source Badge */}
             <div className="absolute top-3 left-3 pointer-events-none">
-              <span className="px-2.5 py-1 bg-black/70 backdrop-blur-md text-white border border-white/20 text-[10px] font-mono font-bold rounded-md uppercase tracking-wider flex items-center gap-1.5">
-                <Film className="w-3 h-3 text-[#0066FF]" />
+              <span className="px-2.5 py-1 bg-black/80 backdrop-blur-md text-[#00F0FF] border border-[#00F0FF]/30 text-[10px] font-mono font-bold rounded-md uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                <Film className="w-3 h-3 text-[#00F0FF]" />
                 {value.includes('youtube') ? 'YouTube' : value.includes('vimeo') ? 'Vimeo' : value.includes('cloudinary') ? 'Cloudinary Video' : 'Active Video'}
               </span>
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-2.5 px-1.5 bg-slate-900 text-white rounded-b-xl">
+          <div className="flex items-center justify-between pt-2.5 px-1.5 bg-[#070E1C] text-white rounded-b-xl">
             <div className="flex items-center gap-2 overflow-hidden mr-2">
-              <Film className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
-              <span className="font-mono text-[10px] text-slate-300 truncate max-w-[280px]">
+              <Film className="w-3.5 h-3.5 text-[#00F0FF] shrink-0" />
+              <span className="font-mono text-[10px] text-slate-400 truncate max-w-[280px]">
                 {value}
               </span>
             </div>
@@ -356,7 +355,7 @@ export const VideoUpload = ({
                 onClick={() => {
                   if (fileInputRef.current) fileInputRef.current.click();
                 }}
-                className="px-2.5 py-1 text-[11px] font-mono font-medium text-slate-200 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg flex items-center gap-1 transition-colors cursor-pointer"
+                className="px-2.5 py-1 text-[11px] font-mono font-medium text-slate-200 hover:text-white bg-[#0B1528] hover:bg-slate-800 border border-slate-700 rounded-lg flex items-center gap-1 transition-colors cursor-pointer"
                 title="Replace Video"
               >
                 <RefreshCw className="w-3 h-3" />
@@ -365,7 +364,7 @@ export const VideoUpload = ({
               <button
                 type="button"
                 onClick={handleRemove}
-                className="p-1 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors cursor-pointer"
+                className="p-1 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-rose-500/20"
                 title="Remove Video"
               >
                 <X className="w-4 h-4" />
@@ -384,8 +383,8 @@ export const VideoUpload = ({
           onClick={() => fileInputRef.current?.click()}
           className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all ${
             isDragging
-              ? 'border-[#0066FF] bg-blue-50/60 scale-[0.99]'
-              : 'border-slate-300 hover:border-[#0066FF] bg-slate-50/70 hover:bg-blue-50/20'
+              ? 'border-[#00F0FF] bg-[#0066FF]/10 scale-[0.99]'
+              : 'border-slate-800 hover:border-[#00F0FF] bg-[#070E1C] hover:bg-[#0B1528]'
           }`}
         >
           <input
@@ -397,7 +396,7 @@ export const VideoUpload = ({
           />
 
           <div className="flex flex-col items-center justify-center space-y-2.5">
-            <div className="w-12 h-12 rounded-xl bg-blue-100/80 text-[#0066FF] flex items-center justify-center shadow-xs">
+            <div className="w-12 h-12 rounded-xl bg-[#0066FF]/10 border border-[#00F0FF]/30 text-[#00F0FF] flex items-center justify-center shadow-xs">
               {isUploading || optimizingStatus ? (
                 <Loader2 className="w-6 h-6 animate-spin" />
               ) : (
@@ -406,18 +405,18 @@ export const VideoUpload = ({
             </div>
 
             <div className="space-y-1">
-              <p className="font-display text-xs font-bold text-[#0B1938]">
+              <p className="font-display text-xs font-bold text-white">
                 {optimizingStatus ? optimizingStatus : isUploading ? "Uploading video..." : "Click or drag & drop to upload video"}
               </p>
-              <p className="font-mono text-[10px] text-slate-500">
+              <p className="font-mono text-[10px] text-slate-400">
                 Auto-Optimizes MP4 / WebM / WebP (Files over 4.5MB will be compressed automatically)
               </p>
             </div>
 
             {uploadProgress > 0 && (
-              <div className="w-full max-w-xs bg-slate-200 rounded-full h-1.5 overflow-hidden">
+              <div className="w-full max-w-xs bg-slate-800 rounded-full h-1.5 overflow-hidden">
                 <div 
-                  className="bg-[#0066FF] h-full transition-all duration-300 rounded-full"
+                  className="bg-gradient-to-r from-[#0066FF] to-[#00F0FF] h-full transition-all duration-300 rounded-full"
                   style={{ width: `${uploadProgress}%` }}
                 />
               </div>
@@ -431,7 +430,7 @@ export const VideoUpload = ({
         <div className="space-y-2">
           <div className="flex gap-2">
             <div className="relative flex-1">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
                 <LinkIcon className="w-3.5 h-3.5" />
               </div>
               <input
@@ -439,23 +438,23 @@ export const VideoUpload = ({
                 value={urlInput}
                 onChange={(e) => setUrlInput(e.target.value)}
                 placeholder="Paste YouTube, Vimeo, or direct .mp4 link..."
-                className="w-full bg-white border border-slate-300 pl-9 pr-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono font-medium"
+                className="w-full bg-[#070E1C] border border-slate-800 pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-sm font-mono font-medium"
               />
             </div>
             <button
               type="button"
               onClick={handleUrlApply}
-              className="px-4 py-2 bg-[#0066FF] hover:bg-blue-600 text-white font-mono text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-xs shrink-0"
+              className="px-4 py-2 bg-gradient-to-r from-[#0066FF] to-[#00D4FF] hover:opacity-90 text-white font-mono text-xs font-bold rounded-lg transition-all cursor-pointer shadow-md shadow-blue-500/20 shrink-0"
             >
               Apply Link
             </button>
           </div>
           <div className="flex flex-wrap items-center gap-1.5 pt-1">
-            <span className="text-[10px] font-mono text-slate-400">Supported:</span>
-            <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-mono">YouTube (Unlisted/Public)</span>
-            <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-mono">Vimeo</span>
-            <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-mono">Cloudinary</span>
-            <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-mono">Direct .mp4 / .webm Link</span>
+            <span className="text-[10px] font-mono text-slate-500">Supported:</span>
+            <span className="px-1.5 py-0.5 bg-[#070E1C] border border-slate-800 text-slate-400 rounded text-[10px] font-mono">YouTube (Unlisted/Public)</span>
+            <span className="px-1.5 py-0.5 bg-[#070E1C] border border-slate-800 text-slate-400 rounded text-[10px] font-mono">Vimeo</span>
+            <span className="px-1.5 py-0.5 bg-[#070E1C] border border-slate-800 text-slate-400 rounded text-[10px] font-mono">Cloudinary</span>
+            <span className="px-1.5 py-0.5 bg-[#070E1C] border border-slate-800 text-slate-400 rounded text-[10px] font-mono">Direct .mp4 / .webm Link</span>
           </div>
         </div>
       )}

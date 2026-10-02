@@ -10,7 +10,7 @@ import ScrollReveal from '../common/ScrollReveal';
 
 export const FeaturedProjects = () => {
   return (
-    <section className="py-16 sm:py-24 bg-white relative">
+    <section className="py-16 sm:py-24 bg-[#060B18] relative border-t border-slate-800/80">
       <Container>
         <ScrollReveal animation="fade-up" duration={0.65}>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -32,11 +32,11 @@ export const FeaturedProjects = () => {
           {initialProjects.slice(0, 3).map((project) => (
             <div
               key={project.id}
-              className="bg-[#F8FAFC] border border-slate-200 hover:border-[#0066FF]/40 rounded-lg overflow-hidden transition-all duration-200 flex flex-col justify-between group shadow-sm hover:shadow-md"
+              className="bg-[#0B1528] border border-slate-800 hover:border-[#0066FF]/60 rounded-xl overflow-hidden transition-all duration-300 flex flex-col justify-between group shadow-lg hover:shadow-2xl hover:shadow-blue-500/10"
             >
               <div>
                 {/* Project Image */}
-                <div className="aspect-[16/10] w-full overflow-hidden bg-slate-100 relative">
+                <div className="aspect-[16/10] w-full overflow-hidden bg-slate-900 relative">
                   <img
                     src={project.image}
                     alt={project.name || "Featured Project"}
@@ -44,7 +44,7 @@ export const FeaturedProjects = () => {
                     height="375"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                   />
                   <div className="absolute top-3 left-3">
                     <Badge variant="cyan" size="sm">
@@ -54,22 +54,22 @@ export const FeaturedProjects = () => {
                 </div>
 
                 <div className="p-6">
-                  <div className="font-sans text-xs text-slate-500 uppercase tracking-wide mb-1.5 font-semibold">
+                  <div className="font-sans text-xs text-[#00F0FF] uppercase tracking-wide mb-1.5 font-semibold">
                     {project.client} • {project.industry}
                   </div>
 
-                  <h3 className="text-xl font-bold font-display tracking-tight text-[#0B1938] mb-3 group-hover:text-[#0066FF] transition-colors">
+                  <h3 className="text-xl font-bold font-display tracking-tight text-white mb-3 group-hover:text-[#00F0FF] transition-colors">
                     {project.name}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed mb-4">
                     {project.shortDescription}
                   </p>
 
                   {/* Impact Metric */}
-                  <div className="p-3 bg-white border border-slate-200 rounded-md mb-5 flex items-center gap-2.5 shadow-sm">
-                    <TrendingUp className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span className="font-sans text-xs text-emerald-700 font-bold truncate">
+                  <div className="p-3 bg-[#070E1C] border border-slate-800 rounded-lg mb-5 flex items-center gap-2.5 shadow-sm">
+                    <TrendingUp className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span className="font-sans text-xs text-emerald-400 font-bold truncate">
                       {project.results}
                     </span>
                   </div>
@@ -79,7 +79,7 @@ export const FeaturedProjects = () => {
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 bg-white border border-slate-200 rounded-md font-sans text-[11px] font-medium text-slate-700"
+                        className="px-2.5 py-1 bg-[#070E1C] border border-slate-800 rounded-md font-sans text-[11px] font-medium text-slate-300"
                       >
                         {tech}
                       </span>
@@ -89,11 +89,11 @@ export const FeaturedProjects = () => {
               </div>
 
               {/* Action Links */}
-              <div className="p-6 pt-0 flex items-center justify-between border-t border-slate-200/80 mt-2">
+              <div className="p-6 pt-0 flex items-center justify-between border-t border-slate-800 mt-2">
                 <Link
                   to={`/case-studies/${project.slug}`}
                   aria-label={`Read ${project.name} Case Study`}
-                  className="font-sans text-xs font-bold uppercase tracking-wide text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1 group/link"
+                  className="font-sans text-xs font-bold uppercase tracking-wide text-[#00F0FF] hover:text-cyan-300 inline-flex items-center gap-1 group/link"
                 >
                   <span>Case Study</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
@@ -104,7 +104,7 @@ export const FeaturedProjects = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-1.5 bg-white border border-slate-200 rounded text-slate-600 hover:text-[#0066FF] hover:border-[#0066FF] transition-all"
+                    className="p-1.5 bg-[#070E1C] border border-slate-800 rounded text-slate-400 hover:text-[#00F0FF] hover:border-[#0066FF] transition-all"
                     aria-label="View Live Project"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />

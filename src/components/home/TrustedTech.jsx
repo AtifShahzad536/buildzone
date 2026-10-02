@@ -15,7 +15,8 @@ const ReactLogo = () => (
 
 const NextjsLogo = () => (
   <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="currentColor">
-    <path fill="#000000" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.666 17.592l-5.834-8.08V17.5h-1.5V6.408h1.5l5.834 8.08V6.408h1.5v11.184h-1.5z" />
+    <circle cx="12" cy="12" r="12" fill="#000000" />
+    <path fill="#FFFFFF" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.666 17.592l-5.834-8.08V17.5h-1.5V6.408h1.5l5.834 8.08V6.408h1.5v11.184h-1.5z" />
   </svg>
 );
 
@@ -45,7 +46,7 @@ const AwsLogo = () => (
   <svg viewBox="0 0 24 24" className="w-3.5 h-3.5">
     <path fill="#FF9900" d="M18.8 16.5c-3.1 2.2-7.5 3.3-11.4 3.3-5.4 0-10.3-2-14-5.3-.3-.3-.1-.7.3-.5 4.1 2.4 9.1 3.8 14.2 3.8 3.5 0 7.4-.8 10.4-2.5.5-.3.9.2.5.7z" />
     <path fill="#FF9900" d="M20.2 15.2c-.4-.5-2.6-.2-3.6-.1-.3 0-.4-.3-.1-.5 1.7-1.3 4.5-.9 4.8-.4.3.4-.2 3.2-1.8 4.7-.2.2-.5.1-.4-.2.4-.9 1.5-3 1.1-3.5z" />
-    <path fill="#232F3E" d="M7.4 6.7c0-.9.6-1.5 1.7-1.5 1.2 0 1.8.6 1.8 1.5v6.5H8.7V7.5c0-.4-.2-.6-.6-.6-.4 0-.7.2-.7.6v5.7H5.2V6.7z" />
+    <path fill="#FFFFFF" d="M7.4 6.7c0-.9.6-1.5 1.7-1.5 1.2 0 1.8.6 1.8 1.5v6.5H8.7V7.5c0-.4-.2-.6-.6-.6-.4 0-.7.2-.7.6v5.7H5.2V6.7z" />
   </svg>
 );
 
@@ -155,20 +156,20 @@ export const TrustedTech = () => {
   const marqueeItems = [...techStack, ...techStack];
 
   return (
-    <div className="relative py-5 sm:py-6 bg-white border-y border-slate-200 overflow-hidden select-none">
+    <div className="relative py-5 sm:py-6 bg-[#060B18] border-y border-slate-800/80 overflow-hidden select-none">
       
       {/* Top/Bottom Micro Accent Lines */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#0066FF]/30 to-transparent"></div>
       
       {/* Left & Right Gradient Blur Fade Masks */}
-      <div className="absolute left-0 inset-y-0 w-16 sm:w-32 bg-gradient-to-r from-white via-white/90 to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute right-0 inset-y-0 w-16 sm:w-32 bg-gradient-to-l from-white via-white/90 to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute left-0 inset-y-0 w-16 sm:w-32 bg-gradient-to-r from-[#060B18] via-[#060B18]/90 to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute right-0 inset-y-0 w-16 sm:w-32 bg-gradient-to-l from-[#060B18] via-[#060B18]/90 to-transparent z-10 pointer-events-none"></div>
 
       <div className="flex items-center">
         {/* Left Sticky / Fixed Label Badge on Desktop */}
-        <div className="hidden lg:flex items-center gap-2 pl-8 pr-6 shrink-0 z-20 bg-white border-r border-slate-100 py-1">
-          <span className="w-2 h-2 rounded-full bg-[#0066FF] animate-pulse"></span>
-          <span className="font-sans text-xs text-[#0B1938] uppercase tracking-wider font-bold whitespace-nowrap">
+        <div className="hidden lg:flex items-center gap-2 pl-8 pr-6 shrink-0 z-20 bg-[#060B18] border-r border-slate-800 py-1">
+          <span className="w-2 h-2 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF] animate-pulse"></span>
+          <span className="font-sans text-xs text-[#00F0FF] uppercase tracking-wider font-bold whitespace-nowrap">
             ENTERPRISE STACK:
           </span>
         </div>
@@ -181,15 +182,15 @@ export const TrustedTech = () => {
               return (
                 <div
                   key={`${tech.name}-${idx}`}
-                  className="flex items-center gap-2.5 px-3.5 sm:px-4 py-2 bg-[#F8FAFC] border border-slate-200/90 hover:border-[#0066FF] hover:bg-blue-50/80 transition-all duration-200 rounded-xl shrink-0 shadow-2xs group cursor-default"
+                  className="flex items-center gap-2.5 px-3.5 sm:px-4 py-2 bg-[#0B1528] border border-slate-800 hover:border-[#00F0FF]/50 hover:bg-[#0F1E38] transition-all duration-200 rounded-xl shrink-0 shadow-lg group cursor-default"
                 >
-                  <div className="w-6 h-6 rounded-lg bg-white border border-slate-200/90 flex items-center justify-center p-1 group-hover:scale-110 group-hover:border-blue-200 transition-all shadow-2xs">
+                  <div className="w-6 h-6 rounded-lg bg-[#122038] border border-slate-700/60 flex items-center justify-center p-1 group-hover:scale-110 group-hover:border-[#00F0FF]/40 transition-all">
                     <IconComponent />
                   </div>
-                  <span className="font-sans text-xs sm:text-sm font-bold text-[#0B1938] group-hover:text-[#0066FF] transition-colors whitespace-nowrap">
+                  <span className="font-sans text-xs sm:text-sm font-bold text-slate-200 group-hover:text-[#00F0FF] transition-colors whitespace-nowrap">
                     {tech.name}
                   </span>
-                  <span className="font-sans text-[10px] uppercase tracking-wide text-slate-600 font-semibold px-1.5 py-0.5 bg-slate-200/70 rounded-md group-hover:bg-blue-100 group-hover:text-[#0047BA] transition-colors hidden sm:inline-block">
+                  <span className="font-sans text-[10px] uppercase tracking-wide text-[#00F0FF] font-semibold px-1.5 py-0.5 bg-[#070E1C] border border-[#00F0FF]/20 rounded-md group-hover:bg-[#00F0FF]/15 group-hover:text-white transition-colors hidden sm:inline-block">
                     {tech.category}
                   </span>
                 </div>
@@ -199,7 +200,7 @@ export const TrustedTech = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#0066FF]/30 to-transparent"></div>
     </div>
   );
 };

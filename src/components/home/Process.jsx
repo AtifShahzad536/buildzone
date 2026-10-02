@@ -139,12 +139,11 @@ export const Process = () => {
   const activeStep = processSteps[activeStepIdx];
 
   return (
-    <section className="py-20 lg:py-28 bg-[#F8FAFC] relative overflow-hidden border-t border-slate-200/80">
+    <section className="py-20 lg:py-28 bg-[#060B18] relative overflow-hidden border-t border-slate-800/80">
 
-      {/* Background Subtle Gradient & Grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(#0066FF_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.03] pointer-events-none" />
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Background Subtle Gradients */}
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <Container className="relative z-10">
 
@@ -153,23 +152,25 @@ export const Process = () => {
         {/* ========================================================================= */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
           <ScrollReveal animation="fade-down" delay={0.1}>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-50 border border-blue-200/90 rounded-full shadow-2xs mb-3">
-              <span className="w-2 h-2 rounded-full bg-[#0066FF] animate-pulse" />
-              <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#0047BA]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/15 border border-[#0066FF]/40 rounded-full shadow-xs mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse" />
+              <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#00F0FF]">
                 HOW WE WORK • PROVEN DELIVERY FRAMEWORK
               </span>
             </div>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-up" delay={0.2}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-[#0B1938] leading-[1.12]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-white leading-[1.12]">
               From First Concept to{' '}
-              <span className="text-[#0066FF]">Production Success.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-[#00F0FF]">
+                Production Success.
+              </span>
             </h2>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-up" delay={0.3}>
-            <p className="mt-4 text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
               We follow a transparent, agile methodology designed to turn your complex ideas into scalable digital products on time, within budget, and with zero guesswork.
             </p>
           </ScrollReveal>
@@ -191,35 +192,39 @@ export const Process = () => {
                     setActiveStepIdx(idx);
                     setIsAutoPlaying(false);
                   }}
-                  className={`group relative p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 cursor-pointer border ${isActive
-                      ? 'bg-white border-[#0066FF] shadow-lg shadow-blue-500/10 ring-2 ring-[#0066FF]/20 -translate-y-1'
-                      : 'bg-white/70 hover:bg-white border-slate-200/80 hover:border-slate-300 shadow-2xs hover:-translate-y-0.5'
-                    }`}
+                  className={`group relative p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-300 cursor-pointer border ${
+                    isActive
+                      ? 'bg-[#0B1528] border-[#00F0FF] shadow-xl shadow-blue-500/20 ring-2 ring-[#00F0FF]/30 -translate-y-1'
+                      : 'bg-[#0B1528]/60 hover:bg-[#0B1528] border-slate-800 hover:border-slate-700 shadow-sm hover:-translate-y-0.5'
+                  }`}
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className={`font-mono text-xs font-black px-2 py-0.5 rounded-md ${isActive ? 'bg-[#0066FF] text-white' : 'bg-slate-100 text-slate-500 group-hover:text-slate-800'
-                      }`}>
+                    <span className={`font-mono text-xs font-black px-2 py-0.5 rounded-md ${
+                      isActive ? 'bg-[#0066FF] text-white shadow-xs shadow-blue-500/40' : 'bg-slate-800 text-slate-400 group-hover:text-slate-200'
+                    }`}>
                       {step.id}
                     </span>
-                    <span className="font-sans text-[10.5px] font-bold text-slate-400 group-hover:text-slate-600">
+                    <span className="font-sans text-[10.5px] font-bold text-slate-400 group-hover:text-slate-300">
                       {step.timeline}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 transition-colors ${isActive ? 'text-[#0066FF]' : 'text-slate-400 group-hover:text-[#0066FF]'
-                      }`}>
+                    <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                      isActive ? 'text-[#00F0FF]' : 'text-slate-500 group-hover:text-[#00F0FF]'
+                    }`}>
                       <StepIcon className="w-4 h-4" />
                     </div>
-                    <span className={`font-display text-xs sm:text-sm font-bold truncate ${isActive ? 'text-[#0B1938]' : 'text-slate-700'
-                      }`}>
+                    <span className={`font-display text-xs sm:text-sm font-bold truncate ${
+                      isActive ? 'text-white' : 'text-slate-300'
+                    }`}>
                       {step.title.split('&')[0]}
                     </span>
                   </div>
 
                   {/* Active Indicator Underline */}
                   {isActive && (
-                    <div className="absolute -bottom-1 left-6 right-6 h-1 bg-[#0066FF] rounded-full" />
+                    <div className="absolute -bottom-1 left-6 right-6 h-1 bg-[#00F0FF] rounded-full shadow-[0_0_8px_#00F0FF]" />
                   )}
                 </button>
               );
@@ -228,44 +233,42 @@ export const Process = () => {
         </ScrollReveal>
 
         {/* ========================================================================= */}
-        {/* MAIN SHOWCASE CARD: Seamless Full-Bleed Panorama Background (Like About)  */}
+        {/* MAIN SHOWCASE CARD: Seamless Full-Bleed Panorama Background               */}
         {/* ========================================================================= */}
         <ScrollReveal animation="zoom-in" delay={0.4}>
-          <div className="relative w-full bg-white rounded-3xl border border-slate-200/90 shadow-xl shadow-slate-200/50 overflow-hidden">
+          <div className="relative w-full bg-[#0B1528] rounded-3xl border border-slate-800 shadow-2xl overflow-hidden">
 
-            {/* ========================================================================= */}
-            {/* BACKGROUND IMAGE LAYER (Desktop Right-Aligned Seamless Panorama)          */}
-            {/* ========================================================================= */}
+            {/* BACKGROUND IMAGE LAYER */}
             <div className="hidden lg:block absolute inset-y-0 right-0 w-[58%] xl:w-[55%] h-full z-0 pointer-events-none overflow-hidden">
               <img
                 src={activeStep.image}
                 alt={activeStep.title}
-                className="w-full h-full object-cover object-[center_35%] transition-all duration-700 filter brightness-[0.98]"
+                className="w-full h-full object-cover object-[center_35%] transition-all duration-700 filter brightness-[0.7] contrast-[1.1]"
               />
-              {/* Seamless White Gradient Fades from Left to Right */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 via-35% to-transparent" />
-              <div className="absolute inset-y-0 left-0 w-72 bg-gradient-to-r from-white via-white/95 to-transparent" />
-              <div className="absolute inset-y-0 left-0 w-28 bg-white" />
+              {/* Seamless Dark Gradient Fades */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0B1528] via-[#0B1528]/85 via-35% to-transparent" />
+              <div className="absolute inset-y-0 left-0 w-72 bg-gradient-to-r from-[#0B1528] via-[#0B1528]/95 to-transparent" />
+              <div className="absolute inset-y-0 left-0 w-28 bg-[#0B1528]" />
             </div>
 
             {/* Floating Top-Right Pill on Desktop */}
-            <div className="hidden sm:flex absolute top-6 right-6 z-20 px-3.5 py-1.5 bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-full items-center gap-2 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-mono text-xs font-bold text-[#0B1938]">
+            <div className="hidden sm:flex absolute top-6 right-6 z-20 px-3.5 py-1.5 bg-[#060B18]/90 backdrop-blur-md border border-slate-700 rounded-full items-center gap-2 shadow-md">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="font-mono text-xs font-bold text-white">
                 {activeStep.badge}
               </span>
             </div>
 
             {/* Floating Bottom-Right Milestone Signoff Card on Desktop */}
-            <div className="hidden lg:flex absolute bottom-6 right-6 z-20 bg-white/90 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/90 shadow-lg shadow-blue-500/5 items-center gap-2.5 max-w-xs animate-float-micro">
-              <div className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 text-[#0066FF] flex items-center justify-center shrink-0">
+            <div className="hidden lg:flex absolute bottom-6 right-6 z-20 bg-[#060B18]/95 backdrop-blur-md p-3.5 rounded-2xl border border-slate-700 shadow-xl items-center gap-2.5 max-w-xs animate-float-micro">
+              <div className="w-8 h-8 rounded-xl bg-blue-950/80 border border-blue-800 text-[#00F0FF] flex items-center justify-center shrink-0">
                 <CheckCircle2 className="w-4 h-4" />
               </div>
               <div className="text-left">
-                <div className="font-display font-bold text-[11.5px] text-[#0B1938] leading-tight">
+                <div className="font-display font-bold text-[11.5px] text-white leading-tight">
                   {activeStep.milestoneNotice}
                 </div>
-                <div className="font-sans text-[10px] text-slate-500 mt-0.5">
+                <div className="font-sans text-[10px] text-slate-400 mt-0.5">
                   Verified Client Milestone
                 </div>
               </div>
@@ -279,41 +282,41 @@ export const Process = () => {
               <div>
                 {/* Step Badge & Timeline */}
                 <div className="flex items-center gap-2.5 mb-3">
-                  <span className="px-2.5 py-1 bg-blue-50 text-[#0066FF] font-mono text-xs font-black rounded-lg border border-blue-200">
+                  <span className="px-2.5 py-1 bg-[#0066FF]/20 text-[#00F0FF] font-mono text-xs font-black rounded-lg border border-[#0066FF]/40">
                     {activeStep.stepNumber}
                   </span>
-                  <span className="flex items-center gap-1 text-slate-500 font-sans text-xs font-semibold">
-                    <Clock className="w-3.5 h-3.5 text-[#0066FF]" />
-                    Estimated Duration: <strong className="text-slate-800">{activeStep.timeline}</strong>
+                  <span className="flex items-center gap-1 text-slate-400 font-sans text-xs font-semibold">
+                    <Clock className="w-3.5 h-3.5 text-[#00F0FF]" />
+                    Estimated Duration: <strong className="text-white">{activeStep.timeline}</strong>
                   </span>
                 </div>
 
                 {/* Title & Tagline */}
-                <h3 className="text-2xl sm:text-3xl lg:text-[32px] font-black font-display text-[#0B1938] tracking-tight leading-tight">
+                <h3 className="text-2xl sm:text-3xl lg:text-[32px] font-black font-display text-white tracking-tight leading-tight">
                   {activeStep.title}
                 </h3>
-                <p className="mt-1.5 font-sans text-xs sm:text-sm font-bold text-[#0066FF]">
+                <p className="mt-1.5 font-sans text-xs sm:text-sm font-bold text-[#00F0FF]">
                   {activeStep.tagline}
                 </p>
 
                 {/* Detailed Description */}
-                <p className="mt-4 text-sm text-slate-600 font-sans leading-relaxed">
+                <p className="mt-4 text-sm text-slate-300 font-sans leading-relaxed">
                   {activeStep.description}
                 </p>
 
                 {/* Key Deliverables Checklist */}
-                <div className="mt-6 pt-6 border-t border-slate-100">
-                  <span className="font-display text-xs font-extrabold uppercase tracking-wider text-[#0B1938] block mb-3">
+                <div className="mt-6 pt-6 border-t border-slate-800">
+                  <span className="font-display text-xs font-extrabold uppercase tracking-wider text-white block mb-3">
                     Key Deliverables & Milestones:
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {activeStep.deliverables.map((item, dIdx) => (
                       <div
                         key={dIdx}
-                        className="flex items-start gap-2 bg-white/80 backdrop-blur-xs p-2.5 rounded-xl border border-slate-200/80 shadow-2xs hover:border-blue-300 transition-colors"
+                        className="flex items-start gap-2 bg-[#070E1C]/80 backdrop-blur-xs p-2.5 rounded-xl border border-slate-800 shadow-sm hover:border-[#0066FF]/50 transition-colors"
                       >
-                        <CheckCircle2 className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
-                        <span className="font-sans text-xs font-medium text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
+                        <span className="font-sans text-xs font-medium text-slate-200 leading-snug">
                           {item}
                         </span>
                       </div>
@@ -323,13 +326,13 @@ export const Process = () => {
               </div>
 
               {/* Bottom Tools & Next Button */}
-              <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+              <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-[11px] font-bold text-slate-400 mr-1">Tools & Tech:</span>
                   {activeStep.tools.map((tool, tIdx) => (
                     <span
                       key={tIdx}
-                      className="px-2.5 py-1 bg-white/90 border border-slate-200 text-slate-700 rounded-md font-mono text-[10.5px] font-semibold shadow-2xs"
+                      className="px-2.5 py-1 bg-[#070E1C] border border-slate-800 text-slate-300 rounded-md font-mono text-[10.5px] font-semibold shadow-xs"
                     >
                       {tool}
                     </span>
@@ -340,16 +343,16 @@ export const Process = () => {
                   <button
                     type="button"
                     onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                    className="px-3 py-1.5 rounded-lg border border-slate-200 hover:border-slate-300 text-slate-600 font-sans text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer bg-white/80"
+                    className="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-slate-600 text-slate-300 font-sans text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer bg-[#070E1C]"
                   >
-                    {isAutoPlaying ? <Pause className="w-3.5 h-3.5 text-[#0066FF]" /> : <Play className="w-3.5 h-3.5" />}
+                    {isAutoPlaying ? <Pause className="w-3.5 h-3.5 text-[#00F0FF]" /> : <Play className="w-3.5 h-3.5" />}
                     <span>{isAutoPlaying ? 'Pause Tour' : 'Auto Tour'}</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => setActiveStepIdx((prev) => (prev + 1) % processSteps.length)}
-                    className="px-4 py-1.5 bg-[#0066FF] hover:bg-blue-600 text-white rounded-lg font-sans text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
+                    className="px-4 py-1.5 bg-[#0066FF] hover:bg-blue-600 text-white rounded-lg font-sans text-xs font-bold flex items-center gap-1.5 transition-all shadow-md shadow-blue-500/25 cursor-pointer"
                   >
                     <span>Next Step</span>
                     <ChevronRight className="w-4 h-4" />

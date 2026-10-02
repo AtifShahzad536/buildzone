@@ -22,19 +22,19 @@ export const CaseStudies = () => {
         canonical="https://buildzonetechnology.com/case-studies"
       />
 
-      <div className="py-12 sm:py-20">
+      <div className="py-12 sm:py-20 bg-[#060B18]">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
-              <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-full mb-4 shadow-[0_0_15px_rgba(0,102,255,0.15)]">
+              <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                 VERIFIED ARCHITECTURES
               </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-4">
-              CLIENT CASE STUDIES
+            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-white mb-4">
+              CLIENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">CASE STUDIES</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
               Read comprehensive technical breakdowns of challenges, engineered solutions, infrastructure diagrams, and quantified production metrics.
             </p>
           </div>
@@ -42,22 +42,22 @@ export const CaseStudies = () => {
           {isLoading && (!caseStudiesData || caseStudiesData.length === 0) ? (
             <div className="py-8">
               <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
-                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
-                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                <div className="w-10 h-10 border-3 border-slate-800 border-t-[#00F0FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-400 tracking-widest uppercase font-semibold">
                   Loading Case Studies...
                 </p>
               </div>
               <div className="space-y-8 animate-pulse">
                 {[1, 2].map((n) => (
-                  <div key={n} className="bg-white border border-slate-200 rounded-lg p-6 sm:p-10 flex flex-col lg:flex-row gap-8 items-center">
-                    <div className="w-full lg:w-1/2 aspect-[16/10] bg-slate-100 rounded-md" />
+                  <div key={n} className="bg-[#0B1528] border border-slate-800 rounded-2xl p-6 sm:p-10 flex flex-col lg:flex-row gap-8 items-center">
+                    <div className="w-full lg:w-1/2 aspect-[16/10] bg-slate-800/60 rounded-xl" />
                     <div className="w-full lg:w-1/2 space-y-4">
-                      <div className="w-1/3 h-4 bg-slate-100 rounded" />
-                      <div className="w-3/4 h-8 bg-slate-100 rounded" />
-                      <div className="w-full h-16 bg-slate-50 rounded" />
+                      <div className="w-1/3 h-4 bg-slate-800/60 rounded" />
+                      <div className="w-3/4 h-8 bg-slate-800/60 rounded" />
+                      <div className="w-full h-16 bg-slate-800/40 rounded" />
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="h-12 bg-slate-100 rounded" />
-                        <div className="h-12 bg-slate-100 rounded" />
+                        <div className="h-12 bg-slate-800/60 rounded" />
+                        <div className="h-12 bg-slate-800/60 rounded" />
                       </div>
                     </div>
                   </div>
@@ -69,10 +69,10 @@ export const CaseStudies = () => {
             {caseStudies?.map((study) => (
               <div
                 key={study.id}
-                className="bg-white border border-slate-200 hover:border-[#0066FF]/50 rounded-lg p-6 sm:p-10 transition-all flex flex-col lg:flex-row gap-8 items-center shadow-sm hover:shadow-md"
+                className="bg-[#0B1528] border border-slate-800/90 hover:border-[#00F0FF]/50 rounded-2xl p-6 sm:p-10 transition-all duration-300 flex flex-col lg:flex-row gap-8 items-center shadow-xl hover:shadow-[0_0_25px_rgba(0,240,255,0.12)]"
               >
                 {/* Visual Banner */}
-                <div className="w-full lg:w-1/2 aspect-[16/10] overflow-hidden bg-slate-100 rounded-md relative shrink-0">
+                <div className="w-full lg:w-1/2 aspect-[16/10] overflow-hidden bg-slate-900 rounded-xl relative shrink-0">
                   <img
                     src={study.heroImage}
                     alt={study.title || "Case study showcase banner"}
@@ -88,33 +88,33 @@ export const CaseStudies = () => {
 
                 {/* Details */}
                 <div className="w-full lg:w-1/2 space-y-4">
-                  <div className="font-mono text-xs text-slate-500 uppercase tracking-widest font-semibold">
+                  <div className="font-mono text-xs text-slate-400 uppercase tracking-widest font-semibold">
                     Client: {study.client} • {study.location}
                   </div>
 
-                  <h2 className="text-2xl sm:text-3xl font-bold font-display uppercase tracking-tight text-[#0B1938]">
+                  <h2 className="text-2xl sm:text-3xl font-bold font-display uppercase tracking-tight text-white">
                     {study.title}
                   </h2>
 
-                  <p className="text-sm text-slate-600 font-sans leading-relaxed">
+                  <p className="text-sm text-slate-300 font-sans leading-relaxed">
                     {study.challenge}
                   </p>
 
                   {/* Measurable Results */}
-                  <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="grid grid-cols-2 gap-3.5 pt-2">
                     {study.results?.map((res, i) => (
-                      <div key={i} className="p-3 bg-[#F8FAFC] border border-slate-200 rounded-md">
-                        <div className="font-display font-black text-xl text-[#0066FF]">{res.metric}</div>
-                        <div className="font-mono text-[10px] text-slate-500 uppercase font-semibold">{res.label}</div>
+                      <div key={i} className="p-3.5 bg-[#070E1C] border border-slate-800 rounded-xl">
+                        <div className="font-display font-black text-xl text-[#00F0FF]">{res.metric}</div>
+                        <div className="font-mono text-[10px] text-slate-400 uppercase font-semibold">{res.label}</div>
                       </div>
                     ))}
                   </div>
 
                   <div className="pt-4">
                     <Link to={`/case-studies/${study.slug}`}>
-                      <button className="font-mono text-xs font-bold uppercase tracking-wider text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1.5 transition-colors">
+                      <button className="font-mono text-xs font-bold uppercase tracking-wider text-[#00F0FF] hover:text-white inline-flex items-center gap-1.5 transition-colors">
                         <span>Read Full Architectural Breakdown</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
+                        <ArrowRight className="w-3.5 h-3.5 text-[#00F0FF]" />
                       </button>
                     </Link>
                   </div>

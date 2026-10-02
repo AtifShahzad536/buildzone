@@ -42,13 +42,13 @@ export const BlogDetails = () => {
         ogType="article"
       />
 
-      <div className="py-12 sm:py-20">
+      <div className="py-12 sm:py-20 bg-[#060B18]">
         <Container>
           {/* Back link */}
           <div className="mb-8">
             <Link
               to="/blog"
-              className="font-mono text-xs text-slate-500 hover:text-[#0066FF] inline-flex items-center gap-1.5 uppercase tracking-wider font-semibold"
+              className="font-mono text-xs text-slate-400 hover:text-[#00F0FF] inline-flex items-center gap-1.5 uppercase tracking-wider font-semibold transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Engineering Blog</span>
@@ -62,42 +62,42 @@ export const BlogDetails = () => {
                 {post.category}
               </Badge>
 
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-6 leading-tight">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black font-display uppercase tracking-tight text-white mb-6 leading-tight">
                 {post.title}
               </h1>
 
-              <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed max-w-2xl mx-auto mb-8">
+              <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto mb-8">
                 {post.excerpt}
               </p>
 
               {/* Author & Date Bar */}
-              <div className="flex flex-wrap items-center justify-center gap-6 font-mono text-xs text-slate-500 pt-4 border-t border-slate-200">
+              <div className="flex flex-wrap items-center justify-center gap-6 font-mono text-xs text-slate-400 pt-4 border-t border-slate-800">
                 <div className="flex items-center gap-2">
                   <img
                     src={post.authorAvatar}
                     alt={post.author || "Author avatar"}
-                    className="w-8 h-8 object-cover rounded-full border border-blue-200"
+                    className="w-8 h-8 object-cover rounded-full border border-[#0066FF]/60"
                   />
                   <div className="text-left">
-                    <span className="text-[#0B1938] font-bold block">{post.author}</span>
-                    <span className="text-[10px] text-[#0066FF]">{post.authorRole}</span>
+                    <span className="text-white font-bold block">{post.author}</span>
+                    <span className="text-[10px] text-[#00F0FF]">{post.authorRole}</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4 text-[#0066FF]" />
+                  <Calendar className="w-4 h-4 text-[#00F0FF]" />
                   <span>{formatDate(post.publishedDate)}</span>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-[#0066FF]" />
+                  <Clock className="w-4 h-4 text-[#00F0FF]" />
                   <span>{post.readTime}</span>
                 </div>
 
                 <button
                   type="button"
                   onClick={handleShare}
-                  className="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded text-slate-700 hover:text-[#0066FF] hover:border-[#0066FF] flex items-center gap-1.5 transition-colors"
+                  className="px-3 py-1 bg-[#0B1528] border border-slate-800 rounded-xl text-slate-300 hover:text-[#00F0FF] hover:border-[#00F0FF]/50 flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <Share2 className="w-3.5 h-3.5" />
                   <span>Share</span>
@@ -106,7 +106,7 @@ export const BlogDetails = () => {
             </div>
 
             {/* Featured Image */}
-            <div className="aspect-[16/9] w-full overflow-hidden bg-slate-100 rounded-lg border border-slate-200 mb-12">
+            <div className="aspect-[16/9] w-full overflow-hidden bg-slate-900 rounded-2xl border border-slate-800 mb-12 shadow-2xl">
               <img
                 src={post.featuredImage}
                 alt={post.title || "Blog article cover"}
@@ -115,19 +115,19 @@ export const BlogDetails = () => {
             </div>
 
             {/* Post Content */}
-            <div className="bg-white p-6 sm:p-12 border border-slate-200 rounded-2xl shadow-2xs">
+            <div className="bg-[#0B1528] p-6 sm:p-12 border border-slate-800/90 rounded-2xl shadow-xl text-slate-300">
               {post.content ? (
                 <RichTextRenderer content={post.content} />
               ) : (
-                <p className="text-slate-500 font-sans italic">
+                <p className="text-slate-400 font-sans italic">
                   Comprehensive article content is being synced from our engineering knowledge repository.
                 </p>
               )}
             </div>
 
             {/* Tags */}
-            <div className="pt-8 mt-12 border-t border-slate-200 flex flex-wrap items-center gap-2">
-              <span className="font-mono text-xs text-slate-500 font-bold uppercase mr-2">Tags:</span>
+            <div className="pt-8 mt-12 border-t border-slate-800 flex flex-wrap items-center gap-2">
+              <span className="font-mono text-xs text-slate-400 font-bold uppercase mr-2">Tags:</span>
               {post.tags?.map((tag) => (
                 <Badge key={tag} size="sm" variant="default">
                   #{tag}
@@ -136,18 +136,18 @@ export const BlogDetails = () => {
             </div>
 
             {/* Author Card Footer */}
-            <div className="mt-12 p-6 sm:p-8 bg-blue-50/50 border border-blue-200 rounded-lg flex flex-col sm:flex-row items-center gap-6">
+            <div className="mt-12 p-6 sm:p-8 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl flex flex-col sm:flex-row items-center gap-6">
               <img
                 src={post.authorAvatar}
                 alt={post.author || "Author portrait"}
-                className="w-16 h-16 object-cover rounded-full border border-blue-400 shrink-0"
+                className="w-16 h-16 object-cover rounded-full border-2 border-[#0066FF] shrink-0"
               />
               <div className="text-center sm:text-left space-y-1">
-                <h2 className="font-display text-base font-bold uppercase text-[#0B1938]">
+                <h2 className="font-display text-base font-bold uppercase text-white">
                   Written by {post.author}
                 </h2>
-                <p className="font-mono text-xs text-[#0066FF] font-semibold">{post.authorRole}</p>
-                <p className="text-xs text-slate-600 font-sans leading-relaxed pt-1">
+                <p className="font-mono text-xs text-[#00F0FF] font-semibold">{post.authorRole}</p>
+                <p className="text-xs text-slate-300 font-sans leading-relaxed pt-1">
                   Leading applied machine learning, distributed cloud systems, and production software architecture at BuildZone.
                 </p>
               </div>

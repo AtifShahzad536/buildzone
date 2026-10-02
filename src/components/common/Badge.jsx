@@ -10,12 +10,12 @@ export const Badge = ({
   icon,
 }) => {
   const variants = {
-    default: 'bg-slate-100 text-slate-800 border-slate-300',
-    cyan: 'bg-blue-50 text-[#0052CC] border-blue-200',
-    violet: 'bg-indigo-50 text-indigo-900 border-indigo-200',
-    emerald: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-    amber: 'bg-amber-50 text-amber-900 border-amber-300',
-    rose: 'bg-rose-50 text-rose-800 border-rose-200',
+    default: 'bg-slate-800/80 text-slate-200 border-slate-700/80',
+    cyan: 'bg-[#0066FF]/15 text-[#00F0FF] border-[#0066FF]/40 shadow-xs shadow-blue-500/10',
+    violet: 'bg-indigo-950/60 text-indigo-300 border-indigo-700/60',
+    emerald: 'bg-emerald-950/60 text-emerald-400 border-emerald-700/60',
+    amber: 'bg-amber-950/60 text-amber-400 border-amber-700/60',
+    rose: 'bg-rose-950/60 text-rose-400 border-rose-700/60',
   };
 
   const sizes = {

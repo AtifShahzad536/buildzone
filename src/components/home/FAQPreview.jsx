@@ -19,7 +19,7 @@ export const FAQPreview = () => {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-[#F8FAFC] relative">
+    <section className="py-16 sm:py-24 bg-[#060B18] relative border-t border-slate-800/80">
       <Container>
         <ScrollReveal animation="fade-up" duration={0.65}>
           <SectionTitle
@@ -37,7 +37,7 @@ export const FAQPreview = () => {
             return (
               <div
                 key={faq.id}
-                className="border border-slate-200 hover:border-[#0066FF]/40 bg-white rounded-xl overflow-hidden transition-all shadow-sm flex flex-col"
+                className="border border-slate-800 hover:border-[#0066FF]/60 bg-[#0B1528] rounded-xl overflow-hidden transition-all shadow-md flex flex-col"
               >
                 <button
                   type="button"
@@ -47,8 +47,8 @@ export const FAQPreview = () => {
                   className="w-full p-4 sm:p-5 text-left flex items-start justify-between gap-3.5 focus:outline-none cursor-pointer group"
                 >
                   <div className="flex items-start gap-2.5">
-                    <HelpCircle className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
-                    <span className="font-display font-bold text-sm sm:text-base uppercase tracking-tight text-[#0B1938] group-hover:text-[#0066FF] transition-colors leading-snug">
+                    <HelpCircle className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
+                    <span className="font-display font-bold text-sm sm:text-base uppercase tracking-tight text-white group-hover:text-[#00F0FF] transition-colors leading-snug">
                       {faq.question}
                     </span>
                   </div>
@@ -56,7 +56,7 @@ export const FAQPreview = () => {
                     className={`p-1.5 rounded-lg border shrink-0 transition-all duration-200 ${
                       isOpen 
                         ? 'rotate-180 bg-[#0066FF] border-[#0066FF] text-white shadow-xs' 
-                        : 'bg-blue-50 border-blue-100 text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white group-hover:border-[#0066FF]'
+                        : 'bg-[#070E1C] border-slate-800 text-[#00F0FF] group-hover:bg-[#0066FF] group-hover:text-white group-hover:border-[#0066FF]'
                     }`}
                   >
                     <ChevronDown className="w-3.5 h-3.5" />
@@ -64,7 +64,7 @@ export const FAQPreview = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 pb-5 sm:px-5 sm:pb-6 text-xs sm:text-sm text-slate-600 font-sans leading-relaxed border-t border-slate-100 pt-3.5 bg-[#F8FAFC]/50">
+                  <div className="px-4 pb-5 sm:px-5 sm:pb-6 text-xs sm:text-sm text-slate-300 font-sans leading-relaxed border-t border-slate-800 pt-3.5 bg-[#070E1C]/80">
                     {faq.answer}
                   </div>
                 )}

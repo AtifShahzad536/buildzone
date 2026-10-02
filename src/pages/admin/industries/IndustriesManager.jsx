@@ -52,12 +52,12 @@ export const IndustriesManager = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+          <h1 className="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white">
             INDUSTRIES MANAGER
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pt-1">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans pt-1">
             Configure sector-specific solutions and case studies.
           </p>
         </div>
@@ -67,7 +67,7 @@ export const IndustriesManager = () => {
           size="sm"
           onClick={() => setIsModalOpen(true)}
           leftIcon={<Plus className="w-4 h-4" />}
-          className="shadow-sm"
+          className="shadow-sm cursor-pointer"
         >
           Add Industry
         </Button>
@@ -75,24 +75,24 @@ export const IndustriesManager = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {industries?.map((ind) => (
-          <div key={ind.id} className="p-6 bg-white border border-slate-200 rounded-xl shadow-2xs flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div key={ind.id} className="p-6 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl flex flex-col justify-between hover:border-[#00F0FF]/40 hover:shadow-2xl transition-all">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <div className="p-2.5 bg-blue-50 border border-blue-200 text-[#0066FF] rounded-lg">
+                <div className="p-2.5 bg-[#0066FF]/20 border border-[#00F0FF]/30 text-[#00F0FF] rounded-xl">
                   {renderIcon(ind.iconName, { className: "w-5 h-5" })}
                 </div>
                 <Badge variant="cyan" size="sm">Active</Badge>
               </div>
 
-              <h2 className="font-display text-base font-bold uppercase text-[#0B1938] mb-2">{ind.name}</h2>
-              <p className="text-xs text-slate-600 line-clamp-2 mb-4 leading-relaxed">{ind.shortDescription}</p>
+              <h2 className="font-display text-base font-bold uppercase text-white mb-2">{ind.name}</h2>
+              <p className="text-xs text-slate-300 line-clamp-2 mb-4 leading-relaxed font-sans">{ind.shortDescription}</p>
             </div>
 
-            <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-              <span className="font-mono text-[11px] text-[#0066FF] font-semibold">/{ind.slug}</span>
+            <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
+              <span className="font-mono text-[11px] text-[#00F0FF] font-semibold">/{ind.slug}</span>
               <button
                 onClick={() => handleDelete(ind.id, ind.name)}
-                className="p-1 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
+                className="p-1 text-slate-400 hover:text-rose-400 transition-colors cursor-pointer"
                 title="Delete"
               >
                 <Trash2 className="w-4 h-4" />
@@ -103,35 +103,35 @@ export const IndustriesManager = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
-          <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
-            <h2 className="font-display text-lg font-bold uppercase text-[#0B1938]">Add Industry Vertical</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+          <div className="w-full max-w-md bg-[#0B1528] border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
+            <h2 className="font-display text-lg font-bold uppercase text-white">Add Industry Vertical</h2>
             <form onSubmit={handleCreate} className="space-y-4 font-sans">
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Industry Name *</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">Industry Name *</label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Aerospace & Defense"
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">Description *</label>
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">Description *</label>
                 <textarea
                   rows={3}
                   required
                   value={formData.shortDescription}
                   onChange={e => setFormData({ ...formData, shortDescription: e.target.value })}
                   placeholder="High-level summary of solutions provided in this sector..."
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs"
+                  className="w-full bg-[#070E1C] border border-slate-700 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+              <div className="flex justify-end gap-2 pt-3 border-t border-slate-800">
                 <Button variant="ghost" size="sm" onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button type="submit" variant="primary" size="sm" isLoading={isCreating}>Add Industry</Button>
               </div>

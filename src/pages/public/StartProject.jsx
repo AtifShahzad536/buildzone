@@ -197,12 +197,9 @@ export const StartProject = () => {
       />
 
       {/* Zero-Scroll / Compact Viewport Layout */}
-      <div className="relative min-h-[calc(100vh-80px)] flex flex-col justify-center py-6 sm:py-8 overflow-hidden bg-[#F8FAFC]">
+      <div className="relative min-h-[calc(100vh-80px)] flex flex-col justify-center py-6 sm:py-8 overflow-hidden bg-[#060B18]">
         {/* 3D Interactive Tubes Canvas */}
         <TubesCursorBg />
-
-        {/* Ambient Grid Background */}
-        <div className="absolute inset-0 bg-cyber-grid opacity-20 pointer-events-none z-[1]"></div>
 
         <Container className="max-w-5xl relative z-10 pointer-events-auto my-auto">
           
@@ -210,34 +207,34 @@ export const StartProject = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0066FF] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0066FF]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00F0FF] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00F0FF]"></span>
               </span>
-              <h1 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-[#0B1938] leading-none">
-                Start Your Project
+              <h1 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-white leading-none">
+                Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">Project</span>
               </h1>
-              <span className="hidden sm:inline font-mono text-[11px] text-slate-500 font-medium">
+              <span className="hidden sm:inline font-mono text-[11px] text-slate-400 font-medium">
                 • 2-Min Architecture Scope
               </span>
             </div>
 
             {/* Micro Trust Pills */}
-            <div className="flex items-center gap-2 font-mono text-[11px] text-slate-600">
-              <span className="bg-white/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-200 shadow-2xs flex items-center gap-1">
-                <Lock className="w-3 h-3 text-[#0066FF]" /> 100% NDA
+            <div className="flex items-center gap-2 font-mono text-[11px] text-slate-300">
+              <span className="bg-[#0B1528] backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-800 shadow-xl flex items-center gap-1">
+                <Lock className="w-3 h-3 text-[#00F0FF]" /> 100% NDA
               </span>
-              <span className="bg-white/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-200 shadow-2xs flex items-center gap-1">
-                <Clock className="w-3 h-3 text-emerald-600" /> 24h Feasibility
+              <span className="bg-[#0B1528] backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-800 shadow-xl flex items-center gap-1">
+                <Clock className="w-3 h-3 text-emerald-400" /> 24h Feasibility
               </span>
             </div>
           </div>
 
           {/* Main Integrated Compact Card */}
-          <div className="bg-white/95 backdrop-blur-2xl border border-white/80 rounded-3xl shadow-2xl overflow-hidden">
+          <div className="bg-[#0B1528]/95 backdrop-blur-2xl border border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
             
             {/* Top Stepper Ribbon */}
             {!isCompleted && (
-              <div className="bg-slate-50/90 border-b border-slate-200/80 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-2">
+              <div className="bg-[#070E1C] border-b border-slate-800 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar">
                   {wizardSteps.map((s) => {
                     const isActive = step === s.num;
@@ -253,14 +250,14 @@ export const StartProject = () => {
                         disabled={!isPassed && !isActive}
                         className={`flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-xs font-bold transition-all ${
                           isActive
-                            ? 'bg-[#0066FF] text-white shadow-xs'
+                            ? 'bg-[#0066FF] text-white shadow-[0_0_15px_rgba(0,102,255,0.35)]'
                             : isPassed
-                            ? 'bg-emerald-100 text-emerald-800 cursor-pointer hover:bg-emerald-200'
-                            : 'text-slate-400 opacity-60 cursor-not-allowed'
+                            ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-800/60 cursor-pointer hover:bg-emerald-900/60'
+                            : 'text-slate-500 opacity-60 cursor-not-allowed'
                         }`}
                       >
                         <span className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] ${
-                          isActive ? 'bg-white text-[#0066FF]' : isPassed ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-600'
+                          isActive ? 'bg-white text-[#0066FF]' : isPassed ? 'bg-emerald-500 text-white' : 'bg-slate-800 text-slate-400'
                         }`}>
                           {isPassed ? <Check className="w-2.5 h-2.5 stroke-[3]" /> : s.num}
                         </span>
@@ -271,11 +268,11 @@ export const StartProject = () => {
                 </div>
 
                 {/* Compact Live Indicator */}
-                <div className="hidden md:flex items-center gap-2 font-mono text-xs text-slate-500">
+                <div className="hidden md:flex items-center gap-2 font-mono text-xs text-slate-400">
                   <span>Step {step} of 5</span>
-                  <div className="w-16 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+                  <div className="w-16 bg-slate-800 h-1.5 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-[#0066FF] transition-all duration-300"
+                      className="h-full bg-[#00F0FF] transition-all duration-300"
                       style={{ width: `${(step / 5) * 100}%` }}
                     ></div>
                   </div>
@@ -288,17 +285,17 @@ export const StartProject = () => {
               {isCompleted ? (
                 /* Success View */
                 <div className="text-center py-6 space-y-4 max-w-md mx-auto animate-fade-in-up">
-                  <div className="w-16 h-16 bg-emerald-50 border-2 border-emerald-200 rounded-2xl flex items-center justify-center text-emerald-600 mx-auto shadow-md">
+                  <div className="w-16 h-16 bg-emerald-950/60 border-2 border-emerald-700/60 rounded-2xl flex items-center justify-center text-emerald-400 mx-auto shadow-xl">
                     <CheckCheck className="w-8 h-8 stroke-[2.5]" />
                   </div>
                   <div className="space-y-1">
-                    <span className="font-mono text-[11px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-3 py-0.5 rounded-full border border-emerald-200">
+                    <span className="font-mono text-[11px] font-bold text-emerald-400 uppercase tracking-widest bg-emerald-950/40 px-3 py-0.5 rounded-full border border-emerald-800/60">
                       Scope Successfully Received
                     </span>
-                    <h2 className="text-2xl font-black font-display uppercase text-[#0B1938]">
+                    <h2 className="text-2xl font-black font-display uppercase text-white">
                       Roadmap Initiated!
                     </h2>
-                    <p className="text-xs text-slate-600 leading-relaxed">
+                    <p className="text-xs text-slate-300 leading-relaxed">
                       Our Lead Solutions Architect is preparing your technical blueprint and estimate within 24 hours.
                     </p>
                   </div>
@@ -319,7 +316,7 @@ export const StartProject = () => {
                   {step === 1 && (
                     <div key="step-1" className="space-y-4 animate-fade-in-up">
                       <div className="flex items-center justify-between">
-                        <h2 className="font-display font-bold text-base sm:text-lg text-[#0B1938]">
+                        <h2 className="font-display font-bold text-base sm:text-lg text-white">
                           1. Select what you are building:
                         </h2>
                         <span className="font-mono text-[11px] text-slate-400">Multiple selection enabled</span>
@@ -336,27 +333,27 @@ export const StartProject = () => {
                               onClick={() => handleToggleService(srv.id)}
                               className={`p-3 rounded-2xl border-2 transition-all duration-200 cursor-pointer select-none flex flex-col justify-between ${
                                 isSelected
-                                  ? 'bg-blue-50/90 border-[#0066FF] shadow-sm text-[#0B1938]'
-                                  : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700'
+                                  ? 'bg-[#0066FF]/20 border-[#00F0FF] shadow-[0_0_15px_rgba(0,240,255,0.15)] text-white'
+                                  : 'bg-[#070E1C] border-slate-800 hover:border-slate-700 text-slate-300'
                               }`}
                             >
                               <div className="flex items-center justify-between mb-2">
                                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                                  isSelected ? 'bg-[#0066FF] text-white' : 'bg-slate-100 text-slate-600'
+                                  isSelected ? 'bg-[#0066FF] text-white' : 'bg-slate-800 text-slate-300'
                                 }`}>
                                   <IconComp className="w-4 h-4" />
                                 </div>
                                 <div className={`w-4 h-4 rounded-full flex items-center justify-center border ${
-                                  isSelected ? 'bg-[#0066FF] border-[#0066FF] text-white' : 'border-slate-300 bg-white'
+                                  isSelected ? 'bg-[#00F0FF] border-[#00F0FF] text-[#060B18]' : 'border-slate-700 bg-slate-800'
                                 }`}>
                                   {isSelected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
                                 </div>
                               </div>
                               <div>
-                                <h3 className="font-display font-bold text-xs sm:text-sm leading-tight mb-1">
+                                <h3 className="font-display font-bold text-xs sm:text-sm leading-tight mb-1 text-white">
                                   {srv.title}
                                 </h3>
-                                <span className="font-mono text-[10px] text-blue-600/80 block">
+                                <span className="font-mono text-[10px] text-[#00F0FF] block">
                                   {srv.tech}
                                 </span>
                               </div>
@@ -371,7 +368,7 @@ export const StartProject = () => {
                   {step === 2 && (
                     <div key="step-2" className="space-y-4 animate-fade-in-up">
                       <div className="flex items-center justify-between">
-                        <h2 className="font-display font-bold text-base sm:text-lg text-[#0B1938]">
+                        <h2 className="font-display font-bold text-base sm:text-lg text-white">
                           2. Select your target investment budget:
                         </h2>
                         <span className="font-mono text-[11px] text-slate-400">USD estimate</span>
@@ -387,21 +384,21 @@ export const StartProject = () => {
                               onClick={() => setValue('budget', tier.id, { shouldValidate: true })}
                               className={`p-3.5 rounded-2xl border-2 transition-all duration-200 cursor-pointer select-none flex flex-col justify-between ${
                                 isSelected
-                                  ? 'bg-blue-50/90 border-[#0066FF] shadow-sm'
-                                  : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                                  ? 'bg-[#0066FF]/20 border-[#00F0FF] shadow-[0_0_15px_rgba(0,240,255,0.15)]'
+                                  : 'bg-[#070E1C] border-slate-800 hover:border-slate-700'
                               }`}
                             >
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <span className="font-mono font-bold text-xs sm:text-sm text-[#0B1938]">
+                                  <span className="font-mono font-bold text-xs sm:text-sm text-white">
                                     {tier.label}
                                   </span>
-                                  {isSelected && <Check className="w-3.5 h-3.5 text-[#0066FF] stroke-[3]" />}
+                                  {isSelected && <Check className="w-3.5 h-3.5 text-[#00F0FF] stroke-[3]" />}
                                 </div>
-                                <h3 className="font-display font-bold text-xs text-[#0066FF] uppercase">
+                                <h3 className="font-display font-bold text-xs text-[#00F0FF] uppercase">
                                   {tier.title}
                                 </h3>
-                                <p className="text-[11px] text-slate-500 font-sans mt-1 leading-snug">
+                                <p className="text-[11px] text-slate-400 font-sans mt-1 leading-snug">
                                   {tier.desc}
                                 </p>
                               </div>
@@ -411,8 +408,8 @@ export const StartProject = () => {
                       </div>
 
                       {/* Custom Input */}
-                      <div className="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                        <span className="font-mono text-xs font-bold text-slate-600 shrink-0">
+                      <div className="flex items-center gap-3 bg-[#070E1C] p-2.5 rounded-xl border border-slate-800">
+                        <span className="font-mono text-xs font-bold text-slate-300 shrink-0">
                           Custom Budget:
                         </span>
                         <div className="relative flex-1">
@@ -422,7 +419,7 @@ export const StartProject = () => {
                             placeholder="e.g. $800, $2,000, or $5,000"
                             value={selectedBudget}
                             onChange={(e) => setValue('budget', e.target.value, { shouldValidate: true })}
-                            className="w-full bg-white border border-slate-300 pl-8 pr-3 py-1.5 text-xs text-[#0B1938] font-mono font-bold placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg"
+                            className="w-full bg-[#0B1528] border border-slate-800 pl-8 pr-3 py-1.5 text-xs text-white font-mono font-bold placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-lg"
                           />
                         </div>
                       </div>
@@ -432,7 +429,7 @@ export const StartProject = () => {
                   {/* STEP 3: TIMELINE (Compact 4 Options) */}
                   {step === 3 && (
                     <div key="step-3" className="space-y-4 animate-fade-in-up">
-                      <h2 className="font-display font-bold text-base sm:text-lg text-[#0B1938]">
+                      <h2 className="font-display font-bold text-base sm:text-lg text-white">
                         3. Target delivery timeline:
                       </h2>
 
@@ -446,20 +443,20 @@ export const StartProject = () => {
                               onClick={() => setValue('timeline', opt.id, { shouldValidate: true })}
                               className={`p-3.5 rounded-2xl border-2 transition-all duration-200 cursor-pointer select-none flex items-center justify-between ${
                                 isSelected
-                                  ? 'bg-blue-50/90 border-[#0066FF] shadow-sm'
-                                  : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                                  ? 'bg-[#0066FF]/20 border-[#00F0FF] shadow-[0_0_15px_rgba(0,240,255,0.15)]'
+                                  : 'bg-[#070E1C] border-slate-800 hover:border-slate-700'
                               }`}
                             >
                               <div className="space-y-0.5">
-                                <h3 className="font-display font-bold text-xs sm:text-sm text-[#0B1938]">
+                                <h3 className="font-display font-bold text-xs sm:text-sm text-white">
                                   {opt.title}
                                 </h3>
-                                <p className="text-[11px] text-slate-500 font-sans">
+                                <p className="text-[11px] text-slate-400 font-sans">
                                   {opt.desc}
                                 </p>
                               </div>
                               <div className={`w-4 h-4 rounded-full flex items-center justify-center border shrink-0 ${
-                                isSelected ? 'bg-[#0066FF] border-[#0066FF] text-white' : 'border-slate-300 bg-white'
+                                isSelected ? 'bg-[#00F0FF] border-[#00F0FF] text-[#060B18]' : 'border-slate-700 bg-slate-800'
                               }`}>
                                 {isSelected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
                               </div>
@@ -474,10 +471,10 @@ export const StartProject = () => {
                   {step === 4 && (
                     <div key="step-4" className="space-y-3.5 animate-fade-in-up">
                       <div>
-                        <h2 className="font-display font-bold text-base sm:text-lg text-[#0B1938]">
+                        <h2 className="font-display font-bold text-base sm:text-lg text-white">
                           4. Requirements & Features:
                         </h2>
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs text-slate-400">
                           Click quick-tags below or describe your product scope:
                         </p>
                       </div>
@@ -492,10 +489,10 @@ export const StartProject = () => {
                               type="button"
                               key={chip}
                               onClick={() => handleToggleChip(chip)}
-                              className={`px-2.5 py-1 rounded-lg font-mono text-[11px] font-semibold transition-all cursor-pointer ${
+                              className={`px-2.5 py-1 rounded-lg font-mono text-[11px] font-semibold transition-all cursor-pointer border ${
                                 isChecked
-                                  ? 'bg-[#0066FF] text-white shadow-2xs'
-                                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
+                                  ? 'bg-[#0066FF] border-[#00F0FF]/60 text-white shadow-xs'
+                                  : 'bg-[#070E1C] text-slate-300 hover:border-[#00F0FF]/40 border-slate-800'
                               }`}
                             >
                               {isChecked ? '✓ ' : '+ '}
@@ -510,10 +507,10 @@ export const StartProject = () => {
                           rows={3}
                           placeholder="Describe your product purpose, users, third-party APIs needed (e.g. Stripe, OpenAI), or any details..."
                           {...register('projectDetails')}
-                          className="w-full bg-[#F8FAFC] border border-slate-300 p-3 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-xl font-sans leading-relaxed"
+                          className="w-full bg-[#070E1C] border border-slate-800 p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl font-sans leading-relaxed"
                         />
                         {errors.projectDetails && (
-                          <p className="font-mono text-[11px] text-rose-600 font-semibold mt-1">
+                          <p className="font-mono text-[11px] text-rose-400 font-semibold mt-1">
                             {errors.projectDetails.message}
                           </p>
                         )}
@@ -525,17 +522,17 @@ export const StartProject = () => {
                   {step === 5 && (
                     <div key="step-5" className="space-y-3.5 animate-fade-in-up">
                       <div>
-                        <h2 className="font-display font-bold text-base sm:text-lg text-[#0B1938]">
+                        <h2 className="font-display font-bold text-base sm:text-lg text-white">
                           5. Where should we send your technical roadmap?
                         </h2>
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs text-slate-400">
                           We will formulate an architect-reviewed proposal and estimate.
                         </p>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                          <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                          <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-300 font-bold mb-1">
                             Full Name *
                           </label>
                           <div className="relative">
@@ -544,16 +541,16 @@ export const StartProject = () => {
                               type="text"
                               placeholder="e.g. Alex Henderson"
                               {...register('name')}
-                              className="w-full bg-[#F8FAFC] border border-slate-300 pl-8 pr-3 py-1.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg"
+                              className="w-full bg-[#070E1C] border border-slate-800 pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-lg"
                             />
                           </div>
                           {errors.name && (
-                            <p className="font-mono text-[10px] text-rose-600 font-semibold mt-0.5">{errors.name.message}</p>
+                            <p className="font-mono text-[10px] text-rose-400 font-semibold mt-0.5">{errors.name.message}</p>
                           )}
                         </div>
 
                         <div>
-                          <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                          <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-300 font-bold mb-1">
                             Work Email Address *
                           </label>
                           <div className="relative">
@@ -562,16 +559,16 @@ export const StartProject = () => {
                               type="email"
                               placeholder="alex@company.com"
                               {...register('email')}
-                              className="w-full bg-[#F8FAFC] border border-slate-300 pl-8 pr-3 py-1.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg"
+                              className="w-full bg-[#070E1C] border border-slate-800 pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-lg"
                             />
                           </div>
                           {errors.email && (
-                            <p className="font-mono text-[10px] text-rose-600 font-semibold mt-0.5">{errors.email.message}</p>
+                            <p className="font-mono text-[10px] text-rose-400 font-semibold mt-0.5">{errors.email.message}</p>
                           )}
                         </div>
 
                         <div>
-                          <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                          <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-300 font-bold mb-1">
                             Company Name (Optional)
                           </label>
                           <div className="relative">
@@ -580,13 +577,13 @@ export const StartProject = () => {
                               type="text"
                               placeholder="Company Inc."
                               {...register('company')}
-                              className="w-full bg-[#F8FAFC] border border-slate-300 pl-8 pr-3 py-1.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg"
+                              className="w-full bg-[#070E1C] border border-slate-800 pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-lg"
                             />
                           </div>
                         </div>
 
                         <div>
-                          <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                          <label className="block font-mono text-[10px] uppercase tracking-wider text-slate-300 font-bold mb-1">
                             Phone / WhatsApp (Optional)
                           </label>
                           <div className="relative">
@@ -595,7 +592,7 @@ export const StartProject = () => {
                               type="tel"
                               placeholder="+92 300 0000000"
                               {...register('phone')}
-                              className="w-full bg-[#F8FAFC] border border-slate-300 pl-8 pr-3 py-1.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg"
+                              className="w-full bg-[#070E1C] border border-slate-800 pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-lg"
                             />
                           </div>
                         </div>
@@ -604,7 +601,7 @@ export const StartProject = () => {
                   )}
 
                   {/* Bottom Navigation Buttons Bar */}
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-200/80 mt-4">
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-800 mt-4">
                     {step > 1 ? (
                       <Button
                         type="button"
@@ -650,22 +647,22 @@ export const StartProject = () => {
 
             {/* Bottom Compact Summary Strip */}
             {!isCompleted && (
-              <div className="bg-slate-50/90 border-t border-slate-200/80 px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-slate-600">
+              <div className="bg-[#070E1C] border-t border-slate-800 px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-slate-400">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-slate-400">Selected:</span>
-                  <span className="font-bold text-[#0066FF]">{selectedServices.join(', ')}</span>
-                  <span className="text-slate-300">•</span>
-                  <span className="text-slate-400">Budget:</span>
-                  <span className="font-bold text-[#0B1938]">{selectedBudget}</span>
-                  <span className="text-slate-300">•</span>
-                  <span className="text-slate-400">Timeline:</span>
-                  <span className="font-bold text-[#0B1938]">{selectedTimeline}</span>
+                  <span className="text-slate-500">Selected:</span>
+                  <span className="font-bold text-[#00F0FF]">{selectedServices.join(', ')}</span>
+                  <span className="text-slate-700">•</span>
+                  <span className="text-slate-500">Budget:</span>
+                  <span className="font-bold text-white">{selectedBudget}</span>
+                  <span className="text-slate-700">•</span>
+                  <span className="text-slate-500">Timeline:</span>
+                  <span className="font-bold text-white">{selectedTimeline}</span>
                 </div>
                 <a
                   href="https://wa.me/92105464116"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[#0066FF] font-bold hover:underline"
+                  className="text-[#00F0FF] font-bold hover:underline"
                 >
                   WhatsApp Direct →
                 </a>

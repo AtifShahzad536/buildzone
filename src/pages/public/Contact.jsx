@@ -82,20 +82,19 @@ export const Contact = () => {
         canonical="https://buildzonetechnology.com/contact"
       />
 
-
-      <div className="py-12 sm:py-20">
+      <div className="py-12 sm:py-20 bg-[#060B18]">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
-              <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-full mb-4 shadow-[0_0_15px_rgba(0,102,255,0.15)]">
+              <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                 DIRECT ARCHITECT CHANNEL
               </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-4">
-              LET'S TALK ENGINEERING
+            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-white mb-4">
+              LET'S TALK <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">ENGINEERING</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
               Have an ambitious project or need senior engineering talent? Send us your scope parameters and receive an architectural roadmap and proposal within 48 hours.
             </p>
           </div>
@@ -103,38 +102,38 @@ export const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Left Column: Direct Info & Assurances */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="p-6 sm:p-8 bg-white border border-slate-200 rounded-lg shadow-sm space-y-6">
-                <h2 className="text-xl font-bold font-display uppercase text-[#0B1938] border-b border-slate-200 pb-3">
+              <div className="p-6 sm:p-8 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl space-y-6">
+                <h2 className="text-xl font-bold font-display uppercase text-white border-b border-slate-800 pb-3">
                   Direct Inbound Channels
                 </h2>
 
-                <div className="space-y-4 font-mono text-xs text-slate-700">
+                <div className="space-y-4 font-mono text-xs text-slate-300">
                   <div className="flex items-start gap-3">
-                    <Mail className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
+                    <Mail className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase font-bold">Official Inquiries</span>
-                      <a href={`mailto:${siteConfig.contact.email}`} className="text-[#0B1938] hover:text-[#0066FF] font-bold block">
+                      <a href={`mailto:${siteConfig.contact.email}`} className="text-white hover:text-[#00F0FF] font-bold block transition-colors">
                         {siteConfig.contact.email}
                       </a>
-                      <a href={`mailto:${siteConfig.contact.alternateEmail}`} className="text-slate-500 hover:text-[#0066FF] text-[11px] block mt-0.5">
+                      <a href={`mailto:${siteConfig.contact.alternateEmail}`} className="text-slate-400 hover:text-[#00F0FF] text-[11px] block mt-0.5 transition-colors">
                         {siteConfig.contact.alternateEmail}
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <Phone className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
+                    <Phone className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase font-bold">Call & WhatsApp</span>
                       <div className="flex items-center gap-2 mt-0.5">
-                        <a href={`tel:${siteConfig.contact.phone}`} className="text-[#0B1938] hover:text-[#0066FF] font-bold">
+                        <a href={`tel:${siteConfig.contact.phone}`} className="text-white hover:text-[#00F0FF] font-bold transition-colors">
                           {siteConfig.contact.phone}
                         </a>
                         <a
                           href={siteConfig.contact.whatsappLink}
                           target="_blank"
                           rel="noreferrer"
-                          className="px-2 py-0.5 bg-[#25D366] hover:bg-[#20bd5a] text-white text-[9px] font-bold uppercase rounded"
+                          className="px-2.5 py-0.5 bg-[#25D366] hover:bg-[#20bd5a] text-white text-[9px] font-bold uppercase rounded-md transition-colors"
                         >
                           Chat on WhatsApp
                         </a>
@@ -142,31 +141,30 @@ export const Contact = () => {
                     </div>
                   </div>
 
-
                   <div className="flex items-start gap-3">
-                    <MapPin className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
+                    <MapPin className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase font-bold">Headquarters</span>
-                      <span className="text-slate-700">{siteConfig.contact.address}, {siteConfig.contact.city}</span>
+                      <span className="text-slate-300">{siteConfig.contact.address}, {siteConfig.contact.city}</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <Clock className="w-4 h-4 text-[#0066FF] shrink-0 mt-0.5" />
+                    <Clock className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase font-bold">Working Hours</span>
-                      <span className="text-slate-700">{siteConfig.contact.hours}</span>
+                      <span className="text-slate-300">{siteConfig.contact.hours}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-200 space-y-2.5">
-                  <div className="flex items-center gap-2 text-xs font-mono text-slate-700">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                <div className="pt-4 border-t border-slate-800 space-y-2.5">
+                  <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
+                    <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                     <span>Non-Disclosure Agreement signed upon request</span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                     <span>Direct contact with senior architects</span>
                   </div>
                 </div>
@@ -175,16 +173,16 @@ export const Contact = () => {
 
             {/* Right Column: Contact Form */}
             <div className="lg:col-span-7">
-              <div className="p-6 sm:p-10 bg-white border border-slate-200 rounded-lg shadow-sm">
+              <div className="p-6 sm:p-10 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl">
                 {isSubmitted ? (
                   <div className="text-center py-12 space-y-4">
-                    <div className="w-16 h-16 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-[#0066FF] mx-auto">
+                    <div className="w-16 h-16 bg-[#0066FF]/15 border border-[#0066FF]/40 rounded-full flex items-center justify-center text-[#00F0FF] mx-auto">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h2 className="text-2xl font-bold font-display uppercase text-[#0B1938]">
+                    <h2 className="text-2xl font-bold font-display uppercase text-white">
                       Scope Received!
                     </h2>
-                    <p className="text-sm text-slate-600 max-w-md mx-auto">
+                    <p className="text-sm text-slate-300 max-w-md mx-auto">
                       Thank you for submitting your project parameters. Our engineering lead has been notified and will review your technical requirements.
                     </p>
                     <Button
@@ -203,66 +201,66 @@ export const Contact = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                           Full Name *
                         </label>
                         <input
                           type="text"
                           placeholder="e.g. Alex Henderson"
                           {...register('name')}
-                          className="w-full bg-[#F8FAFC] border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md"
+                          className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl"
                         />
-                        {errors.name && <p className="font-mono text-[10px] text-rose-500 mt-1">{errors.name.message}</p>}
+                        {errors.name && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.name.message}</p>}
                       </div>
 
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                           Work Email *
                         </label>
                         <input
                           type="email"
                           placeholder="alex@company.com"
                           {...register('email')}
-                          className="w-full bg-[#F8FAFC] border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md"
+                          className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl"
                         />
-                        {errors.email && <p className="font-mono text-[10px] text-rose-500 mt-1">{errors.email.message}</p>}
+                        {errors.email && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.email.message}</p>}
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                           Company / Organization
                         </label>
                         <input
                           type="text"
                           placeholder="Company Inc."
                           {...register('company')}
-                          className="w-full bg-[#F8FAFC] border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md"
+                          className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl"
                         />
                       </div>
 
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                           Phone Number
                         </label>
                         <input
                           type="text"
                           placeholder="+1 (555) 000-0000"
                           {...register('phone')}
-                          className="w-full bg-[#F8FAFC] border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md"
+                          className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                           Required Service *
                         </label>
                         <select
                           {...register('service')}
-                          className="w-full bg-[#F8FAFC] border border-slate-300 px-3 py-2.5 text-xs text-[#0B1938] focus:outline-none focus:border-[#0066FF] rounded-md cursor-pointer"
+                          className="w-full bg-[#070E1C] border border-slate-800 px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl cursor-pointer"
                         >
                           <option value="Web Development">Web Application Development</option>
                           <option value="Mobile App Development">Mobile App Development</option>
@@ -276,30 +274,30 @@ export const Contact = () => {
                       </div>
 
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                           Estimated Budget (USD) *
                         </label>
                         <input
                           type="text"
                           placeholder="e.g. $15,000, $50k, or Enter Custom Budget"
                           {...register('budget')}
-                          className="w-full bg-[#F8FAFC] border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md font-mono"
+                          className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl font-mono"
                         />
-                        {errors.budget && <p className="font-mono text-[10px] text-rose-500 mt-1">{errors.budget.message}</p>}
+                        {errors.budget && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.budget.message}</p>}
                       </div>
                     </div>
 
                     <div>
-                      <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 mb-1 font-bold">
+                      <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 mb-1 font-bold">
                         Project Overview & Technical Requirements *
                       </label>
                       <textarea
                         rows={4}
                         placeholder="Tell us about the product, current challenges, desired features, or key integrations..."
                         {...register('projectDetails')}
-                        className="w-full bg-[#F8FAFC] border border-slate-300 px-3.5 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-md font-sans leading-relaxed"
+                        className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF]/60 rounded-xl font-sans leading-relaxed"
                       />
-                      {errors.projectDetails && <p className="font-mono text-[10px] text-rose-500 mt-1">{errors.projectDetails.message}</p>}
+                      {errors.projectDetails && <p className="font-mono text-[10px] text-rose-400 mt-1">{errors.projectDetails.message}</p>}
                     </div>
 
                     <div className="flex items-center gap-2 pt-2">
@@ -307,9 +305,9 @@ export const Contact = () => {
                         type="checkbox"
                         id="nda"
                         {...register('ndaRequired')}
-                        className="w-4 h-4 text-[#0066FF] border-slate-300 rounded focus:ring-[#0066FF]"
+                        className="w-4 h-4 text-[#0066FF] border-slate-700 bg-[#070E1C] rounded focus:ring-[#00F0FF]"
                       />
-                      <label htmlFor="nda" className="font-mono text-xs text-slate-600 cursor-pointer select-none">
+                      <label htmlFor="nda" className="font-mono text-xs text-slate-300 cursor-pointer select-none">
                         Send Mutual Non-Disclosure Agreement (NDA) prior to technical calls
                       </label>
                     </div>

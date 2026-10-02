@@ -158,19 +158,19 @@ export const RichTextEditor = ({
     <div className={`space-y-2 font-sans ${className}`}>
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
+        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 font-bold">
           {label}
         </label>
 
         {/* View Mode Buttons */}
-        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200 font-mono text-[11px] font-bold">
+        <div className="flex items-center gap-1 bg-[#070E1C] p-1 rounded-lg border border-slate-800 font-mono text-[11px] font-bold">
           <button
             type="button"
             onClick={() => setViewMode('edit')}
             className={`px-2.5 py-1 rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${
               viewMode === 'edit'
-                ? 'bg-white text-[#0066FF] shadow-2xs font-bold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white shadow-sm font-bold'
+                : 'text-slate-400 hover:text-white'
             }`}
             title="Full Editor View"
           >
@@ -183,8 +183,8 @@ export const RichTextEditor = ({
             onClick={() => setViewMode('split')}
             className={`px-2.5 py-1 rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${
               viewMode === 'split'
-                ? 'bg-white text-[#0066FF] shadow-2xs font-bold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white shadow-sm font-bold'
+                : 'text-slate-400 hover:text-white'
             }`}
             title="Side-by-Side Editor & Live Preview"
           >
@@ -197,8 +197,8 @@ export const RichTextEditor = ({
             onClick={() => setViewMode('preview')}
             className={`px-2.5 py-1 rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${
               viewMode === 'preview'
-                ? 'bg-white text-[#0066FF] shadow-2xs font-bold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white shadow-sm font-bold'
+                : 'text-slate-400 hover:text-white'
             }`}
             title="Accurate Public View"
           >
@@ -209,15 +209,15 @@ export const RichTextEditor = ({
       </div>
 
       {/* Editor Box */}
-      <div className="border border-slate-300 rounded-2xl overflow-hidden bg-white shadow-2xs focus-within:border-[#0066FF] transition-all">
+      <div className="border border-slate-800 rounded-2xl overflow-hidden bg-[#0B1528] shadow-xl focus-within:border-[#00F0FF] transition-all">
         {/* Toolbar */}
-        <div className="flex flex-wrap items-center gap-1 p-2 bg-[#F8FAFC] border-b border-slate-200 text-slate-700 select-none">
+        <div className="flex flex-wrap items-center gap-1 p-2 bg-[#070E1C] border-b border-slate-800 text-slate-300 select-none">
           {/* Headings */}
-          <div className="flex items-center gap-0.5 border-r border-slate-300 pr-1.5 mr-1">
+          <div className="flex items-center gap-0.5 border-r border-slate-700/80 pr-1.5 mr-1">
             <button
               type="button"
               onClick={() => insertFormatting('## ', '\n', 'Main Section Heading')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer text-xs font-bold font-mono"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer text-xs font-bold font-mono"
               title="Heading 2 (##)"
             >
               H2
@@ -225,7 +225,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => insertFormatting('### ', '\n', 'Sub-Section Heading')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer text-xs font-bold font-mono"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer text-xs font-bold font-mono"
               title="Heading 3 (###)"
             >
               H3
@@ -233,11 +233,11 @@ export const RichTextEditor = ({
           </div>
 
           {/* Text Styles */}
-          <div className="flex items-center gap-0.5 border-r border-slate-300 pr-1.5 mr-1">
+          <div className="flex items-center gap-0.5 border-r border-slate-700/80 pr-1.5 mr-1">
             <button
               type="button"
               onClick={() => insertFormatting('**', '**', 'bold text')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Bold (Ctrl+B)"
             >
               <Bold className="w-4 h-4" />
@@ -245,7 +245,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => insertFormatting('*', '*', 'italic text')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Italic (Ctrl+I)"
             >
               <Italic className="w-4 h-4" />
@@ -253,7 +253,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => insertFormatting('~~', '~~', 'strikethrough')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Strikethrough"
             >
               <Strikethrough className="w-4 h-4" />
@@ -261,7 +261,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => insertFormatting('`', '`', 'const variable = true;')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Inline Code"
             >
               <Code className="w-4 h-4" />
@@ -269,11 +269,11 @@ export const RichTextEditor = ({
           </div>
 
           {/* Alignment */}
-          <div className="flex items-center gap-0.5 border-r border-slate-300 pr-1.5 mr-1">
+          <div className="flex items-center gap-0.5 border-r border-slate-700/80 pr-1.5 mr-1">
             <button
               type="button"
               onClick={() => insertFormatting('', '', '')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Align Left (Default)"
             >
               <AlignLeft className="w-4 h-4" />
@@ -281,7 +281,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => insertFormatting('\n:::center\n', '\n:::\n', 'Centered paragraph or statement')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Align Center (:::center)"
             >
               <AlignCenter className="w-4 h-4" />
@@ -289,7 +289,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => insertFormatting('\n:::right\n', '\n:::\n', 'Right-aligned text or signature')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Align Right (:::right)"
             >
               <AlignRight className="w-4 h-4" />
@@ -297,11 +297,11 @@ export const RichTextEditor = ({
           </div>
 
           {/* Lists & Quotes */}
-          <div className="flex items-center gap-0.5 border-r border-slate-300 pr-1.5 mr-1">
+          <div className="flex items-center gap-0.5 border-r border-slate-700/80 pr-1.5 mr-1">
             <button
               type="button"
               onClick={() => insertFormatting('- ', '\n- Next point\n- Key advantage', 'Feature item')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Bulleted List"
             >
               <List className="w-4 h-4" />
@@ -309,7 +309,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => insertFormatting('1. ', '\n2. Next step\n3. Final result', 'First step')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Numbered List"
             >
               <ListOrdered className="w-4 h-4" />
@@ -317,7 +317,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => insertFormatting('> ', '\n', 'Engineering quote or critical executive highlight')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Blockquote"
             >
               <Quote className="w-4 h-4" />
@@ -325,11 +325,11 @@ export const RichTextEditor = ({
           </div>
 
           {/* Code Block & Table & Divider */}
-          <div className="flex items-center gap-0.5 border-r border-slate-300 pr-1.5 mr-1">
+          <div className="flex items-center gap-0.5 border-r border-slate-700/80 pr-1.5 mr-1">
             <button
               type="button"
               onClick={() => insertFormatting('\n```javascript\n// Production implementation\nfunction scaleSystem() {\n  return "Optimized";\n}\n', '\n```\n', '')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Code Block with Syntax Highlighting"
             >
               <Terminal className="w-4 h-4" />
@@ -337,7 +337,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={handleInsertTable}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Insert Markdown Table"
             >
               <Table className="w-4 h-4" />
@@ -345,7 +345,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => insertFormatting('\n---\n\n', '', '')}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Horizontal Divider"
             >
               <Minus className="w-4 h-4" />
@@ -357,7 +357,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => setIsLinkDialogOpen(true)}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer"
               title="Insert Link (Ctrl+K)"
             >
               <LinkIcon className="w-4 h-4" />
@@ -365,7 +365,7 @@ export const RichTextEditor = ({
             <button
               type="button"
               onClick={() => setIsImageDialogOpen(true)}
-              className="p-1.5 hover:bg-white hover:text-[#0066FF] rounded-lg transition-colors cursor-pointer flex items-center gap-1 font-mono text-xs font-bold text-[#0066FF]"
+              className="p-1.5 hover:bg-[#0B1528] hover:text-[#00F0FF] rounded-lg transition-colors cursor-pointer flex items-center gap-1 font-mono text-xs font-bold text-[#00F0FF]"
               title="Embed Illustration / Screenshot"
             >
               <ImageIcon className="w-4 h-4" />
@@ -384,12 +384,12 @@ export const RichTextEditor = ({
               onKeyDown={handleKeyDown}
               placeholder={placeholder}
               style={{ minHeight }}
-              className="w-full p-4 text-sm text-[#0B1938] font-sans leading-relaxed focus:outline-none resize-y"
+              className="w-full p-4 text-sm text-slate-100 placeholder-slate-500 bg-[#0B1528] font-sans leading-relaxed focus:outline-none resize-y"
             />
           )}
 
           {viewMode === 'split' && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-200" style={{ minHeight }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-800" style={{ minHeight }}>
               <div className="p-0">
                 <textarea
                   ref={textareaRef}
@@ -398,23 +398,23 @@ export const RichTextEditor = ({
                   onKeyDown={handleKeyDown}
                   placeholder={placeholder}
                   style={{ minHeight }}
-                  className="w-full h-full p-4 text-sm text-[#0B1938] font-sans leading-relaxed focus:outline-none resize-none"
+                  className="w-full h-full p-4 text-sm text-slate-100 placeholder-slate-500 bg-[#0B1528] font-sans leading-relaxed focus:outline-none resize-none"
                 />
               </div>
 
-              <div className="p-6 bg-[#FAFCFF] overflow-y-auto max-h-[600px] scrollbar-thin">
-                <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-200">
+              <div className="p-6 bg-[#060B18] overflow-y-auto max-h-[600px] scrollbar-thin">
+                <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
                   <span className="font-mono text-[10px] uppercase font-bold text-slate-400 tracking-wider">
                     Live Public Rendering (Exact Output)
                   </span>
-                  <span className="px-2 py-0.5 bg-blue-50 text-[#0066FF] border border-blue-200 text-[10px] font-mono font-bold rounded-md">
+                  <span className="px-2 py-0.5 bg-[#0066FF]/20 text-[#00F0FF] border border-[#00F0FF]/30 text-[10px] font-mono font-bold rounded-md">
                     WYSIWYG Synchronized
                   </span>
                 </div>
                 {value ? (
                   <RichTextRenderer content={value} />
                 ) : (
-                  <div className="py-12 text-center text-slate-400 italic text-xs font-mono">
+                  <div className="py-12 text-center text-slate-500 italic text-xs font-mono">
                     Type in the editor on the left to see live formatted typography, bullet points, headers, and code blocks here.
                   </div>
                 )}
@@ -423,16 +423,16 @@ export const RichTextEditor = ({
           )}
 
           {viewMode === 'preview' && (
-            <div className="p-8 sm:p-12 bg-white overflow-y-auto" style={{ minHeight }}>
+            <div className="p-8 sm:p-12 bg-[#060B18] overflow-y-auto" style={{ minHeight }}>
               <div className="max-w-3xl mx-auto">
-                <div className="p-4 mb-8 bg-blue-50/50 border border-blue-200 rounded-xl flex items-center justify-between">
-                  <span className="font-mono text-xs text-[#0066FF] font-bold">
+                <div className="p-4 mb-8 bg-[#0B1528] border border-slate-800 rounded-xl flex items-center justify-between">
+                  <span className="font-mono text-xs text-[#00F0FF] font-bold">
                     PREVIEW MODE: This matches exactly how website visitors will view your article.
                   </span>
                   <button
                     type="button"
                     onClick={() => setViewMode('edit')}
-                    className="px-3 py-1 bg-white border border-blue-300 text-[#0066FF] rounded-lg font-mono text-xs font-bold hover:bg-blue-50 transition-colors cursor-pointer"
+                    className="px-3 py-1 bg-[#070E1C] border border-slate-700 text-[#00F0FF] rounded-lg font-mono text-xs font-bold hover:bg-[#0B1528] transition-colors cursor-pointer"
                   >
                     Back to Edit
                   </button>
@@ -440,7 +440,7 @@ export const RichTextEditor = ({
                 {value ? (
                   <RichTextRenderer content={value} />
                 ) : (
-                  <p className="text-slate-400 italic text-center py-8">Article is currently empty.</p>
+                  <p className="text-slate-500 italic text-center py-8">Article is currently empty.</p>
                 )}
               </div>
             </div>
@@ -448,13 +448,13 @@ export const RichTextEditor = ({
         </div>
 
         {/* Bottom Status Bar */}
-        <div className="flex items-center justify-between px-4 py-2 bg-slate-50 border-t border-slate-200 font-mono text-[10px] text-slate-500">
+        <div className="flex items-center justify-between px-4 py-2 bg-[#070E1C] border-t border-slate-800 font-mono text-[10px] text-slate-400">
           <div className="flex items-center gap-4">
-            <span><strong>{words}</strong> words</span>
-            <span>~<strong>{readingTime}</strong> min read</span>
-            <span className="hidden sm:inline text-slate-400">Ctrl+B = Bold • Ctrl+I = Italic • Ctrl+K = Link</span>
+            <span><strong className="text-white">{words}</strong> words</span>
+            <span>~<strong className="text-white">{readingTime}</strong> min read</span>
+            <span className="hidden sm:inline text-slate-500">Ctrl+B = Bold • Ctrl+I = Italic • Ctrl+K = Link</span>
           </div>
-          <span className="text-[#0066FF] font-semibold">
+          <span className="text-[#00F0FF] font-semibold">
             Markdown & HTML Supported
           </span>
         </div>
@@ -462,14 +462,14 @@ export const RichTextEditor = ({
 
       {/* Insert Link Dialog Modal */}
       {isLinkDialogOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
-          <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-              <h4 className="font-display text-base font-bold uppercase text-[#0B1938]">Insert Hyperlink</h4>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+          <div className="w-full max-w-md bg-[#0B1528] border border-slate-800 rounded-2xl p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+              <h4 className="font-display text-base font-bold uppercase text-white">Insert Hyperlink</h4>
               <button
                 type="button"
                 onClick={() => setIsLinkDialogOpen(false)}
-                className="p-1 text-slate-400 hover:text-slate-600 rounded-lg cursor-pointer"
+                className="p-1 text-slate-400 hover:text-white rounded-lg cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -477,7 +477,7 @@ export const RichTextEditor = ({
 
             <div className="space-y-3 font-sans text-xs">
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Anchor Text (Label)
                 </label>
                 <input
@@ -485,12 +485,12 @@ export const RichTextEditor = ({
                   placeholder="e.g. Read Architecture Whitepaper"
                   value={linkText}
                   onChange={(e) => setLinkText(e.target.value)}
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs rounded-lg focus:outline-none focus:border-[#0066FF]"
+                  className="w-full bg-[#070E1C] border border-slate-800 text-white placeholder-slate-500 px-3 py-2 text-xs rounded-lg focus:outline-none focus:border-[#00F0FF]"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Destination URL *
                 </label>
                 <input
@@ -498,7 +498,7 @@ export const RichTextEditor = ({
                   placeholder="https://example.com/docs"
                   value={linkUrl}
                   onChange={(e) => setLinkUrl(e.target.value)}
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs rounded-lg focus:outline-none focus:border-[#0066FF] font-mono"
+                  className="w-full bg-[#070E1C] border border-slate-800 text-white placeholder-slate-500 px-3 py-2 text-xs rounded-lg focus:outline-none focus:border-[#00F0FF] font-mono"
                 />
               </div>
             </div>
@@ -507,14 +507,14 @@ export const RichTextEditor = ({
               <button
                 type="button"
                 onClick={() => setIsLinkDialogOpen(false)}
-                className="px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg cursor-pointer font-medium"
+                className="px-3 py-1.5 text-xs text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg cursor-pointer font-medium"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={handleApplyLink}
-                className="px-4 py-1.5 text-xs bg-[#0066FF] hover:bg-blue-600 text-white rounded-lg cursor-pointer font-bold shadow-2xs"
+                className="px-4 py-1.5 text-xs bg-gradient-to-r from-[#0066FF] to-[#00D4FF] hover:opacity-90 text-white rounded-lg cursor-pointer font-bold shadow-md shadow-blue-500/20"
               >
                 Insert Link
               </button>
@@ -525,14 +525,14 @@ export const RichTextEditor = ({
 
       {/* Insert Image Dialog Modal */}
       {isImageDialogOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
-          <div className="w-full max-w-lg bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-              <h4 className="font-display text-base font-bold uppercase text-[#0B1938]">Embed Article Image</h4>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+          <div className="w-full max-w-lg bg-[#0B1528] border border-slate-800 rounded-2xl p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+              <h4 className="font-display text-base font-bold uppercase text-white">Embed Article Image</h4>
               <button
                 type="button"
                 onClick={() => setIsImageDialogOpen(false)}
-                className="p-1 text-slate-400 hover:text-slate-600 rounded-lg cursor-pointer"
+                className="p-1 text-slate-400 hover:text-white rounded-lg cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -541,12 +541,12 @@ export const RichTextEditor = ({
             <div className="space-y-4 font-sans text-xs">
               {/* Direct File Upload Option */}
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Upload Image File (Cloudinary CDN)
                 </label>
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="border-2 border-dashed border-slate-300 hover:border-[#0066FF] bg-[#F8FAFC] rounded-xl p-4 text-center cursor-pointer transition-all flex flex-col items-center gap-1.5"
+                  className="border-2 border-dashed border-slate-700 hover:border-[#00F0FF] bg-[#070E1C] rounded-xl p-4 text-center cursor-pointer transition-all flex flex-col items-center gap-1.5"
                 >
                   <input
                     ref={fileInputRef}
@@ -555,8 +555,8 @@ export const RichTextEditor = ({
                     onChange={(e) => handleDirectImageUpload(e.target.files?.[0])}
                     className="hidden"
                   />
-                  <UploadCloud className="w-6 h-6 text-[#0066FF]" />
-                  <span className="font-sans text-xs font-bold text-[#0B1938]">
+                  <UploadCloud className="w-6 h-6 text-[#00F0FF]" />
+                  <span className="font-sans text-xs font-bold text-white">
                     Click to browse or drop file
                   </span>
                   <span className="font-mono text-[10px] text-slate-400">
@@ -567,7 +567,7 @@ export const RichTextEditor = ({
 
               {/* Or Direct URL */}
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Or Direct Image URL *
                 </label>
                 <input
@@ -575,12 +575,12 @@ export const RichTextEditor = ({
                   placeholder="https://images.unsplash.com/... or Cloudinary URL"
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs rounded-lg focus:outline-none focus:border-[#0066FF] font-mono"
+                  className="w-full bg-[#070E1C] border border-slate-800 text-white placeholder-slate-500 px-3 py-2 text-xs rounded-lg focus:outline-none focus:border-[#00F0FF] font-mono"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[11px] uppercase text-slate-700 font-bold mb-1">
+                <label className="block font-mono text-[11px] uppercase text-slate-300 font-bold mb-1">
                   Image Caption / Alt Text
                 </label>
                 <input
@@ -588,12 +588,12 @@ export const RichTextEditor = ({
                   placeholder="e.g. Distributed Cluster Architecture Diagram"
                   value={imageCaption}
                   onChange={(e) => setImageCaption(e.target.value)}
-                  className="w-full bg-white border border-slate-300 px-3 py-2 text-xs rounded-lg focus:outline-none focus:border-[#0066FF]"
+                  className="w-full bg-[#070E1C] border border-slate-800 text-white placeholder-slate-500 px-3 py-2 text-xs rounded-lg focus:outline-none focus:border-[#00F0FF]"
                 />
               </div>
 
               {imageUrl && (
-                <div className="aspect-video w-full rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
+                <div className="aspect-video w-full rounded-xl overflow-hidden border border-slate-800 bg-[#070E1C]">
                   <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" />
                 </div>
               )}
@@ -603,14 +603,14 @@ export const RichTextEditor = ({
               <button
                 type="button"
                 onClick={() => setIsImageDialogOpen(false)}
-                className="px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg cursor-pointer font-medium"
+                className="px-3 py-1.5 text-xs text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg cursor-pointer font-medium"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={handleApplyImage}
-                className="px-4 py-1.5 text-xs bg-[#0066FF] hover:bg-blue-600 text-white rounded-lg cursor-pointer font-bold shadow-2xs"
+                className="px-4 py-1.5 text-xs bg-gradient-to-r from-[#0066FF] to-[#00D4FF] hover:opacity-90 text-white rounded-lg cursor-pointer font-bold shadow-md shadow-blue-500/20"
               >
                 Embed Image
               </button>

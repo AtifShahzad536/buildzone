@@ -29,20 +29,20 @@ export const AIDevelopment = () => {
         canonical="https://buildzonetechnology.com/ai-development"
       />
 
-      <div className="py-12 sm:py-20">
+      <div className="py-12 sm:py-20 bg-[#060B18]">
         <Container>
           {/* Header */}
           <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-24">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
-              <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/15 border border-[#0066FF]/40 rounded-full mb-4 shadow-xs">
+              <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                 ENTERPRISE MACHINE LEARNING
               </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-6 leading-tight">
-              APPLIED AI & AGENT SYSTEMS
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight text-white mb-6 leading-tight">
+              APPLIED AI & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">AGENT SYSTEMS</span>
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 font-sans leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
               We design, fine-tune, and deploy custom artificial intelligence architectures that solve complex business operations with precision, compliance, and zero data leakage.
             </p>
           </div>
@@ -79,24 +79,24 @@ export const AIDevelopment = () => {
               return (
                 <div
                   key={i}
-                  className="p-8 bg-white border border-slate-200 hover:border-[#0066FF]/40 rounded-lg shadow-sm hover:shadow-md transition-all space-y-6"
+                  className="p-8 bg-[#0B1528] border border-slate-800 hover:border-[#00F0FF]/50 rounded-2xl shadow-xl hover:shadow-[0_0_30px_rgba(0,102,255,0.2)] transition-all space-y-6 group"
                 >
-                  <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF]">
+                  <div className="w-12 h-12 bg-[#122038] border border-slate-700/80 rounded-xl flex items-center justify-center text-[#00F0FF] group-hover:scale-110 transition-transform">
                     <Icon className="w-6 h-6" />
                   </div>
 
-                  <h2 className="text-2xl font-bold font-display uppercase tracking-tight text-[#0B1938]">
+                  <h2 className="text-2xl font-bold font-display uppercase tracking-tight text-white group-hover:text-[#00F0FF] transition-colors">
                     {pillar.title}
                   </h2>
 
-                  <p className="text-sm text-slate-600 font-sans leading-relaxed">
+                  <p className="text-sm text-slate-300 font-sans leading-relaxed">
                     {pillar.desc}
                   </p>
 
-                  <div className="pt-4 border-t border-slate-100 space-y-2">
+                  <div className="pt-4 border-t border-slate-800/80 space-y-2">
                     {pillar.features.map((feat) => (
-                      <div key={feat} className="flex items-center gap-2 font-mono text-xs text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-[#0066FF] shrink-0" />
+                      <div key={feat} className="flex items-center gap-2 font-mono text-xs text-slate-300">
+                        <CheckCircle2 className="w-4 h-4 text-[#00F0FF] shrink-0" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -107,32 +107,33 @@ export const AIDevelopment = () => {
           </div>
 
           {/* AI Security & Data Privacy Assurances */}
-          <div className="p-8 sm:p-12 bg-white border border-slate-200 rounded-lg shadow-sm mb-20 space-y-6 max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-              <ShieldCheck className="w-6 h-6 text-emerald-600" />
-              <h2 className="font-display text-xl font-bold uppercase text-[#0B1938]">
+          <div className="p-8 sm:p-12 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl mb-20 space-y-6 max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 border-b border-slate-800/80 pb-4">
+              <ShieldCheck className="w-6 h-6 text-emerald-400" />
+              <h2 className="font-display text-xl font-bold uppercase text-white">
                 Enterprise AI Data Protection Guarantee
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs text-slate-700">
-              <div className="p-4 bg-[#F8FAFC] border border-slate-200 rounded">
-                <span className="font-bold text-[#0B1938] block mb-1">Zero 3rd-Party Training</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs text-slate-300">
+              <div className="p-4 bg-[#070E1C] border border-slate-800 rounded-xl">
+                <span className="font-bold text-[#00F0FF] block mb-1">Zero 3rd-Party Training</span>
                 Your corporate data is never sent to train public foundation models or shared with third parties.
               </div>
-              <div className="p-4 bg-[#F8FAFC] border border-slate-200 rounded">
-                <span className="font-bold text-[#0B1938] block mb-1">Private VPC & On-Premise</span>
+              <div className="p-4 bg-[#070E1C] border border-slate-800 rounded-xl">
+                <span className="font-bold text-[#00F0FF] block mb-1">Private VPC & On-Premise</span>
                 We deploy all vector databases and inference engines inside your own dedicated cloud VPC or hardware.
               </div>
             </div>
           </div>
 
           {/* Call to action */}
-          <div className="p-8 sm:p-12 bg-gradient-to-br from-blue-50/90 via-white to-blue-50/50 border border-blue-200/80 rounded-2xl text-center space-y-6 max-w-4xl mx-auto shadow-md">
-            <h2 className="text-2xl sm:text-4xl font-black font-display uppercase text-[#0B1938]">
+          <div className="p-8 sm:p-12 bg-gradient-to-br from-[#0B1528] via-[#0A1226] to-[#070E1C] border border-slate-800/90 rounded-2xl text-center space-y-6 max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
+            <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#0066FF]/20 rounded-full blur-3xl pointer-events-none" />
+            <h2 className="text-2xl sm:text-4xl font-black font-display uppercase text-white">
               Ready to Deploy AI Into Your Product?
             </h2>
-            <p className="text-slate-600 font-sans text-sm max-w-xl mx-auto">
+            <p className="text-slate-300 font-sans text-sm max-w-xl mx-auto">
               Schedule a 45-minute AI discovery call. We'll assess your data readiness and build a proof-of-concept roadmap.
             </p>
             <div className="flex flex-row items-center justify-center gap-3">

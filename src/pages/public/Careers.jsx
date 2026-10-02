@@ -7,20 +7,20 @@ import {
   ArrowRight, 
   Terminal, 
   Sparkles,
-  CheckCircle2,
-  Globe,
-  Search,
-  SlidersHorizontal,
-  Laptop,
-  GraduationCap,
-  HeartHandshake,
-  Clock,
-  ShieldCheck,
-  Code2,
-  Cpu,
-  Server,
-  Layers,
-  X
+  CheckCircle2, 
+  Globe, 
+  Search, 
+  SlidersHorizontal, 
+  Laptop, 
+  GraduationCap, 
+  HeartHandshake, 
+  Clock, 
+  ShieldCheck, 
+  Code2, 
+  Cpu, 
+  Server, 
+  Layers, 
+  X 
 } from 'lucide-react';
 import { useGetCareersQuery } from '../../services/api';
 import { initialCareers } from '../../data/careers';
@@ -160,53 +160,44 @@ export const Careers = () => {
         canonical="https://buildzonetechnology.com/careers"
       />
 
-      <div className="bg-white">
+      <div className="bg-[#060B18]">
         {/* ================= HERO SECTION ================= */}
-        <section className="relative pt-14 pb-20 sm:pt-20 sm:pb-28 bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-200/60 overflow-hidden">
-          {/* Subtle Background Grid Pattern */}
-          <div 
-            className="absolute inset-0 opacity-[0.03] pointer-events-none"
-            style={{
-              backgroundImage: 'radial-gradient(#0066FF 1px, transparent 1px)',
-              backgroundSize: '24px 24px'
-            }}
-          />
-
+        <section className="relative pt-14 pb-20 sm:pt-20 sm:pb-28 border-b border-slate-800/80 overflow-hidden">
           <Container className="relative">
             <div className="max-w-4xl mx-auto text-center space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-50 border border-blue-200/80 rounded-full shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#0066FF] animate-pulse"></span>
-                <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-full shadow-[0_0_15px_rgba(0,102,255,0.15)]">
+                <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse"></span>
+                <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                   WE ARE HIRING ELITE BUILDERS
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight text-[#0B1938] leading-[1.1]">
-                ENGINEER AT THE <span className="text-[#0066FF]">FRONTIER</span> OF TECH
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight text-white leading-[1.1]">
+                ENGINEER AT THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">FRONTIER</span> OF TECH
               </h1>
 
-              <p className="text-sm sm:text-base lg:text-lg text-slate-600 font-sans leading-relaxed max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base lg:text-lg text-slate-300 font-sans leading-relaxed max-w-2xl mx-auto">
                 We are a high-autonomy, senior-first digital engineering collective. Build mission-critical software systems, distributed backends, and applied AI with top-tier international compensation.
               </p>
 
               {/* Quick Metrics Bar */}
               <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto">
-                <div className="p-4 bg-white border border-slate-200/80 rounded-xl shadow-xs text-center">
-                  <div className="font-display font-black text-xl sm:text-2xl text-[#0066FF]">100%</div>
-                  <div className="font-mono text-[11px] font-semibold text-slate-500 uppercase mt-0.5">Remote & Async</div>
+                <div className="p-4 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl text-center">
+                  <div className="font-display font-black text-xl sm:text-2xl text-[#00F0FF]">100%</div>
+                  <div className="font-mono text-[11px] font-semibold text-slate-400 uppercase mt-0.5">Remote & Async</div>
                 </div>
-                <div className="p-4 bg-white border border-slate-200/80 rounded-xl shadow-xs text-center">
-                  <div className="font-display font-black text-xl sm:text-2xl text-[#0066FF]">$90k–$160k+</div>
-                  <div className="font-mono text-[11px] font-semibold text-slate-500 uppercase mt-0.5">Top USD Bands</div>
+                <div className="p-4 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl text-center">
+                  <div className="font-display font-black text-xl sm:text-2xl text-[#00F0FF]">$90k–$160k+</div>
+                  <div className="font-mono text-[11px] font-semibold text-slate-400 uppercase mt-0.5">Top USD Bands</div>
                 </div>
-                <div className="p-4 bg-white border border-slate-200/80 rounded-xl shadow-xs text-center">
-                  <div className="font-display font-black text-xl sm:text-2xl text-[#0066FF]">&lt; 14 Days</div>
-                  <div className="font-mono text-[11px] font-semibold text-slate-500 uppercase mt-0.5">Fast Hiring Cycle</div>
+                <div className="p-4 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl text-center">
+                  <div className="font-display font-black text-xl sm:text-2xl text-[#00F0FF]">&lt; 14 Days</div>
+                  <div className="font-mono text-[11px] font-semibold text-slate-400 uppercase mt-0.5">Fast Hiring Cycle</div>
                 </div>
-                <div className="p-4 bg-white border border-slate-200/80 rounded-xl shadow-xs text-center">
-                  <div className="font-display font-black text-xl sm:text-2xl text-[#0066FF]">Zero</div>
-                  <div className="font-mono text-[11px] font-semibold text-slate-500 uppercase mt-0.5">Bureaucracy</div>
+                <div className="p-4 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl text-center">
+                  <div className="font-display font-black text-xl sm:text-2xl text-[#00F0FF]">Zero</div>
+                  <div className="font-mono text-[11px] font-semibold text-slate-400 uppercase mt-0.5">Bureaucracy</div>
                 </div>
               </div>
             </div>
@@ -214,16 +205,16 @@ export const Careers = () => {
         </section>
 
         {/* ================= HEAVY SEARCH & FILTER PANEL + JOBS ================= */}
-        <section id="openings" className="py-16 sm:py-24 bg-[#F8FAFC]">
+        <section id="openings" className="py-16 sm:py-24 bg-[#060B18]">
           <Container>
-            {/* Proper Heavy Control Panel */}
-            <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-8 mb-12 space-y-6">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+            {/* Control Panel */}
+            <div className="bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl p-5 sm:p-8 mb-12 space-y-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-5">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold font-display uppercase tracking-tight text-[#0B1938]">
+                  <h2 className="text-xl sm:text-2xl font-bold font-display uppercase tracking-tight text-white">
                     Explore Active Openings
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-500 font-sans mt-0.5">
+                  <p className="text-xs sm:text-sm text-slate-400 font-sans mt-0.5">
                     Filter engineering opportunities by role, technology stack, or department.
                   </p>
                 </div>
@@ -231,7 +222,7 @@ export const Careers = () => {
                 {hasActiveFilters && (
                   <button
                     onClick={resetFilters}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer self-start md:self-auto"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-bold text-slate-300 bg-[#070E1C] border border-slate-800 hover:border-[#00F0FF]/50 rounded-xl transition-colors cursor-pointer self-start md:self-auto"
                   >
                     <X className="w-3.5 h-3.5" />
                     <span>Reset Filters</span>
@@ -249,12 +240,12 @@ export const Careers = () => {
                     placeholder="Search by title, technology (React, Python, QA, AWS)..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 pl-10 pr-4 py-2.5 text-xs sm:text-sm text-[#0B1938] placeholder-slate-400 rounded-xl focus:outline-none focus:border-[#0066FF] focus:bg-white transition-all shadow-2xs"
+                    className="w-full bg-[#070E1C] border border-slate-800 pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 rounded-xl focus:outline-none focus:border-[#00F0FF]/60 transition-all shadow-inner"
                   />
                   {searchTerm && (
                     <button
                       onClick={() => setSearchTerm('')}
-                      className="absolute right-3 top-3 text-slate-400 hover:text-slate-600"
+                      className="absolute right-3 top-3 text-slate-400 hover:text-white"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -266,7 +257,7 @@ export const Careers = () => {
                   <select
                     value={selectedType}
                     onChange={(e) => setSelectedType(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs sm:text-sm font-sans text-slate-700 rounded-xl focus:outline-none focus:border-[#0066FF] focus:bg-white transition-all shadow-2xs cursor-pointer"
+                    className="w-full bg-[#070E1C] border border-slate-800 px-3.5 py-2.5 text-xs sm:text-sm font-sans text-slate-300 rounded-xl focus:outline-none focus:border-[#00F0FF]/60 transition-all cursor-pointer"
                   >
                     <option value="all">All Employment Types</option>
                     <option value="full-time">Full-Time</option>
@@ -287,17 +278,17 @@ export const Careers = () => {
                     <button
                       key={dept.id}
                       onClick={() => setSelectedDept(dept.id)}
-                      className={`px-3.5 py-2 rounded-xl font-mono text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer ${
+                      className={`px-3.5 py-2 rounded-xl font-mono text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer border ${
                         isActive
-                          ? 'bg-[#0066FF] text-white shadow-xs ring-2 ring-[#0066FF]/20'
-                          : 'bg-slate-100/90 text-slate-600 hover:bg-slate-200 hover:text-[#0B1938]'
+                          ? 'bg-[#0066FF] text-white border-[#00F0FF]/60 shadow-[0_0_15px_rgba(0,102,255,0.35)]'
+                          : 'bg-[#070E1C] text-slate-400 border-slate-800 hover:border-[#00F0FF]/40 hover:text-white'
                       }`}
                     >
                       <Icon className="w-3.5 h-3.5 shrink-0" />
                       <span>{dept.label}</span>
                       <span
                         className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
-                          isActive ? 'bg-white/20 text-white' : 'bg-slate-200/90 text-slate-700'
+                          isActive ? 'bg-white/20 text-white' : 'bg-slate-800 text-[#00F0FF]'
                         }`}
                       >
                         {count}
@@ -310,8 +301,8 @@ export const Careers = () => {
 
             {/* Results Counter */}
             <div className="flex items-center justify-between mb-6 px-1">
-              <span className="font-mono text-xs text-slate-500 font-semibold uppercase tracking-wider">
-                Showing <strong className="text-[#0066FF]">{filteredCareers.length}</strong> Open Position{filteredCareers.length === 1 ? '' : 's'}
+              <span className="font-mono text-xs text-slate-400 font-semibold uppercase tracking-wider">
+                Showing <strong className="text-[#00F0FF]">{filteredCareers.length}</strong> Open Position{filteredCareers.length === 1 ? '' : 's'}
               </span>
             </div>
 
@@ -319,31 +310,31 @@ export const Careers = () => {
             {isLoading && (!careersData || careersData.length === 0) ? (
               <div className="py-12">
                 <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
-                  <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
-                  <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                  <div className="w-10 h-10 border-3 border-slate-800 border-t-[#00F0FF] rounded-full animate-spin"></div>
+                  <p className="font-mono text-xs text-slate-400 tracking-widest uppercase font-semibold">
                     Loading Engineering Openings...
                   </p>
                 </div>
                 <div className="space-y-5 animate-pulse">
                   {[1, 2, 3].map((n) => (
-                    <div key={n} className="p-6 sm:p-8 bg-white border border-slate-200 rounded-2xl space-y-4">
-                      <div className="w-28 h-5 bg-slate-100 rounded" />
-                      <div className="w-1/2 h-7 bg-slate-100 rounded" />
-                      <div className="w-3/4 h-4 bg-slate-50 rounded" />
-                      <div className="w-full h-10 bg-slate-50 rounded" />
+                    <div key={n} className="p-6 sm:p-8 bg-[#0B1528] border border-slate-800 rounded-2xl space-y-4">
+                      <div className="w-28 h-5 bg-slate-800/60 rounded" />
+                      <div className="w-1/2 h-7 bg-slate-800/60 rounded" />
+                      <div className="w-3/4 h-4 bg-slate-800/40 rounded" />
+                      <div className="w-full h-10 bg-slate-800/40 rounded" />
                     </div>
                   ))}
                 </div>
               </div>
             ) : filteredCareers.length === 0 ? (
-              <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center max-w-lg mx-auto shadow-xs">
-                <div className="w-12 h-12 bg-blue-50 text-[#0066FF] rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#0B1528] border border-slate-800 rounded-2xl p-12 text-center max-w-lg mx-auto shadow-xl">
+                <div className="w-12 h-12 bg-[#0066FF]/10 text-[#00F0FF] rounded-2xl flex items-center justify-center mx-auto mb-4 border border-[#0066FF]/30">
                   <Search className="w-6 h-6" />
                 </div>
-                <h3 className="font-display font-bold text-lg text-[#0B1938] uppercase mb-1">
+                <h3 className="font-display font-bold text-lg text-white uppercase mb-1">
                   No Matching Roles Found
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-500 font-sans mb-6">
+                <p className="text-xs sm:text-sm text-slate-400 font-sans mb-6">
                   We couldn't find any openings matching your current search criteria. Try resetting your filters or submit a general application.
                 </p>
                 <button
@@ -358,46 +349,46 @@ export const Careers = () => {
                 {filteredCareers.map((job) => (
                   <div
                     key={job.id}
-                    className="p-6 sm:p-8 bg-white border border-slate-200/90 hover:border-[#0066FF]/60 rounded-2xl transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-6 group shadow-xs hover:shadow-md hover:-translate-y-0.5 relative overflow-hidden"
+                    className="p-6 sm:p-8 bg-[#0B1528] border border-slate-800/90 hover:border-[#00F0FF]/50 rounded-2xl transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-6 group shadow-xl hover:shadow-[0_0_25px_rgba(0,240,255,0.12)] relative overflow-hidden"
                   >
-                    {/* Left Blue Accent on Hover */}
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#0066FF] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    {/* Left Accent on Hover */}
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
                     <div className="space-y-3.5 flex-1">
                       {/* Department & Badges Row */}
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="px-2.5 py-1 bg-blue-50 border border-blue-200/80 rounded-md text-[11px] font-mono font-bold uppercase tracking-wider text-[#0066FF]">
+                        <span className="px-2.5 py-1 bg-[#0066FF]/15 border border-[#0066FF]/30 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wider text-[#00F0FF]">
                           {job.department || 'Engineering'}
                         </span>
-                        <span className="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md font-mono text-[11px] font-medium">
+                        <span className="px-2.5 py-1 bg-[#070E1C] border border-slate-800 text-slate-300 rounded-lg font-mono text-[11px] font-medium">
                           {job.employmentType || 'Full-Time'}
                         </span>
                         {job.experience && (
-                          <span className="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md font-mono text-[11px] font-medium">
+                          <span className="px-2.5 py-1 bg-[#070E1C] border border-slate-800 text-slate-300 rounded-lg font-mono text-[11px] font-medium">
                             {job.experience}
                           </span>
                         )}
                       </div>
 
                       {/* Job Title */}
-                      <h2 className="text-xl sm:text-2xl font-bold font-display uppercase tracking-tight text-[#0B1938] group-hover:text-[#0066FF] transition-colors">
+                      <h2 className="text-xl sm:text-2xl font-bold font-display uppercase tracking-tight text-white group-hover:text-[#00F0FF] transition-colors">
                         {job.title}
                       </h2>
 
                       {/* Short Description */}
-                      <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed max-w-3xl">
+                      <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed max-w-3xl">
                         {job.shortDescription}
                       </p>
 
                       {/* Meta Tags Row */}
                       <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-mono text-xs pt-1">
-                        <div className="flex items-center gap-1.5 text-slate-500">
-                          <MapPin className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
+                        <div className="flex items-center gap-1.5 text-slate-400">
+                          <MapPin className="w-3.5 h-3.5 text-[#00F0FF] shrink-0" />
                           <span>{job.location || 'Remote (Global)'}</span>
                         </div>
                         {job.salaryRange && (
-                          <div className="flex items-center gap-1.5 font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200/70">
-                            <DollarSign className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <div className="flex items-center gap-1.5 font-bold text-emerald-400 bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-800/60">
+                            <DollarSign className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                             <span>{job.salaryRange}</span>
                           </div>
                         )}
@@ -405,7 +396,7 @@ export const Careers = () => {
                     </div>
 
                     {/* Right CTA */}
-                    <div className="shrink-0 lg:pl-6 lg:border-l lg:border-slate-100 flex flex-col sm:flex-row lg:flex-col gap-3">
+                    <div className="shrink-0 lg:pl-6 lg:border-l lg:border-slate-800 flex flex-col sm:flex-row lg:flex-col gap-3">
                       <Link to={`/careers/${job.slug}`} className="w-full">
                         <Button 
                           variant="primary" 
@@ -425,19 +416,19 @@ export const Careers = () => {
         </section>
 
         {/* ================= PERKS & BENEFITS ================= */}
-        <section className="py-16 sm:py-24 bg-white border-t border-slate-200/80">
+        <section className="py-16 sm:py-24 bg-[#060B18] border-t border-slate-800/80">
           <Container>
             <div className="max-w-3xl mx-auto text-center mb-16 space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full">
-                <Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-full shadow-[0_0_15px_rgba(0,102,255,0.15)]">
+                <Sparkles className="w-3.5 h-3.5 text-[#00F0FF]" />
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                   PERKS & ENGINEERING CULTURE
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+              <h2 className="text-3xl sm:text-4xl font-black font-display uppercase tracking-tight text-white">
                 BUILT FOR SENIOR BUILDERS
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
                 We believe exceptional engineers should be compensated like elite athletes, given autonomy, and freed from administrative drag.
               </p>
             </div>
@@ -448,15 +439,15 @@ export const Careers = () => {
                 return (
                   <div
                     key={i}
-                    className="p-7 bg-white border border-slate-200/90 hover:border-[#0066FF]/40 rounded-2xl shadow-2xs hover:shadow-md transition-all duration-300 space-y-3 group"
+                    className="p-7 bg-[#0B1528] border border-slate-800/90 hover:border-[#00F0FF]/40 rounded-2xl shadow-xl hover:shadow-[0_0_20px_rgba(0,240,255,0.1)] transition-all duration-300 space-y-3 group"
                   >
-                    <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white transition-colors">
+                    <div className="w-12 h-12 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-xl flex items-center justify-center text-[#00F0FF] group-hover:bg-[#0066FF] group-hover:text-white transition-colors">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-bold font-display uppercase text-[#0B1938] tracking-tight">
+                    <h3 className="text-lg font-bold font-display uppercase text-white tracking-tight">
                       {perk.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
                       {perk.desc}
                     </p>
                   </div>
@@ -467,19 +458,19 @@ export const Careers = () => {
         </section>
 
         {/* ================= 4-STEP HIRING PROCESS ================= */}
-        <section className="py-16 sm:py-24 bg-[#F8FAFC] border-t border-slate-200/80">
+        <section className="py-16 sm:py-24 bg-[#060B18] border-t border-slate-800/80">
           <Container>
             <div className="max-w-3xl mx-auto text-center mb-16 space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full">
-                <Clock className="w-3.5 h-3.5 text-[#0066FF]" />
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-full shadow-[0_0_15px_rgba(0,102,255,0.15)]">
+                <Clock className="w-3.5 h-3.5 text-[#00F0FF]" />
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                   TRANSPARENT RECRUITING
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black font-display uppercase tracking-tight text-[#0B1938]">
+              <h2 className="text-3xl sm:text-4xl font-black font-display uppercase tracking-tight text-white">
                 OUR 4-STEP HIRING PROCESS
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 font-sans">
+              <p className="text-sm sm:text-base text-slate-300 font-sans">
                 We respect your time. Our interview process is lean, transparent, and completed in under two weeks.
               </p>
             </div>
@@ -488,23 +479,23 @@ export const Careers = () => {
               {HIRING_STEPS.map((step, idx) => (
                 <div
                   key={idx}
-                  className="bg-white border border-slate-200/90 rounded-2xl p-6 relative flex flex-col justify-between shadow-2xs hover:shadow-sm transition-all"
+                  className="bg-[#0B1528] border border-slate-800/90 rounded-2xl p-6 relative flex flex-col justify-between shadow-xl hover:border-[#00F0FF]/40 transition-all"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="font-display font-black text-2xl text-[#0066FF]/40">
+                      <span className="font-display font-black text-2xl text-[#00F0FF]/40">
                         {step.step}
                       </span>
-                      <span className="px-2 py-0.5 bg-blue-50 border border-blue-100 rounded text-[10px] font-mono font-bold text-[#0066FF]">
+                      <span className="px-2.5 py-0.5 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-lg text-[10px] font-mono font-bold text-[#00F0FF]">
                         {step.time}
                       </span>
                     </div>
 
-                    <h3 className="font-display font-bold text-base uppercase text-[#0B1938] tracking-tight">
+                    <h3 className="font-display font-bold text-base uppercase text-white tracking-tight">
                       {step.title}
                     </h3>
 
-                    <p className="text-xs text-slate-600 font-sans leading-relaxed">
+                    <p className="text-xs text-slate-300 font-sans leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -515,17 +506,9 @@ export const Careers = () => {
         </section>
 
         {/* ================= OPEN APPLICATION CTA ================= */}
-        <section className="py-16 sm:py-20 bg-white border-t border-slate-200">
+        <section className="py-16 sm:py-20 bg-[#060B18] border-t border-slate-800">
           <Container>
-            <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#0B1938] via-[#0D1F4D] to-[#0066FF] text-white relative overflow-hidden shadow-xl">
-              <div 
-                className="absolute inset-0 opacity-10 pointer-events-none"
-                style={{
-                  backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
-                  backgroundSize: '20px 20px'
-                }}
-              />
-
+            <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#0B1528] via-[#0D1F4D] to-[#0066FF]/40 text-white relative overflow-hidden shadow-2xl border border-slate-800">
               <div className="relative max-w-3xl space-y-4">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
                   <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
@@ -544,7 +527,7 @@ export const Careers = () => {
 
                 <div className="pt-4 flex flex-wrap items-center gap-4">
                   <Link to="/contact">
-                    <button className="px-6 py-3 bg-white text-[#0B1938] hover:bg-slate-100 rounded-xl font-mono text-xs font-bold uppercase tracking-wider shadow-md transition-all cursor-pointer inline-flex items-center gap-2">
+                    <button className="px-6 py-3 bg-[#0066FF] hover:bg-[#0052CC] text-white rounded-xl font-mono text-xs font-bold uppercase tracking-wider shadow-lg transition-all cursor-pointer inline-flex items-center gap-2 border border-[#00F0FF]/50">
                       <span>Send Open Application</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
@@ -552,7 +535,7 @@ export const Careers = () => {
 
                   <a 
                     href="mailto:careers@buildzonetechnology.com" 
-                    className="font-mono text-xs text-slate-300 hover:text-white uppercase tracking-wider font-semibold underline underline-offset-4"
+                    className="font-mono text-xs text-slate-300 hover:text-[#00F0FF] uppercase tracking-wider font-semibold underline underline-offset-4"
                   >
                     Email: careers@buildzonetechnology.com
                   </a>

@@ -44,7 +44,7 @@ export const BlogPreview = () => {
   });
 
   return (
-    <section className="py-16 sm:py-24 bg-white relative border-t border-slate-200">
+    <section className="py-16 sm:py-24 bg-[#0A1128] relative border-t border-slate-800/80">
       <Container>
         <SectionTitle
           badge="Engineering Publications"
@@ -61,43 +61,43 @@ export const BlogPreview = () => {
           {/* ========================================================================= */}
           <div className="lg:col-span-6">
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full bg-[#0066FF] animate-pulse"></span>
-              <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#0066FF]">
+              <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse"></span>
+              <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#00F0FF]">
                 Featured Publication
               </span>
             </div>
 
-            <article className="bg-white border border-slate-200 hover:border-[#0066FF] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between h-full">
+            <article className="bg-[#0B1528] border border-slate-800 hover:border-[#0066FF] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 group flex flex-col justify-between h-full">
               <div>
                 {/* Large Cover Image with Badges */}
-                <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
+                <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900">
                   <img
                     src={featuredBlog?.featuredImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80'}
                     alt={featuredBlog?.title ? `${featuredBlog.title} publication cover` : "Featured engineering publication"}
                     width="600"
                     height="300"
                     decoding="async"
-                    className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
+                    className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-500 ease-out opacity-90 group-hover:opacity-100"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1938]/85 via-[#0B1938]/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1528] via-[#0B1528]/30 to-transparent"></div>
                   
                   {/* Top Category Badge */}
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-white/95 backdrop-blur-md rounded-lg shadow-sm border border-white/40 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-[#0066FF]" />
-                    <span className="font-sans text-[11px] font-bold uppercase tracking-wide text-[#0B1938]">
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-[#060B18]/90 backdrop-blur-md rounded-lg shadow-sm border border-slate-700 flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#00F0FF]" />
+                    <span className="font-sans text-[11px] font-bold uppercase tracking-wide text-white">
                       {featuredBlog?.category || 'AI & Architecture'}
                     </span>
                   </div>
 
                   {/* Read Time & Date Badge */}
                   <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90 text-xs font-sans">
-                    <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-md">
-                      <Calendar className="w-3.5 h-3.5 text-cyan-300" />
+                    <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10">
+                      <Calendar className="w-3.5 h-3.5 text-[#00F0FF]" />
                       <span>{featuredBlog?.publishedDate || 'Recently Published'}</span>
                     </div>
-                    <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-md">
-                      <Clock className="w-3.5 h-3.5 text-cyan-300" />
+                    <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10">
+                      <Clock className="w-3.5 h-3.5 text-[#00F0FF]" />
                       <span>{featuredBlog?.readTime || '5 min read'}</span>
                     </div>
                   </div>
@@ -105,11 +105,11 @@ export const BlogPreview = () => {
 
                 {/* Content Section */}
                 <div className="p-6 sm:p-7">
-                  <h3 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-[#0B1938] mb-3 group-hover:text-[#0066FF] transition-colors leading-snug">
+                  <h3 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-white mb-3 group-hover:text-[#00F0FF] transition-colors leading-snug">
                     {featuredBlog?.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed mb-6 line-clamp-3">
+                  <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed mb-6 line-clamp-3">
                     {featuredBlog?.excerpt}
                   </p>
 
@@ -118,7 +118,7 @@ export const BlogPreview = () => {
                     {(Array.isArray(featuredBlog?.tags) ? featuredBlog.tags : []).map((t, idx) => (
                       <span
                         key={idx}
-                        className="px-2.5 py-1 bg-[#F8FAFC] border border-slate-200 text-slate-700 font-sans text-[11px] font-semibold rounded-md group-hover:border-blue-200 group-hover:text-[#0066FF] transition-colors"
+                        className="px-2.5 py-1 bg-[#070E1C] border border-slate-800 text-slate-300 font-sans text-[11px] font-semibold rounded-md group-hover:border-[#0066FF]/60 group-hover:text-[#00F0FF] transition-colors"
                       >
                         #{t}
                       </span>
@@ -129,7 +129,7 @@ export const BlogPreview = () => {
 
               {/* Author Row & Read CTA Button */}
               <div className="px-6 pb-6 sm:px-7 sm:pb-7 pt-0">
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <img
                       src={featuredBlog?.authorAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80'}
@@ -138,13 +138,13 @@ export const BlogPreview = () => {
                       height="36"
                       loading="lazy"
                       decoding="async"
-                      className="w-9 h-9 rounded-full object-cover border-2 border-white shadow-xs"
+                      className="w-9 h-9 rounded-full object-cover border-2 border-blue-500/40 shadow-xs"
                     />
                     <div>
-                      <div className="font-sans text-xs font-bold text-[#0B1938]">
+                      <div className="font-sans text-xs font-bold text-white">
                         {featuredBlog?.author || 'BuildZone Editorial'}
                       </div>
-                      <div className="text-[11px] text-slate-500 font-sans">
+                      <div className="text-[11px] text-slate-400 font-sans">
                         {featuredBlog?.authorRole || 'Senior Engineering Team'}
                       </div>
                     </div>
@@ -152,7 +152,7 @@ export const BlogPreview = () => {
 
                   <Link
                     to={`/blog/${featuredBlog?.slug || featuredBlog?.id}`}
-                    className="font-sans text-xs font-bold uppercase tracking-wide text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1.5 group/btn"
+                    className="font-sans text-xs font-bold uppercase tracking-wide text-[#00F0FF] hover:text-cyan-300 inline-flex items-center gap-1.5 group/btn"
                   >
                     <span>Read Article</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
@@ -174,7 +174,7 @@ export const BlogPreview = () => {
                   placeholder="Filter engineering publications by title or tag..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full bg-white border border-slate-200 focus:border-[#0066FF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#0B1938] placeholder-slate-400 font-sans focus:outline-none shadow-2xs transition-colors"
+                  className="w-full bg-[#0B1528] border border-slate-800 focus:border-[#0066FF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 font-sans focus:outline-none shadow-sm transition-colors"
                 />
                 <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
               </div>
@@ -186,60 +186,60 @@ export const BlogPreview = () => {
                 <Link
                   key={blog.id || blog.slug}
                   to={`/blog/${blog.slug || blog.id}`}
-                  className="p-3 bg-white border border-slate-200 hover:border-[#0066FF] rounded-xl transition-all duration-200 flex items-center gap-3.5 group shadow-2xs hover:shadow-md hover:bg-blue-50/40"
+                  className="p-3 bg-[#0B1528] border border-slate-800 hover:border-[#0066FF] rounded-xl transition-all duration-200 flex items-center gap-3.5 group shadow-sm hover:shadow-lg hover:bg-[#111E38]"
                 >
                   {/* Thumbnail Image */}
-                  <div className="w-20 sm:w-24 h-18 sm:h-20 rounded-lg overflow-hidden shrink-0 bg-slate-100 relative">
+                  <div className="w-20 sm:w-24 h-18 sm:h-20 rounded-lg overflow-hidden shrink-0 bg-slate-900 relative">
                     <img
                       src={blog.featuredImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80'}
                       alt={blog.title ? `${blog.title} article cover` : "Article cover thumbnail"}
                       width="96"
                       height="80"
                       decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300 opacity-90 group-hover:opacity-100"
                       loading="lazy"
                     />
-                    <div className="absolute top-1.5 left-1.5 px-2 py-0.5 bg-black/70 backdrop-blur-md rounded text-[9px] font-sans font-bold text-white uppercase tracking-wide">
+                    <div className="absolute top-1.5 left-1.5 px-2 py-0.5 bg-black/80 backdrop-blur-md rounded text-[9px] font-sans font-bold text-[#00F0FF] uppercase tracking-wide border border-white/10">
                       {blog.category || 'Tech'}
                     </div>
                   </div>
 
                   {/* Text Content */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 text-[11px] font-sans text-slate-500 mb-1">
+                    <div className="flex items-center gap-2 text-[11px] font-sans text-slate-400 mb-1">
                       <span>{blog.publishedDate || 'Recently Published'}</span>
                       <span>•</span>
-                      <span className="flex items-center gap-1 text-[#0066FF] font-medium">
+                      <span className="flex items-center gap-1 text-[#00F0FF] font-medium">
                         <Clock className="w-2.5 h-2.5" />
                         <span>{blog.readTime || '5 min read'}</span>
                       </span>
                     </div>
 
-                    <h4 className="font-display font-bold text-xs sm:text-sm text-[#0B1938] group-hover:text-[#0066FF] transition-colors leading-snug line-clamp-2">
+                    <h4 className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-[#00F0FF] transition-colors leading-snug line-clamp-2">
                       {blog.title}
                     </h4>
 
-                    <div className="flex items-center gap-1.5 mt-1.5 text-[11px] font-sans text-slate-500">
+                    <div className="flex items-center gap-1.5 mt-1.5 text-[11px] font-sans text-slate-400">
                       <span>By {blog.author || 'BuildZone Editorial'}</span>
                     </div>
                   </div>
 
                   {/* Arrow Indicator */}
-                  <div className="w-7 h-7 rounded-md bg-slate-50 border border-slate-200 group-hover:border-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white flex items-center justify-center text-slate-400 transition-colors shrink-0">
+                  <div className="w-7 h-7 rounded-md bg-[#070E1C] border border-slate-800 group-hover:border-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white flex items-center justify-center text-slate-400 transition-colors shrink-0">
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </Link>
               ))}
 
               {filteredSideBlogs.length === 0 && (
-                <div className="p-8 text-center bg-slate-50 border border-slate-200 rounded-xl text-slate-500 text-xs font-sans">
+                <div className="p-8 text-center bg-[#0B1528] border border-slate-800 rounded-xl text-slate-400 text-xs font-sans">
                   No publications match "{searchTerm}". Try another query or clear search.
                 </div>
               )}
             </div>
 
             {/* View More / All Articles Button */}
-            <div className="pt-2">
+            <div className="pt-3">
               <Link to="/blog" className="block">
                 <Button
                   variant="secondary"

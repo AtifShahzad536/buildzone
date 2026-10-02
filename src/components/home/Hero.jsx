@@ -31,6 +31,134 @@ import Button from '../common/Button';
 import ScrollReveal from '../common/ScrollReveal';
 import CountUp from '../common/CountUp';
 
+// =========================================================================
+// Real-time Ultra-Fast 60FPS Chroma Key Engine with Dynamic 11s Zoom-In
+// =========================================================================
+const GreenScreenVideo = ({ src, onError }) => {
+  const videoRef = React.useRef(null);
+  const canvasRef = React.useRef(null);
+  const [useCanvas, setUseCanvas] = React.useState(true);
+  const [isZoomed, setIsZoomed] = React.useState(true);
+
+  React.useEffect(() => {
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+    if (!video || !canvas || !useCanvas) return;
+
+    let animId;
+    let isMounted = true;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true, alpha: true });
+
+    const processGreenScreen = () => {
+      if (!isMounted) return;
+
+      if (video.readyState >= 2 && !video.paused && !video.ended) {
+        // Track current playback time for first 11s zoom-in
+        const currentTime = video.currentTime;
+        if (currentTime < 11) {
+          setIsZoomed(true);
+        } else {
+          setIsZoomed(false);
+        }
+
+        if (video.videoWidth > 0 && video.videoHeight > 0) {
+          if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+          }
+
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          try {
+            const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            // Ultra-fast 32-bit TypedArray for 60fps smooth hardware performance
+            const buf32 = new Uint32Array(frame.data.buffer);
+            const len = buf32.length;
+
+            for (let i = 0; i < len; i++) {
+              const pixel = buf32[i];
+              const r = pixel & 0xFF;
+              const g = (pixel >> 8) & 0xFF;
+              const b = (pixel >> 16) & 0xFF;
+
+              // 1. Protection for White and Light Greys (R, G, B all high)
+              if (r > 120 && b > 120) continue;
+
+              // 2. Protection for Blue, Cyan, Sky Blue, and Violet (B is significant)
+              if (b > 115) continue;
+
+              // 3. Protection for Red, Orange, Yellow, Coral, Pink (R is high)
+              if (r > 160) continue;
+
+              // 4. Target ONLY pure chroma green screen
+              const maxRB = r > b ? r : b;
+              const greenDiff = g - maxRB;
+
+              if (greenDiff > 35 && g > 75) {
+                if (greenDiff > 65) {
+                  // Fully transparent in 1 CPU cycle
+                  buf32[i] = 0;
+                } else {
+                  // Soft feathered anti-aliased edge
+                  const factor = 1 - (greenDiff - 35) / 30;
+                  const alpha = Math.round(255 * factor);
+                  buf32[i] = (alpha << 24) | (b << 16) | (g << 8) | r;
+                }
+              }
+            }
+
+            ctx.putImageData(frame, 0, 0);
+          } catch (e) {
+            // CORS fallback to video
+            setUseCanvas(false);
+          }
+        }
+      }
+      animId = requestAnimationFrame(processGreenScreen);
+    };
+
+    video.play().catch(() => {});
+    animId = requestAnimationFrame(processGreenScreen);
+
+    return () => {
+      isMounted = false;
+      cancelAnimationFrame(animId);
+    };
+  }, [src, useCanvas]);
+
+  return (
+    <div className="relative w-full flex items-center justify-center overflow-visible py-4 sm:py-6">
+      {/* Underlying Cyber Backlight Glow */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#0066FF]/35 via-[#00F0FF]/30 to-transparent rounded-full blur-3xl pointer-events-none scale-125 animate-pulse-glow" />
+
+      {/* Hidden Video Source / Fallback */}
+      <video
+        ref={videoRef}
+        src={src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        crossOrigin="anonymous"
+        onError={onError}
+        className={useCanvas ? "hidden" : "w-full max-w-[850px] h-auto max-h-[850px] lg:max-h-[950px] object-contain scale-115 sm:scale-125 lg:scale-135"}
+      />
+
+      {useCanvas && (
+        <canvas
+          ref={canvasRef}
+          className={`w-full max-w-[850px] h-auto max-h-[780px] sm:max-h-[850px] lg:max-h-[950px] object-contain pointer-events-auto drop-shadow-[0_0_50px_rgba(0,102,255,0.5)] drop-shadow-[0_0_90px_rgba(0,240,255,0.35)] transform transition-transform duration-1000 ease-out will-change-transform animate-float ${
+            isZoomed
+              ? 'scale-135 sm:scale-150 lg:scale-[1.65] xl:scale-[1.75]'
+              : 'scale-105 sm:scale-115 lg:scale-125 xl:scale-130'
+          }`}
+        />
+      )}
+    </div>
+  );
+};
+
 export const Hero = () => {
   const reduxSettings = useSelector((state) => state.settings);
   const { data: dbSettings } = useGetSettingsQuery();
@@ -54,7 +182,6 @@ export const Hero = () => {
     : rawVideoUrl;
   const heroMediaType = settings?.heroMediaType || "video"; // 'video' | 'mockup'
 
-
   const isEmbedVideo = (url) => {
     if (!url) return false;
     return url.includes('youtube.com') || url.includes('youtube-nocookie.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
@@ -73,13 +200,12 @@ export const Hero = () => {
     { icon: Headphones, value: settings?.statsSupport || "24/7", label: "Support Available" },
   ];
 
-  const heroBgColor = settings?.heroBgColor || "#F2F2F2";
-
   return (
-    <section
-      className="relative pt-24 sm:pt-28 pb-14 sm:pb-20 overflow-hidden"
-      style={{ backgroundColor: heroBgColor }}
-    >
+    <section className="relative pt-24 sm:pt-28 pb-14 sm:pb-20 overflow-hidden bg-[#060B18]">
+      {/* Background Cyber Ambient Lights & Glow */}
+      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-[#0066FF]/15 via-[#00F0FF]/10 to-transparent rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-gradient-to-tr from-indigo-600/10 via-sky-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+
       <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
@@ -90,9 +216,9 @@ export const Hero = () => {
 
             {/* 1. Top Pill Badge */}
             <ScrollReveal animation="fade-down" delay={0.1} duration={0.6}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-50 border border-blue-200/90 rounded-full shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-[#0047BA] inline-block animate-pulse"></span>
-                <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-wide text-[#0047BA]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/15 border border-[#0066FF]/40 rounded-full shadow-xs shadow-blue-500/15">
+                <span className="w-2 h-2 rounded-full bg-[#00F0FF] inline-block animate-pulse"></span>
+                <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-wide text-[#00F0FF]">
                   {badgeText}
                 </span>
               </div>
@@ -100,9 +226,9 @@ export const Hero = () => {
 
             {/* 2. Main High-Impact Headline */}
             <ScrollReveal animation="fade-up" delay={0.2} duration={0.7}>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] font-black font-display tracking-tight text-[#0B1938] leading-[1.12]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] font-black font-display tracking-tight text-white leading-[1.12]">
                 {titlePrefix}{' '}
-                <span className="text-[#0066FF] block sm:inline">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-[#38BDF8] block sm:inline drop-shadow-[0_0_20px_rgba(0,102,255,0.4)]">
                   {titleAccent}
                 </span>
               </h1>
@@ -110,7 +236,7 @@ export const Hero = () => {
 
             {/* 3. Subtitle Paragraph */}
             <ScrollReveal animation="fade-up" delay={0.3} duration={0.7}>
-              <p className="text-sm sm:text-base text-slate-700 font-sans leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-xl mx-auto lg:mx-0">
                 {subtitle}
               </p>
             </ScrollReveal>
@@ -122,7 +248,7 @@ export const Hero = () => {
                   <Button
                     variant="primary"
                     size="md"
-                    className="bg-[#0066FF] hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-sm transform transition hover:-translate-y-0.5"
+                    className="bg-[#0066FF] hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-md shadow-blue-500/25 transform transition hover:-translate-y-0.5 border border-blue-400/40"
                     rightIcon={<ArrowRight className="w-4 h-4" />}
                   >
                     Start a Project
@@ -132,9 +258,9 @@ export const Hero = () => {
                 <button
                   type="button"
                   onClick={() => setIsVideoModalOpen(true)}
-                  className="px-5 py-2.5 bg-white border border-slate-300 hover:border-[#0066FF] text-[#0B1938] hover:text-[#0066FF] rounded-lg font-sans text-sm font-semibold transition-all flex items-center gap-2 shadow-2xs cursor-pointer group transform transition hover:-translate-y-0.5"
+                  className="px-5 py-2.5 bg-[#0B1528] border border-slate-700/80 hover:border-[#0066FF] text-slate-200 hover:text-[#00F0FF] rounded-lg font-sans text-sm font-semibold transition-all flex items-center gap-2 shadow-sm cursor-pointer group transform hover:-translate-y-0.5"
                 >
-                  <div className="w-6 h-6 rounded-full border border-slate-300 group-hover:border-[#0066FF] flex items-center justify-center text-[#0066FF] transition-colors">
+                  <div className="w-6 h-6 rounded-full border border-slate-700 group-hover:border-[#00F0FF] flex items-center justify-center text-[#00F0FF] transition-colors">
                     <Play className="w-3 h-3 fill-current ml-0.5" />
                   </div>
                   <span>Watch Intro</span>
@@ -144,19 +270,19 @@ export const Hero = () => {
 
             {/* 5. Four Stats Row Below CTAs with Scroll-Triggered Animated Counters */}
             <ScrollReveal animation="fade-up" delay={0.5} duration={0.7}>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-300/80">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-800/80">
                 {stats.map((stat, idx) => {
                   const Icon = stat.icon;
                   return (
                     <div key={idx} className="flex items-center gap-2.5 text-left group">
-                      <div className="text-[#0066FF] shrink-0 transition-transform group-hover:scale-110 duration-200">
+                      <div className="text-[#00F0FF] shrink-0 transition-transform group-hover:scale-110 duration-200">
                         <Icon className="w-5 h-5" />
                       </div>
                       <div>
-                        <div className="font-display font-black text-lg sm:text-xl text-[#0B1938] leading-none">
+                        <div className="font-display font-black text-lg sm:text-xl text-white leading-none">
                           <CountUp value={stat.value} duration={1600} />
                         </div>
-                        <div className="font-sans text-[11px] text-slate-700 font-bold leading-tight mt-0.5">
+                        <div className="font-sans text-[11px] text-slate-400 font-bold leading-tight mt-0.5">
                           {stat.label}
                         </div>
                       </div>
@@ -171,13 +297,13 @@ export const Hero = () => {
           {/* ========================================================================= */}
           {/* RIGHT COLUMN: Pixel-Perfect SaaS Dashboard & Mobile Device Showcase       */}
           {/* ========================================================================= */}
-          <ScrollReveal animation="zoom-in" delay={0.25} duration={0.8} className="lg:col-span-6 relative w-full pt-4 lg:pt-0">
+          <ScrollReveal animation="zoom-in" delay={0.25} duration={0.8} className="lg:col-span-6 relative w-full pt-4 lg:pt-0 flex items-center justify-center overflow-visible">
 
-            {/* If Admin chose Showcase Video (Laptop & Mobile Website Scroll Animation) */}
+            {/* If Admin chose Showcase Video */}
             {heroMediaType === 'video' && heroVideoUrl && !videoLoadError ? (
-              <div className="relative w-full flex items-center justify-center bg-transparent border-0 rounded-none shadow-none">
+              <div className="relative w-full flex items-center justify-center bg-transparent border-0 rounded-none shadow-none overflow-visible">
                 {isEmbedVideo(heroVideoUrl) ? (
-                  <div className="w-full aspect-video border-0 rounded-2xl overflow-hidden shadow-xl bg-slate-900 relative">
+                  <div className="w-full aspect-video border border-slate-800 rounded-2xl overflow-hidden shadow-2xl bg-slate-950 relative">
                     {isEmbedPlaying ? (
                       <iframe
                         src={`${heroVideoUrl}${heroVideoUrl.includes('?') ? '&' : '?'}autoplay=1`}
@@ -198,17 +324,17 @@ export const Hero = () => {
                             alt="BuildZone Video Showcase Preview"
                             fetchPriority="high"
                             decoding="async"
-                            className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+                            className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
                           />
                         ) : (
-                          <div className="absolute inset-0 bg-gradient-to-tr from-[#0B1938] via-[#0066FF]/20 to-slate-900" />
+                          <div className="absolute inset-0 bg-gradient-to-tr from-[#060B18] via-[#0066FF]/20 to-slate-950" />
                         )}
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                        <div className="relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#0066FF] text-white flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-[#0052cc] transition-all duration-300">
+                        <div className="relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#0066FF] text-white flex items-center justify-center shadow-2xl shadow-blue-500/50 group-hover:scale-110 group-hover:bg-[#0052cc] transition-all duration-300">
                           <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white translate-x-0.5" />
                         </div>
                         <div className="absolute bottom-4 left-4 right-4 text-center z-10">
-                          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-black/60 backdrop-blur-md rounded-full text-white font-sans text-xs font-semibold uppercase tracking-wide border border-white/10 shadow-sm">
+                          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-black/70 backdrop-blur-md rounded-full text-white font-sans text-xs font-semibold uppercase tracking-wide border border-white/10 shadow-sm">
                             Click to Watch Video Showcase
                           </span>
                         </div>
@@ -216,17 +342,10 @@ export const Hero = () => {
                     )}
                   </div>
                 ) : (
-                  <div className="relative w-full bg-transparent border-0 rounded-none shadow-none flex items-center justify-center overflow-visible">
-                    <video
-                      src={heroVideoUrl}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      onError={() => setVideoLoadError(true)}
-                      className="w-full h-auto max-h-[560px] object-contain bg-transparent border-0 rounded-none shadow-none pointer-events-auto"
-                    />
-                  </div>
+                  <GreenScreenVideo
+                    src={heroVideoUrl}
+                    onError={() => setVideoLoadError(true)}
+                  />
                 )}
               </div>
             ) : (
@@ -234,26 +353,26 @@ export const Hero = () => {
               <div className="relative w-full max-w-[620px] mx-auto perspective-1000 min-h-[420px] sm:min-h-[460px]">
 
                 {/* 1. Main Desktop SaaS Dashboard Container */}
-                <div className="bg-white border border-slate-200/90 rounded-2xl shadow-[0_20px_50px_rgba(11,25,56,0.08)] overflow-hidden font-sans text-xs transition-transform duration-300 hover:shadow-[0_25px_60px_rgba(0,102,255,0.12)] min-h-[420px] sm:min-h-[460px]">
+                <div className="bg-[#0B1528] border border-slate-800 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden font-sans text-xs transition-transform duration-300 hover:shadow-[0_25px_60px_rgba(0,102,255,0.2)] min-h-[420px] sm:min-h-[460px]">
 
                   {/* Top Bar */}
-                  <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-white">
+                  <div className="flex items-center justify-between px-5 py-3 border-b border-slate-800/80 bg-[#081020]">
                     <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 bg-[#0066FF] rounded flex items-center justify-center text-white font-black text-[10px]">
+                      <div className="w-5 h-5 bg-[#0066FF] rounded flex items-center justify-center text-white font-black text-[10px] shadow-xs shadow-blue-500/40">
                         B
                       </div>
-                      <span className="font-display font-bold text-sm text-[#0B1938] tracking-tight">
-                        Build<span className="text-[#0066FF]">Zone</span>
+                      <span className="font-display font-bold text-sm text-white tracking-tight">
+                        Build<span className="text-[#00F0FF]">Zone</span>
                       </span>
                     </div>
 
                     <div className="flex items-center gap-3 text-slate-400">
-                      <Search className="w-3.5 h-3.5 hover:text-slate-600 cursor-pointer" />
+                      <Search className="w-3.5 h-3.5 hover:text-white cursor-pointer" />
                       <div className="relative">
-                        <Bell className="w-3.5 h-3.5 hover:text-slate-600 cursor-pointer" />
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] absolute -top-0.5 -right-0.5"></span>
+                        <Bell className="w-3.5 h-3.5 hover:text-white cursor-pointer" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] absolute -top-0.5 -right-0.5"></span>
                       </div>
-                      <div className="w-6 h-6 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600">
+                      <div className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300">
                         <User className="w-3.5 h-3.5" />
                       </div>
                     </div>
@@ -263,71 +382,71 @@ export const Hero = () => {
                   <div className="grid grid-cols-12 min-h-[360px]">
 
                     {/* Left Mini Sidebar */}
-                    <div className="col-span-3 border-r border-slate-100 bg-[#FAFBFD] p-3 space-y-1 font-sans text-[11.5px]">
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 bg-[#EFF6FF] text-[#0047BA] font-bold rounded-lg border border-blue-200 shadow-2xs">
+                    <div className="col-span-3 border-r border-slate-800/80 bg-[#070E1C] p-3 space-y-1 font-sans text-[11.5px]">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 bg-[#0066FF]/20 text-[#00F0FF] font-bold rounded-lg border border-[#0066FF]/40 shadow-xs">
                         <LayoutGrid className="w-3.5 h-3.5" />
                         <span>Overview</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-slate-800/50 rounded-lg cursor-pointer font-medium">
                         <Layers className="w-3.5 h-3.5" />
                         <span>Projects</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-slate-800/50 rounded-lg cursor-pointer font-medium">
                         <CheckSquare className="w-3.5 h-3.5" />
                         <span>Tasks</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-slate-800/50 rounded-lg cursor-pointer font-medium">
                         <BarChart2 className="w-3.5 h-3.5" />
                         <span>Analytics</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-slate-800/50 rounded-lg cursor-pointer font-medium">
                         <Users className="w-3.5 h-3.5" />
                         <span>Team</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-slate-800/50 rounded-lg cursor-pointer font-medium">
                         <FileText className="w-3.5 h-3.5" />
                         <span>Reports</span>
                       </div>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-700 hover:text-[#0066FF] rounded-lg cursor-pointer font-medium">
+                      <div className="flex items-center gap-2 px-2.5 py-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-slate-800/50 rounded-lg cursor-pointer font-medium">
                         <Settings className="w-3.5 h-3.5" />
                         <span>Settings</span>
                       </div>
                     </div>
 
                     {/* Main Content Area */}
-                    <div className="col-span-9 p-4 space-y-4">
+                    <div className="col-span-9 p-4 space-y-4 bg-[#0B1528]">
 
                       {/* Overview Header */}
                       <div className="flex items-center justify-between">
-                        <span className="font-display font-bold text-xs uppercase tracking-wide text-[#0B1938] block">
+                        <span className="font-display font-bold text-xs uppercase tracking-wide text-white block">
                           Overview
                         </span>
                       </div>
 
                       {/* 4 Metric Cards */}
                       <div className="grid grid-cols-4 gap-2">
-                        <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                          <div className="text-[10px] text-slate-600 font-bold">Total Users</div>
-                          <div className="font-display font-bold text-sm text-[#0B1938] mt-0.5">12,540</div>
-                          <div className="text-[9px] text-emerald-700 font-bold mt-0.5">↑ 12.5%</div>
+                        <div className="p-2.5 bg-[#0F1D38] border border-slate-800 rounded-xl shadow-xs">
+                          <div className="text-[10px] text-slate-400 font-bold">Total Users</div>
+                          <div className="font-display font-bold text-sm text-white mt-0.5">12,540</div>
+                          <div className="text-[9px] text-emerald-400 font-bold mt-0.5">↑ 12.5%</div>
                         </div>
 
-                        <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                          <div className="text-[10px] text-slate-600 font-bold">Revenue</div>
-                          <div className="font-display font-bold text-sm text-[#0B1938] mt-0.5">$45,780</div>
-                          <div className="text-[9px] text-emerald-700 font-bold mt-0.5">↑ 8.2%</div>
+                        <div className="p-2.5 bg-[#0F1D38] border border-slate-800 rounded-xl shadow-xs">
+                          <div className="text-[10px] text-slate-400 font-bold">Revenue</div>
+                          <div className="font-display font-bold text-sm text-white mt-0.5">$45,780</div>
+                          <div className="text-[9px] text-emerald-400 font-bold mt-0.5">↑ 8.2%</div>
                         </div>
 
-                        <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                          <div className="text-[10px] text-slate-600 font-bold">Orders</div>
-                          <div className="font-display font-bold text-sm text-[#0B1938] mt-0.5">1,250</div>
-                          <div className="text-[9px] text-emerald-700 font-bold mt-0.5">↑ 15.7%</div>
+                        <div className="p-2.5 bg-[#0F1D38] border border-slate-800 rounded-xl shadow-xs">
+                          <div className="text-[10px] text-slate-400 font-bold">Orders</div>
+                          <div className="font-display font-bold text-sm text-white mt-0.5">1,250</div>
+                          <div className="text-[9px] text-emerald-400 font-bold mt-0.5">↑ 15.7%</div>
                         </div>
 
-                        <div className="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                          <div className="text-[10px] text-slate-600 font-bold">Conversion</div>
-                          <div className="font-display font-bold text-sm text-[#0B1938] mt-0.5">3.45%</div>
-                          <div className="text-[9px] text-emerald-700 font-bold mt-0.5">↑ 6.1%</div>
+                        <div className="p-2.5 bg-[#0F1D38] border border-slate-800 rounded-xl shadow-xs">
+                          <div className="text-[10px] text-slate-400 font-bold">Conversion</div>
+                          <div className="font-display font-bold text-sm text-white mt-0.5">3.45%</div>
+                          <div className="text-[9px] text-emerald-400 font-bold mt-0.5">↑ 6.1%</div>
                         </div>
                       </div>
 
@@ -335,12 +454,12 @@ export const Hero = () => {
                       <div className="grid grid-cols-12 gap-3">
 
                         {/* Revenue Overview Curve */}
-                        <div className="col-span-7 p-3 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                        <div className="col-span-7 p-3 bg-[#0F1D38] border border-slate-800 rounded-xl shadow-xs">
                           <div className="flex items-center justify-between mb-2">
-                            <span className="font-display font-bold text-[11px] text-[#0B1938]">
+                            <span className="font-display font-bold text-[11px] text-white">
                               Revenue Overview
                             </span>
-                            <span className="text-[9.5px] font-sans text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-300 font-bold">
+                            <span className="text-[9.5px] font-sans text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/60 font-bold">
                               $45,780 ↑ 8.2%
                             </span>
                           </div>
@@ -350,14 +469,14 @@ export const Hero = () => {
                             <svg viewBox="0 0 200 80" className="w-full h-full overflow-visible">
                               <defs>
                                 <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="0%" stopColor="#0066FF" stopOpacity="0.25" />
+                                  <stop offset="0%" stopColor="#0066FF" stopOpacity="0.4" />
                                   <stop offset="100%" stopColor="#0066FF" stopOpacity="0.0" />
                                 </linearGradient>
                               </defs>
 
                               {/* Grid lines */}
-                              <line x1="0" y1="20" x2="200" y2="20" stroke="#F1F5F9" strokeWidth="1" />
-                              <line x1="0" y1="50" x2="200" y2="50" stroke="#F1F5F9" strokeWidth="1" />
+                              <line x1="0" y1="20" x2="200" y2="20" stroke="#1E293B" strokeWidth="1" />
+                              <line x1="0" y1="50" x2="200" y2="50" stroke="#1E293B" strokeWidth="1" />
 
                               {/* Filled Area */}
                               <path
@@ -369,17 +488,17 @@ export const Hero = () => {
                               <path
                                 d="M 0,65 Q 25,50 50,60 T 100,45 T 150,30 T 200,10"
                                 fill="none"
-                                stroke="#0066FF"
+                                stroke="#00F0FF"
                                 strokeWidth="2.5"
                                 strokeLinecap="round"
                               />
 
                               {/* Peak dot */}
-                              <circle cx="200" cy="10" r="3.5" fill="#0066FF" stroke="#FFFFFF" strokeWidth="1.5" />
+                              <circle cx="200" cy="10" r="3.5" fill="#00F0FF" stroke="#FFFFFF" strokeWidth="1.5" />
                             </svg>
 
                             {/* X-Axis Months */}
-                            <div className="flex justify-between text-[9px] font-sans text-slate-600 font-semibold mt-1 px-1">
+                            <div className="flex justify-between text-[9px] font-sans text-slate-400 font-semibold mt-1 px-1">
                               <span>Jan</span>
                               <span>Feb</span>
                               <span>Mar</span>
@@ -391,8 +510,8 @@ export const Hero = () => {
                         </div>
 
                         {/* Top Channels Donut */}
-                        <div className="col-span-5 p-3 bg-white border border-slate-200 rounded-xl shadow-2xs flex flex-col justify-between">
-                          <span className="font-display font-bold text-[11px] text-[#0B1938]">
+                        <div className="col-span-5 p-3 bg-[#0F1D38] border border-slate-800 rounded-xl shadow-xs flex flex-col justify-between">
+                          <span className="font-display font-bold text-[11px] text-white">
                             Top Channels
                           </span>
 
@@ -402,7 +521,7 @@ export const Hero = () => {
                                 cx="32"
                                 cy="32"
                                 r="24"
-                                stroke="#EFF6FF"
+                                stroke="#1E293B"
                                 strokeWidth="7"
                                 fill="transparent"
                               />
@@ -410,7 +529,7 @@ export const Hero = () => {
                                 cx="32"
                                 cy="32"
                                 r="24"
-                                stroke="#0066FF"
+                                stroke="#00F0FF"
                                 strokeWidth="7"
                                 strokeDasharray="150"
                                 strokeDashoffset="45"
@@ -421,23 +540,23 @@ export const Hero = () => {
                           </div>
 
                           <div className="space-y-0.5 text-[10px] font-sans">
-                            <div className="flex items-center justify-between text-slate-700">
+                            <div className="flex items-center justify-between text-slate-300">
                               <span className="flex items-center gap-1 font-medium">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF]"></span> Web
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]"></span> Web
                               </span>
-                              <span className="font-bold">60%</span>
+                              <span className="font-bold text-white">60%</span>
                             </div>
-                            <div className="flex items-center justify-between text-slate-700">
+                            <div className="flex items-center justify-between text-slate-300">
                               <span className="flex items-center gap-1 font-medium">
-                                <span className="w-1.5 h-1.5 rounded-full bg-sky-500"></span> Mobile
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF]"></span> Mobile
                               </span>
-                              <span className="font-bold">25%</span>
+                              <span className="font-bold text-white">25%</span>
                             </div>
-                            <div className="flex items-center justify-between text-slate-700">
+                            <div className="flex items-center justify-between text-slate-300">
                               <span className="flex items-center gap-1 font-medium">
-                                <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span> API
+                                <span className="w-1.5 h-1.5 rounded-full bg-slate-500"></span> API
                               </span>
-                              <span className="font-bold">15%</span>
+                              <span className="font-bold text-white">15%</span>
                             </div>
                           </div>
                         </div>
@@ -445,31 +564,31 @@ export const Hero = () => {
                       </div>
 
                       {/* Bottom Row: Recent Activity */}
-                      <div className="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                        <span className="font-display font-bold text-[11px] text-[#0B1938] block mb-2">
+                      <div className="p-3 bg-[#0F1D38] border border-slate-800 rounded-xl shadow-xs">
+                        <span className="font-display font-bold text-[11px] text-white block mb-2">
                           Recent Activity
                         </span>
                         <div className="space-y-1.5 text-[10px]">
-                          <div className="flex items-center justify-between text-slate-700">
+                          <div className="flex items-center justify-between text-slate-300">
                             <span className="flex items-center gap-1.5 font-medium">
-                              <CheckCircle2 className="w-3 h-3 text-[#0066FF]" />
+                              <CheckCircle2 className="w-3 h-3 text-[#00F0FF]" />
                               New user registered
                             </span>
-                            <span className="font-sans text-[9.5px] text-slate-500 font-semibold">2m ago</span>
+                            <span className="font-sans text-[9.5px] text-slate-400 font-semibold">2m ago</span>
                           </div>
-                          <div className="flex items-center justify-between text-slate-700">
+                          <div className="flex items-center justify-between text-slate-300">
                             <span className="flex items-center gap-1.5 font-medium">
-                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                              <CheckCircle2 className="w-3 h-3 text-emerald-400" />
                               New order received
                             </span>
-                            <span className="font-sans text-[9.5px] text-slate-500 font-semibold">15m ago</span>
+                            <span className="font-sans text-[9.5px] text-slate-400 font-semibold">15m ago</span>
                           </div>
-                          <div className="flex items-center justify-between text-slate-700">
+                          <div className="flex items-center justify-between text-slate-300">
                             <span className="flex items-center gap-1.5 font-medium">
-                              <CheckCircle2 className="w-3 h-3 text-indigo-600" />
+                              <CheckCircle2 className="w-3 h-3 text-indigo-400" />
                               Subscription updated
                             </span>
-                            <span className="font-sans text-[9.5px] text-slate-500 font-semibold">1h ago</span>
+                            <span className="font-sans text-[9.5px] text-slate-400 font-semibold">1h ago</span>
                           </div>
                         </div>
                       </div>
@@ -480,13 +599,13 @@ export const Hero = () => {
                 </div>
 
                 {/* 2. Overlapping Modern Mobile Smartphone Mockup (Left Front) */}
-                <div className="hidden sm:block absolute -left-6 bottom-4 w-44 bg-white border-2 border-slate-300 rounded-[28px] p-2.5 shadow-[0_20px_40px_rgba(11,25,56,0.18)] z-20 transform -rotate-1 hover:rotate-0 transition-transform duration-300 font-sans">
+                <div className="hidden sm:block absolute -left-6 bottom-4 w-44 bg-[#0A1128] border-2 border-slate-700 rounded-[28px] p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-20 transform -rotate-1 hover:rotate-0 transition-transform duration-300 font-sans">
 
                   {/* Phone Speaker & Camera Notch */}
-                  <div className="w-12 h-1 bg-slate-300 rounded-full mx-auto mb-1.5"></div>
+                  <div className="w-12 h-1 bg-slate-700 rounded-full mx-auto mb-1.5"></div>
 
                   {/* Status Bar */}
-                  <div className="flex items-center justify-between px-1 text-[9px] font-sans text-slate-700 mb-2">
+                  <div className="flex items-center justify-between px-1 text-[9px] font-sans text-slate-300 mb-2">
                     <span className="font-bold">9:41</span>
                     <div className="flex items-center gap-1">
                       <Wifi className="w-2.5 h-2.5" />
@@ -495,9 +614,9 @@ export const Hero = () => {
                   </div>
 
                   {/* Phone Inner Screen Content */}
-                  <div className="bg-[#FAFBFD] border border-slate-100 rounded-2xl p-2.5 space-y-2.5 text-center">
+                  <div className="bg-[#060B18] border border-slate-800 rounded-2xl p-2.5 space-y-2.5 text-center">
                     <div>
-                      <span className="text-[9.5px] font-sans font-bold uppercase text-slate-700 block">
+                      <span className="text-[9.5px] font-sans font-bold uppercase text-slate-300 block">
                         Project Status
                       </span>
                     </div>
@@ -509,7 +628,7 @@ export const Hero = () => {
                           cx="28"
                           cy="28"
                           r="22"
-                          stroke="#E2E8F0"
+                          stroke="#1E293B"
                           strokeWidth="4"
                           fill="transparent"
                         />
@@ -517,7 +636,7 @@ export const Hero = () => {
                           cx="28"
                           cy="28"
                           r="22"
-                          stroke="#0066FF"
+                          stroke="#00F0FF"
                           strokeWidth="4"
                           strokeDasharray="138"
                           strokeDashoffset="34.5"
@@ -526,14 +645,14 @@ export const Hero = () => {
                         />
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span className="font-display font-black text-xs text-[#0B1938]">75%</span>
-                        <span className="text-[7px] font-sans text-slate-600 font-bold uppercase">Completed</span>
+                        <span className="font-display font-black text-xs text-white">75%</span>
+                        <span className="text-[7px] font-sans text-slate-400 font-bold uppercase">Completed</span>
                       </div>
                     </div>
 
                     {/* Tasks Checklist */}
-                    <div className="text-left space-y-1 pt-1 border-t border-slate-100 font-sans">
-                      <span className="text-[9px] font-sans font-bold uppercase text-slate-700 block mb-1">
+                    <div className="text-left space-y-1 pt-1 border-t border-slate-800 font-sans">
+                      <span className="text-[9px] font-sans font-bold uppercase text-slate-400 block mb-1">
                         Tasks
                       </span>
                       {[
@@ -542,12 +661,12 @@ export const Hero = () => {
                         "Testing",
                         "Deployment"
                       ].map((task, tIdx) => (
-                        <div key={tIdx} className="flex items-center justify-between text-[9.5px] text-slate-800 font-medium">
+                        <div key={tIdx} className="flex items-center justify-between text-[9.5px] text-slate-300 font-medium">
                           <span className="flex items-center gap-1">
-                            <span className="w-1 h-1 rounded-full bg-[#0066FF]"></span>
+                            <span className="w-1 h-1 rounded-full bg-[#00F0FF]"></span>
                             <span className="truncate max-w-[85px]">{task}</span>
                           </span>
-                          <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
+                          <Check className="w-3 h-3 text-emerald-400 stroke-[3]" />
                         </div>
                       ))}
                     </div>
@@ -565,8 +684,8 @@ export const Hero = () => {
 
       {/* Watch Intro Video Modal Lightbox */}
       {isVideoModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-700 aspect-video">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800 aspect-video">
             <button
               type="button"
               onClick={() => setIsVideoModalOpen(false)}

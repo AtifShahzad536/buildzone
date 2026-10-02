@@ -24,19 +24,19 @@ export const Security = () => {
         canonical="https://buildzonetechnology.com/security"
       />
 
-      <div className="py-12 sm:py-20">
+      <div className="py-12 sm:py-20 bg-[#060B18]">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
-              <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/15 border border-[#0066FF]/40 rounded-full mb-4 shadow-xs">
+              <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                 ENTERPRISE PROTECTION
               </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-4">
-              SECURITY & COMPLIANCE
+            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-white mb-4">
+              SECURITY & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">COMPLIANCE</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
               We treat security as a first-class architectural primitive. Every product is engineered to withstand modern adversarial threats and pass strict third-party compliance audits.
             </p>
           </div>
@@ -79,16 +79,16 @@ export const Security = () => {
               return (
                 <div
                   key={i}
-                  className="p-6 bg-white border border-slate-200 hover:border-[#0066FF]/40 rounded-lg transition-all flex flex-col justify-between group shadow-sm hover:shadow-md"
+                  className="p-6 bg-[#0B1528] border border-slate-800 hover:border-[#00F0FF]/50 rounded-2xl transition-all flex flex-col justify-between group shadow-xl hover:shadow-[0_0_30px_rgba(0,102,255,0.2)]"
                 >
                   <div>
-                    <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-lg flex items-center justify-center text-[#0066FF] group-hover:bg-[#0066FF] group-hover:text-white transition-all mb-5">
+                    <div className="w-12 h-12 bg-[#122038] border border-slate-700/80 rounded-xl flex items-center justify-center text-[#00F0FF] group-hover:scale-110 transition-all mb-5">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h2 className="font-display font-bold text-lg uppercase text-[#0B1938] mb-2 group-hover:text-[#0066FF] transition-colors">
+                    <h2 className="font-display font-bold text-lg uppercase text-white mb-2 group-hover:text-[#00F0FF] transition-colors">
                       {item.title}
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -98,30 +98,30 @@ export const Security = () => {
           </div>
 
           {/* Secure SDLC Lifecycle */}
-          <div className="max-w-4xl mx-auto p-8 bg-white border border-slate-200 rounded-lg shadow-sm mb-20 space-y-6">
-            <h2 className="text-2xl font-bold font-display uppercase text-[#0B1938] border-b border-slate-100 pb-3">
+          <div className="max-w-4xl mx-auto p-8 bg-[#0B1528] border border-slate-800 rounded-2xl shadow-xl mb-20 space-y-6">
+            <h2 className="text-2xl font-bold font-display uppercase text-white border-b border-slate-800/80 pb-3">
               Secure Software Development Lifecycle (SDLC)
             </h2>
 
-            <div className="space-y-4 font-sans text-sm text-slate-700 leading-relaxed">
+            <div className="space-y-4 font-sans text-sm text-slate-300 leading-relaxed">
               <p>
                 Our engineering pods operate according to strict security protocols from initial whiteboard architectural diagrams through to production cloud deployments:
               </p>
-              <ul className="space-y-2 font-mono text-xs text-slate-700">
+              <ul className="space-y-2 font-mono text-xs text-slate-300">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Threat modeling and surface analysis during Sprint 0</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Mandatory peer code review and branch protection policies</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Automated secret scanning preventing API key leaks</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Third-party penetration test coordination prior to enterprise launch</span>
                 </li>
               </ul>

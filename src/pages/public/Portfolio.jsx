@@ -30,19 +30,19 @@ export const Portfolio = () => {
         canonical="https://buildzonetechnology.com/portfolio"
       />
 
-      <div className="py-12 sm:py-20">
+      <div className="py-12 sm:py-20 bg-[#060B18]">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
-              <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-full mb-4 shadow-[0_0_15px_rgba(0,102,255,0.15)]">
+              <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                 VERIFIED DELIVERIES
               </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-4">
-              CLIENT WORK & CASE STUDIES
+            <h1 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-white mb-4">
+              CLIENT WORK & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">CASE STUDIES</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
               Explore our portfolio of scalable platforms, high-throughput backend engines, and intelligent AI tools built for clients worldwide.
             </p>
           </div>
@@ -53,10 +53,10 @@ export const Portfolio = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-all rounded-md border ${
+                className={`px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-all rounded-xl border ${
                   activeCategory === cat
-                    ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-sm'
-                    : 'bg-white text-slate-700 border-slate-300 hover:border-[#0066FF] hover:text-[#0066FF]'
+                    ? 'bg-[#0066FF] text-white border-[#00F0FF]/60 shadow-[0_0_15px_rgba(0,102,255,0.35)]'
+                    : 'bg-[#0B1528] text-slate-300 border-slate-800 hover:border-[#00F0FF]/50 hover:text-white'
                 }`}
               >
                 {cat}
@@ -68,18 +68,18 @@ export const Portfolio = () => {
           {isLoading && (!projectsData || projectsData.length === 0) ? (
             <div className="py-8">
               <div className="flex flex-col items-center justify-center text-center space-y-3 mb-10">
-                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
-                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                <div className="w-10 h-10 border-3 border-slate-800 border-t-[#00F0FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-400 tracking-widest uppercase font-semibold">
                   Loading Portfolio Projects...
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-pulse">
                 {[1, 2, 3].map((n) => (
-                  <div key={n} className="bg-white border border-slate-200 rounded-lg p-6 space-y-4">
-                    <div className="aspect-[16/10] w-full bg-slate-100 rounded-md" />
-                    <div className="w-1/2 h-3 bg-slate-100 rounded" />
-                    <div className="w-3/4 h-6 bg-slate-100 rounded" />
-                    <div className="w-full h-12 bg-slate-50 rounded" />
+                  <div key={n} className="bg-[#0B1528] border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <div className="aspect-[16/10] w-full bg-slate-800/60 rounded-xl" />
+                    <div className="w-1/2 h-3 bg-slate-800/60 rounded" />
+                    <div className="w-3/4 h-6 bg-slate-800/60 rounded" />
+                    <div className="w-full h-12 bg-slate-800/40 rounded" />
                   </div>
                 ))}
               </div>
@@ -89,15 +89,15 @@ export const Portfolio = () => {
             {filteredProjects?.map((project) => (
               <div
                 key={project.id}
-                className="bg-white border border-slate-200 hover:border-[#0066FF]/50 rounded-lg transition-all flex flex-col justify-between group overflow-hidden shadow-sm hover:shadow-md"
+                className="bg-[#0B1528] border border-slate-800/90 hover:border-[#00F0FF]/50 rounded-2xl transition-all duration-300 flex flex-col justify-between group overflow-hidden shadow-xl hover:shadow-[0_0_25px_rgba(0,240,255,0.12)]"
               >
                 <div>
-                  <div className="aspect-[16/10] w-full overflow-hidden bg-slate-100 relative">
+                  <div className="aspect-[16/10] w-full overflow-hidden bg-slate-900 relative">
                     <img
                       src={project.image}
                       alt={project.name || "Portfolio project showcase"}
                       loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3">
                       <Badge variant="cyan" size="sm">
@@ -106,22 +106,22 @@ export const Portfolio = () => {
                     </div>
                   </div>
 
-                  <div className="p-6">
-                    <div className="font-mono text-[11px] text-slate-500 uppercase tracking-widest mb-1 font-semibold">
+                  <div className="p-6 sm:p-7">
+                    <div className="font-mono text-[11px] text-slate-400 uppercase tracking-widest mb-2 font-semibold">
                       {project.client} • {project.industry}
                     </div>
 
-                    <h2 className="text-xl font-bold font-display uppercase tracking-tight text-[#0B1938] mb-3 group-hover:text-[#0066FF] transition-colors">
+                    <h2 className="text-xl font-bold font-display uppercase tracking-tight text-white mb-3 group-hover:text-[#00F0FF] transition-colors">
                       {project.name}
                     </h2>
 
-                    <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed mb-4">
+                    <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed mb-5">
                       {project.shortDescription}
                     </p>
 
-                    <div className="p-3 bg-[#F8FAFC] border border-slate-200 rounded-md mb-5 flex items-center gap-2.5">
-                      <TrendingUp className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span className="font-mono text-xs text-emerald-700 font-bold truncate">
+                    <div className="p-3 bg-[#070E1C] border border-slate-800/80 rounded-xl mb-5 flex items-center gap-2.5">
+                      <TrendingUp className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <span className="font-mono text-xs text-emerald-400 font-bold truncate">
                         {project.results}
                       </span>
                     </div>
@@ -130,7 +130,7 @@ export const Portfolio = () => {
                       {project.technologies?.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-0.5 bg-slate-100 border border-slate-200 rounded font-mono text-[10px] text-slate-700 uppercase"
+                          className="px-2.5 py-1 bg-[#122038] border border-slate-800 rounded-lg font-mono text-[10px] text-[#00F0FF] uppercase tracking-wider"
                         >
                           {tech}
                         </span>
@@ -139,10 +139,10 @@ export const Portfolio = () => {
                   </div>
                 </div>
 
-                <div className="p-6 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
+                <div className="p-6 sm:p-7 pt-0 flex items-center justify-between border-t border-slate-800/80 mt-2">
                   <Link
                     to={`/case-studies/${project.slug}`}
-                    className="font-mono text-xs font-bold uppercase tracking-wider text-[#0066FF] hover:text-[#0052CC] inline-flex items-center gap-1 group/link"
+                    className="font-mono text-xs font-bold uppercase tracking-wider text-[#00F0FF] hover:text-white inline-flex items-center gap-1.5 group/link transition-colors"
                   >
                     <span>View Architecture</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
@@ -153,7 +153,7 @@ export const Portfolio = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="p-1.5 bg-slate-100 border border-slate-200 rounded text-slate-600 hover:text-[#0066FF] hover:border-[#0066FF] transition-all"
+                      className="p-2 bg-[#070E1C] border border-slate-800 rounded-xl text-slate-400 hover:text-[#00F0FF] hover:border-[#00F0FF]/50 transition-all"
                       aria-label="View Live Project"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />

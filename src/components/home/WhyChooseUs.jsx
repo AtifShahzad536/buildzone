@@ -4,21 +4,21 @@ import {
   Code2, 
   Server, 
   Layers, 
-  ArrowRight,
-  Database,
-  ShieldCheck,
-  Zap,
-  Cpu,
-  Activity,
-  Sparkles,
-  Lock,
-  Globe2,
-  CheckCircle,
-  Network,
-  Terminal,
-  TrendingUp,
-  Boxes,
-  Radio
+  ArrowRight, 
+  Database, 
+  ShieldCheck, 
+  Zap, 
+  Cpu, 
+  Activity, 
+  Sparkles, 
+  Lock, 
+  Globe2, 
+  CheckCircle, 
+  Network, 
+  Terminal, 
+  TrendingUp, 
+  Boxes, 
+  Radio 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Container from '../common/Container';
@@ -158,12 +158,11 @@ export const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FBFDFF] relative overflow-hidden selection:bg-blue-500/20">
+    <section className="py-20 lg:py-28 bg-[#060B18] relative overflow-hidden selection:bg-blue-500/20 border-t border-slate-800/80">
       
-      {/* Background Ambient Gradients & Subtle Grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(#0066FF_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-[0.035] pointer-events-none" />
-      <div className="absolute top-10 right-[-10%] w-[650px] h-[650px] bg-gradient-to-br from-blue-400/15 via-cyan-400/10 to-transparent rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
-      <div className="absolute bottom-10 left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-indigo-400/10 via-sky-300/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+      {/* Background Ambient Gradients */}
+      <div className="absolute top-10 right-[-10%] w-[650px] h-[650px] bg-gradient-to-br from-blue-600/15 via-cyan-500/10 to-transparent rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute bottom-10 left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-indigo-600/10 via-sky-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <Container className="relative z-10">
         
@@ -174,24 +173,24 @@ export const WhyChooseUs = () => {
           <ScrollReveal animation="fade-right" duration={0.7} className="lg:col-span-6 space-y-6">
             
             {/* Live Status Cyber Badge with Scanning Beam */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-blue-200/90 bg-white/90 backdrop-blur-md shadow-xs shadow-blue-500/10 relative overflow-hidden group cursor-default">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent animate-badge-shine pointer-events-none" />
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#0066FF]/40 bg-[#0066FF]/15 backdrop-blur-md shadow-xs shadow-blue-500/20 relative overflow-hidden group cursor-default">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent animate-badge-shine pointer-events-none" />
               
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00F0FF] opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#0066FF]" />
               </span>
               
-              <span className="font-sans text-[11px] font-extrabold text-[#0066FF] uppercase tracking-wider">
+              <span className="font-sans text-[11px] font-extrabold text-[#00F0FF] uppercase tracking-wider">
                 WHY BUILDZONE • SIALKOT'S BEST SOFTWARE AGENCY
               </span>
             </div>
 
             {/* Giant Kinetic Heading */}
             <div className="space-y-1">
-              <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-black font-display uppercase tracking-tight text-[#0B1938] leading-[1.06]">
+              <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-black font-display uppercase tracking-tight text-white leading-[1.06]">
                 THE ENGINEERING <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#0099FF] to-[#38BDF8] animate-text-shimmer inline-block drop-shadow-xs">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-[#38BDF8] animate-text-shimmer inline-block drop-shadow-[0_0_20px_rgba(0,102,255,0.4)]">
                   ADVANTAGE
                 </span>
               </h2>
@@ -199,16 +198,16 @@ export const WhyChooseUs = () => {
 
             {/* Dynamic Live Rotating Subtitle */}
             <div className="h-16 flex flex-col justify-center border-l-2 border-[#0066FF] pl-4 transition-all duration-300">
-              <h3 className="text-lg sm:text-xl font-display font-bold text-[#1E293B] leading-tight tracking-tight">
+              <h3 className="text-lg sm:text-xl font-display font-bold text-white leading-tight tracking-tight">
                 {dynamicSubtitles[activeFeatureIdx].title}
               </h3>
-              <p className="text-sm font-sans font-medium text-[#0066FF]">
+              <p className="text-sm font-sans font-medium text-[#00F0FF]">
                 {dynamicSubtitles[activeFeatureIdx].sub}
               </p>
             </div>
 
             {/* Body Description */}
-            <p className="text-sm sm:text-[15px] text-slate-600 font-sans leading-relaxed max-w-lg">
+            <p className="text-sm sm:text-[15px] text-slate-300 font-sans leading-relaxed max-w-lg">
               As the premier software agency in Sialkot, we don't just write code. We engineer mission-critical, enterprise-grade systems with fault-tolerant cloud architecture, bank-grade zero-trust security, and high-velocity agile delivery.
             </p>
 
@@ -229,11 +228,11 @@ export const WhyChooseUs = () => {
                       type="button"
                       className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
                         isActive 
-                          ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-md shadow-blue-500/25 scale-[1.02]' 
-                          : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
+                          ? 'bg-[#0066FF] text-white border-[#0066FF] shadow-lg shadow-blue-500/30 scale-[1.02]' 
+                          : 'bg-[#0B1528] text-slate-300 border-slate-800 hover:border-[#0066FF]/60 hover:bg-[#111E38]'
                       }`}
                     >
-                      <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#0066FF]'}`} />
+                      <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#00F0FF]'}`} />
                       <span className="font-sans text-[11px] tracking-tight truncate">{key}</span>
                     </button>
                   );
@@ -242,21 +241,21 @@ export const WhyChooseUs = () => {
             </div>
 
             {/* Active Architecture Mode Live Telemetry Card */}
-            <div className="p-4 rounded-2xl bg-white/90 border border-slate-200/90 shadow-sm backdrop-blur-sm space-y-3 transition-all duration-300">
+            <div className="p-4 rounded-2xl bg-[#0B1528] border border-slate-800 shadow-xl backdrop-blur-sm space-y-3 transition-all duration-300">
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-ping" />
-                    <h4 className="font-display font-black text-sm text-[#0B1938] tracking-tight">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-ping" />
+                    <h4 className="font-display font-black text-sm text-white tracking-tight">
                       {currentMode.title}
                     </h4>
                   </div>
-                  <p className="text-xs text-slate-500 font-sans mt-0.5">
+                  <p className="text-xs text-slate-400 font-sans mt-0.5">
                     {currentMode.subtitle}
                   </p>
                 </div>
                 <div className="text-right shrink-0">
-                  <span className="font-display font-black text-sm sm:text-base text-[#0066FF] block">
+                  <span className="font-display font-black text-sm sm:text-base text-[#00F0FF] block">
                     {currentMode.metric}
                   </span>
                   <span className="text-[10px] text-slate-400 font-sans block">
@@ -266,29 +265,29 @@ export const WhyChooseUs = () => {
               </div>
 
               {/* Badges / Chips */}
-              <div className="flex flex-wrap gap-1.5 pt-1 border-t border-slate-100">
+              <div className="flex flex-wrap gap-1.5 pt-1 border-t border-slate-800">
                 {currentMode.chips.map((chip, i) => (
                   <span 
                     key={i} 
-                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-100 text-[10.5px] font-sans font-semibold text-slate-700 border border-slate-200"
+                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#070E1C] text-[10.5px] font-sans font-semibold text-slate-300 border border-slate-800"
                   >
-                    <span className="w-1 h-1 rounded-full bg-[#0066FF]" />
+                    <span className="w-1 h-1 rounded-full bg-[#00F0FF]" />
                     {chip}
                   </span>
                 ))}
               </div>
 
               {/* Latency & Uptime Benchmarks */}
-              <div className="flex items-center justify-between text-[11px] font-mono pt-1 text-slate-500 bg-slate-50 px-2.5 py-1.5 rounded-lg border border-slate-200/70">
+              <div className="flex items-center justify-between text-[11px] font-mono pt-1 text-slate-400 bg-[#070E1C] px-2.5 py-1.5 rounded-lg border border-slate-800/80">
                 <div className="flex items-center gap-1.5">
                   <span className="text-slate-400">P99 Latency:</span>
-                  <span className="text-emerald-600 font-bold">
+                  <span className="text-emerald-400 font-bold">
                     {currentMode.latency}
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-slate-400">SLO Uptime:</span>
-                  <span className="text-blue-600 font-bold">
+                  <span className="text-[#00F0FF] font-bold">
                     {currentMode.uptime}
                   </span>
                 </div>
@@ -319,46 +318,42 @@ export const WhyChooseUs = () => {
                 }}
               >
                 
-                {/* ================= 3D ANIMATED CONCENTRIC HOLOGRAPHIC RINGS SYSTEM ================= */}
+                {/* 3D ANIMATED CONCENTRIC HOLOGRAPHIC RINGS SYSTEM */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none preserve-3d">
                   
-                  {/* Outer Orbit Ring 1 (Clockwise Rotation with Orbiting Glowing Satellite Nodes) */}
-                  <div className="w-[500px] h-[500px] rounded-full border-2 border-dashed border-blue-300/40 absolute animate-spin-slow flex items-center justify-center">
-                    {/* Glowing Satellite 1 (Top) */}
+                  {/* Outer Orbit Ring 1 */}
+                  <div className="w-[500px] h-[500px] rounded-full border-2 border-dashed border-blue-500/25 absolute animate-spin-slow flex items-center justify-center">
+                    {/* Glowing Satellite 1 */}
                     <div className="absolute top-0 -translate-y-1/2 flex items-center justify-center">
                       <div className="w-3.5 h-3.5 rounded-full bg-[#0066FF] shadow-[0_0_14px_#0066FF] animate-pulse" />
                       <div className="w-6 h-6 rounded-full border border-cyan-400/50 absolute animate-ping" />
                     </div>
-                    {/* Glowing Satellite 2 (Bottom) */}
+                    {/* Glowing Satellite 2 */}
                     <div className="absolute bottom-0 translate-y-1/2 flex items-center justify-center">
                       <div className="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_12px_#38BDF8] animate-pulse" />
                     </div>
-                    {/* Glowing Satellite 3 (Right) */}
+                    {/* Glowing Satellite 3 */}
                     <div className="absolute right-0 translate-x-1/2 flex items-center justify-center">
                       <div className="w-2.5 h-2.5 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366F1]" />
                     </div>
                   </div>
 
-                  {/* Middle Tech Ring 2 (Counter-Clockwise Rotation with High-Tech Segment Accents) */}
-                  <div className="w-[410px] h-[410px] rounded-full border border-blue-400/30 border-t-transparent border-b-transparent absolute animate-spin-reverse-slow shadow-[0_0_30px_rgba(0,102,255,0.08)]">
-                    {/* Left Accent Node */}
-                    <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#0066FF] shadow-[0_0_8px_#0066FF]" />
+                  {/* Middle Tech Ring 2 */}
+                  <div className="w-[410px] h-[410px] rounded-full border border-cyan-400/25 border-t-transparent border-b-transparent absolute animate-spin-reverse-slow shadow-[0_0_30px_rgba(0,102,255,0.15)]">
+                    <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF]" />
                   </div>
 
-                  {/* Radar Sweep Scanner Cone Layer */}
+                  {/* Radar Sweep Scanner */}
                   <div 
                     className="w-[380px] h-[380px] rounded-full absolute animate-radar-sweep pointer-events-none opacity-40"
                     style={{
-                      background: 'conic-gradient(from 0deg, transparent 0deg, rgba(0, 102, 255, 0.16) 60deg, transparent 90deg)'
+                      background: 'conic-gradient(from 0deg at 50% 50%, rgba(0, 240, 255, 0.25) 0deg, rgba(0, 102, 255, 0.1) 60deg, transparent 120deg)'
                     }}
                   />
 
-                  {/* Inner Glowing Holographic Aura */}
-                  <div className="w-[320px] h-[320px] rounded-full border border-blue-200/60 bg-gradient-to-br from-blue-500/[0.07] via-cyan-400/[0.04] to-transparent absolute shadow-[inset_0_0_30px_rgba(0,102,255,0.08)]" />
-
-                  {/* Floating Holographic Telemetry Pill Top Right */}
+                  {/* Floating Telemetry Pill Top Right */}
                   <div 
-                    className="absolute top-0 right-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-blue-100 shadow-xl text-[10.5px] font-bold text-[#0066FF] animate-float-3d"
+                    className="absolute top-0 right-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0B1528]/95 backdrop-blur-md border border-slate-700 shadow-xl text-[10.5px] font-bold text-[#00F0FF] animate-float-3d"
                     style={{ transform: 'translateZ(45px)' }}
                   >
                     <span className="relative flex h-2 w-2">
@@ -370,152 +365,138 @@ export const WhyChooseUs = () => {
 
                   {/* Floating Holographic Telemetry Pill Bottom Left */}
                   <div 
-                    className="absolute bottom-16 -left-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-blue-100 shadow-xl text-[10.5px] font-bold text-slate-700 animate-float-3d"
+                    className="absolute bottom-16 -left-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0B1528]/95 backdrop-blur-md border border-slate-700 shadow-xl text-[10.5px] font-bold text-slate-300 animate-float-3d"
                     style={{ transform: 'translateZ(40px)', animationDelay: '1.8s' }}
                   >
-                    <Radio className="w-3.5 h-3.5 text-[#0066FF] animate-pulse" />
+                    <Radio className="w-3.5 h-3.5 text-[#00F0FF] animate-pulse" />
                     <span>Auto-Mesh: Active</span>
                   </div>
                 </div>
 
-                {/* ================= VERTICAL ARCHITECTURE FLOW NODES & FLOWING LIGHT ARROWS ================= */}
+                {/* VERTICAL ARCHITECTURE FLOW NODES */}
                 <div className="flex flex-col items-center space-y-3.5 relative z-10 preserve-3d">
                   
-                  {/* ---------------- 1. CLIENT APPS NODE ---------------- */}
+                  {/* 1. CLIENT APPS NODE */}
                   <div 
-                    className="w-[240px] bg-white/95 backdrop-blur-xl rounded-2xl p-3.5 border border-blue-100/90 shadow-md shadow-blue-500/10 hover:shadow-2xl hover:border-[#0066FF]/50 hover:-translate-y-1 transition-all duration-300 flex items-center gap-3.5 group cursor-pointer relative"
+                    className="w-[240px] bg-[#0B1528]/95 backdrop-blur-xl rounded-2xl p-3.5 border border-slate-700/90 shadow-2xl hover:border-[#0066FF] hover:-translate-y-1 transition-all duration-300 flex items-center gap-3.5 group cursor-pointer relative"
                     style={{ transform: 'translateZ(36px)' }}
                   >
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 text-[#0066FF] flex items-center justify-center shrink-0 group-hover:bg-[#0066FF] group-hover:text-white group-hover:scale-110 transition-all shadow-xs">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-900/60 to-blue-700/60 text-[#00F0FF] flex items-center justify-center shrink-0 group-hover:bg-[#0066FF] group-hover:text-white group-hover:scale-110 transition-all shadow-xs">
                       <Monitor className="w-5 h-5" />
                     </div>
                     <div className="overflow-hidden flex-1">
                       <div className="flex items-center justify-between">
-                        <span className="font-display font-black text-xs uppercase text-[#0B1938] block tracking-wide">
+                        <span className="font-display font-black text-xs uppercase text-white block tracking-wide">
                           CLIENT APPS
                         </span>
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       </div>
-                      <span className="font-sans text-[11px] text-slate-500 font-medium block truncate">
+                      <span className="font-sans text-[11px] text-slate-400 font-medium block truncate">
                         Next.js • React • iOS • Android
                       </span>
                     </div>
                     {/* Top Glow Highlight */}
-                    <div className="absolute top-0 left-4 right-4 h-[2px] bg-gradient-to-r from-transparent via-[#0066FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute top-0 left-4 right-4 h-[2px] bg-gradient-to-r from-transparent via-[#00F0FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
 
-                  {/* ---------------- ARROW 1: FLOWING ELECTRIC LASER BEAM (CLIENT -> API) ---------------- */}
+                  {/* ARROW 1: BEAM */}
                   <div className="flex flex-col items-center relative h-8 w-12 justify-center overflow-visible">
-                    {/* Base Conduit Wire */}
-                    <div className="w-[3px] h-full bg-blue-100 rounded-full relative overflow-hidden">
-                      {/* Flowing Laser Light traveling continuously */}
+                    <div className="w-[3px] h-full bg-slate-800 rounded-full relative overflow-hidden">
                       <div className="absolute w-full h-4 bg-gradient-to-b from-transparent via-cyan-400 to-white shadow-[0_0_10px_#0066FF] animate-circuit-flow rounded-full" />
                     </div>
-                    
-                    {/* Pulsing Light Head Packet */}
                     <div className="absolute w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#38BDF8] animate-circuit-flow-fast" />
-                    
-                    {/* Glowing Arrowhead at destination */}
-                    <div className="absolute bottom-0 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[7px] border-t-[#0066FF] filter drop-shadow-[0_2px_4px_rgba(0,102,255,0.5)]" />
+                    <div className="absolute bottom-0 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[7px] border-t-[#00F0FF] filter drop-shadow-[0_2px_4px_rgba(0,240,255,0.5)]" />
                   </div>
 
-                  {/* ---------------- 2. API GATEWAY NODE ---------------- */}
+                  {/* 2. API GATEWAY NODE */}
                   <div 
-                    className={`w-[275px] bg-white/95 backdrop-blur-xl rounded-2xl p-3.5 border transition-all duration-300 flex items-center gap-3.5 group cursor-pointer relative shadow-lg ${
+                    className={`w-[275px] bg-[#0B1528]/95 backdrop-blur-xl rounded-2xl p-3.5 border transition-all duration-300 flex items-center gap-3.5 group cursor-pointer relative shadow-2xl ${
                       activeTag === 'SECURE' 
-                        ? 'border-emerald-400 shadow-emerald-500/25 ring-2 ring-emerald-400/30' 
-                        : 'border-blue-100/90 shadow-blue-500/10 hover:shadow-2xl hover:border-[#0066FF]/50 hover:-translate-y-1'
+                        ? 'border-emerald-400 shadow-emerald-500/30 ring-2 ring-emerald-400/40' 
+                        : 'border-slate-700/90 shadow-blue-500/10 hover:shadow-2xl hover:border-[#0066FF] hover:-translate-y-1'
                     }`}
                     style={{ transform: 'translateZ(28px)' }}
                   >
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 text-[#0066FF] flex items-center justify-center shrink-0 group-hover:bg-[#0066FF] group-hover:text-white group-hover:scale-110 transition-all shadow-xs">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-900/60 to-blue-700/60 text-[#00F0FF] flex items-center justify-center shrink-0 group-hover:bg-[#0066FF] group-hover:text-white group-hover:scale-110 transition-all shadow-xs">
                       <Code2 className="w-5 h-5" />
                     </div>
                     <div className="overflow-hidden flex-1">
                       <div className="flex items-center justify-between">
-                        <span className="font-display font-black text-xs uppercase text-[#0B1938] block tracking-wide">
+                        <span className="font-display font-black text-xs uppercase text-white block tracking-wide">
                           API GATEWAY & MESH
                         </span>
-                        <span className="text-[9.5px] font-extrabold px-2 py-0.5 rounded-full bg-blue-50 text-[#0066FF] border border-blue-200">
+                        <span className="text-[9.5px] font-extrabold px-2 py-0.5 rounded-full bg-[#0066FF]/20 text-[#00F0FF] border border-[#0066FF]/40">
                           v3.2
                         </span>
                       </div>
-                      <span className="font-sans text-[11px] text-slate-500 font-medium block truncate">
+                      <span className="font-sans text-[11px] text-slate-400 font-medium block truncate">
                         GraphQL • REST • gRPC • WebSockets
                       </span>
                     </div>
                   </div>
 
-                  {/* ---------------- ARROW 2: DUAL BRANCHING FLOWING CIRCUIT (API -> SERVICES & QUEUES) ---------------- */}
+                  {/* ARROW 2 */}
                   <div className="w-[320px] h-8 relative overflow-visible">
-                    {/* Center Down Line from API Gateway */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[3px] h-2.5 bg-blue-100 overflow-hidden">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[3px] h-2.5 bg-slate-800 overflow-hidden">
                       <div className="w-full h-full bg-[#0066FF] animate-circuit-flow-fast" />
                     </div>
-
-                    {/* Horizontal Circuit Bus Line */}
-                    <div className="absolute top-2.5 left-[20%] right-[20%] h-[3px] bg-blue-100 rounded-full overflow-hidden">
-                      {/* Left and right flowing energy pulses */}
+                    <div className="absolute top-2.5 left-[20%] right-[20%] h-[3px] bg-slate-800 rounded-full overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-[#0066FF] to-cyan-400 animate-pulse" />
                     </div>
-                    
-                    {/* Left Drop Line down to Services */}
-                    <div className="absolute top-2.5 left-[20%] w-[3px] h-5 bg-blue-100 overflow-hidden">
+                    <div className="absolute top-2.5 left-[20%] w-[3px] h-5 bg-slate-800 overflow-hidden">
                       <div className="w-full h-full bg-gradient-to-b from-cyan-400 to-white animate-circuit-flow" />
                     </div>
-                    <div className="absolute top-[30px] left-[20%] -translate-x-[3px] w-0 h-0 border-l-[3.5px] border-l-transparent border-r-[3.5px] border-r-transparent border-t-[6px] border-t-[#0066FF] filter drop-shadow-[0_2px_4px_rgba(0,102,255,0.5)]" />
+                    <div className="absolute top-[30px] left-[20%] -translate-x-[3px] w-0 h-0 border-l-[3.5px] border-l-transparent border-r-[3.5px] border-r-transparent border-t-[6px] border-t-[#00F0FF] filter drop-shadow-[0_2px_4px_rgba(0,240,255,0.5)]" />
                     
-                    {/* Right Drop Line down to Queues */}
-                    <div className="absolute top-2.5 right-[20%] w-[3px] h-5 bg-blue-100 overflow-hidden">
+                    <div className="absolute top-2.5 right-[20%] w-[3px] h-5 bg-slate-800 overflow-hidden">
                       <div className="w-full h-full bg-gradient-to-b from-cyan-400 to-white animate-circuit-flow" style={{ animationDelay: '0.4s' }} />
                     </div>
-                    <div className="absolute top-[30px] right-[20%] -translate-x-[3px] w-0 h-0 border-l-[3.5px] border-l-transparent border-r-[3.5px] border-r-transparent border-t-[6px] border-t-[#0066FF] filter drop-shadow-[0_2px_4px_rgba(0,102,255,0.5)]" />
+                    <div className="absolute top-[30px] right-[20%] -translate-x-[3px] w-0 h-0 border-l-[3.5px] border-l-transparent border-r-[3.5px] border-r-transparent border-t-[6px] border-t-[#00F0FF] filter drop-shadow-[0_2px_4px_rgba(0,240,255,0.5)]" />
 
-                    {/* Moving Glowing Photon Beads Traveling Along Fork */}
                     <div className="absolute top-2.5 left-[20%] -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#38BDF8] animate-pulse-glow-dot" />
                     <div className="absolute top-2.5 right-[20%] -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#38BDF8] animate-pulse-glow-dot" style={{ animationDelay: '0.5s' }} />
                   </div>
 
-                  {/* ---------------- 3 & 4. SERVICES & EVENT QUEUES ROW ---------------- */}
+                  {/* 3 & 4. SERVICES & QUEUES ROW */}
                   <div className="grid grid-cols-2 gap-3.5 w-full max-w-[410px]" style={{ transform: 'translateZ(22px)' }}>
                     
-                    {/* Node 3: SERVICES */}
+                    {/* Node 3 */}
                     <div 
-                      className={`bg-white/95 backdrop-blur-xl rounded-2xl p-3 border transition-all duration-300 flex items-center gap-2.5 group cursor-pointer shadow-md ${
+                      className={`bg-[#0B1528]/95 backdrop-blur-xl rounded-2xl p-3 border transition-all duration-300 flex items-center gap-2.5 group cursor-pointer shadow-xl ${
                         activeTag === 'SCALABLE'
-                          ? 'border-blue-500 shadow-blue-500/25 ring-2 ring-blue-400/30'
-                          : 'border-blue-100 shadow-blue-500/5 hover:shadow-xl hover:border-[#0066FF]/40'
+                          ? 'border-[#0066FF] shadow-blue-500/30 ring-2 ring-[#0066FF]/40'
+                          : 'border-slate-800 shadow-sm hover:shadow-2xl hover:border-[#0066FF]'
                       }`}
                     >
-                      <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0066FF] flex items-center justify-center shrink-0 group-hover:bg-[#0066FF] group-hover:text-white transition-colors">
+                      <div className="w-8 h-8 rounded-lg bg-blue-950/80 text-[#00F0FF] flex items-center justify-center shrink-0 group-hover:bg-[#0066FF] group-hover:text-white transition-colors">
                         <Server className="w-4 h-4" />
                       </div>
                       <div className="overflow-hidden">
-                        <span className="font-display font-black text-[11.5px] uppercase text-[#0B1938] block tracking-wide">
+                        <span className="font-display font-black text-[11.5px] uppercase text-white block tracking-wide">
                           SERVICES
                         </span>
-                        <span className="font-sans text-[10px] text-slate-500 font-medium block truncate">
+                        <span className="font-sans text-[10px] text-slate-400 font-medium block truncate">
                           Kubernetes • Docker
                         </span>
                       </div>
                     </div>
 
-                    {/* Node 4: QUEUES */}
+                    {/* Node 4 */}
                     <div 
-                      className={`bg-white/95 backdrop-blur-xl rounded-2xl p-3 border transition-all duration-300 flex items-center gap-2.5 group cursor-pointer shadow-md ${
+                      className={`bg-[#0B1528]/95 backdrop-blur-xl rounded-2xl p-3 border transition-all duration-300 flex items-center gap-2.5 group cursor-pointer shadow-xl ${
                         activeTag === 'SCALABLE'
-                          ? 'border-cyan-500 shadow-cyan-500/25 ring-2 ring-cyan-400/30'
-                          : 'border-blue-100 shadow-blue-500/5 hover:shadow-xl hover:border-[#0066FF]/40'
+                          ? 'border-cyan-400 shadow-cyan-500/30 ring-2 ring-cyan-400/40'
+                          : 'border-slate-800 shadow-sm hover:shadow-2xl hover:border-[#0066FF]'
                       }`}
                     >
-                      <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0066FF] flex items-center justify-center shrink-0 group-hover:bg-[#0066FF] group-hover:text-white transition-colors">
+                      <div className="w-8 h-8 rounded-lg bg-blue-950/80 text-[#00F0FF] flex items-center justify-center shrink-0 group-hover:bg-[#0066FF] group-hover:text-white transition-colors">
                         <Layers className="w-4 h-4" />
                       </div>
                       <div className="overflow-hidden">
-                        <span className="font-display font-black text-[11.5px] uppercase text-[#0B1938] block tracking-wide">
+                        <span className="font-display font-black text-[11.5px] uppercase text-white block tracking-wide">
                           EVENT QUEUES
                         </span>
-                        <span className="font-sans text-[10px] text-slate-500 font-medium block truncate">
+                        <span className="font-sans text-[10px] text-slate-400 font-medium block truncate">
                           Kafka • Redis • BullMQ
                         </span>
                       </div>
@@ -523,32 +504,27 @@ export const WhyChooseUs = () => {
 
                   </div>
 
-                  {/* ---------------- ARROW 3: CONVERGING FLOWING LASER TO DATABASE ---------------- */}
+                  {/* ARROW 3 */}
                   <div className="flex flex-col items-center relative h-8 w-12 justify-center overflow-visible">
-                    {/* Base Conduit Wire */}
-                    <div className="w-[3px] h-full bg-blue-100 rounded-full relative overflow-hidden">
+                    <div className="w-[3px] h-full bg-slate-800 rounded-full relative overflow-hidden">
                       <div className="absolute w-full h-4 bg-gradient-to-b from-transparent via-cyan-400 to-white shadow-[0_0_10px_#0066FF] animate-circuit-flow-fast rounded-full" />
                     </div>
-                    
-                    {/* Moving Laser Light Head */}
                     <div className="absolute w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#38BDF8] animate-circuit-flow" />
-                    
-                    {/* Glowing Destination Arrowhead */}
-                    <div className="absolute bottom-0 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[7px] border-t-[#0066FF] filter drop-shadow-[0_2px_4px_rgba(0,102,255,0.5)]" />
+                    <div className="absolute bottom-0 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[7px] border-t-[#00F0FF] filter drop-shadow-[0_2px_4px_rgba(0,240,255,0.5)]" />
                   </div>
 
-                  {/* ---------------- 5. 3D DISTRIBUTED DATA & VECTOR CLUSTER ---------------- */}
+                  {/* 5. 3D DISTRIBUTED DATA & VECTOR CLUSTER */}
                   <div 
                     className="relative flex flex-col items-center w-full max-w-[310px] group cursor-pointer"
                     style={{ transform: 'translateZ(42px)' }}
                   >
                     
-                    {/* Isometric 3D Layered Database Disks & Glowing Aura */}
+                    {/* Isometric Database Disks */}
                     <div className="flex items-center justify-center gap-3 mb-[-16px] relative z-20 transition-transform duration-300 group-hover:scale-105">
                       
                       {/* Left Cylinder */}
                       <div className="w-11 h-13 relative">
-                        <svg viewBox="0 0 36 44" className="w-full h-full filter drop-shadow-[0_8px_12px_rgba(0,102,255,0.3)]">
+                        <svg viewBox="0 0 36 44" className="w-full h-full filter drop-shadow-[0_8px_16px_rgba(0,240,255,0.4)]">
                           <defs>
                             <linearGradient id="dbGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
                               <stop offset="0%" stopColor="#38BDF8" />
@@ -566,13 +542,13 @@ export const WhyChooseUs = () => {
                         </svg>
                       </div>
 
-                      {/* Center Cylinder (Primary Active Replica with Pulsing Core Light) */}
+                      {/* Center Cylinder */}
                       <div className="w-14 h-16 relative z-10">
-                        <svg viewBox="0 0 44 52" className="w-full h-full filter drop-shadow-[0_10px_20px_rgba(0,102,255,0.45)]">
+                        <svg viewBox="0 0 44 52" className="w-full h-full filter drop-shadow-[0_10px_24px_rgba(0,102,255,0.6)]">
                           <defs>
                             <linearGradient id="dbGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                              <stop offset="0%" stopColor="#0080FF" />
-                              <stop offset="100%" stopColor="#0047BA" />
+                              <stop offset="0%" stopColor="#00F0FF" />
+                              <stop offset="100%" stopColor="#0052CC" />
                             </linearGradient>
                             <linearGradient id="dbTop2" x1="0%" y1="0%" x2="0%" y2="100%">
                               <stop offset="0%" stopColor="#F0F9FF" />
@@ -585,13 +561,12 @@ export const WhyChooseUs = () => {
                           <ellipse cx="22" cy="12" rx="22" ry="10" fill="url(#dbTop2)" />
                         </svg>
                         
-                        {/* Live Activity Glowing Core */}
                         <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_14px_#34d399] animate-pulse" />
                       </div>
 
                       {/* Right Cylinder */}
                       <div className="w-11 h-13 relative">
-                        <svg viewBox="0 0 36 44" className="w-full h-full filter drop-shadow-[0_8px_12px_rgba(0,102,255,0.3)]">
+                        <svg viewBox="0 0 36 44" className="w-full h-full filter drop-shadow-[0_8px_16px_rgba(0,240,255,0.4)]">
                           <path d="M0,10 L0,34 A18,8 0 0,0 36,34 L36,10 A18,8 0 0,1 0,10" fill="url(#dbGrad1)" />
                           <path d="M0,18 A18,8 0 0,0 36,18" fill="none" stroke="#BAE6FD" strokeWidth="1.2" opacity="0.85" />
                           <path d="M0,26 A18,8 0 0,0 36,26" fill="none" stroke="#BAE6FD" strokeWidth="1.2" opacity="0.85" />
@@ -602,14 +577,14 @@ export const WhyChooseUs = () => {
                     </div>
 
                     {/* Platform Base Card */}
-                    <div className="w-full bg-white/95 backdrop-blur-xl rounded-2xl pt-7 pb-4 px-4 border border-blue-100 shadow-xl shadow-blue-500/10 text-center relative z-10 group-hover:border-[#0066FF]/50 transition-all">
+                    <div className="w-full bg-[#0B1528]/95 backdrop-blur-xl rounded-2xl pt-7 pb-4 px-4 border border-slate-700 shadow-2xl text-center relative z-10 group-hover:border-[#0066FF] transition-all">
                       <div className="flex items-center justify-center gap-2">
-                        <Database className="w-4 h-4 text-[#0066FF]" />
-                        <span className="font-display font-black text-xs uppercase text-[#0B1938] tracking-wide">
+                        <Database className="w-4 h-4 text-[#00F0FF]" />
+                        <span className="font-display font-black text-xs uppercase text-white tracking-wide">
                           DISTRIBUTED DATA & VECTOR CORE
                         </span>
                       </div>
-                      <span className="font-sans text-[11px] text-slate-500 font-medium block mt-1">
+                      <span className="font-sans text-[11px] text-slate-400 font-medium block mt-1">
                         PostgreSQL • MongoDB • pgvector • Redis Cluster
                       </span>
                     </div>
@@ -625,41 +600,41 @@ export const WhyChooseUs = () => {
         </div>
 
         {/* ================= BOTTOM 4-COLUMN BENTO PILLARS GRID ================= */}
-        <ScrollReveal animation="fade-up" delay={0.2} stagger={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20 pt-12 border-t border-slate-200/80">
+        <ScrollReveal animation="fade-up" delay={0.2} stagger={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20 pt-12 border-t border-slate-800/80">
           {pillars.map((item, idx) => (
             <div 
               key={idx} 
-              className="p-6 rounded-3xl bg-white/80 hover:bg-white border border-slate-200/90 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden backdrop-blur-md"
+              className="p-6 rounded-3xl bg-[#0B1528] hover:bg-[#111E38] border border-slate-800 hover:border-[#0066FF]/60 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden backdrop-blur-md"
             >
               {/* Luminous Top Glow Stripe */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-[#0066FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-[#00F0FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="space-y-4">
                 {/* Header: Giant Number & Badge */}
                 <div className="flex items-center justify-between">
-                  <span className="font-display font-black text-4xl sm:text-5xl text-slate-300 group-hover:text-[#0066FF] transition-colors tracking-tight">
+                  <span className="font-display font-black text-4xl sm:text-5xl text-slate-700 group-hover:text-[#00F0FF] transition-colors tracking-tight">
                     {item.number}
                   </span>
-                  <span className="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-blue-50 text-[#0066FF] border border-blue-100 shadow-2xs">
+                  <span className="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-[#0066FF]/15 text-[#00F0FF] border border-[#0066FF]/40 shadow-xs">
                     {item.badge}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h4 className="font-display font-black text-sm uppercase text-[#0B1938] tracking-tight leading-snug group-hover:text-[#0066FF] transition-colors">
+                <h4 className="font-display font-black text-sm uppercase text-white tracking-tight leading-snug group-hover:text-[#00F0FF] transition-colors">
                   {item.title}
                 </h4>
 
                 {/* Description */}
-                <p className="text-xs sm:text-[13px] text-slate-600 font-sans leading-relaxed">
+                <p className="text-xs sm:text-[13px] text-slate-400 font-sans leading-relaxed">
                   {item.desc}
                 </p>
 
                 {/* Feature Checklist */}
-                <div className="space-y-1.5 pt-2 border-t border-slate-100">
+                <div className="space-y-1.5 pt-2 border-t border-slate-800">
                   {item.highlights.map((h, i) => (
-                    <div key={i} className="flex items-center gap-1.5 text-[11px] text-slate-600 font-medium">
-                      <CheckCircle className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                    <div key={i} className="flex items-center gap-1.5 text-[11px] text-slate-300 font-medium">
+                      <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       <span>{h}</span>
                     </div>
                   ))}
@@ -668,10 +643,10 @@ export const WhyChooseUs = () => {
               </div>
 
               {/* Action Link */}
-              <div className="pt-5 mt-4 border-t border-slate-100">
+              <div className="pt-5 mt-4 border-t border-slate-800">
                 <Link
                   to={item.link}
-                  className="inline-flex items-center gap-1.5 text-xs font-sans font-extrabold text-[#0066FF] group-hover:text-blue-700 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-sans font-extrabold text-[#00F0FF] group-hover:text-cyan-300 transition-colors"
                 >
                   <span>{item.ctaText}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />

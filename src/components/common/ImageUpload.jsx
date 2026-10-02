@@ -99,19 +99,19 @@ export const ImageUpload = ({
   return (
     <div className={`space-y-2 ${className}`}>
       <div className="flex items-center justify-between">
-        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
+        <label className="block font-mono text-[11px] uppercase tracking-wider text-slate-300 font-bold">
           {label}
         </label>
         
         {/* Toggle Tabs */}
-        <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-[10px] font-mono font-bold">
+        <div className="flex items-center gap-1 bg-[#070E1C] p-0.5 rounded-lg border border-slate-800 text-[10px] font-mono font-bold">
           <button
             type="button"
             onClick={() => setActiveTab('upload')}
             className={`px-2 py-0.5 rounded-md transition-all cursor-pointer ${
               activeTab === 'upload'
-                ? 'bg-white text-[#0066FF] shadow-2xs font-bold'
-                : 'text-slate-500 hover:text-slate-800'
+                ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white shadow-sm font-bold'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             Upload File
@@ -121,8 +121,8 @@ export const ImageUpload = ({
             onClick={() => setActiveTab('url')}
             className={`px-2 py-0.5 rounded-md transition-all cursor-pointer ${
               activeTab === 'url'
-                ? 'bg-white text-[#0066FF] shadow-2xs font-bold'
-                : 'text-slate-500 hover:text-slate-800'
+                ? 'bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white shadow-sm font-bold'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             Paste URL
@@ -132,8 +132,8 @@ export const ImageUpload = ({
 
       {/* Preview Section If Image Exists */}
       {value ? (
-        <div className="relative border border-slate-200 rounded-xl overflow-hidden bg-slate-50 p-2 group shadow-2xs">
-          <div className={`w-full overflow-hidden rounded-lg bg-slate-900/5 flex items-center justify-center ${
+        <div className="relative border border-slate-800 rounded-xl overflow-hidden bg-[#070E1C] p-2 group shadow-lg">
+          <div className={`w-full overflow-hidden rounded-lg bg-black/40 flex items-center justify-center ${
             aspectRatio === 'square' ? 'aspect-square max-h-48' : aspectRatio === 'avatar' ? 'w-24 h-24 mx-auto rounded-full' : 'aspect-video max-h-52'
           }`}>
             <img
@@ -147,21 +147,21 @@ export const ImageUpload = ({
           </div>
 
           <div className="flex items-center justify-between pt-2 px-1">
-            <span className="font-mono text-[10px] text-slate-500 truncate max-w-[260px]">
+            <span className="font-mono text-[10px] text-slate-400 truncate max-w-[260px]">
               {value.startsWith('data:') ? 'Local file attached' : value}
             </span>
             <div className="flex items-center gap-1.5">
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="px-2 py-1 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 rounded-md font-mono text-[10px] font-bold transition-all cursor-pointer shadow-2xs"
+                className="px-2 py-1 bg-[#0B1528] hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white rounded-md font-mono text-[10px] font-bold transition-all cursor-pointer"
               >
                 Change
               </button>
               <button
                 type="button"
                 onClick={handleRemove}
-                className="p-1 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-md transition-colors cursor-pointer"
+                className="p-1 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 rounded-md transition-colors cursor-pointer border border-rose-500/30"
                 title="Remove image"
               >
                 <X className="w-3.5 h-3.5" />
@@ -180,8 +180,8 @@ export const ImageUpload = ({
               onClick={() => fileInputRef.current?.click()}
               className={`border-2 border-dashed rounded-xl p-5 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-2 ${
                 isDragging
-                  ? 'border-[#0066FF] bg-blue-50/50 scale-[1.01]'
-                  : 'border-slate-300 hover:border-[#0066FF] bg-[#F8FAFC] hover:bg-blue-50/20'
+                  ? 'border-[#00F0FF] bg-[#0066FF]/10 scale-[1.01]'
+                  : 'border-slate-800 hover:border-[#00F0FF] bg-[#070E1C] hover:bg-[#0B1528]'
               }`}
             >
               <input
@@ -194,19 +194,19 @@ export const ImageUpload = ({
 
               {isUploading ? (
                 <div className="py-3 flex flex-col items-center gap-2">
-                  <Loader2 className="w-6 h-6 text-[#0066FF] animate-spin" />
-                  <span className="font-mono text-xs text-slate-600 font-bold">Uploading to Cloudinary...</span>
+                  <Loader2 className="w-6 h-6 text-[#00F0FF] animate-spin" />
+                  <span className="font-mono text-xs text-slate-300 font-bold">Uploading to Cloudinary...</span>
                 </div>
               ) : (
                 <>
-                  <div className="w-10 h-10 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-[#0066FF]">
+                  <div className="w-10 h-10 rounded-full bg-[#0066FF]/10 border border-[#00F0FF]/30 flex items-center justify-center text-[#00F0FF]">
                     <UploadCloud className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="font-sans text-xs font-bold text-[#0B1938] block">
-                      Click to upload <span className="font-normal text-slate-500">or drag and drop</span>
+                    <span className="font-sans text-xs font-bold text-white block">
+                      Click to upload <span className="font-normal text-slate-400">or drag and drop</span>
                     </span>
-                    <span className="font-mono text-[10px] text-slate-400 block mt-0.5">
+                    <span className="font-mono text-[10px] text-slate-500 block mt-0.5">
                       {helperText}
                     </span>
                   </div>
@@ -223,9 +223,9 @@ export const ImageUpload = ({
                     placeholder="https://images.unsplash.com/... or Cloudinary URL"
                     value={urlInput}
                     onChange={(e) => setUrlInput(e.target.value)}
-                    className="w-full bg-white border border-slate-300 pl-8 pr-3 py-2 text-xs text-[#0B1938] placeholder-slate-400 focus:outline-none focus:border-[#0066FF] rounded-lg shadow-2xs font-mono font-medium"
+                    className="w-full bg-[#070E1C] border border-slate-800 pl-8 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-sm font-mono font-medium"
                   />
-                  <LinkIcon className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
+                  <LinkIcon className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5" />
                 </div>
                 <Button
                   type="button"
@@ -237,7 +237,7 @@ export const ImageUpload = ({
                   Set
                 </Button>
               </div>
-              <p className="font-mono text-[10px] text-slate-400">
+              <p className="font-mono text-[10px] text-slate-500">
                 Paste any publicly accessible image URL from Unsplash, Cloudinary, or AWS S3.
               </p>
             </div>

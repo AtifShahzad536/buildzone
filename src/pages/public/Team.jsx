@@ -70,22 +70,22 @@ export const Team = () => {
         canonical="https://buildzonetechnology.com/team"
       />
 
-      <div className="py-14 sm:py-24 bg-white min-h-[70vh]">
+      <div className="py-14 sm:py-24 bg-[#060B18] min-h-[70vh]">
         <Container>
           {/* Header Section */}
           <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full mb-4">
-              <Terminal className="w-3.5 h-3.5 text-[#0066FF]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0066FF]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-full mb-4 shadow-[0_0_15px_rgba(0,102,255,0.15)]">
+              <Terminal className="w-3.5 h-3.5 text-[#00F0FF]" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00F0FF]">
                 ENGINEERING TALENT & LEADERSHIP
               </span>
             </div>
             
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight text-[#0B1938] mb-4 leading-tight">
-              MEET OUR TEAM
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight text-white mb-4 leading-tight">
+              MEET OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-sky-400">TEAM</span>
             </h1>
             
-            <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
               Explore our multidisciplinary teams across Executive Leadership, Software Development, Quality Assurance, and AI Engineering.
             </p>
           </div>
@@ -101,17 +101,17 @@ export const Team = () => {
                 <button
                   key={dept.id}
                   onClick={() => setActiveTab(dept.id)}
-                  className={`px-4 py-2 rounded-full font-mono text-xs font-semibold flex items-center gap-2 transition-all duration-200 cursor-pointer ${
+                  className={`px-4 py-2 rounded-full font-mono text-xs font-semibold flex items-center gap-2 transition-all duration-200 cursor-pointer border ${
                     isActive
-                      ? 'bg-[#0066FF] text-white shadow-sm ring-2 ring-[#0066FF]/20'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-[#0B1938]'
+                      ? 'bg-[#0066FF] text-white border-[#00F0FF]/60 shadow-[0_0_15px_rgba(0,102,255,0.35)]'
+                      : 'bg-[#0B1528] text-slate-400 border-slate-800 hover:border-[#00F0FF]/40 hover:text-white'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5 shrink-0" />
                   <span>{dept.label}</span>
                   <span
                     className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                      isActive ? 'bg-white/20 text-white' : 'bg-slate-200/80 text-slate-700'
+                      isActive ? 'bg-white/20 text-white' : 'bg-slate-800 text-[#00F0FF]'
                     }`}
                   >
                     {count}
@@ -121,13 +121,13 @@ export const Team = () => {
             })}
           </div>
 
-          {/* Team Members Grid - Clean, Simple, Borderless */}
+          {/* Team Members Grid */}
           {isLoading ? (
             <div className="py-8">
               {/* Spinner */}
               <div className="flex flex-col items-center justify-center text-center space-y-3 mb-12">
-                <div className="w-10 h-10 border-3 border-blue-100 border-t-[#0066FF] rounded-full animate-spin"></div>
-                <p className="font-mono text-xs text-slate-500 tracking-widest uppercase font-semibold">
+                <div className="w-10 h-10 border-3 border-slate-800 border-t-[#00F0FF] rounded-full animate-spin"></div>
+                <p className="font-mono text-xs text-slate-400 tracking-widest uppercase font-semibold">
                   Loading Team Directory...
                 </p>
               </div>
@@ -136,23 +136,23 @@ export const Team = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 animate-pulse">
                 {[1, 2, 3].map((n) => (
                   <div key={n} className="flex flex-col items-start w-full space-y-4">
-                    <div className="w-full aspect-[4/5] rounded-2xl bg-slate-100" />
-                    <div className="w-3/4 h-5 bg-slate-100 rounded" />
-                    <div className="w-1/3 h-3 bg-slate-100 rounded" />
-                    <div className="w-full h-8 bg-slate-50 rounded" />
+                    <div className="w-full aspect-[4/5] rounded-2xl bg-slate-800/60" />
+                    <div className="w-3/4 h-5 bg-slate-800/60 rounded" />
+                    <div className="w-1/3 h-3 bg-slate-800/60 rounded" />
+                    <div className="w-full h-8 bg-slate-800/40 rounded" />
                   </div>
                 ))}
               </div>
             </div>
           ) : filteredTeam.length === 0 ? (
             <div className="text-center py-16 max-w-md mx-auto">
-              <div className="w-12 h-12 bg-blue-50 text-[#0066FF] rounded-2xl flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-12 bg-[#0066FF]/10 text-[#00F0FF] rounded-2xl flex items-center justify-center mx-auto mb-3 border border-[#0066FF]/30">
                 <Users className="w-6 h-6" />
               </div>
-              <h3 className="font-display font-bold text-lg text-[#0B1938] uppercase mb-1">
+              <h3 className="font-display font-bold text-lg text-white uppercase mb-1">
                 No Team Members Found
               </h3>
-              <p className="text-xs text-slate-500 font-sans">
+              <p className="text-xs text-slate-400 font-sans">
                 {activeTab === 'all'
                   ? 'Add your first partner or specialist from the Admin Portal.'
                   : `No members assigned to ${DEPARTMENTS.find(d => d.id === activeTab)?.label || 'this department'} yet.`}
@@ -172,10 +172,10 @@ export const Team = () => {
                 return (
                   <div
                     key={memberId}
-                    className="flex flex-col items-start group transition-all duration-300"
+                    className="flex flex-col items-start group transition-all duration-300 bg-[#0B1528] p-5 rounded-3xl border border-slate-800/90 hover:border-[#00F0FF]/50 shadow-xl hover:shadow-[0_0_25px_rgba(0,240,255,0.12)]"
                   >
-                    {/* Portrait Image Container - Proper sizing & clean rounded styling */}
-                    <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden bg-slate-100 relative mb-5 shadow-xs">
+                    {/* Portrait Image Container */}
+                    <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden bg-slate-900 relative mb-5">
                       <img
                         src={member.image || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'}
                         alt={member.name || 'BuildZone team member'}
@@ -188,7 +188,7 @@ export const Team = () => {
                       
                       {/* Department Badge Top Left */}
                       <div className="absolute top-3 left-3">
-                        <span className="px-2.5 py-1 bg-white/95 backdrop-blur-xs border border-slate-200/80 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider text-[#0066FF] shadow-2xs">
+                        <span className="px-2.5 py-1 bg-[#060B18]/90 backdrop-blur-md border border-[#0066FF]/40 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider text-[#00F0FF]">
                           {dept}
                         </span>
                       </div>
@@ -197,7 +197,7 @@ export const Team = () => {
                     {/* Member Details */}
                     <div className="w-full space-y-2">
                       <div className="flex items-center justify-between gap-2">
-                        <h2 className="text-xl font-bold font-display uppercase tracking-tight text-[#0B1938] group-hover:text-[#0066FF] transition-colors">
+                        <h2 className="text-xl font-bold font-display uppercase tracking-tight text-white group-hover:text-[#00F0FF] transition-colors">
                           {member.name}
                         </h2>
 
@@ -208,7 +208,7 @@ export const Team = () => {
                               href={member.linkedin}
                               target="_blank"
                               rel="noreferrer"
-                              className="p-1.5 text-slate-400 hover:text-[#0066FF] hover:bg-blue-50 rounded-lg transition-colors"
+                              className="p-1.5 text-slate-400 hover:text-[#00F0FF] hover:bg-[#070E1C] rounded-lg transition-colors"
                               aria-label={`${member.name} LinkedIn Profile`}
                             >
                               <LinkedInIcon className="w-3.5 h-3.5" />
@@ -219,7 +219,7 @@ export const Team = () => {
                               href={member.github}
                               target="_blank"
                               rel="noreferrer"
-                              className="p-1.5 text-slate-400 hover:text-[#0B1938] hover:bg-slate-100 rounded-lg transition-colors"
+                              className="p-1.5 text-slate-400 hover:text-white hover:bg-[#070E1C] rounded-lg transition-colors"
                               aria-label={`${member.name} GitHub Profile`}
                             >
                               <GitHubIcon className="w-3.5 h-3.5" />
@@ -228,12 +228,12 @@ export const Team = () => {
                         </div>
                       </div>
 
-                      <p className="font-mono text-xs font-bold text-[#0066FF] uppercase tracking-wider">
+                      <p className="font-mono text-xs font-bold text-[#00F0FF] uppercase tracking-wider">
                         {member.position || 'Specialist'}
                       </p>
 
                       {member.bio && (
-                        <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed pt-1 line-clamp-3">
+                        <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed pt-1 line-clamp-3">
                           {member.bio}
                         </p>
                       )}
@@ -244,7 +244,7 @@ export const Team = () => {
                           {skillsList.map((skill) => (
                             <span
                               key={skill}
-                              className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded-md font-mono text-[10px] font-medium"
+                              className="px-2.5 py-0.5 bg-[#070E1C] border border-slate-800 text-slate-300 rounded-lg font-mono text-[10px] font-medium"
                             >
                               {skill}
                             </span>
