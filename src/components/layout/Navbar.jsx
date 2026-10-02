@@ -83,16 +83,24 @@ export const Navbar = () => {
                   <div key={item.title} className="relative group/nav py-2">
                     <Link
                       to={item.href}
-                      className={`px-3.5 py-1.5 rounded-lg font-sans text-[13px] font-semibold tracking-normal transition-all duration-150 inline-flex items-center gap-1 cursor-pointer select-none ${
+                      className={`relative px-3.5 py-1.5 font-sans text-[13px] font-semibold tracking-normal transition-colors duration-200 inline-flex items-center gap-1 cursor-pointer select-none bg-transparent border-0 ${
                         isActive
-                          ? 'text-[#00F0FF] bg-[#0066FF]/15 border border-[#0066FF]/30 font-bold'
-                          : 'text-slate-200 hover:text-[#00F0FF] hover:bg-slate-800/60 group-hover/nav:text-[#00F0FF] group-hover/nav:bg-slate-800/60'
+                          ? 'text-[#00F0FF] font-bold'
+                          : 'text-slate-200 hover:text-[#00F0FF] group-hover/nav:text-[#00F0FF]'
                       }`}
                     >
                       <span>{item.title}</span>
                       {item.dropdown && (
                         <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover/nav:rotate-180 text-slate-400 group-hover/nav:text-[#00F0FF]" />
                       )}
+                      {/* Sleek Animated Glowing Underline (0 Background, 0 Borders) */}
+                      <span
+                        className={`absolute bottom-0 left-2 right-2 h-[2.5px] rounded-full bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-[#38BDF8] transition-all duration-300 ease-out transform origin-center ${
+                          isActive
+                            ? 'scale-x-100 opacity-100 shadow-[0_0_10px_rgba(0,240,255,0.9)]'
+                            : 'scale-x-0 opacity-0 group-hover/nav:scale-x-100 group-hover/nav:opacity-100 shadow-[0_0_8px_rgba(0,240,255,0.7)]'
+                        }`}
+                      />
                     </Link>
 
                     {/* Wide 3-Column Solid Dark Card Dropdown */}
