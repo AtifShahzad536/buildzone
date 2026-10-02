@@ -7,6 +7,7 @@ import {
   ExternalLink,
   CheckCheck
 } from 'lucide-react';
+import { WhatsAppIcon } from './BrandIcons';
 
 const quickPrompts = [
   "What services do you offer?",
@@ -155,13 +156,14 @@ export const WhatsAppChatbot = () => {
           </div>
 
           {/* WhatsApp Direct Action Bar */}
-          <div className="bg-emerald-50/90 border-b border-emerald-100 px-3.5 py-1.5 flex items-center justify-between">
-            <span className="font-mono text-[10px] text-emerald-800 font-bold flex items-center gap-1">
+          <div className="bg-emerald-50/90 border-b border-emerald-100 px-3.5 py-2 flex items-center justify-between">
+            <span className="font-mono text-[10.5px] text-emerald-800 font-bold flex items-center gap-1.5">
+              <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-current" />
               <span>Direct WhatsApp Channel</span>
             </span>
             <button
               onClick={handleWhatsAppRedirect}
-              className="px-2 py-0.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-mono text-[9px] font-bold uppercase rounded transition-all flex items-center gap-1 shadow-2xs"
+              className="px-2.5 py-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-mono text-[10px] font-bold uppercase rounded transition-all flex items-center gap-1.5 shadow-2xs"
             >
               <span>Open WhatsApp</span>
               <ExternalLink className="w-2.5 h-2.5" />
@@ -248,33 +250,31 @@ export const WhatsAppChatbot = () => {
         </div>
       )}
 
-      {/* 2. Floating WhatsApp Trigger Button */}
+      {/* 2. Floating WhatsApp Trigger Button (Prominent & Clear on Mobile/Desktop) */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="relative group flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-2xl transition-all duration-300 hover:scale-108 active:scale-95 focus:outline-none cursor-pointer"
+        className="relative group flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-[0_10px_30px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-108 active:scale-95 focus:outline-none cursor-pointer"
         aria-label="Open WhatsApp AI Assistant"
       >
         {/* Pulsing Ripple Rings */}
-        <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-35 animate-ping"></span>
-        <span className="absolute -inset-1 rounded-full border-2 border-[#25D366] opacity-60"></span>
+        <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-35 animate-ping pointer-events-none"></span>
+        <span className="absolute -inset-1 rounded-full border-2 border-[#25D366] opacity-60 pointer-events-none"></span>
 
         {/* WhatsApp Icon */}
-        <div className="relative z-10 transition-transform duration-300">
+        <div className="relative z-10 flex items-center justify-center transition-transform duration-300">
           {isOpen ? (
-            <X className="w-6 h-6" />
+            <X className="w-6 h-6 sm:w-7 sm:h-7" />
           ) : (
-            <svg className="w-6 h-6 sm:w-7 sm:h-7 fill-current" viewBox="0 0 24 24">
-              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.771.815 2.796.815 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.586-5.767-5.768-5.767zm9.969 5.766c0 5.519-4.481 10-10 10-1.745 0-3.385-.45-4.819-1.238l-7.181 1.884 1.916-6.997c-.85-1.488-1.339-3.21-1.339-5.049 0-5.519 4.481-10 10-10s10 4.481 10 10z"/>
-            </svg>
+            <WhatsAppIcon className="w-8 h-8 sm:w-9 sm:h-9 fill-white text-white drop-shadow-md" />
           )}
         </div>
 
         {/* Unread Online Notification Pill when closed */}
         {!isOpen && (
-          <span className="absolute -top-1 -right-1 flex h-4 w-4">
+          <span className="absolute -top-1 -right-1 flex h-5 w-5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-4 w-4 bg-[#0066FF] border-2 border-white text-[9px] font-bold text-white items-center justify-center">
+            <span className="relative inline-flex rounded-full h-5 w-5 bg-[#0066FF] border-2 border-white text-[10px] font-black text-white items-center justify-center shadow-xs">
               1
             </span>
           </span>
@@ -282,7 +282,7 @@ export const WhatsAppChatbot = () => {
 
         {/* Hover Tooltip on Desktop */}
         {!isOpen && (
-          <div className="hidden md:group-hover:flex absolute right-16 top-1/2 -translate-y-1/2 bg-[#0B1938] text-white px-3 py-1.5 rounded-lg shadow-xl border border-slate-700 whitespace-nowrap items-center gap-1.5 pointer-events-none animate-fadeIn">
+          <div className="hidden md:group-hover:flex absolute right-18 top-1/2 -translate-y-1/2 bg-[#0B1938] text-white px-3.5 py-1.5 rounded-lg shadow-xl border border-slate-700 whitespace-nowrap items-center gap-1.5 pointer-events-none animate-fadeIn">
             <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span>
             <span className="font-mono text-xs font-bold">Ask AI or Chat on WhatsApp</span>
           </div>
