@@ -76,6 +76,7 @@ export const SettingsManager = () => {
     heroMediaType: reduxSettings.heroMediaType || 'mockup', // 'mockup' | 'video'
     heroBgColor: reduxSettings.heroBgColor || '#F2F2F2',
     heroVideoUrl: (reduxSettings.heroVideoUrl && !reduxSettings.heroVideoUrl.includes('dQw4w9WgXcQ')) ? reduxSettings.heroVideoUrl : 'https://youtu.be/egpm1YixC4Q',
+    servicesVideoUrl: reduxSettings.servicesVideoUrl || '',
     heroBadgeText: reduxSettings.heroBadgeText || 'SOFTWARE SOLUTIONS THAT DRIVE REAL IMPACT',
     heroTitlePrefix: reduxSettings.heroTitlePrefix || 'We Build Digital Products That',
     heroTitleAccent: reduxSettings.heroTitleAccent || 'Scale Your Business',
@@ -123,6 +124,7 @@ export const SettingsManager = () => {
         heroMediaType: dbSettings.heroMediaType || prev.heroMediaType || 'video',
         heroBgColor: dbSettings.heroBgColor || prev.heroBgColor || '#F2F2F2',
         heroVideoUrl: sanitizedVideoUrl,
+        servicesVideoUrl: (dbSettings.servicesVideoUrl !== undefined) ? dbSettings.servicesVideoUrl : (prev.servicesVideoUrl || ''),
         heroBadgeText: dbSettings.heroBadgeText || prev.heroBadgeText,
         heroTitlePrefix: dbSettings.heroTitlePrefix || prev.heroTitlePrefix,
         heroTitleAccent: dbSettings.heroTitleAccent || prev.heroTitleAccent,
@@ -318,12 +320,22 @@ export const SettingsManager = () => {
             </div>
 
             {/* Video Uploader & URL Manager */}
-            <div className="bg-[#070E1C] p-4 rounded-2xl border border-slate-800">
+            <div className="bg-[#070E1C] p-4 rounded-2xl border border-slate-800 space-y-4">
               <VideoUpload
                 value={formData.heroVideoUrl}
                 onChange={(url) => setFormData({ ...formData, heroVideoUrl: url, heroMediaType: url ? 'video' : formData.heroMediaType })}
                 label="Hero Showcase Video (Laptop & Mobile Website Scroll Video)"
                 helperText="Upload your video file (MP4, WebM, MOV) showing the website scrolling inside the laptop and mobile frames. When uploaded, it will automatically play on loop in the Hero section."
+              />
+            </div>
+
+            {/* Services Section Showcase Video Uploader */}
+            <div className="bg-[#070E1C] p-4 rounded-2xl border border-slate-800 space-y-4">
+              <VideoUpload
+                value={formData.servicesVideoUrl}
+                onChange={(url) => setFormData({ ...formData, servicesVideoUrl: url })}
+                label="Services Section Showcase Video (Above Service Cards)"
+                helperText="Upload a transparent WebM/MOV video, or standard MP4 with background removal to display above the 6 services cards on the Home page."
               />
             </div>
 

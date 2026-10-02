@@ -29,6 +29,7 @@ const initialState = parsed
       heroBgColor: '#F2F2F2',
       heroMediaType: 'video',
       heroVideoUrl: 'https://youtu.be/egpm1YixC4Q',
+      servicesVideoUrl: '',
       isDirty: false,
     };
 
@@ -53,6 +54,8 @@ export const settingsSlice = createSlice({
       state.socialLinks = { ...siteConfig.social };
       state.heroBgColor = '#F2F2F2';
       state.heroMediaType = 'video';
+      state.heroVideoUrl = 'https://youtu.be/egpm1YixC4Q';
+      state.servicesVideoUrl = '';
       state.isDirty = false;
     },
   },

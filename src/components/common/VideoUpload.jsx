@@ -8,12 +8,92 @@ import {
   RefreshCw,
   Sparkles,
   Sliders,
+  Palette
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useUploadMediaMutation } from '../../services/api';
 
+// Helper to convert hex to RGB
+const hexToRgb = (hex) => {
+  let c = hex.replace('#', '');
+  if (c.length === 3) c = c.split('').map(x => x + x).join('');
+  const num = parseInt(c, 16) || 0;
+  return {
+    r: (num >> 16) & 255,
+    g: (num >> 8) & 255,
+    b: num & 255,
+  };
+};
+
+// Universal background removal processor for Any Color (Green, Blue, Black, White, Custom Hex)
+const processChromaPixel = (r, g, b, targetColorHex, sensitivity) => {
+  const targetLower = (targetColorHex || '#00ff00').toLowerCase();
+  const target = hexToRgb(targetLower);
+
+  // 1. Green Screen
+  if (targetLower === '#00ff00' || targetLower === '#00f000') {
+    if (r > 120 && b > 120) return { remove: false };
+    if (b > 115 || r > 160) return { remove: false };
+    const maxRB = Math.max(r, b);
+    const greenDiff = g - maxRB;
+    if (greenDiff > sensitivity && g > 75) {
+      if (greenDiff > sensitivity + 30) return { remove: true, alpha: 0 };
+      const factor = 1 - (greenDiff - sensitivity) / 30;
+      return { remove: true, alpha: Math.round(255 * factor) };
+    }
+    return { remove: false };
+  }
+
+  // 2. Blue Screen
+  if (targetLower === '#0000ff' || targetLower === '#0044ff') {
+    if (r > 120 && g > 120) return { remove: false };
+    const maxRG = Math.max(r, g);
+    const blueDiff = b - maxRG;
+    if (blueDiff > sensitivity && b > 75) {
+      if (blueDiff > sensitivity + 30) return { remove: true, alpha: 0 };
+      const factor = 1 - (blueDiff - sensitivity) / 30;
+      return { remove: true, alpha: Math.round(255 * factor) };
+    }
+    return { remove: false };
+  }
+
+  // 3. Black Background
+  if (targetLower === '#000000' || targetLower === '#060b18') {
+    const brightness = Math.max(r, Math.max(g, b));
+    const threshold = sensitivity * 1.6;
+    if (brightness < threshold) {
+      if (brightness < threshold * 0.5) return { remove: true, alpha: 0 };
+      const factor = (brightness - threshold * 0.5) / (threshold * 0.5);
+      return { remove: true, alpha: Math.round(255 * factor) };
+    }
+    return { remove: false };
+  }
+
+  // 4. White Background
+  if (targetLower === '#ffffff' || targetLower === '#f8fafc') {
+    const minVal = Math.min(r, Math.min(g, b));
+    const threshold = 255 - (sensitivity * 1.6);
+    if (minVal > threshold) {
+      if (minVal > threshold + 15) return { remove: true, alpha: 0 };
+      const factor = 1 - (minVal - threshold) / 15;
+      return { remove: true, alpha: Math.round(255 * factor) };
+    }
+    return { remove: false };
+  }
+
+  // 5. Custom Color Euclidean Distance
+  const dist = Math.sqrt((r - target.r) ** 2 + (g - target.g) ** 2 + (b - target.b) ** 2);
+  const maxDist = sensitivity * 3.0;
+  if (dist < maxDist) {
+    if (dist < maxDist * 0.6) return { remove: true, alpha: 0 };
+    const factor = (dist - maxDist * 0.6) / (maxDist * 0.4);
+    return { remove: true, alpha: Math.round(255 * factor) };
+  }
+  return { remove: false };
+};
+
 // Live Chroma Key Real-Time Preview Box
-const ChromaLivePreview = ({ src, sensitivity }) => {
+const ChromaLivePreview = ({ src, sensitivity, targetColor }) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -51,20 +131,12 @@ const ChromaLivePreview = ({ src, sensitivity }) => {
               const g = (pixel >> 8) & 0xFF;
               const b = (pixel >> 16) & 0xFF;
 
-              if (r > 120 && b > 120) continue;
-              if (b > 115) continue;
-              if (r > 160) continue;
-
-              const maxRB = r > b ? r : b;
-              const greenDiff = g - maxRB;
-
-              if (greenDiff > sensitivity && g > 75) {
-                if (greenDiff > sensitivity + 30) {
+              const result = processChromaPixel(r, g, b, targetColor, sensitivity);
+              if (result.remove) {
+                if (result.alpha === 0) {
                   buf32[i] = 0;
                 } else {
-                  const factor = 1 - (greenDiff - sensitivity) / 30;
-                  const alpha = Math.round(255 * factor);
-                  buf32[i] = (alpha << 24) | (b << 16) | (g << 8) | r;
+                  buf32[i] = (result.alpha << 24) | (b << 16) | (g << 8) | r;
                 }
               }
             }
@@ -85,7 +157,7 @@ const ChromaLivePreview = ({ src, sensitivity }) => {
       isMounted = false;
       cancelAnimationFrame(animId);
     };
-  }, [src, sensitivity]);
+  }, [src, sensitivity, targetColor]);
 
   return (
     <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800 bg-[#060B18] flex items-center justify-center shadow-inner">
@@ -145,11 +217,20 @@ export const VideoUpload = ({
   // Chroma-Key Converter State
   const [chromaFile, setChromaFile] = useState(null);
   const [chromaVideoSrc, setChromaVideoSrc] = useState('');
+  const [chromaColor, setChromaColor] = useState('#00FF00'); // target color to remove
   const [greenSensitivity, setGreenSensitivity] = useState(35); // threshold
   const [isConvertingChroma, setIsConvertingChroma] = useState(false);
   const [chromaProgress, setChromaProgress] = useState(0);
 
   const [uploadMedia, { isLoading: isUploading }] = useUploadMediaMutation();
+
+  // Color Presets for background removal
+  const colorPresets = [
+    { name: 'Green Screen', hex: '#00FF00' },
+    { name: 'Blue Screen', hex: '#0000FF' },
+    { name: 'Black Studio', hex: '#000000' },
+    { name: 'White Canvas', hex: '#FFFFFF' },
+  ];
 
   // Format YouTube/Vimeo links
   const formatVideoUrl = (rawUrl) => {
@@ -174,8 +255,8 @@ export const VideoUpload = ({
     return url.includes('youtube.com') || url.includes('youtube-nocookie.com') || url.includes('youtu.be') || url.includes('player.vimeo.com') || url.includes('vimeo.com');
   };
 
-  // Convert Green Screen Video into Transparent WebM (VP9 with Alpha)
-  const convertGreenScreenToTransparentWebM = async (file, sensitivity = 35) => {
+  // Convert Green/Any Screen Video into Transparent WebM (VP9 with Alpha)
+  const convertGreenScreenToTransparentWebM = async (file, sensitivity = 35, targetColorHex = '#00FF00') => {
     return new Promise((resolve, reject) => {
       const video = document.createElement('video');
       video.src = URL.createObjectURL(file);
@@ -264,23 +345,12 @@ export const VideoUpload = ({
                 const g = (pixel >> 8) & 0xFF;
                 const b = (pixel >> 16) & 0xFF;
 
-                // Protect bright whites/greys
-                if (r > 120 && b > 120) continue;
-                // Protect blues & cyans
-                if (b > 115) continue;
-                // Protect reds
-                if (r > 160) continue;
-
-                const maxRB = r > b ? r : b;
-                const greenDiff = g - maxRB;
-
-                if (greenDiff > sensitivity && g > 75) {
-                  if (greenDiff > sensitivity + 30) {
-                    buf32[i] = 0; // 100% transparent
+                const result = processChromaPixel(r, g, b, targetColorHex, sensitivity);
+                if (result.remove) {
+                  if (result.alpha === 0) {
+                    buf32[i] = 0;
                   } else {
-                    const factor = 1 - (greenDiff - sensitivity) / 30;
-                    const alpha = Math.round(255 * factor);
-                    buf32[i] = (alpha << 24) | (b << 16) | (g << 8) | r;
+                    buf32[i] = (result.alpha << 24) | (b << 16) | (g << 8) | r;
                   }
                 }
               }
@@ -364,9 +434,9 @@ export const VideoUpload = ({
     try {
       setIsConvertingChroma(true);
       setChromaProgress(5);
-      toast.info("Removing green screen & generating transparent WebM... Please wait.");
+      toast.info("Removing background & generating transparent WebM... Please wait.");
 
-      const transparentFile = await convertGreenScreenToTransparentWebM(chromaFile, greenSensitivity);
+      const transparentFile = await convertGreenScreenToTransparentWebM(chromaFile, greenSensitivity, chromaColor);
       toast.success("Background removed! Now uploading transparent WebM...");
 
       await handleUploadFile(transparentFile);
@@ -438,7 +508,7 @@ export const VideoUpload = ({
             }`}
           >
             <Sparkles className="w-3 h-3 text-[#00F0FF]" />
-            Chroma to Transparent WebM
+            Any BG to Transparent WebM
           </button>
 
           <button
@@ -575,14 +645,14 @@ export const VideoUpload = ({
         </div>
       )}
 
-      {/* Tab 2: Green Screen to Transparent WebM Converter */}
+      {/* Tab 2: Green Screen / Any Color to Transparent WebM Converter */}
       {activeTab === 'chroma' && !value && (
         <div className="border border-purple-500/30 rounded-2xl p-5 bg-[#0B1224] space-y-4">
           <div className="flex items-center justify-between border-b border-slate-800 pb-3">
             <div className="flex items-center gap-2 text-white">
               <Sparkles className="w-4 h-4 text-[#00F0FF]" />
               <span className="font-display text-xs font-bold uppercase tracking-wider">
-                1-Click Green Screen to Transparent WebM Converter
+                1-Click Background Removal to Transparent WebM
               </span>
             </div>
             <span className="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-mono font-semibold">
@@ -611,10 +681,10 @@ export const VideoUpload = ({
               <div className="flex flex-col items-center gap-2">
                 <Film className="w-8 h-8 text-purple-400" />
                 <p className="font-sans text-xs font-bold text-white">
-                  Select Raw Green-Screen MP4 / WebM File
+                  Select Video File (Green, Blue, Black, White, or Custom Color BG)
                 </p>
                 <p className="font-mono text-[10px] text-slate-400">
-                  The tool will remove the green screen and create a transparent WebM for zero-lag playback.
+                  Select any background color below to remove and convert into a transparent WebM for zero-lag playback.
                 </p>
               </div>
             </div>
@@ -642,28 +712,68 @@ export const VideoUpload = ({
                 <ChromaLivePreview
                   src={chromaVideoSrc}
                   sensitivity={greenSensitivity}
+                  targetColor={chromaColor}
                 />
               )}
+
+              {/* Color Target Picker & Presets */}
+              <div className="space-y-2 bg-[#070E1C] p-3 rounded-xl border border-slate-800">
+                <div className="flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-slate-300 flex items-center gap-1.5 font-bold">
+                    <Palette className="w-3.5 h-3.5 text-[#00F0FF]" />
+                    Select Background Color to Remove:
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <input
+                      type="color"
+                      value={chromaColor}
+                      onChange={(e) => setChromaColor(e.target.value)}
+                      className="w-6 h-6 rounded cursor-pointer border border-slate-700 bg-transparent"
+                      title="Pick custom background color"
+                    />
+                    <span className="text-[#00F0FF] font-bold font-mono text-xs">{chromaColor}</span>
+                  </div>
+                </div>
+
+                {/* Preset Chips */}
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {colorPresets.map((p) => (
+                    <button
+                      key={p.hex}
+                      type="button"
+                      onClick={() => setChromaColor(p.hex)}
+                      className={`px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1.5 border transition-all cursor-pointer ${
+                        chromaColor.toLowerCase() === p.hex.toLowerCase()
+                          ? 'border-[#00F0FF] bg-[#0066FF]/20 text-white shadow-xs'
+                          : 'border-slate-800 bg-[#0B1528] text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      <span className="w-2.5 h-2.5 rounded-full border border-white/20" style={{ backgroundColor: p.hex }} />
+                      {p.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
               {/* Sensitivity Slider */}
               <div className="space-y-1.5 bg-[#070E1C] p-3 rounded-xl border border-slate-800">
                 <div className="flex items-center justify-between text-[11px] font-mono">
                   <span className="text-slate-300 flex items-center gap-1.5">
                     <Sliders className="w-3.5 h-3.5 text-[#00F0FF]" />
-                    Live Green Sensitivity Threshold:
+                    Live Color Tolerance / Sensitivity:
                   </span>
                   <span className="text-[#00F0FF] font-bold">{greenSensitivity}</span>
                 </div>
                 <input
                   type="range"
-                  min="20"
-                  max="60"
+                  min="15"
+                  max="70"
                   value={greenSensitivity}
                   onChange={(e) => setGreenSensitivity(Number(e.target.value))}
                   className="w-full accent-[#00F0FF] cursor-pointer"
                 />
                 <p className="font-mono text-[10px] text-slate-500">
-                  Slide left/right to see the live cutout adjust in real-time above.
+                  Slide to adjust the cutout edges in real-time above.
                 </p>
               </div>
 

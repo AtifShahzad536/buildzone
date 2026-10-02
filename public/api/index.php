@@ -238,6 +238,8 @@ function getSeedData($resource) {
             "heroMediaType" => "video",
             "heroBgColor" => "#F2F2F2",
             "heroVideoUrl" => "https://youtu.be/egpm1YixC4Q",
+            "servicesVideoUrl" => "",
+            "servicesVideoBgColor" => "#00FF00",
             "heroBadgeText" => "⭐ BEST SOFTWARE AGENCY IN SIALKOT • GLOBAL IT ENGINEERING",
             "heroTitlePrefix" => "We Build Digital Products That",
             "heroTitleAccent" => "Scale Your Business",
@@ -294,6 +296,69 @@ if ($resource === 'settings') {
         }
         saveData('settings', $merged);
         sendResponse($merged);
+    }
+}
+
+// Dedicated handler for Media Uploads (/media/upload or /media)
+if ($resource === 'media' && ($id === 'upload' || $method === 'POST') && (!empty($_FILES) || isset($body['url']) || isset($body['data']))) {
+    $uploadsDir = __DIR__ . '/uploads';
+    if (!is_dir($uploadsDir)) {
+        @mkdir($uploadsDir, 0755, true);
+    }
+
+    $uploadedUrl = null;
+    $fileName = null;
+    $fileSize = 0;
+    $mimeType = 'application/octet-stream';
+
+    // Handle Multipart Form File Upload
+    $fileKey = isset($_FILES['file']) ? 'file' : (isset($_FILES['video']) ? 'video' : (isset($_FILES['image']) ? 'image' : null));
+    if ($fileKey && isset($_FILES[$fileKey]) && $_FILES[$fileKey]['error'] === UPLOAD_ERR_OK) {
+        $origName = $_FILES[$fileKey]['name'];
+        $ext = strtolower(pathinfo($origName, PATHINFO_EXTENSION));
+        $cleanBase = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($origName, PATHINFO_FILENAME));
+        $uniqueName = 'bz_' . time() . '_' . substr(md5(uniqid()), 0, 6) . '.' . ($ext ?: 'webm');
+        $targetFile = $uploadsDir . '/' . $uniqueName;
+
+        if (move_uploaded_file($_FILES[$fileKey]['tmp_name'], $targetFile)) {
+            // Build base URL
+            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+            $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+            $scriptDir = dirname($_SERVER['SCRIPT_NAME']);
+            $scriptDir = rtrim(str_replace('\\', '/', $scriptDir), '/');
+            $uploadedUrl = $protocol . '://' . $host . $scriptDir . '/uploads/' . $uniqueName;
+            $fileName = $origName;
+            $fileSize = $_FILES[$fileKey]['size'];
+            $mimeType = $_FILES[$fileKey]['type'] ?? mime_content_type($targetFile);
+        }
+    } elseif (!empty($body['url'])) {
+        $uploadedUrl = $body['url'];
+        $fileName = $body['title'] ?? basename($uploadedUrl);
+    }
+
+    if ($uploadedUrl) {
+        $mediaList = loadData('media');
+        if (!is_array($mediaList)) $mediaList = [];
+        
+        $mediaRecord = [
+            "id" => "med-" . round(microtime(true) * 1000),
+            "title" => $fileName ?: "Uploaded Media",
+            "url" => $uploadedUrl,
+            "secure_url" => $uploadedUrl,
+            "category" => $body['category'] ?? ($_POST['category'] ?? 'General'),
+            "fileSize" => $fileSize,
+            "mimeType" => $mimeType,
+            "createdAt" => gmdate('Y-m-d\TH:i:s\Z')
+        ];
+        array_unshift($mediaList, $mediaRecord);
+        saveData('media', $mediaList);
+
+        sendResponse([
+            "success" => true,
+            "url" => $uploadedUrl,
+            "secure_url" => $uploadedUrl,
+            "data" => $mediaRecord
+        ], 201);
     }
 }
 
