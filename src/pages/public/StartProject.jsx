@@ -32,7 +32,8 @@ import {
   Users,
   Award
 } from 'lucide-react';
-import { useCreateLeadMutation } from '../../services/api';
+import { useCreateLeadMutation, useGetSettingsQuery } from '../../services/api';
+import { siteConfig } from '../../config/siteConfig';
 import { wizardSchema } from '../../utils/validation';
 import Container from '../../components/common/Container';
 import Button from '../../components/common/Button';
@@ -90,10 +91,16 @@ const wizardSteps = [
 ];
 
 export const StartProject = () => {
+  const { data: settings } = useGetSettingsQuery();
   const [step, setStep] = useState(1);
   const [createLead, { isLoading }] = useCreateLeadMutation();
   const [isCompleted, setIsCompleted] = useState(false);
   const [selectedChips, setSelectedChips] = useState([]);
+
+  const whatsappPhone = settings?.whatsappNumber || siteConfig.contact.whatsapp || siteConfig.contact.phone || '92105464116';
+  const cleanPhone = whatsappPhone.replace(/[^0-9]/g, '');
+  const customMessage = settings?.whatsappMessage ? `?text=${encodeURIComponent(settings.whatsappMessage)}` : `?text=${encodeURIComponent('Hello BuildZone Team, I am ready to start a project.')}`;
+  const dynamicWhatsAppUrl = `https://wa.me/${cleanPhone}${customMessage}`;
 
   const {
     register,
@@ -304,7 +311,7 @@ export const StartProject = () => {
                     <Button variant="primary" size="sm" onClick={() => window.location.href = '/'}>
                       Return Home
                     </Button>
-                    <Button variant="outline" size="sm" onClick={() => window.open('https://wa.me/92105464116', '_blank')}>
+                    <Button variant="outline" size="sm" onClick={() => window.open(dynamicWhatsAppUrl, '_blank')}>
                       WhatsApp Chat
                     </Button>
                   </div>
@@ -659,7 +666,7 @@ export const StartProject = () => {
                   <span className="font-bold text-white">{selectedTimeline}</span>
                 </div>
                 <a
-                  href="https://wa.me/92105464116"
+                  href={dynamicWhatsAppUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="text-[#00F0FF] font-bold hover:underline"

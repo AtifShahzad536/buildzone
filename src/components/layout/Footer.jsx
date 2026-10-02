@@ -47,8 +47,13 @@ export const Footer = () => {
     ...(settings?.socialVisibility || {}),
   };
 
+  const whatsappPhone = settings?.whatsappNumber || siteConfig.contact.whatsapp || siteConfig.contact.phone || '+92 10 5464116';
+  const cleanPhone = whatsappPhone.replace(/[^0-9]/g, '');
+  const customMessage = settings?.whatsappMessage ? `?text=${encodeURIComponent(settings.whatsappMessage)}` : '';
+  const whatsappUrl = `https://wa.me/${cleanPhone}${customMessage}`;
+
   const footerSocialList = [
-    { key: 'whatsapp', name: 'WhatsApp', url: social.whatsapp || (settings?.whatsappNumber ? `https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, '')}` : null), icon: WhatsAppIcon, hoverBg: 'hover:bg-[#25D366] hover:border-[#25D366]' },
+    { key: 'whatsapp', name: 'WhatsApp', url: whatsappUrl, icon: WhatsAppIcon, hoverBg: 'hover:bg-[#25D366] hover:border-[#25D366]' },
     { key: 'linkedin', name: 'LinkedIn', url: social.linkedin, icon: LinkedInIcon, hoverBg: 'hover:bg-[#0A66C2] hover:border-[#0A66C2]' },
     { key: 'instagram', name: 'Instagram', url: social.instagram, icon: InstagramIcon, hoverBg: 'hover:bg-[#E4405F] hover:border-[#E4405F]' },
     { key: 'facebook', name: 'Facebook', url: social.facebook, icon: FacebookIcon, hoverBg: 'hover:bg-[#1877F2] hover:border-[#1877F2]' },

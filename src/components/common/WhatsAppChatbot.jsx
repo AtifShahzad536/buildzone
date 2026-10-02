@@ -8,6 +8,8 @@ import {
   CheckCheck
 } from 'lucide-react';
 import { WhatsAppIcon } from './BrandIcons';
+import { useGetSettingsQuery } from '../../services/api';
+import { siteConfig } from '../../config/siteConfig';
 
 const quickPrompts = [
   "What services do you offer?",
@@ -45,6 +47,7 @@ const knowledgeBase = [
 ];
 
 export const WhatsAppChatbot = () => {
+  const { data: settings } = useGetSettingsQuery();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -124,8 +127,21 @@ export const WhatsAppChatbot = () => {
   };
 
   const handleWhatsAppRedirect = () => {
-    const defaultText = encodeURIComponent("Hello BuildZone Team! I visited your website and would like to discuss a software/AI development project.");
-    window.open(`https://wa.me/92105464116?text=${defaultText}`, '_blank');
+    const rawNumber = settings?.whatsappNumber || siteConfig.contact.whatsapp || siteConfig.contact.phone || '92105464116';
+    const cleanPhone = rawNumber.replace(/[^0-9]/g, '');
+    const message = settings?.whatsappMessage || "Hello BuildZone Team! I visited your website and would like to discuss a software/AI development project.";
+    const defaultText = encodeURIComponent(message);
+    
+    // Check if custom social link is configured and valid
+    let waUrl = `https://wa.me/${cleanPhone}?text=${defaultText}`;
+    if (settings?.socialLinks?.whatsapp && settings.socialLinks.whatsapp.includes('wa.me')) {
+      const parts = settings.socialLinks.whatsapp.split('?');
+      const base = parts[0];
+      const hasText = parts[1] && parts[1].includes('text=');
+      waUrl = hasText ? settings.socialLinks.whatsapp : `${base}?text=${defaultText}`;
+    }
+    
+    window.open(waUrl, '_blank');
   };
 
 

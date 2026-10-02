@@ -13,7 +13,7 @@ import {
   Terminal,
   Sparkles 
 } from 'lucide-react';
-import { useCreateLeadMutation } from '../../services/api';
+import { useCreateLeadMutation, useGetSettingsQuery } from '../../services/api';
 import { contactSchema } from '../../utils/validation';
 import { siteConfig } from '../../config/siteConfig';
 import Container from '../../components/common/Container';
@@ -23,8 +23,14 @@ import Badge from '../../components/common/Badge';
 import SEOHead from '../../components/common/SEOHead';
 
 export const Contact = () => {
+  const { data: settings } = useGetSettingsQuery();
   const [createLead, { isLoading }] = useCreateLeadMutation();
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const contactPhone = settings?.whatsappNumber || settings?.phone || siteConfig.contact.phone;
+  const cleanPhone = (contactPhone || '92105464116').replace(/[^0-9]/g, '');
+  const customMessage = settings?.whatsappMessage ? `?text=${encodeURIComponent(settings.whatsappMessage)}` : '';
+  const dynamicWhatsAppUrl = `https://wa.me/${cleanPhone}${customMessage}`;
 
   const {
     register,
@@ -112,8 +118,8 @@ export const Contact = () => {
                     <Mail className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase font-bold">Official Inquiries</span>
-                      <a href={`mailto:${siteConfig.contact.email}`} className="text-white hover:text-[#00F0FF] font-bold block transition-colors">
-                        {siteConfig.contact.email}
+                      <a href={`mailto:${settings?.contactEmail || siteConfig.contact.email}`} className="text-white hover:text-[#00F0FF] font-bold block transition-colors">
+                        {settings?.contactEmail || siteConfig.contact.email}
                       </a>
                       <a href={`mailto:${siteConfig.contact.alternateEmail}`} className="text-slate-400 hover:text-[#00F0FF] text-[11px] block mt-0.5 transition-colors">
                         {siteConfig.contact.alternateEmail}
@@ -126,11 +132,11 @@ export const Contact = () => {
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase font-bold">Call & WhatsApp</span>
                       <div className="flex items-center gap-2 mt-0.5">
-                        <a href={`tel:${siteConfig.contact.phone}`} className="text-white hover:text-[#00F0FF] font-bold transition-colors">
-                          {siteConfig.contact.phone}
+                        <a href={`tel:${contactPhone}`} className="text-white hover:text-[#00F0FF] font-bold transition-colors">
+                          {contactPhone}
                         </a>
                         <a
-                          href={siteConfig.contact.whatsappLink}
+                          href={dynamicWhatsAppUrl}
                           target="_blank"
                           rel="noreferrer"
                           className="px-2.5 py-0.5 bg-[#25D366] hover:bg-[#20bd5a] text-white text-[9px] font-bold uppercase rounded-md transition-colors"
@@ -145,7 +151,7 @@ export const Contact = () => {
                     <MapPin className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase font-bold">Headquarters</span>
-                      <span className="text-slate-300">{siteConfig.contact.address}, {siteConfig.contact.city}</span>
+                      <span className="text-slate-300">{settings?.address || siteConfig.contact.address}, {siteConfig.contact.city}</span>
                     </div>
                   </div>
 

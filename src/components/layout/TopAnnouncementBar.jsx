@@ -56,8 +56,10 @@ export const TopAnnouncementBar = () => {
     ...(settings?.socialVisibility || {}),
   };
 
-  const whatsappPhone = settings?.whatsappNumber || siteConfig.contact.phone || '+92 10 5464116';
-  const whatsappUrl = social.whatsapp || `https://wa.me/${whatsappPhone.replace(/[^0-9]/g, '')}`;
+  const whatsappPhone = settings?.whatsappNumber || siteConfig.contact.whatsapp || siteConfig.contact.phone || '+92 10 5464116';
+  const cleanPhone = whatsappPhone.replace(/[^0-9]/g, '');
+  const customMessage = settings?.whatsappMessage ? `?text=${encodeURIComponent(settings.whatsappMessage)}` : '';
+  const whatsappUrl = `https://wa.me/${cleanPhone}${customMessage}`;
 
   // Build dynamic list of active social items from settings (filtered by visibility)
   const rawSocialList = [

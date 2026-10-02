@@ -545,7 +545,18 @@ export const SettingsManager = () => {
                 <input
                   type="text"
                   value={formData.whatsappNumber}
-                  onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    const clean = val.replace(/[^0-9]/g, '');
+                    setFormData({
+                      ...formData,
+                      whatsappNumber: val,
+                      socialLinks: {
+                        ...formData.socialLinks,
+                        whatsapp: clean ? `https://wa.me/${clean}` : formData.socialLinks.whatsapp
+                      }
+                    });
+                  }}
                   placeholder="+92 300 1234567"
                   className="w-full bg-[#070E1C] border border-slate-700 px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#00F0FF] rounded-lg shadow-inner"
                 />
