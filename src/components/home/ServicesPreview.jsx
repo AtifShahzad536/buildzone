@@ -80,8 +80,8 @@ const SeamlessServicesVideo = ({ src, onError }) => {
           disableRemotePlayback
           onLoadedData={() => setIsReady(true)}
           onError={onError}
-          style={{ backgroundColor: 'transparent' }}
-          className={`w-full max-w-[850px] h-auto max-h-[500px] sm:max-h-[600px] lg:max-h-[680px] object-contain bg-transparent transform transition-all duration-700 ease-out will-change-transform animate-float scale-100 sm:scale-110 lg:scale-120 ${
+          style={{ backgroundColor: 'transparent', mixBlendMode: 'screen' }}
+          className={`w-full max-w-[850px] h-auto max-h-[500px] sm:max-h-[600px] lg:max-h-[680px] object-contain bg-transparent mix-blend-screen transform transition-all duration-700 ease-out will-change-transform animate-float scale-100 sm:scale-110 lg:scale-120 ${
             isReady ? 'opacity-100' : 'opacity-0'
           }`}
         />

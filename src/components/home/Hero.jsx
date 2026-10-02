@@ -98,8 +98,8 @@ const NormalHeroVideo = ({ src, onError }) => {
           disableRemotePlayback
           onLoadedData={() => setIsReady(true)}
           onError={onError}
-          style={{ backgroundColor: 'transparent' }}
-          className={`w-full max-w-[850px] h-auto max-h-[780px] sm:max-h-[850px] lg:max-h-[950px] object-contain bg-transparent transform transition-all duration-700 ease-out will-change-transform animate-float scale-100 sm:scale-115 lg:scale-130 ${
+          style={{ backgroundColor: 'transparent', mixBlendMode: 'screen' }}
+          className={`w-full max-w-[850px] h-auto max-h-[780px] sm:max-h-[850px] lg:max-h-[950px] object-contain bg-transparent mix-blend-screen transform transition-all duration-700 ease-out will-change-transform animate-float scale-100 sm:scale-115 lg:scale-130 ${
             isReady ? 'opacity-100' : 'opacity-0'
           }`}
         />
