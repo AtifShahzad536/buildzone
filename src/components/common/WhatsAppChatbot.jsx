@@ -280,11 +280,15 @@ export const WhatsAppChatbot = () => {
           </span>
         )}
 
-        {/* Hover Tooltip on Desktop */}
+        {/* Hover Tooltip on Desktop (Positioned cleanly to the left of the button) */}
         {!isOpen && (
-          <div className="hidden md:group-hover:flex absolute right-18 top-1/2 -translate-y-1/2 bg-[#0B1938] text-white px-3.5 py-1.5 rounded-lg shadow-xl border border-slate-700 whitespace-nowrap items-center gap-1.5 pointer-events-none animate-fadeIn">
-            <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span>
-            <span className="font-mono text-xs font-bold">Ask AI or Chat on WhatsApp</span>
+          <div className="hidden md:group-hover:flex absolute right-full mr-3.5 top-1/2 -translate-y-1/2 bg-[#0B1938] text-white px-3.5 py-2 rounded-xl shadow-2xl border border-slate-700/80 whitespace-nowrap items-center gap-2 pointer-events-none animate-fadeIn z-30">
+            <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse shadow-[0_0_6px_#25D366]"></span>
+            <span className="font-sans text-xs font-bold text-slate-100 tracking-normal">
+              Ask AI or Chat on <span className="text-[#25D366]">WhatsApp</span>
+            </span>
+            {/* Triangular Arrow Pointer on Right Side */}
+            <div className="absolute top-1/2 -translate-y-1/2 -right-1.5 w-3 h-3 bg-[#0B1938] border-r border-t border-slate-700/80 rotate-45 pointer-events-none"></div>
           </div>
         )}
       </button>
