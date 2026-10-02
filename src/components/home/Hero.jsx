@@ -32,129 +32,31 @@ import ScrollReveal from '../common/ScrollReveal';
 import CountUp from '../common/CountUp';
 
 // =========================================================================
-// Real-time Ultra-Fast 60FPS Chroma Key Engine with Dynamic 11s Zoom-In
+// High-Performance Seamless Floating Video Player (0 Box, 0 Borders, 0 Lag)
 // =========================================================================
-const GreenScreenVideo = ({ src, onError }) => {
+const NormalHeroVideo = ({ src, onError }) => {
   const videoRef = React.useRef(null);
-  const canvasRef = React.useRef(null);
-  const [useCanvas, setUseCanvas] = React.useState(true);
-  const [isZoomed, setIsZoomed] = React.useState(true);
-
-  React.useEffect(() => {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-    if (!video || !canvas || !useCanvas) return;
-
-    let animId;
-    let isMounted = true;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true, alpha: true });
-
-    const processGreenScreen = () => {
-      if (!isMounted) return;
-
-      if (video.readyState >= 2 && !video.paused && !video.ended) {
-        // Track current playback time for first 11s zoom-in
-        const currentTime = video.currentTime;
-        if (currentTime < 11) {
-          setIsZoomed(true);
-        } else {
-          setIsZoomed(false);
-        }
-
-        if (video.videoWidth > 0 && video.videoHeight > 0) {
-          if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-          }
-
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          try {
-            const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            // Ultra-fast 32-bit TypedArray for 60fps smooth hardware performance
-            const buf32 = new Uint32Array(frame.data.buffer);
-            const len = buf32.length;
-
-            for (let i = 0; i < len; i++) {
-              const pixel = buf32[i];
-              const r = pixel & 0xFF;
-              const g = (pixel >> 8) & 0xFF;
-              const b = (pixel >> 16) & 0xFF;
-
-              // 1. Protection for White and Light Greys (R, G, B all high)
-              if (r > 120 && b > 120) continue;
-
-              // 2. Protection for Blue, Cyan, Sky Blue, and Violet (B is significant)
-              if (b > 115) continue;
-
-              // 3. Protection for Red, Orange, Yellow, Coral, Pink (R is high)
-              if (r > 160) continue;
-
-              // 4. Target ONLY pure chroma green screen
-              const maxRB = r > b ? r : b;
-              const greenDiff = g - maxRB;
-
-              if (greenDiff > 35 && g > 75) {
-                if (greenDiff > 65) {
-                  // Fully transparent in 1 CPU cycle
-                  buf32[i] = 0;
-                } else {
-                  // Soft feathered anti-aliased edge
-                  const factor = 1 - (greenDiff - 35) / 30;
-                  const alpha = Math.round(255 * factor);
-                  buf32[i] = (alpha << 24) | (b << 16) | (g << 8) | r;
-                }
-              }
-            }
-
-            ctx.putImageData(frame, 0, 0);
-          } catch (e) {
-            // CORS fallback to video
-            setUseCanvas(false);
-          }
-        }
-      }
-      animId = requestAnimationFrame(processGreenScreen);
-    };
-
-    video.play().catch(() => {});
-    animId = requestAnimationFrame(processGreenScreen);
-
-    return () => {
-      isMounted = false;
-      cancelAnimationFrame(animId);
-    };
-  }, [src, useCanvas]);
 
   return (
     <div className="relative w-full flex items-center justify-center overflow-visible py-4 sm:py-6">
       {/* Underlying Cyber Backlight Glow */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#0066FF]/35 via-[#00F0FF]/30 to-transparent rounded-full blur-3xl pointer-events-none scale-125 animate-pulse-glow" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#0066FF]/35 via-[#00F0FF]/25 to-transparent rounded-full blur-3xl pointer-events-none scale-125 animate-pulse-glow" />
 
-      {/* Hidden Video Source / Fallback */}
-      <video
-        ref={videoRef}
-        src={src}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        disablePictureInPicture
-        crossOrigin="anonymous"
-        onError={onError}
-        className={useCanvas ? "hidden" : "w-full max-w-[850px] h-auto max-h-[850px] lg:max-h-[950px] object-contain scale-115 sm:scale-125 lg:scale-135"}
-      />
-
-      {useCanvas && (
-        <canvas
-          ref={canvasRef}
-          className={`w-full max-w-[850px] h-auto max-h-[780px] sm:max-h-[850px] lg:max-h-[950px] object-contain pointer-events-auto drop-shadow-[0_0_50px_rgba(0,102,255,0.5)] drop-shadow-[0_0_90px_rgba(0,240,255,0.35)] transform transition-transform duration-1000 ease-out will-change-transform animate-float ${
-            isZoomed
-              ? 'scale-135 sm:scale-150 lg:scale-[1.65] xl:scale-[1.75]'
-              : 'scale-105 sm:scale-115 lg:scale-125 xl:scale-130'
-          }`}
+      {/* Seamless Floating Video Player (No Box, No Background, No Borders) */}
+      <div className="relative w-full max-w-[850px] flex items-center justify-center overflow-visible">
+        <video
+          ref={videoRef}
+          src={src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          disablePictureInPicture
+          onError={onError}
+          className="w-full max-w-[850px] h-auto max-h-[780px] sm:max-h-[850px] lg:max-h-[950px] object-contain bg-transparent transform transition-transform duration-1000 ease-out will-change-transform animate-float scale-110 sm:scale-125 lg:scale-135"
         />
-      )}
+      </div>
     </div>
   );
 };
@@ -342,7 +244,7 @@ export const Hero = () => {
                     )}
                   </div>
                 ) : (
-                  <GreenScreenVideo
+                  <NormalHeroVideo
                     src={heroVideoUrl}
                     onError={() => setVideoLoadError(true)}
                   />

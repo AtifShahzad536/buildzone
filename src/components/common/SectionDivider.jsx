@@ -1,31 +1,17 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React, { useEffect, useRef, useState } from 'react';
 
 /**
- * Modern Parallax Animated Section Divider
- * Features:
- * - Parallax scroll responsiveness (beam expands & particles shift dynamically)
- * - Flowing animated laser beams with traveling light pulses (photons)
- * - Center holographic cyber node / badge
- * - Ambient radial glow & micro crosshairs (+)
+ * Ultra-Lightweight Hardware-Accelerated Section Divider
+ * Uses zero heavy scroll listeners / scrubs to keep scrolling 100% 60-120fps smooth.
  */
 export const SectionDivider = ({
   label,
   variant = 'cyan', // 'cyan' | 'blue' | 'purple' | 'emerald' | 'minimal'
   className = '',
-  parallaxSpeed = 0.35,
 }) => {
   const containerRef = useRef(null);
-  const beamLeftRef = useRef(null);
-  const beamRightRef = useRef(null);
-  const centerNodeRef = useRef(null);
-  const ambientGlowRef = useRef(null);
-  const parallaxFloatingRef = useRef(null);
+  const [inView, setInView] = useState(false);
 
-  // Color schemes
   const colorMap = {
     cyan: {
       beam: 'from-transparent via-[#00F0FF] to-transparent',
@@ -75,107 +61,37 @@ export const SectionDivider = ({
     const el = containerRef.current;
     if (!el) return;
 
-    const ctx = gsap.context(() => {
-      // 1. Initial Reveal & Parallax Expand on scroll
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 92%',
-          end: 'bottom 15%',
-          scrub: 1.2,
-        },
-      });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
 
-      // Scale beams from center with parallax feel
-      if (beamLeftRef.current && beamRightRef.current) {
-        gsap.fromTo(
-          [beamLeftRef.current, beamRightRef.current],
-          { scaleX: 0, opacity: 0.2 },
-          {
-            scaleX: 1,
-            opacity: 1,
-            duration: 1.2,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
-
-      // Parallax scroll vertical translation for floating background accents
-      if (parallaxFloatingRef.current) {
-        tl.fromTo(
-          parallaxFloatingRef.current,
-          { y: -25, opacity: 0.3 },
-          { y: 25, opacity: 1, ease: 'none' }
-        );
-      }
-
-      // Center Node Pulse / Rotation
-      if (centerNodeRef.current) {
-        gsap.fromTo(
-          centerNodeRef.current,
-          { scale: 0.6, opacity: 0 },
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'back.out(1.7)',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 88%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
-
-      // Ambient radial glow expansion
-      if (ambientGlowRef.current) {
-        gsap.fromTo(
-          ambientGlowRef.current,
-          { scale: 0.4, opacity: 0 },
-          {
-            scale: 1.2,
-            opacity: 0.7,
-            duration: 1.5,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, [parallaxSpeed]);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
       ref={containerRef}
-      className={`relative w-full overflow-hidden py-10 sm:py-14 select-none pointer-events-none ${className}`}
+      className={`relative w-full overflow-hidden py-8 sm:py-12 select-none pointer-events-none will-change-transform ${className}`}
       aria-hidden="true"
     >
-      {/* 1. Ambient Radial Glow (Center Light Aura) */}
+      {/* 1. Ambient Radial Glow */}
       <div
-        ref={ambientGlowRef}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] sm:w-[650px] h-[70px] rounded-full blur-[40px] pointer-events-none"
+        className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[580px] h-[60px] rounded-full blur-[35px] pointer-events-none transition-opacity duration-1000 ${
+          inView ? 'opacity-60 scale-100' : 'opacity-0 scale-75'
+        }`}
         style={{
           background: `radial-gradient(ellipse at center, ${currentTheme.glow} 0%, transparent 70%)`,
         }}
       />
 
-      {/* 2. Parallax Floating Tech Background Markers */}
-      <div
-        ref={parallaxFloatingRef}
-        className="absolute inset-0 flex items-center justify-between px-6 sm:px-16 max-w-7xl mx-auto opacity-40 pointer-events-none"
-      >
+      {/* 2. Background Tech Coordinate Markers */}
+      <div className="absolute inset-0 flex items-center justify-between px-6 sm:px-16 max-w-7xl mx-auto opacity-30 pointer-events-none">
         <span className="font-mono text-[9px] tracking-widest text-slate-500 uppercase">
           + 0x{variant.slice(0, 2).toUpperCase()} // GRID.POS
         </span>
@@ -186,18 +102,15 @@ export const SectionDivider = ({
 
       {/* 3. Main Divider Structure */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center">
-        {/* Left Beam with Traveling Photon Light Pulse */}
+        {/* Left Beam */}
         <div className="relative flex-1 h-[1px] overflow-hidden flex items-center justify-end">
-          {/* Base Track */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-800 to-slate-700/60" />
-          
-          {/* Glowing Laser Beam */}
           <div
-            ref={beamLeftRef}
-            className={`w-full h-[1.5px] bg-gradient-to-r ${currentTheme.beam} origin-right`}
+            className={`w-full h-[1.5px] bg-gradient-to-r ${currentTheme.beam} origin-right transition-transform duration-1000 ease-out ${
+              inView ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
+            }`}
           />
-
-          {/* Continuous Traveling Photon (Left to Center) */}
+          {/* Continuous Traveling Photon (Left) */}
           <div className="absolute top-0 right-0 w-24 h-full animate-beam-slide-left pointer-events-none">
             <div
               className={`w-12 h-[2px] rounded-full ${currentTheme.dot} ${currentTheme.shadow}`}
@@ -206,47 +119,43 @@ export const SectionDivider = ({
           </div>
         </div>
 
-        {/* Center Node / Emblem / Badge */}
-        <div ref={centerNodeRef} className="relative mx-4 sm:mx-6 shrink-0 z-10">
+        {/* Center Node / Badge */}
+        <div
+          className={`relative mx-4 sm:mx-6 shrink-0 z-10 transition-all duration-700 ease-out ${
+            inView ? 'scale-100 opacity-100' : 'scale-75 opacity-0'
+          }`}
+        >
           {label ? (
-            /* Labeled Cyber Capsule Badge */
             <div
-              className={`relative px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full border backdrop-blur-md font-mono text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase flex items-center gap-2 shadow-lg transition-transform duration-300 ${currentTheme.badgeBg}`}
+              className={`relative px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full border backdrop-blur-md font-mono text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase flex items-center gap-2 shadow-lg ${currentTheme.badgeBg}`}
             >
               <span className={`w-1.5 h-1.5 rounded-full ${currentTheme.dot} animate-pulse`} />
               <span>{label}</span>
               <span className={`w-1.5 h-1.5 rounded-full ${currentTheme.dot} animate-pulse`} />
             </div>
           ) : (
-            /* Cyber Geometric Diamond Core */
             <div className="relative flex items-center justify-center w-8 h-8">
-              {/* Outer Rotating Diamond Ring */}
               <div
                 className={`absolute w-5 h-5 rotate-45 border border-slate-700 bg-[#070E1C] rounded-[3px] shadow-sm`}
               />
-              {/* Inner Glowing Core */}
               <div
                 className={`relative w-2 h-2 rotate-45 ${currentTheme.dot} ${currentTheme.shadow} rounded-[1px]`}
               />
-              {/* Micro Tech Crosshairs */}
               <div className="absolute -top-1.5 w-1 h-1 bg-slate-600 rounded-full" />
               <div className="absolute -bottom-1.5 w-1 h-1 bg-slate-600 rounded-full" />
             </div>
           )}
         </div>
 
-        {/* Right Beam with Traveling Photon Light Pulse */}
+        {/* Right Beam */}
         <div className="relative flex-1 h-[1px] overflow-hidden flex items-center justify-start">
-          {/* Base Track */}
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-slate-800 to-slate-700/60" />
-
-          {/* Glowing Laser Beam */}
           <div
-            ref={beamRightRef}
-            className={`w-full h-[1.5px] bg-gradient-to-l ${currentTheme.beam} origin-left`}
+            className={`w-full h-[1.5px] bg-gradient-to-l ${currentTheme.beam} origin-left transition-transform duration-1000 ease-out ${
+              inView ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
+            }`}
           />
-
-          {/* Continuous Traveling Photon (Center to Right) */}
+          {/* Continuous Traveling Photon (Right) */}
           <div className="absolute top-0 left-0 w-24 h-full animate-beam-slide-right pointer-events-none">
             <div
               className={`w-12 h-[2px] rounded-full ${currentTheme.dot} ${currentTheme.shadow}`}
