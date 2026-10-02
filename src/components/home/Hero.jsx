@@ -36,6 +36,46 @@ import CountUp from '../common/CountUp';
 // =========================================================================
 const NormalHeroVideo = ({ src, onError }) => {
   const videoRef = React.useRef(null);
+  const [isReady, setIsReady] = React.useState(false);
+
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Mobile Autoplay strict policy requirements
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('webkit-playsinline', 'true');
+    video.setAttribute('x5-playsinline', 'true');
+
+    const handleCanPlay = () => {
+      setIsReady(true);
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Mobile autoplay prevented:", err);
+          // If browser strictly blocks playback, still mark ready or retry on interaction
+          setIsReady(true);
+        });
+      }
+    };
+
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('loadeddata', handleCanPlay);
+
+    // Initial attempt
+    const initialPromise = video.play();
+    if (initialPromise !== undefined) {
+      initialPromise.catch(() => {});
+    }
+
+    return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('loadeddata', handleCanPlay);
+    };
+  }, [src]);
 
   return (
     <div className="relative w-full flex items-center justify-center overflow-visible py-4 sm:py-6">
@@ -51,10 +91,17 @@ const NormalHeroVideo = ({ src, onError }) => {
           muted
           loop
           playsInline
+          webkit-playsinline="true"
+          x5-playsinline="true"
           preload="auto"
           disablePictureInPicture
+          disableRemotePlayback
+          onLoadedData={() => setIsReady(true)}
           onError={onError}
-          className="w-full max-w-[850px] h-auto max-h-[780px] sm:max-h-[850px] lg:max-h-[950px] object-contain bg-transparent transform transition-transform duration-1000 ease-out will-change-transform animate-float scale-110 sm:scale-125 lg:scale-135"
+          style={{ backgroundColor: 'transparent' }}
+          className={`w-full max-w-[850px] h-auto max-h-[780px] sm:max-h-[850px] lg:max-h-[950px] object-contain bg-transparent transform transition-all duration-700 ease-out will-change-transform animate-float scale-100 sm:scale-115 lg:scale-130 ${
+            isReady ? 'opacity-100' : 'opacity-0'
+          }`}
         />
       </div>
     </div>
