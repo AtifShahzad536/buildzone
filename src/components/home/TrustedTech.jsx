@@ -175,13 +175,37 @@ export const TrustedTech = () => {
         </div>
 
         {/* Infinite Moving Marquee Ribbon (Right to Left) */}
-        <div className="overflow-hidden w-full">
-          <div className="animate-marquee flex items-center gap-3 sm:gap-4 py-1">
-            {marqueeItems.map((tech, idx) => {
+        <div className="overflow-hidden w-full flex select-none">
+          {/* Track 1 */}
+          <div className="animate-marquee flex shrink-0 items-center gap-3 sm:gap-4 py-1 pr-4 will-change-transform">
+            {techStack.map((tech, idx) => {
               const IconComponent = tech.icon;
               return (
                 <div
-                  key={`${tech.name}-${idx}`}
+                  key={`tech1-${tech.name}-${idx}`}
+                  className="flex items-center gap-2.5 px-3.5 sm:px-4 py-2 bg-[#0B1528] border border-slate-800 hover:border-[#00F0FF]/50 hover:bg-[#0F1E38] transition-all duration-200 rounded-xl shrink-0 shadow-lg group cursor-default"
+                >
+                  <div className="w-6 h-6 rounded-lg bg-[#122038] border border-slate-700/60 flex items-center justify-center p-1 group-hover:scale-110 group-hover:border-[#00F0FF]/40 transition-all">
+                    <IconComponent />
+                  </div>
+                  <span className="font-sans text-xs sm:text-sm font-bold text-slate-200 group-hover:text-[#00F0FF] transition-colors whitespace-nowrap">
+                    {tech.name}
+                  </span>
+                  <span className="font-sans text-[10px] uppercase tracking-wide text-[#00F0FF] font-semibold px-1.5 py-0.5 bg-[#070E1C] border border-[#00F0FF]/20 rounded-md group-hover:bg-[#00F0FF]/15 group-hover:text-white transition-colors hidden sm:inline-block">
+                    {tech.category}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Track 2 (Duplicate for Seamless Infinite Loop) */}
+          <div className="animate-marquee flex shrink-0 items-center gap-3 sm:gap-4 py-1 pr-4 will-change-transform" aria-hidden="true">
+            {techStack.map((tech, idx) => {
+              const IconComponent = tech.icon;
+              return (
+                <div
+                  key={`tech2-${tech.name}-${idx}`}
                   className="flex items-center gap-2.5 px-3.5 sm:px-4 py-2 bg-[#0B1528] border border-slate-800 hover:border-[#00F0FF]/50 hover:bg-[#0F1E38] transition-all duration-200 rounded-xl shrink-0 shadow-lg group cursor-default"
                 >
                   <div className="w-6 h-6 rounded-lg bg-[#122038] border border-slate-700/60 flex items-center justify-center p-1 group-hover:scale-110 group-hover:border-[#00F0FF]/40 transition-all">

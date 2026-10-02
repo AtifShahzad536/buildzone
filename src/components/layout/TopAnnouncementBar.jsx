@@ -134,9 +134,6 @@ export const TopAnnouncementBar = () => {
   // Fallback if all are hidden
   const displayItems = dynamicSocialList.length > 0 ? dynamicSocialList : rawSocialList.slice(0, 3);
 
-  // Duplicated cycle chain for seamless continuous scrolling
-  const cycleItems = [...displayItems, ...displayItems, ...displayItems];
-
   return (
     <div className="bg-[#060B18] text-white border-b border-slate-800/80 text-[12px] font-sans select-none overflow-hidden relative z-50">
       
@@ -144,7 +141,7 @@ export const TopAnnouncementBar = () => {
       <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-[#060B18] to-transparent z-10 pointer-events-none"></div>
       <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-[#060B18] to-transparent z-10 pointer-events-none"></div>
 
-      <div className="py-1.5 flex items-center">
+      <div className="py-1 flex items-center">
         
         {/* Pinned Left Live Indicator on Desktop */}
         <div className="hidden md:flex items-center gap-2 pl-4 pr-3 shrink-0 z-20 bg-[#060B18] border-r border-slate-800/80">
@@ -155,17 +152,47 @@ export const TopAnnouncementBar = () => {
           </span>
         </div>
 
-        {/* Continuous Cycle Chain Marquee (Right to Left) */}
-        <div className="overflow-hidden w-full">
-          <div className="animate-marquee flex items-center gap-5 sm:gap-7">
-            {cycleItems.map((item, idx) => (
+        {/* Continuous 60fps GPU Hardware-Accelerated Marquee (Right to Left) */}
+        <div className="overflow-hidden w-full flex select-none">
+          {/* Track 1 */}
+          <div className="animate-marquee flex shrink-0 items-center gap-6 pr-6 will-change-transform">
+            {displayItems.map((item, idx) => (
               <a
-                key={`${item.name}-${idx}`}
+                key={`track1-${item.name}-${idx}`}
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${item.name}: ${item.handle}`}
-                className="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors group/item shrink-0 px-3 py-1.5 min-h-[34px] rounded hover:bg-white/5 font-sans"
+                className="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors group/item shrink-0 px-2.5 py-1 min-h-[30px] rounded hover:bg-white/5 font-sans"
+              >
+                <div 
+                  className="w-4 h-4 rounded flex items-center justify-center transition-transform group-hover/item:scale-110"
+                  style={{ color: item.color }}
+                >
+                  {item.icon}
+                </div>
+                <span className="font-semibold text-white tracking-normal text-[12px]">
+                  {item.name}:
+                </span>
+                <span className="text-slate-300 group-hover/item:text-[#00F0FF] transition-colors font-medium text-[12px]">
+                  {item.handle}
+                </span>
+                <span className="text-slate-600 font-bold ml-2">/</span>
+              </a>
+            ))}
+          </div>
+
+          {/* Track 2 (Duplicate for Seamless Infinite Loop) */}
+          <div className="animate-marquee flex shrink-0 items-center gap-6 pr-6 will-change-transform" aria-hidden="true">
+            {displayItems.map((item, idx) => (
+              <a
+                key={`track2-${item.name}-${idx}`}
+                href={item.url}
+                tabIndex={-1}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${item.name}: ${item.handle}`}
+                className="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors group/item shrink-0 px-2.5 py-1 min-h-[30px] rounded hover:bg-white/5 font-sans"
               >
                 <div 
                   className="w-4 h-4 rounded flex items-center justify-center transition-transform group-hover/item:scale-110"
