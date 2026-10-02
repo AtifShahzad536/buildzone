@@ -106,4 +106,47 @@
     opacity: 1 !important;
     box-shadow: 0 20px 50px -8px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
   }
+
+  /* Section Divider Parallax Beam Keyframes */
+  @keyframes beamSlideLeft {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-600%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes beamSlideRight {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(600%);
+      opacity: 0;
+    }
+  }
+
+  .animate-beam-slide-left {
+    animation: beamSlideLeft 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .animate-beam-slide-right {
+    animation: beamSlideRight 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
 }

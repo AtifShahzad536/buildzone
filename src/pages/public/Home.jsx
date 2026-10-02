@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import Hero from '../../components/home/Hero';
 import TrustedTech from '../../components/home/TrustedTech';
 import SEOHead from '../../components/common/SEOHead';
+import SectionDivider from '../../components/common/SectionDivider';
 import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
 
 // Below-the-fold components lazy loaded to eliminate render-blocking JS for initial LCP
@@ -61,24 +62,55 @@ export const Home = () => {
         }}
       />
 
-
       <div className="flex flex-col">
         {/* Above the fold (instant paint, zero render-delay for H1 LCP) */}
         <Hero />
         <TrustedTech />
 
+        <SectionDivider variant="cyan" label="ENGINEERING EXCELLENCE" />
+
         {/* Below the fold (streamed asynchronously with zero impact on LCP) */}
         <Suspense fallback={<div className="min-h-[200px]" />}>
           <AboutSection />
+          
+          <SectionDivider variant="blue" label="CORE SERVICES" />
+          
           <ServicesPreview />
+          
+          <SectionDivider variant="cyan" label="PORTFOLIO & CASE STUDIES" />
+          
           <FeaturedProjects />
+          
+          <SectionDivider variant="purple" label="INDUSTRY DOMAINS" />
+          
           <IndustriesPreview />
+          
+          <SectionDivider variant="blue" label="WHY BUILZONE" />
+          
           <WhyChooseUs />
+          
+          <SectionDivider variant="cyan" label="DEVELOPMENT LIFECYCLE" />
+          
           <Process />
+          
+          <SectionDivider variant="purple" label="INTELLIGENCE LABS" />
+          
           <AISection />
+          
+          <SectionDivider variant="blue" label="TECH INSIGHTS" />
+          
           <BlogPreview />
+          
+          <SectionDivider variant="emerald" label="CLIENT REVIEWS" />
+          
           <Testimonials />
+          
+          <SectionDivider variant="cyan" label="FREQUENT QUESTIONS" />
+          
           <FAQPreview />
+          
+          <SectionDivider variant="blue" />
+          
           <FinalCTA />
         </Suspense>
       </div>
