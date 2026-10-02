@@ -60,12 +60,12 @@ const SeamlessServicesVideo = ({ src, onError }) => {
   }, [src]);
 
   return (
-    <div className="relative w-full flex items-center justify-center overflow-visible py-4 sm:py-6">
+    <div className="relative w-full flex items-center justify-center overflow-visible py-2 sm:py-6 bg-transparent border-0 shadow-none rounded-none">
       {/* Ambient Cyber Backlight Glow */}
       <div className="absolute inset-0 bg-gradient-to-tr from-[#0066FF]/30 via-[#00F0FF]/20 to-transparent rounded-full blur-3xl pointer-events-none scale-125 animate-pulse-glow" />
 
       {/* Borderless Floating Video Player */}
-      <div className="relative w-full max-w-[850px] flex items-center justify-center overflow-visible">
+      <div className="relative w-full max-w-[850px] flex items-center justify-center overflow-visible bg-transparent border-0 shadow-none rounded-none">
         <video
           ref={videoRef}
           src={src}
@@ -80,8 +80,15 @@ const SeamlessServicesVideo = ({ src, onError }) => {
           disableRemotePlayback
           onLoadedData={() => setIsReady(true)}
           onError={onError}
-          style={{ backgroundColor: 'transparent', mixBlendMode: 'screen' }}
-          className={`w-full max-w-[850px] h-auto max-h-[500px] sm:max-h-[600px] lg:max-h-[680px] object-contain bg-transparent mix-blend-screen transform transition-all duration-700 ease-out will-change-transform animate-float scale-100 sm:scale-110 lg:scale-120 ${
+          style={{
+            backgroundColor: 'transparent',
+            mixBlendMode: 'screen',
+            border: 'none',
+            outline: 'none',
+            boxShadow: 'none',
+            borderRadius: '0px'
+          }}
+          className={`w-full max-w-[850px] h-auto max-h-[500px] sm:max-h-[600px] lg:max-h-[680px] object-contain bg-transparent border-0 outline-none ring-0 shadow-none rounded-none mix-blend-screen transform transition-all duration-700 ease-out will-change-transform animate-float scale-100 sm:scale-110 lg:scale-120 ${
             isReady ? 'opacity-100' : 'opacity-0'
           }`}
         />
