@@ -120,26 +120,26 @@ export const WhatsAppChatbot = () => {
   return (
     <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 select-none">
       
-      {/* 1. Compact Ergonomic Chatbot Drawer (Fits comfortably below header) */}
+      {/* 1. Compact Ergonomic Chatbot Drawer (Cyber Dark Theme) */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-[92vw] sm:w-[360px] md:w-[370px] h-[430px] sm:h-[460px] max-h-[68vh] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-scaleUp origin-bottom-right">
+        <div className="absolute bottom-16 right-0 w-[92vw] sm:w-[360px] md:w-[370px] h-[440px] sm:h-[470px] max-h-[70vh] bg-[#0A1128] rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-slate-800 flex flex-col overflow-hidden animate-scaleUp origin-bottom-right">
           
-          {/* Vibrant Royal Blue Header */}
-          <div className="bg-gradient-to-r from-[#0052CC] via-[#0066FF] to-[#0284C7] text-white p-3.5 sm:p-4 flex items-center justify-between border-b border-blue-400/30 shadow-xs">
+          {/* Vibrant Cyber Navy & Blue Header */}
+          <div className="bg-gradient-to-r from-[#0B1528] via-[#0052CC] to-[#0066FF] text-white p-3.5 sm:p-4 flex items-center justify-between border-b border-slate-800 shadow-xs">
             <div className="flex items-center gap-2.5">
               <div className="relative">
-                <div className="w-9 h-9 rounded-full bg-white text-[#0066FF] flex items-center justify-center shadow-md">
+                <div className="w-9 h-9 rounded-full bg-[#060B18] border border-blue-400/40 text-[#00F0FF] flex items-center justify-center shadow-md">
                   <Bot className="w-5 h-5" />
                 </div>
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#25D366] border-2 border-white rounded-full"></span>
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#25D366] border-2 border-[#060B18] rounded-full"></span>
               </div>
               <div>
                 <div className="font-display font-black text-sm text-white flex items-center gap-1.5 leading-tight">
                   <span>BuildZone AI Assistant</span>
-                  <Sparkles className="w-3 h-3 text-cyan-200" />
+                  <Sparkles className="w-3 h-3 text-[#00F0FF]" />
                 </div>
-                <div className="font-mono text-[10px] text-blue-100 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
+                <div className="font-mono text-[10px] text-blue-200 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse"></span>
                   <span>Online • Instant Reply</span>
                 </div>
               </div>
@@ -148,7 +148,7 @@ export const WhatsAppChatbot = () => {
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="w-7 h-7 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-colors cursor-pointer"
+              className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-200 hover:text-white transition-colors cursor-pointer"
               aria-label="Close chat"
             >
               <X className="w-4 h-4" />
@@ -156,14 +156,14 @@ export const WhatsAppChatbot = () => {
           </div>
 
           {/* WhatsApp Direct Action Bar */}
-          <div className="bg-emerald-50/90 border-b border-emerald-100 px-3.5 py-2 flex items-center justify-between">
-            <span className="font-mono text-[10.5px] text-emerald-800 font-bold flex items-center gap-1.5">
+          <div className="bg-[#070E1C] border-b border-slate-800/80 px-3.5 py-2 flex items-center justify-between">
+            <span className="font-mono text-[10.5px] text-emerald-400 font-bold flex items-center gap-1.5">
               <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-current" />
               <span>Direct WhatsApp Channel</span>
             </span>
             <button
               onClick={handleWhatsAppRedirect}
-              className="px-2.5 py-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-mono text-[10px] font-bold uppercase rounded transition-all flex items-center gap-1.5 shadow-2xs"
+              className="px-2.5 py-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-mono text-[10px] font-bold uppercase rounded transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer transform hover:-translate-y-0.5"
             >
               <span>Open WhatsApp</span>
               <ExternalLink className="w-2.5 h-2.5" />
@@ -171,7 +171,7 @@ export const WhatsAppChatbot = () => {
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 p-3.5 overflow-y-auto bg-[#F8FAFC] space-y-3 text-xs leading-relaxed">
+          <div className="flex-1 p-3.5 overflow-y-auto bg-[#060B18] space-y-3 text-xs leading-relaxed">
             {messages.map((msg) => {
               const isBot = msg.sender === 'bot';
               return (
@@ -180,39 +180,39 @@ export const WhatsAppChatbot = () => {
                   className={`flex flex-col ${isBot ? 'items-start' : 'items-end'}`}
                 >
                   <div
-                    className={`max-w-[88%] rounded-xl p-2.5 sm:p-3 whitespace-pre-line shadow-2xs ${
+                    className={`max-w-[88%] rounded-xl p-2.5 sm:p-3 whitespace-pre-line shadow-2xs font-sans ${
                       isBot
-                        ? 'bg-white border border-slate-200 text-[#0B1938] rounded-tl-xs'
-                        : 'bg-[#0066FF] text-white rounded-tr-xs font-medium'
+                        ? 'bg-[#0F1D38] border border-slate-800 text-slate-200 rounded-tl-xs leading-relaxed'
+                        : 'bg-[#0066FF] text-white rounded-tr-xs font-medium shadow-md shadow-blue-500/20 leading-relaxed'
                     }`}
                   >
                     {msg.text}
                   </div>
-                  <span className="font-mono text-[9px] text-slate-400 mt-1 px-1 flex items-center gap-1">
+                  <span className="font-mono text-[9px] text-slate-500 mt-1 px-1 flex items-center gap-1">
                     <span>{msg.time}</span>
-                    {!isBot && <CheckCheck className="w-3 h-3 text-[#0066FF]" />}
+                    {!isBot && <CheckCheck className="w-3 h-3 text-[#00F0FF]" />}
                   </span>
                 </div>
               );
             })}
 
             {isTyping && (
-              <div className="flex items-center gap-1 p-2.5 bg-white border border-slate-200 rounded-xl rounded-tl-xs max-w-[70px] shadow-2xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] animate-bounce"></span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] animate-bounce [animation-delay:0.2s]"></span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0066FF] animate-bounce [animation-delay:0.4s]"></span>
+              <div className="flex items-center gap-1.5 p-2.5 bg-[#0F1D38] border border-slate-800 rounded-xl rounded-tl-xs max-w-[70px] shadow-2xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-bounce"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-bounce [animation-delay:0.2s]"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-bounce [animation-delay:0.4s]"></span>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
           {/* Quick Prompts Carousel */}
-          <div className="p-2 bg-white border-t border-slate-100 overflow-x-auto whitespace-nowrap flex gap-1.5 no-scrollbar">
+          <div className="p-2 bg-[#070E1C] border-t border-slate-800/80 overflow-x-auto whitespace-nowrap flex gap-1.5 no-scrollbar">
             {quickPrompts.map((prompt, idx) => (
               <button
                 key={idx}
                 onClick={() => handleSendMessage(prompt)}
-                className="px-2.5 py-1 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-700 hover:text-[#0066FF] rounded-full font-mono text-[9.5px] font-semibold transition-all shrink-0 cursor-pointer"
+                className="px-2.5 py-1 bg-[#0B1528] hover:bg-[#0066FF]/20 border border-slate-800 hover:border-[#00F0FF]/50 text-slate-300 hover:text-[#00F0FF] rounded-full font-mono text-[9.5px] font-semibold transition-all shrink-0 cursor-pointer"
               >
                 {prompt}
               </button>
@@ -225,22 +225,22 @@ export const WhatsAppChatbot = () => {
               e.preventDefault();
               handleSendMessage();
             }}
-            className="p-2.5 bg-white border-t border-slate-200 flex items-center gap-2"
+            className="p-2.5 bg-[#070E1C] border-t border-slate-800 flex items-center gap-2"
           >
             <input
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Ask anything about software & AI..."
-              className="flex-1 bg-slate-50 border border-slate-200 px-3 py-1.5 text-xs text-[#0B1938] placeholder-slate-400 rounded-lg focus:outline-none focus:border-[#0066FF] focus:bg-white transition-all font-sans"
+              className="flex-1 bg-[#0B1528] border border-slate-800 focus:border-[#0066FF] px-3 py-1.5 text-xs text-white placeholder-slate-500 rounded-lg focus:outline-none focus:bg-[#0E1B33] transition-all font-sans"
             />
             <button
               type="submit"
               disabled={!inputText.trim()}
-              className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
+              className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all cursor-pointer ${
                 inputText.trim()
-                  ? 'bg-[#0066FF] hover:bg-[#0052CC] text-white shadow-2xs'
-                  : 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                  ? 'bg-[#0066FF] hover:bg-[#0052CC] text-white shadow-md shadow-blue-500/25'
+                  : 'bg-slate-800 text-slate-500 cursor-not-allowed'
               }`}
             >
               <Send className="w-3.5 h-3.5" />
