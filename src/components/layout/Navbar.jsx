@@ -74,7 +74,7 @@ export const Navbar = () => {
             </Link>
 
             {/* Desktop Navigation Links — Pure CSS Group Hover Architecture */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5">
+            <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1">
               {siteConfig.navLinks.map((item) => {
                 const isActive = location.pathname.startsWith(item.href) && item.href !== '/';
                 const alignRight = item.title === 'About' || item.title === 'Insights' || item.title === 'Work';
@@ -83,7 +83,7 @@ export const Navbar = () => {
                   <div key={item.title} className="relative group/nav py-2">
                     <Link
                       to={item.href}
-                      className={`relative px-3.5 py-1.5 font-sans text-[13px] font-semibold tracking-normal transition-colors duration-200 inline-flex items-center gap-1 cursor-pointer select-none bg-transparent border-0 ${
+                      className={`relative px-2 xl:px-2.5 py-1 font-sans text-[13px] font-semibold tracking-normal transition-colors duration-200 inline-flex items-center gap-1 cursor-pointer select-none bg-transparent border-0 ${
                         isActive
                           ? 'text-[#00F0FF] font-bold'
                           : 'text-slate-200 hover:text-[#00F0FF] group-hover/nav:text-[#00F0FF]'
@@ -95,7 +95,7 @@ export const Navbar = () => {
                       )}
                       {/* Sleek Animated Glowing Underline (0 Background, 0 Borders) */}
                       <span
-                        className={`absolute bottom-0 left-2 right-2 h-[2.5px] rounded-full bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-[#38BDF8] transition-all duration-300 ease-out transform origin-center ${
+                        className={`absolute bottom-0 left-1.5 right-1.5 h-[2.5px] rounded-full bg-gradient-to-r from-[#0066FF] via-[#00F0FF] to-[#38BDF8] transition-all duration-300 ease-out transform origin-center ${
                           isActive
                             ? 'scale-x-100 opacity-100 shadow-[0_0_10px_rgba(0,240,255,0.9)]'
                             : 'scale-x-0 opacity-0 group-hover/nav:scale-x-100 group-hover/nav:opacity-100 shadow-[0_0_8px_rgba(0,240,255,0.7)]'
